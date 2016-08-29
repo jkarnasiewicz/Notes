@@ -759,3 +759,5 @@ python manage.py dbshell < ~/db_backups/db.sql
 {% include "delete_modal.html" with obj_name=_("discount") %}
 
 {% if forloop.last %} class='last'{% endif %}>{{ item }}
+
+LicenseKey.objects.values('value').annotate(total=Count('value')).filter(total=2)
