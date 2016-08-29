@@ -761,3 +761,4 @@ python manage.py dbshell < ~/db_backups/db.sql
 {% if forloop.last %} class='last'{% endif %}>{{ item }}
 
 LicenseKey.objects.values('value').annotate(total=Count('value')).filter(total=2)
+Promo.objects.values('slug').annotate(Count('id')).order_by().filter(id__count__gt=1)
