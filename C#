@@ -1,0 +1,114 @@
+// USING - wlaczenie wskazanej przestrzeni nazw do aktualnego zasiegu
+using System; 
+
+
+
+// NAMESPACE - przestrzen nazw, czyli kontener dla innych identyfikatorow(przestrzeni nazw, klas, metod, zmiennych)
+namespace TextHello {}
+
+
+
+// DATATYPES - Value types(bool, char, int, double, enum?),
+//             Reference types(The reference types do not contain the actual data stored in a variable,
+//                             but they contain a reference to the variables e.g. object, dynamic and string),
+//             Pointer types(Pointer type variables store the memory address of another type e.g. char* cptr;)
+
+//Nullables
+< data_type>? <variable_name> = value(or null);
+
+// Arrays
+double[] balance = new double[10];
+double[] balance = { 2340.0, 4523.69, 3421.0 };
+
+
+
+// NUMBERS
+5.0/2 => 2.5
+5/2   => 2 
+9%2   => 1 // reszta z dzielenia lub dzielenie modulo
+
+
+
+// STRINGS
+char[] letters = { 'H', 'e', 'l', 'l','o' };
+string greetings = new string(letters);
+Console.WriteLine("Greetings: {0}", greetings);
+
+string[] sarray = { "Hello", "From", "Tutorials", "Point" };
+string message = String.Join(" ", sarray);
+Console.WriteLine("Message: {0}", message);
+
+DateTime waiting = new DateTime(2012, 10, 10, 17, 58, 1);
+string chat = String.Format("Message sent at {0:t} on {0:D}", waiting);
+Console.WriteLine("Message: {0}", chat);
+
+
+// Enums
+enum Days { Sun, Mon, tue, Wed, thu, Fri, Sat };
+
+// Static And Constants
+const <data_type> <constant_name> = value;
+
+// Relational Operators ( ==, !=, >, <, >=, <= )
+// Logical Operators ( && - AND, || - OR, ! - Logical NOT Operator)
+// More Operators ( sizeof(), typeof(), ?:, &, *, is, as)
+
+
+
+// Type Conversion
+int i = 75;
+i.ToString() // ToDouble(), ToBoolean(), ToChar(), ToInt64()
+
+System.Int32.Parse("42"); // przeksztalcenie lancucha znakowego na liczbe calkowita
+double.Parse("45.987");
+
+int num = Convert.ToInt32(Console.ReadLine());
+
+
+
+//INPUT FROM THE USER
+//Class vs Struct
+
+// Inkrementacja i Dekrementacja wartosci zmiennych (++, --)
+int  x = 42;
+Console.WriteLine(x++);  // x ma teraz wartosc 43, ale wypisana zostanie wartosc 42
+x =42;
+Console.WriteLine(++x);  // x ma teraz wartosc 43 i wypisana zostanie wartosc 43
+
+
+
+// METODY - funkcje
+
+int dodajWartosci(int x, int y) { return x + y; }         // metoda zwraca int-a
+Console.WriteLine( dodajWartosci(3,5));
+
+void pokazWynik(int x) {}                                // metoda nie zwraca zadnej wartosci
+
+// Przeciązanie metod - ta sama nazwa metody, lecz inne typy argumentow i/lub inna ich ilosc 
+Console.WriteLine(42);
+Console.WriteLine("The Hello Text");
+
+
+
+
+
+// IF - kazdy if zostanie sprawdzony(moze byc kilka if-ow ktore spelniaja warunek)
+if(warunek) {}
+if(warunek) {}
+if(warunek) {}
+else {}
+
+// IF ELSE - jesli jeden z if-ow spelnia warunek to reszta jest pomijana i nie sprawdzana
+if(warunek) {}
+else if(warunek) {}
+else if(warunek) {}
+else {}
+
+
+// Encapsulation
+
+Public Access
+Private Access
+Protected Access
+Internal Access
+Protected Internal

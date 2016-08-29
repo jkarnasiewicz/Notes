@@ -1,0 +1,142 @@
+[
+{
+  "pk": 1,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Game of Thrones"
+  }
+},
+{
+  "pk": 2,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Breaking Bad"
+  }
+},
+{
+  "pk": 3,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "The Wire"
+  }
+},
+{
+  "pk": 4,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "House of Cards"
+  }
+},
+{
+  "pk": 5,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Friends"
+  }
+},
+{
+  "pk": 6,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "House"
+  }
+},
+{
+  "pk": 7,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "South Park"
+  }
+},
+{
+  "pk": 8,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Mad Men"
+  }
+},
+{
+  "pk": 9,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Boardwalk Empire"
+  }
+},
+{
+  "pk": 10,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "The Bugs Bunny Show"
+  }
+},
+{
+  "pk": 11,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Futureama"
+  }
+},
+{
+  "pk": 12,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "The Big Bang Theory"
+  }
+},
+{
+  "pk": 13,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "How I Met Your Mother"
+  }
+},
+{
+  "pk": 14,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "The Good Wife"
+  }
+},
+{
+  "pk": 15,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Castle"
+  }
+},
+{
+  "pk": 16,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Beast Wars: Transformers"
+  }
+},
+{
+  "pk": 17,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "The Mentalist"
+  }
+},
+{
+  "pk": 18,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "That '70s Show"
+  }
+},
+{
+  "pk": 19,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "Star Wars: The Clone Wars"
+  }
+},
+{
+  "pk": 20,
+  "model": "FaP.Serials",
+  "fields": {
+    "title": "The Client List"
+  }
+}
+]

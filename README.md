@@ -1,1 +1,3 @@
-# Notes
+Notes-and-Scripts
+=================
+for python, django, JavaScript, jQuery, gerrit, github, linux, sql...

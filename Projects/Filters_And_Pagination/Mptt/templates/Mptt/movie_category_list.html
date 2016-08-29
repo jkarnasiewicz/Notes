@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n utility_tags mptt_tags %}
+{% load crispy_forms_tags %}
+
+{% block extrahead %}
+<style type="text/css">
+.level-0 {
+	margin-left: 0;
+}
+.level-1 {
+	margin-left: 20px;
+}
+.level-2 {
+	margin-left: 40px;
+}
+</style>
+{% endblock %}
+
+{% block left_navigation %}
+	{{ single_choice_form }}
+{% endblock %}
+
+{% block header_navigation %}
+	<ul class="root">
+		{% recursetree categories %}
+			<li>
+				{{ node.title }}
+				{% if not node.is_leaf_node %}
+					<ul class="children">
+						{{ children }}
+					</ul>
+				{% endif %}
+			</li>
+		{% endrecursetree %}
+	</ul>
+{% endblock %}
+
+{% block right_navigation %}
+		{% crispy multiple_choice_form %}
+{% endblock %}

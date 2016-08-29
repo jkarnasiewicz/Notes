@@ -1,0 +1,69 @@
+<a src="cid:.....">
+
+<th rowspan="2">
+
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+<input type="text/hidden/submit" pattern="[0-9]*" />
+
+<embed>
+
+<hr> tag defines a thematic break in an HTML page (e.g. a shift of topic).
+
+<!-- Forms -->
+<!-- Search field -->
+<form method="GET" action="">
+	<input type="text" name="query" placeholder="Search posts" value="{{ request.GET.query }}" />
+	<input type="hidden" name="fuzzy" value="1" /> 
+	<input type="submit" value="Search" />
+	<!-- name => url .../?query=something -->
+	<!-- value => remember last input value -->
+</form>
+
+<!-- Bootstrap -->
+<a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
+
+$('[data-toggle="popover"]').popover({trigger: 'hover'});
+$('.popover-hover').popover({trigger: 'hover'});
+
+
+<!-- To Do -->
+<div class="container-fluid"></div>
+
+class="col-sm-3 col-md-6 col-lg-10"
+class="col-xs-3" - always this size
+
+<!-- offset - cut 3 rows from the left and right (3 + 6 + 3) -->
+<div class="col-sm-6 col-sm-offset-3"></div>
+
+<!-- Images -->
+<img class="img-responsive" src="img_chania.jpg" alt="Chania"> 
+<!-- $('.content img').each(function(){ $(this).addClass('img-responsive'); }) -->
+
+<!-- Font Awesome -->
+<i class="fa fa-bolt"></i>
+<!-- Size -->
+<i class="fa fa-bolt fa-5x"></i>
+<!-- Spin -->
+<i class="fa fa-bolt fa-5x fa-spin"></i>
+<!-- Stacked Icons -->
+<span class="fa-stack fa-lg">
+ 	<i class="fa fa-square-o fa-stack-2x"></i>
+ 	<i class="fa fa-twitter fa-stack-1x"></i>
+</span>
+
+<!-- Input groups -->
+<div class="col-lg-6">
+    <div class="input-group">
+    	<input type="text" class="form-control" placeholder="Search for...">
+		<span class="input-group-btn">
+			<button class="btn btn-default" type="button">Go!</button>
+		</span>
+    </div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+
+<!-- Blockquote -->
+<blockquote>
+	<P>...</P>
+	<footer>{{ comment.user }} | {{ comment.timestamp|timesince }}</footer>
+</blockquote>

@@ -1,0 +1,53 @@
+/*CSS!*/
+
+/* Wildcard meaning all divs so will apply this style to all */
+*
+
+
+/*A rule that has the !important directive will always be applied
+no matter where that rule appears in the CSS document.*/
+!important
+
+
+/* Position */
+{
+/*A relative positioned element is positioned relative to its normal position*/
+position:relative;
+/*An absolute position element is positioned relative to the first parent
+element that has a position other than static*/
+	position: absolute;
+
+/*An element with a fixed position is positioned relative to the
+browser window, and will not move even if the window is scrolled*/
+position: fixed;
+}
+
+
+/*Breaking long strings*/
+style="word-break: break-all;"
+
+/*Scroll*/
+overflow: auto or scroll
+
+/*Measurement*/
+min-width:100px
+
+/*Cursor*/
+style="cursor: pointer;"
+
+body {
+	min-height: 1000px;
+}
+
+/*Bootstrap*/
+
+/*Center*/
+.center-block {
+   margin-left:auto;
+   margin-right:auto;
+   display:center;
+}
+
+.text-center {
+   text-align:center
+}

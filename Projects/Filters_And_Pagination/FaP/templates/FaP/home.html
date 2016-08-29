@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% load utility_tags %}
+{% load i18n %}
+{% block left_navigation %}
+	
+	<div class="serial_list">
+		{% for serial in serials_page %}
+			<div class="item">
+				<div class="movie alert alert-info">
+					<strong>{{ serial.title }}</strong>
+				</div>
+			</div>
+		{% endfor %}
+		{% if serials_page.has_next %}
+			<p class="serial_pagination"><a class="serial_next_page" href="{% append_to_query serial_page=serials_page.next_page_number %}">{% trans "Więcej" %}</a></p>
+		{% endif %}
+	</div>
+
+{% endblock %}
+{% block header_navigation %}
+	<div class="filters">
+		
+		<div class="list-group col-md-3">
+			<a class="list-group-item{% if not facets.selected.genre %} active{% endif %}"
+				href="{% append_to_query genre="" page="" %}">{% trans "Wszystkie" %}</a>
+	
+			{% for cat in facets.categories.genres %}
+				<a class="list-group-item{% if facets.selected.genre == cat %} active{% endif %}"
+				href="{% append_to_query genre=cat.pk page="" %}">{{ cat }}</a>
+			{% endfor %}
+		</div>
+
+		
+		<div class="list-group col-md-3">
+			<a class="list-group-item{% if not facets.selected.director %} active{% endif %}"
+				href="{% append_to_query director="" page="" %}">{% trans "Wszystkie" %}</a>
+
+			{% for cat in facets.categories.directors %}
+				<a class="list-group-item{% if facets.selected.director == cat %} active{% endif %}"
+				href="{% append_to_query director=cat.pk page="" %}">{{ cat }}</a>
+			{% endfor %}
+		</div>
+
+		
+		<div class="list-group col-md-3">
+			<a class="list-group-item{% if not facets.selected.actor %} active{% endif %}"
+				href="{% append_to_query actor="" page="" %}">{% trans "Wszystkie" %}</a>
+
+			{% for cat in facets.categories.actors %}
+				<a class="list-group-item{% if facets.selected.actor == cat %} active{% endif %}"
+				href="{% append_to_query actor=cat.pk page="" %}">{{ cat }}</a>
+			{% endfor %}
+		</div>
+
+		
+		<div class="list-group col-md-3">
+			<a class="list-group-item{% if not facets.selected.rating %} active{% endif %}"
+				href="{% append_to_query rating="" page="" %}">{% trans "Wszystkie" %}</a>
+
+			{% for r_val, r_display in facets.categories.ratings %}
+				<a class="list-group-item{% if facets.selected.rating.0 == r_val %} active {% endif %}"
+				href="{% append_to_query rating=r_val page="" %}">
+				{{ r_display }}</a>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block right_navigation %}
+	<div class="movie_list">
+		{% for movie in object_list %}
+			<div class="movie alert alert-info">
+				<p><a href="" data-url="{% url 'FaP:movie_detail_modal' pk=movie.pk %}" data-title="{{ movie.title }}">{{ movie.title }}</a></p>
+			</div>
+		{% endfor %}
+	</div>
+
+	{% if object_list.has_other_pages %}
+		<ul class="pagination">
+			{% if object_list.has_previous %}
+				<li><a href="{% append_to_query page=object_list.previous_page_number %}">&laquo;</a></li>
+			{% else %}
+				<li class="disabled"><span>&laquo;</span></li>
+			{% endif %}
+
+			{% for page_number in object_list.paginator.page_range %}
+				{% if page_number == object_list.number %}
+					<li class="active">
+						<span>{{ page_number }} <span class="sr-only">(current)</span></span>
+					</li>
+				{% else %}
+					<li>
+						<a href="{% append_to_query page=page_number %}">{{ page_number }}</a>
+					</li>
+				{% endif %}
+
+			{% endfor %}
+
+			{% if object_list.has_next %}
+				<li><a href="{% append_to_query page=object_list.next_page_number %}">&raquo;</a></li>
+			{% else %}
+				<li class="disabled"><span>&raquo;</span></li>
+			{% endif %}
+		</ul>
+	{% endif %}
+{% endblock %}
+
+{% block extrabody %}
+<div class="row">
+	<div id="popup" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Tytuł‚ okna dialogowego</h4>
+				</div>
+				<div class="modal-body">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{{ STATIC_URL }}js/jquery.jscroll.min.js"></script>
+<script>
+$(document).ready(function() {
+	var $popup = $('#popup');
+	$('.movie_list a').click(function(){
+		var $movie = $(this);
+		var popup_url = $movie.data('url');
+		var popup_title = $movie.data('title');
+
+		if (!popup_url) {
+			return true;
+		}
+
+		$('.modal-title', $popup).html(popup_title);
+		$('.modal-body', $popup).load(popup_url, function() {
+			$popup.on('shown.bs.modal', function () {
+				// robi coś po wyświetleniu okna dialogowego
+			}).modal("show");
+		});
+
+		$('.close', $popup).click(function() {
+			// robi coś przy zamykaniu okna dialogowego
+		});
+		return false; // wyłącza domyślne działanie odnośników
+	});
+
+	$('.serial_list').jscroll({
+		loadingHtml: '',
+		padding: 100,
+		pagingSelector: '.serial_pagination',
+		nextSelector: 'a.serial_next_page:last',
+		contentSelector: '.item,.serial_pagination'
+	});
+
+	$popup.on('click', '.like-button', function() {
+		var $button = $(this);
+		var $badge = $button.closest('.like-widget').find('.like-badge');
+		$.post($button.data('href'), function(data) {
+			// var data = JSON.parse(data.json_str); with return JsonResponse({'json_str': json_str})
+			if (data['action'] == 'added') {
+				$button.addClass('active').html('<span class="glyphicon glyphicon-star"></span> ' +
+					$button.data('unlike-text'));
+			} else {
+				$button.removeClass('active').html('<span class="glyphicon glyphicon-star-empty"></span> ' +
+					$button.data('like-text'));
+			}
+			$badge.html(data['count']);
+		});
+	});
+});
+</script>
+{% endblock %}

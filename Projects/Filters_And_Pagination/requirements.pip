@@ -1,0 +1,8 @@
+Django==1.9
+django-crispy-forms==1.6.0
+django-mptt==0.8.3
+django-mptt-admin==0.3.5
+django-mptt-tree-editor==0.1.2
+Pillow==3.1.1
+six==1.10.0
+xlwt==1.0.0

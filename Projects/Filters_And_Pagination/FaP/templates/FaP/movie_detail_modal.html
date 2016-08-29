@@ -1,0 +1,18 @@
+{% load utility_tags %}
+<p class="clearfix">
+	<h3>Like:</h3>
+		{% if request.user.is_authenticated %}
+			{% like_widget for movie %}
+		{% endif %}
+	<h3>Genres:</h3>
+	{% for i in genres %}
+		<button class="btn btn-default">{{ i }}</button>
+	{% endfor %}
+	<span class="glyphicon glyphicon-random"></span>
+	<h3>Wallpaper:</h3>
+	{% for i in wall_url %}
+		<p>
+			<img src="{{ STATIC_URL }}img/{{ i }}" class="img-responsive" alt="Responsive image"/>
+		</p>
+	{% endfor %}
+</p>
