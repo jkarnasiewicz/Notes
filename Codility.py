@@ -1,5 +1,5 @@
- # Lesson 1, BinaryGap (100%)
- def solution(N):
+# Lesson 1, BinaryGap (100%)
+def solution(N):
     bin_value = bin(N).split('1')[1:-1]
     length_value = [len(i) for i in bin_value]
     return max(length_value) if length_value else 0
@@ -15,6 +15,15 @@ def solution(A):
 		else:
 			di[i] = 0
 	return di.popitem()[0]
+
+
+
+# Lesson 2, CyclicRotation (100%)
+def lsolution(A, K):
+    if A:
+        for i in range(K):
+            A.insert(0, (A.pop()))
+    return A
 
 
 
@@ -47,6 +56,19 @@ def solution(A):
 
 
 
+# Lesson 4, PermCheck (100%)
+def solution(A):
+    l = len(A)
+    table = [0]*l
+    for i in A:
+        try:
+            table[i-1] += 1
+        except IndexError:
+            return 0
+    return 0 if 0 in table else 1
+
+
+
 # Lesson 4, FrogRiverOne (100%)
 def solution(X, A):
 	final_set = set()
@@ -59,7 +81,7 @@ def solution(X, A):
 
 
 
-# Lesson 4, MissingInteger
+# Lesson 4, MissingInteger (100%)
 def solution(A):
     ori_set = {i for i in A if i > 0}
     if not ori_set:
@@ -71,3 +93,55 @@ def solution(A):
     for i in xrange(1, max_set + 2):
         if i not in ori_set:
             return i
+
+
+# Lesson 4, MaxCounters (88%)
+def solution(N, A):
+    result = [0]*N
+    highest_value = 0
+    last_operation = 'max_counter'
+    for i in A:
+        if i == N+1:
+            if last_operation == 'increase':
+                result = [highest_value]*N
+                last_operation = 'max_counter'
+            continue
+        result[i-1] += 1
+        if result[i-1] > highest_value:
+            highest_value = result[i-1]
+            last_operation = 'increase'
+    return result
+
+
+
+# Lesson 5, PassingCars (100%)
+def solution(A):
+    results = [0, 0]
+    for i in A:
+        if i == 0:
+            results[0] += 1
+        else:
+            results[1] += results[0]
+        if results[1] > 1000000000:
+            return -1
+    return results[1]
+
+
+
+# Lesson 5, CountDiv (100%)
+def solution(A, B, K):
+    edge = 0
+    if A == 0 and B == 0:
+        return 1
+    if A == B:
+        if A%K == 0:
+            return 1
+        return 0
+    if K == 1:
+        return B - A + 1
+    if A%K == 0:
+        edge += 1
+    if K >= A:
+        return B//K + edge
+    else:
+        return B//K - A//K + edge

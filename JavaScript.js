@@ -1,3 +1,6 @@
+// General
+// json - JavaScript Object Notation
+
 // Pass message into console
 console.log('Message');
 console.info('Info sign');
@@ -489,4 +492,10 @@ for(var b in window) {
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 var energy = fruits.join(); 
 
+// Metoda stringify przeprowadza konwersję obiektu JavaScript na ciąg tekstowy
 JSON.stringify(results, null, 4)
+
+// Metoda parse przetwarza ciąg tekstowy zawierający dane JSON na postać obiektu JavaScript
+JSON.parse()
+
+window.variable_name - gwarantuje pobranie obiektu globalnego

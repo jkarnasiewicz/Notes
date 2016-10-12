@@ -293,3 +293,10 @@ show engine innodb status;
 
 # Remove old kernels in ubuntu (boot drive)
 dpkg -l linux-* | awk '/^ii/{ print $2}' | grep -v -e `uname -r | cut -f1,2 -d"-"` | grep -e [0-9] | grep -E "(image|headers)" | xargs sudo apt-get -y purge
+
+# grep
+grep -E "class|def" lists/tests.py
+grep id_new_item functional_tests/test*			# grep co_szukamy gdzie_szukamy
+grep -Ir id_new_item functional_tests/
+
+mkdir -p accounts/static/tests

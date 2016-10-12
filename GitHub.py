@@ -153,7 +153,7 @@ git push -u origin master # after that git push
 
 git pull origin master
 git diff HEAD # most recent changes
-git diff --staged # changes recently added
+git diff --staged -M # wykryj operacje przeniesienia
 git reset file_name # unstage file
 git checkout -- file_name #  get rid of all the changes since the last commit for file_name
 
@@ -219,3 +219,28 @@ git diff --staged
 git commit -am 'pierwszy test jednostkowy'
 
 git diff --staged -M 					# wykryj operacje przeniesienia
+
+
+
+git reset --hard HEAD 					# undo all changes
+git clean -fd 							# remove any untracked files and directories.
+
+
+
+# Back to taged commit
+...
+git commit -m ''
+git tag revisit_this_point
+...
+git checkout -b more-isolation
+git reset --hard revisit_this_point
+
+
+
+# Tag
+git tag -f LIVE
+export TAG='date +DEPLOYED-%F/%H%M'
+git tag $TAG
+git push -f origin LIVE $TAG
+
+# TDD 362

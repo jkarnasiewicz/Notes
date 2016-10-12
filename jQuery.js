@@ -200,8 +200,9 @@ var grid = $('#grid')
 
 
 
-// Ajax
-$('#update').load('data.txt');
+// Ajax (technologia oferująca asynchroniczną funkcjonalność)
+// Ajax pozwala na żądanie danych z serwera oraz wczytanie ich bez konieczności odświeżenia całej strony
+$('#update').load('update_data.html #content');
 
 $.getJSON('data.json', function(data) {
 	var output = '<ul>';
@@ -219,6 +220,7 @@ function delete_record(data_url) {
         url: data_url,
         type: "POST",
         data: data,
+        timeout: 2000,
         beforeSend: function (request) {
             $("body").css("cursor", "wait");
         },
@@ -317,6 +319,7 @@ $(function() {
             beforeSend: function () {
 
             },
+            // .done()
             success: function(data) {
                 if(data.success) {
                     window.location = data.redirect;
@@ -327,13 +330,13 @@ $(function() {
                     return;
                 }
                 $('#modal .modal-content').html(data);
+                $("#container").html($(json.html_data).find("#container")).hide().fadeIn(400);
             },
-            success: function(){
-
-            },
+            // .fail()
             error: function() {
 
             },
+            // .always()
             complete: function() {
                 
             }
@@ -342,18 +345,6 @@ $(function() {
     });
 });
 
-
-
-// Additional plugins
-Colorbox plugin
-Easing plugin   // bounce
-Chosen plugin
-MediaElement.js
-Cycle2 plugin
-Flexslider plugin
-jQuery Tools
-jQuery Cookie
-Light box
 
 // To Do
 $.Nazwa = function(){}// new variable
@@ -367,3 +358,14 @@ $('input[name={{ form.products.html_name }}]:checked').each(function() {
 });
 
 $.items = $('input[name={{ form.products.html_name }}]');
+
+$('nav a').on('click', function(e) { // Użytkownik kliknął łącze.
+    e.preventDefault(); // Zatrzymanie wczytywania nowego łącza.
+    var url = this.href; // Pobranie wartości atrybutu href.
+
+    $('nav a.current').removeClass('current'); // Usunięcie klasy current.
+    $(this).addClass('current'); // Określenie nowego elementu jako bieżącego.
+
+    $('#container').remove(); // Usunięcie starej zawartości.
+    $('#content').load(url + ' #content').hide().fadeIn('slow'); // Nowa zawartość.
+});
