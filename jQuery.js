@@ -369,3 +369,231 @@ $('nav a').on('click', function(e) { // Użytkownik kliknął łącze.
     $('#container').remove(); // Usunięcie starej zawartości.
     $('#content').load(url + ' #content').hide().fadeIn('slow'); // Nowa zawartość.
 });
+
+
+
+// Pluralsight
+// TYPE TESTING FUNCTIONS
+$.type(object)
+$.isArray(array)
+$.isFunction(func)
+// Optional arguments
+// var funcToCall = $.isFunction(arg1) ? arg1 : $.isFunction(arg2) ? arg2 : arg3;
+$.isEmptyObject(object)
+$.isPlainObject(object)
+$.isXmlDoc(doc)
+$.isNumeric(number)
+$.isWindow(window)
+
+
+
+// UTILITY FUNCTIONS
+var myArray = [1, 2, 3, 3, 4, 4, 5]
+// $.inArray returns index
+if($.inArray(4, myArray) != -1) {
+    console.log("4 is in the array")
+}
+
+
+
+// unique
+$.unique(myArray);
+
+
+
+// merge
+$.merge(myArray, myArray2);
+
+
+
+// map
+var newArray = $.map(myArray, function(item, index) {
+    return item * 2;
+});
+
+
+
+// grep (filter)
+var greppedArray = $.grep(myArray, function(item) {
+    return item%2 == 0;
+})
+
+
+
+// makeArray returns simple javascript array with nodes
+$.makeArray($("div"));
+
+
+
+// getScript, execute script from the url (like ajax call)
+// it is non blocking call
+$.getScript(url, function(data, textStatus) {
+
+});
+
+
+
+// pushStack function
+// jQuery plugin, simple method, stack
+$.fn.everyThird = function() {
+    var arr = [];
+    $.each(this, function(idx, item) {
+        if(idx%3 == 0) {
+            arr.push(item)
+        }
+    })
+    return this.pushStack(arr, "everyThird", "");
+}
+
+// every div has bold font but every third div has red color
+$("#clickme").click(function() {
+    $("div").everyThird().css("color", "Red").end().css("font-weight", "bold");
+});
+
+
+
+// each()
+// $.each(collection, callback(index, element))
+// $(selector).each(acllback(index, element))
+$("div").each(function(index, element) {
+    var wrappedElem = $(elem);
+    wrappedElem.addClass("myclass");
+    // terminated loop before it finished: return false;
+});
+
+
+
+// parseJSON
+// turns a json string into javascript objects
+var myObject = $.parseJSON(jsonString);
+
+
+
+// extend
+// creating copy of the object not reference
+var animal = {
+    eat: function() {}
+}
+
+var dog = {
+    bark: function() {}
+}
+
+$.extend(true, dog, animal);
+dog.eat();
+
+
+
+// proxy, setting the value for 'this' keyword in the event handler
+// $.proxy(handler, context);
+var eventHandler = { ... }
+$("#clickme").click($.proxy(eventHandler.clickButtonHandler, eventHandler));
+
+
+
+// IIFY - Immediately-Invoked Function Expression (executed immediately)
+(function($) {
+    ...
+})(jQuery);
+
+
+
+// Custom Selectors
+(function($) {
+    $.expr[':'].every = function(elem, idx, meta, items) {
+        return (idx + 1) % parseFloat(meta[3]) == 0;
+    }
+})(jQuery);
+
+$(function() {
+    $("div:every(4)").css('background-color', 'red');
+});
+
+
+
+// Adding utility methods that are part of jQuery
+(function($) {
+    $.log = function(value) {
+        if(console) {
+            console.log(value);
+        }
+    }
+    $.log.group = function(value) {
+        if(console && console.group) {
+            console.group(value);
+        }
+    }
+    $.log.groupEnd = function() {
+        if(console && console.group) {
+            console.groupEnd();
+        }
+    }
+})(jQuery);
+
+$(function() {
+    $.log.group('my group');
+    $.log('hi there');
+    $.log.groupEnd();
+});
+
+
+
+// Basic plugin pattern
+// fn property(object) - prototype for jQuery object
+// that is why we have $('div').myPlugin();
+// 'this' in myPlugin is $('div')
+(function($) {
+    $.fn.myPlugin = function() {
+        return this;
+    };
+})(jQuery);
+
+
+
+// Plugin with parameters
+(function($) {
+    $.fn.myPlugin = function(options) {
+        var settings = {};
+        $.extend(settings, this.myPlugin.defaults, options);
+        return this.css('background-color', settings.backColor);
+    }
+
+    $.fn.myPlugin.defaults = {
+        backColor: 'orange'
+    };
+})(jQuery);
+
+$(function() {
+    $('#div').myPlugin();                               // default option
+    $('#div').myPlugin({'backColor': 'yellow'});
+});
+
+// Tracking state Plaugin
+// use closures to maintain plugin-level state
+// use this.data() to maintain node-level state
+
+
+
+// JQUERY PERFORMANCE
+// - Caching selections and other items
+// - Use element properties when possible (instead of jQuery, e.g. .attr())
+// - Use traversing, e.g. $('#div').find('.title')
+// - Use one append
+// - Insert using a containing element
+
+// Profile performance
+console.profile('description');
+// code
+console.profileEnd('description');
+
+// Manual timing
+console.time('description');
+// code
+console.timeEnd('description');
+
+// Writing
+var appendString = "";
+$.each(arr, function() {
+    appendString += "<div>" + this + "</div>";
+});
+$('#parent').append('<div>' + appendString + '</div>');

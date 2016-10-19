@@ -83,6 +83,7 @@ sekcje bez pokrycia
 pip install runsnake // pip install line_profiler - procesor
 pip install memory_profiler // pip install psutil - pamieć
 pip install guppy - obiekty w stercie
+dowser
 
 
 
@@ -242,7 +243,7 @@ def tight_loop_fast(iterations):
 
 # Clusters(Klastry) - zbiór komputerów współpracujących ze sobą w celu rozwiązania typowego zadania.
 # Na zewnątrz sieci klaster może wyglądać jak pojedynczy większy system.
-# Parallel Python, IPython Paraller, NSQ, Celery
+# Parallel Python, IPython Paraller, NSQ, Celery, ZeroMQ (messageQueue)(Scaling horizontally)
 
 # Przeprowadzono profilowanie systemu w celu poznania wąskich gardeł.
 # Wykorzystano rozwiązania do kompilowania, takie jak Cython.

@@ -121,6 +121,13 @@ class TestSomething(unittest.TestCase):
     def test_override_settings(self):
         pass
 
+
+    # Skip
+    @unittest.skip("not needed")
+    def test_not_needed(self):
+        pass
+
+
     # Mock
     @patch('accounts.views.authenticate')
     def test_calls_authenticate_with_assertion_from_post(

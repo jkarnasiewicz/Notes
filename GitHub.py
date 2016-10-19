@@ -1,9 +1,10 @@
-GitHub
-Git(Distributed version control system/rozproszony system kontroli wersji)
+Git (Distributed version control system/rozproszony system kontroli wersji)
+Three-tree architecture (working -> staging index -> repository)
 ##########################################################################################################
 
-git init # Initialize a git repository
-git clone # Clone existing one
+git --version
+git init 				# Initialize a git repository
+git clone 				# Clone existing one
 
 git pull 				# is like git fetch + git merge
 git status
@@ -11,8 +12,8 @@ git add ./file.py
 git add '*.txt'
 git add -A              # add new files and modified files to the index
                         # add also removed files
-git rm file.py
-git rm -r --cached file_name/dir_name 					# remove from git but not from disk
+git rm file.py 			# remove from git and from disk (then use commit)
+git rm -r --cached file_name/dir_name 	# remove from git but not from disk
 git commit -m "message"
 
 # Jeśli są zmiany w masterze wprowadzone przez kogoś innego
@@ -63,19 +64,32 @@ git commit --amend
 git help
 git help config
 
+git congig --system 				# configuration for all users in system
+git config --global 				# configuration per user
+git config 							# configuration per project
+git config --list
+
 git config --global user.name "Name"
 git config --global user.email email_address
 git config --global color.ui true  # pretty command colors
+git config --global core.editor "app_name -wl1"
 
-gitg or gitk
-git diff                           # differences
 git log
-git log gerrit/master              # commits that's already on server (origin/branch_name)
+git log -n 5					   			# last 5 commits
+git log --since=2016-06-15
+git log --until=2016-10-17
+git log --author="Joe"
+git log --grep="fixes bug" 		   			# search the commit messages
+
+git log gerrit/master              			# commits that's already on server (origin/branch_name)
 git log --pretty=oneline --all --graph      # commits tree
 git log -10 --all --date-order				# last 10 commits with date order
-git ... -i ...                     # more information with -i
+git ... -i ...                     			# more information with -i
 
-git remote -v
+gitg or gitk
+git diff                           			# differences
+
+git remote -v 								# more information
 git remote set-url gerrit ssh://jacek.karnasiewicz@spinlab-pg.wcss.pl:2222/SpinLabBibliography.git
 git remote set-url origin ssh://jacek.karnasiewicz@spinlab-pg.wcss.pl:2222/SpinLabUtilities.git
 
@@ -146,7 +160,7 @@ git clone -b my-branch https://git@github.com/username/myproject.git
 mkdir name
 
 
-git commit -m 'Add cute...'
+git commit -m 'Fixes bug in ...'
 git log
 git remote add origin https://github.com/try-git/try_git.git
 git push -u origin master # after that git push
@@ -223,7 +237,7 @@ git diff --staged -M 					# wykryj operacje przeniesienia
 
 
 git reset --hard HEAD 					# undo all changes
-git clean -fd 							# remove any untracked files and directories.
+
 
 
 
@@ -244,3 +258,210 @@ git tag $TAG
 git push -f origin LIVE $TAG
 
 # TDD 362
+
+
+
+
+
+# Git essencial training
+
+# HEAD
+pointer to 'tip' of current branch in repository
+last state of repository, what was last checked out
+
+# STATUS
+report the difference between our working directory, the staging index,
+and the repository
+
+# DIFF
+# comparing whats in the repository, the version that HEAD is pointing at(-),
+# versus whats in our working directory(+)
+git diff
+
+git diff --color-words file_name 		# color changes
+
+# comparing whats in the repository, versus whats in our staging index
+git diff --staged				# the same as git diff --cached
+
+# RENAME/MOVE
+git mv file_name new_file_name
+
+# UNDOING CHANGES IN WORKING DIRECTORY
+git checkout -- file_name # stay on the same branch and get this file from repository
+
+# UNDOING CHANGES IN STAGING INDEX (changes back to working directory)
+git reset HEAD file_name # look at last commit and reset yourself to that
+
+# UNDOING COMMITS CHANGES(ONLY LAST COMMIT CAN BE CHANGE)
+git commit --amend -m "New message" # SHA(commit id) changes
+
+# RETRIVING OLD VERSION OF THE FILE
+git checkout commit_id -- old_version_of_the_file_name
+
+# UNDOING CHANGES FROM OLD COMMITS
+git revert commit_id
+
+# UNDO MULTIPLE COMMITS
+git reset [option] commit_id
+	# does not change staging index or working directory
+	# any changes that came after that commit are in staging index
+	--soft
+	# changes staging index to match repository
+	# does not change working directory
+	# any changes that came after that commit are in working directory
+	--mixed (default)
+	# changes staging index and working directory to match repository
+	# !that means any changes that came after that commit are completely obliterated
+	--hard
+
+# THROW AWAY THE UNTRACKED FILES
+git clean -n   # show info
+git clean -f   # force remove
+git clean -fd  # remove any untracked files and directories
+
+# IGNORING FILES (.gitignore)
+# global ignoring files (user level ignoring - not in repository level)
+git config --global core.excludesfile ~/.gitignore_global
+
+# remove from git and from disk (then use commit)
+git rm file.py
+# remove this file just from staging index, not from repository
+# stop tracking changes
+git rm --cached file_name
+
+# TRACKING EMPTY DIRECTORY (git doesnt track empty directory)
+# put empty file in it, e.g. .gitkeep
+
+# REFERENCING COMMITS
+# HEAD~x going from the HEAD and moving back 'x' commits
+# parent commit
+HEAD~1
+# grandparent commit
+HEAD~2
+
+# TREE LISTING
+git ls-tree HEAD/master catalog_name/
+
+# LOG
+git log --since="2 weeks ago" --until="3 days ago"
+# what has happened to the file_name file from commit_id to the last one
+# -p option is for detail info
+git log -p commit_id.. file_name
+
+# statistics about what changed in each commit
+git log --stat --summary
+
+git log --oneline --graph --all --decorate
+
+# viewing commits
+git show commit_id
+
+# COMPARING COMMITS
+# differences between the directory at commit_id and my current working directory
+git diff commit_id
+
+# what has changed from commit_id to now in the file_name file
+git diff commit_id file_name
+
+# the snapshot at commit_id_1 versus the snapshot at commit_id_2
+git diff commit_id_1..commit_id_2 file_name
+git diff --stat --summary -w commit_id..HEAD
+
+# BRANCH
+# comparing branches
+git diff --color-words master..branch_name
+
+# show whether one branch completely contains another branch or not
+# show all branches that are completely included in this branch
+git branch --merged
+
+# renaming branches
+git branch -m branch_name branch_new_name
+
+
+# MERGING
+# merging from branch which is receiver
+git merge branch_name
+
+# fast-forward commits don't create new commit
+# forces git to create a merge commit anyway)
+git merge --no-ff branch_name
+
+# do a merge only if you can do fast-forward
+git merge --ff-only branch_name
+
+# resolving merge conflicts
+# abort the merge
+git merge --abort
+# or
+# resolving merge conflicts
+git add .
+git commit
+
+# STASH
+git stash list
+git stash show -p stash@{0}
+git stash save "message"
+
+# retriving stashed changes
+git stash pop 					# removes from stash
+git stash apply stash@{3} 		# leaves a copy in stash
+
+# deleting stashed changes
+git stash drop stash@{2}
+
+# deleting all stashed changes
+git stash clear
+
+# REMOTES
+# list of the remote server
+git remote
+
+# add remote server
+git remote add remote_alias url
+
+# create a new remote called origin that points to remote server at url
+git remote add origin https://...
+
+# remove remote
+git remote rm <alias>
+
+# first push to remote repository
+# e.g origin master
+git push -u <remote_alias> <branch_name>
+# -u track remote branch, it is tthe same as:
+git branch --set-upstream <branch_name> <remote_alias>/<branch_name>
+
+# remote branches
+git branch -r
+
+# remote and local branches
+git branch -a
+
+# cloning repository
+git clone <url.git> <folder_name>						# -b <branch_name>
+
+# normal pushes
+git push <remote_alias> <branch_name>
+
+# info
+git diff origin/master..master
+git log --oneline origin/master
+
+# FETCH
+# synchronize origin/master with remote repository
+git fetch <remote_alias>								# e.g git fetch origin
+
+# PULL
+# git pull = git fetch + git merge
+
+# create branch from remote branch
+git branch <branch_name> <remote_alias>/<branch_name>
+git checkout -b <branch_name> <remote_alias>/<branch_name>
+
+# deleting remote branch
+git push <remote_alias> --delete <branch_name>
+
+# creating alias
+# git logg
+git config --global alias.logg "log --graph --decorate --oneline --abbrev-commit --all"

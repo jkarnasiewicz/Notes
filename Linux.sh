@@ -9,6 +9,7 @@ sudo kill 7831
 
 
 # Information
+which app_name 						# path of the installed application
 top									# memory usage
 htop								# memory usage/task manager
 ps -ef -f							# display all processes
@@ -42,7 +43,6 @@ ctrl + r 							# search in bash history
 find /home/... -name file_name		# find file/application
 find . -name '*.py'|xargs flake8	# find every python file and run flake8 on it
 find . -name \*.pyc -delete			# delete every .pyc file
-which name 							# path of the installed application
 
 
 
