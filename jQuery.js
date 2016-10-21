@@ -491,7 +491,7 @@ $("#clickme").click($.proxy(eventHandler.clickButtonHandler, eventHandler));
 
 
 
-// IIFY - Immediately-Invoked Function Expression (executed immediately)
+// IIFE - Immediately-Invoked Function Expression (executed immediately)
 (function($) {
     ...
 })(jQuery);
@@ -575,11 +575,11 @@ $(function() {
 
 
 // JQUERY PERFORMANCE
-// - Caching selections and other items
+// - Caching selections and other items (outside of loops)
 // - Use element properties when possible (instead of jQuery, e.g. .attr())
 // - Use traversing, e.g. $('#div').find('.title')
 // - Use one append
-// - Insert using a containing element
+// - Insert using a containing element (.append('<div>' + appendString + '</div>');)
 
 // Profile performance
 console.profile('description');
@@ -596,4 +596,89 @@ var appendString = "";
 $.each(arr, function() {
     appendString += "<div>" + this + "</div>";
 });
+
 $('#parent').append('<div>' + appendString + '</div>');
+
+
+
+// Data method (storing data in jQuery(cache) not in Html(it dont change html))
+// keys - case sensitive
+// Reserved keys: 'events', 'handle', "_anything that starts with an underscore"
+$('#div').data("three", 3);
+var _number = $('#div').data("three");
+
+
+
+// storing js objects
+var object = { val1: 3, val2: "hi"}
+$('#div').data("object", object);
+
+$('#div').data("object").val1;
+
+
+
+// storing js functions
+function myFunc() {
+    console.log("called my function");
+}
+
+$('#div').data("func", myFunc);
+
+$('#div').data("func")();
+
+
+
+// $.data()
+// $.data(object, 'key', value)
+// the fastest storing method
+var div = $("#div");
+$.data(div.get(0), 'number', 25);
+
+var val = $.data(div.get(0), 'number');
+// all data
+var data = div.data();
+
+
+
+// Data events (lising to events)
+div.on('setData', function(e, key, value) { console.log('data set', key, value); });
+div.on('changeData', function(e, key, value) { console.log('data change', key, value); });
+
+div.on('get Data', function(e, key, value) { return 25; });
+
+
+
+// Remove data
+div.removeData('number');
+
+// remove all data
+div.removeData();
+
+
+
+// Event handling
+// add even handler
+$('selector').on('click', myHandlerFunction);
+// multiple event registration
+$('selector').on('click hover', myHandlerFunction);
+
+// remove event handler
+$('selector').off('click');
+$('selector').off('click', myHandlerFunction);
+
+
+
+// Deferred
+// an object for holding & calling a queue of success/failure/complete callbacks
+// allows multiple callback registration
+// allows registration of callbacks at any time
+
+// Promise object
+// don't have succes and fail methods
+// other objects can't decide to reject or recive that object
+
+// $.when
+// combine 1 or more deferred objects
+// return a promise, not a deferred object
+// only resolves if all subordinate defferred objects resolve
+// rejects instantly if any subordinate deferred objects reject

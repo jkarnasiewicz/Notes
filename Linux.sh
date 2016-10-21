@@ -120,6 +120,15 @@ pip install scipy
 pip install Django==1.9
 pip install flake8
 
+pip install some_directory/ --upgrade --no-dependencies
+pip install . --upgrade
+
+pip install -r file_name
+pip install -r requirements.pip	   			# requirement file
+pip install -e path_to_source
+pip freeze > requirements.txt
+pip freeze | grep django
+
 pip uninstall django
 
 # wheel files

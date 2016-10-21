@@ -3,12 +3,20 @@
 # Package Control: Anaconda, SideBarEnhancements, Git,
 # 				   SublimeLinter, Emmet
 
+# Defining new interpreter version => New Build System
+{
+    "cmd": ["C:/Python35/python.exe", "-u", "$file"],
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python"
+}
+
+# Shortcuts
 Ctrl+D - multiple selections(multiple cursors), find next
 Alt+F3 - multiple selections(multiple cursors), find all
 
 Ctrl+I - fast search
 
-Ctrl+Shift+P - shortcuts for all sublime options(also install packages):
+Ctrl+Shift+P - shortcuts for all sublime options  (also install packages):
 1) snippet
 
 
