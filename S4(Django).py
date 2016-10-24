@@ -322,6 +322,28 @@ def __init__(self, owner, *args, **kwargs):
 
 
 
+# Przekazywanie całego reqesta do formularza
+# forms.py
+class MessageForm(forms.Form):
+    # ...
+    def __init__(self, request, *args, **kwargs):
+        super(MessageForm, self).__init__(*args, **kwargs)
+        self.request = request
+        self.fields['recipient'].queryset = self.fields['recipient'].queryset.exclude(pk=request.user.pk)
+
+# views.py
+def message_to_user(request):
+    if request.method == "POST":
+        form = MessageForm(request, data=request.POST)
+        if form.is_valid():
+            # ...
+            return redirect("message_to_user_done")
+    else:
+        form = MessageForm(request)
+    return render(request, "email_messages/message_to_user.html", { 'form': form })
+
+
+
 # Widgets
 publish = forms.DateField(widget=forms.SelectDateWidget)
 
@@ -389,6 +411,31 @@ request.session['lang'] = language
 
 Model objects (ORM object-relational mapper, mapowanie obiektowo-relacyjne)
 ##########################################################################################################
+# W systemie Django wyróżnia się trzy typy dziedziczenia modeli:
+# abstrakcyjne klasy bazowe (Abstract base classes),
+# dziedziczenie wielotabelowe (Multi-table inheritance) oraz modele proxy (Proxy models)
+
+# Domieszki(Mixins) modeli są abstrakcyjnymi klasami modeli z określonymi polami, własnościami i metodami
+# Mixins encourage code reuse. A mixin can also be viewed as an interface with implemented methods
+
+# Each model corresponds to its own database table and can be queried and created individually
+# The inheritance relationship introduces links between the child model and each of its parents
+# (via an automatically-created OneToOneField)
+
+# Creating a proxy for the original model. You can create, delete and update instances of the proxy model
+# and all the data will be saved as if you were using the original (non-proxied) model
+
+class Meta:
+    verbose_name = _(u"Pomysł")
+    verbose_name_plural = _(u"Pomysły")
+    abstract = True
+    proxy = True
+
+    ordering = ['id']                                   # postgres => query_set => models => ordering
+    unique_together = (('app_label', 'model'),)         # unique_together also influence qs ordering
+    db_table = 'django_content_type'
+
+
 
 # Create
 Article(title='Cheddar Talk', tagline='Thoughts on cheese.').save()			# Create new instance and save it into DB
@@ -546,16 +593,6 @@ image = models.ImageField(
     height_field='height_field')
 width_field = models.IntegerField(default=0)
 height_field = models.IntegerField(default=0)
-
-
-
-# Meta
-class Meta:
-    ordering = ['id']                                   # postgres => query_set => models => ordering
-    unique_together = (('app_label', 'model'),)         # unique_together also influence qs ordering
-    verbose_name = _('content type')
-    verbose_name_plural = _('content types')
-    db_table = 'django_content_type'
 
 
 
@@ -814,3 +851,8 @@ obj, created = Item.objects.get_or_create(**kwargs, default)
 # Rejestracja danych (konfiguracja hierarchiczna)
 import logging
 logger = logging.getLogger(__name__)
+
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eds.settings.dev")
+
+# Tworzenie domieszek do modeli do obsługi relacji generycznych (Django - Najlepsze receptury 46)
+# Wysyłanie obrazów na serwer i tworzenie miniatur obrazow (Django - Najlepsze receptury 66)

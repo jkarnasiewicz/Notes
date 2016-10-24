@@ -690,5 +690,69 @@ class Example:
         self._foo = value
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Design Patterns:
+
+# Observer pattern - Spreading information to all listeners
+# This is the basic pattern in which an object tells other objects about something
+# interesting
+
+# Strategy pattern - Changing the behavior of an algorithm
+# Sometimes, the same piece of code must have different behavior for different
+# invocation by different clients
+
+# Singleton pattern - Providing the same view to all
+# The singleton pattern maintains the same state for all instances of a class
+
+# Template pattern - Refining algorithm to use case(Inheritance, overide methods)
+
+# Adaptor pattern - Bridging class interfaces
+# This pattern is used to adapt a given class to a new interface
+
+    # def __getattr__(self, attr):
+    #   return getattr(self.fish,attr)
+
+# Facade pattern - Hiding system complexity for a simpler interface
+
+# Flyweight pattern - Consuming less memory with shared objects
+
+# Command pattern - Easy-execution management for commands (83 Python Unlock)
+
+# Abstract factory
+# class Animal(six.with_metaclass(abc.ABCMeta, object)):
+#   """ clients only need to know this interface for animals"""
+#   @abc.abstractmethod
+#   def sound(self, ):
+#       pass
+
+# Registry pattern - Adding functionality from anywhere in code to class
+
+# State pattern - Changing execution based on state
+
+
+
+
+
+
+
+
+
+
 # TO DO
 atrybut, właściwość, metoda
+
+
+

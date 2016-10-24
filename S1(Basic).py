@@ -555,7 +555,7 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 
 # To Do
-sys.modules 				# modules imports
+sys.modules 									# modules imports
 More regular expressions, e.g string stars with st and ends with st
 math.copysign(1, y)
 math.log10(abs(y))
@@ -636,14 +636,17 @@ import inspect
 =============
 x < 10 < x*10 < 100			# x < 10 and 10 < x * 10 and x*10 < 100
 
-
+# Itertools
+# imap, ireduce, ifilter i izip === map, reduce, filter, zip (python 3)
+# islice - umożliwia podział potencjalnie nieskończonego generatora
+# chain - laczy w łańcuch wiele generatorów
+# takewhile - dodaje warunek, który powoduje zakończenie działania generatora
+# cycle - rzez ciągłe powtarzanie skończonego generatora powoduje, że staje się on nieskończony
 import itertools
 qiter = itertools.chain(query_set_1, query_set_2)
 
 import functools
-functools.partial(foo,10,20,v1=23)
-
-from unittest.mock import patch, call
+functools.partial(foo, 10, 20, v1=23)
 
 getsizeof
 collections.deque and orderedDict
@@ -651,3 +654,13 @@ collections.deque and orderedDict
 SortedList, SortedSet, and SortedDict
 
 Binary trees
+
+# REST - representational state transfer
+# Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
+
+# API - Application Programming Interface
+
+# NUMPY
+numpy.show_config()
+numpy.arange()
+numpy.array()

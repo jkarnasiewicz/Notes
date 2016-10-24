@@ -23,15 +23,43 @@ Poszczególne testy wykonują sie do pierwszego błedu
 
 
 # Imitacja (Mock) - tworzenie fikcyjnej implementacji API
-from unittest.mock import patch, Mock
+from unittest.mock import Mock, patch, create_autospec
 
 mock_obj = Mock()
 mock_obj.return_value
 mock_obj.side_effect
-mock_obj.assert_called_once_with()                          # czy funkcja zostala wywolana z nastepujacymi argumentami (TDD 345)
+# assert that the mock was called exactly once and with the specified arguments (TDD 345)
+mock_obj.assert_called_once_with(*args, **kwargs)
 
 
 
+# create_autospec - for ensuring that the mock objects in your tests have the
+# same api as the objects they are replacing, you can use auto-speccing
+class TestWorkerReporting(unittest.TestCase):
+
+    def test_worker_busy(self,):
+        # mock_function = create_autospec(function, return_value='fishy')
+        mworker = create_autospec(IWorker)
+        mworker.configure_mock(**{'is_busy.return_value':True})
+        self.assertFalse(assign_if_free(mworker, {}))
+
+
+
+# subTest
+# parameterization - manageable inputs to tests
+def convert(alpha):
+    return ','.join([str(ord(i)-96) for i in alpha])
+
+class TestOne(unittest.TestCase):
+    def test_system(self,):
+        cases = [("aa","1,1"),("bc","2,3"),("jk","4,5"),("xy","24,26")]
+        for case in cases:
+            with self.subTest(case=case):
+                self.assertEqual(convert(case[0]),case[1])
+
+
+
+# TestCase
 import unittest
 # from django.test import TestCase, LiveServerTestCase, modify_settings, override_settings
 # from unittest.mock import patch
@@ -59,6 +87,7 @@ class TestSomething(unittest.TestCase):
     def test_django(self):                                  # all methods that starts with 'test' will be run as the tests
         self.assertEqual(Item.objects.count(),  1, msg)     # if values are not equal it will throw an AssertionError
         self.assertTrue(element in self.nums, msg)          # verify the condition
+        self.assertLess(element, 4, "not less")
 
         self.assertRaises(                                  # verify that an expected exception gets raised
             TypeError, random.shuffle, (1, 2, 3))
@@ -131,16 +160,14 @@ class TestSomething(unittest.TestCase):
     # Mock
     @patch('accounts.views.authenticate')
     def test_calls_authenticate_with_assertion_from_post(
-        self, mock_authenticate
-    ):
+            self, mock_authenticate):
         mock_authenticate.return_value = None
         self.client.post('/accounts/login', {'assertion': 'assert this'})
         mock_authenticate.assert_called_once_with(assertion='assert this')
 
     @patch('accounts.views.authenticate')
     def test_gets_logged_in_session_if_authenticate_returns_a_user(
-        self, mock_authenticate
-    ):
+            self, mock_authenticate):
         user = User.objects.create(email='a@b.com')
         user.backend = ''  # required for auth_login to work
         mock_authenticate.return_value = user
@@ -154,7 +181,11 @@ if __name__ == "__main__":                                  # unnecessary when u
     # unittest.main(warnings='ignore')
 
 
+# Creating custom test runners (Python Unlock(99))
+unittest.main(verbosity=2, testRunner=XMLRunner)
 
+# Running test cases in parallel
+# The py.test library has an xdist plugin, which adds the capability to run tests in parallel
 
 
 

@@ -10,6 +10,30 @@ timeit(setup='from __main__ import fun',
 
 
 
+# Simple approach(time)
+from functools import wraps
+import time
+
+def showtime(func):
+	@wraps(func)
+	def wrap(*args,**kwargs):
+		st = time.time()
+		result = func(*args,**kwargs)
+		et = time.time()
+		print("{}:{}".format(func.__name__, et-st))
+	return result
+return wrap
+
+@showtime
+def func_c():
+	for i in range(1000):
+		for j in range(1000):
+			for k in range(100):
+				pass
+
+if __name__ == '__main__':
+	func_c()
+
 
 
 # cProfile (time per function)
@@ -19,6 +43,39 @@ python -m cProfile -s cumulative -o profile.stats trash.py 				# create file pro
 import cProfile
 cProfile.run('fun(100)')
 
+
+
+# Time profilers
+import line_profiler
+
+l = []
+
+def func_c():
+	global l
+	for i in range(10000):
+		l.append(i)
+	m = list(range(100000))
+
+if __name__ == '__main__':
+	profiler = line_profiler.LineProfiler()
+	profiler.add_function(func_c)
+	profiler.run('func_c()')
+	profiler.print_stats()
+
+
+
+# Memory profilers
+from memory_profiler import profile
+
+@profile(precision=4)
+def func_c():
+	global l
+	for i in range(10000):
+		l.append(i)
+	m = list(range(100000))
+
+if __name__ == '__main__':
+	func_c()
 
 
 
@@ -95,24 +152,31 @@ dowser
 
 
 # OPTIMISATION
+# There are two major ways for logic slowdown; one is CPU(Central Processing Unit) time taken,
+# and the second is the wait for results from some other entity(oczekiwanie na zasoby)
 
-0. Specialize your code - store only the data you need in order to answer specific questions.
-#  (na czym tak naprawde nam zalezy)
-1. Always prefer build-in functions e.g: use sum() instead of own counting algorithm.
-2. The order of components in logical conditions (e.g. or) its very important,
-   first component should be always the 'fastest' one.
-3. Good __hash__ function.
-4. Specify wich function will be imported in imported statement(global and local dictionaries - LEGB).
-5. Use iterators and generators - data streaming (aka lazy evaluation)
-6. If can, use tuple or numpy arrays instead of list
-7. Dislocating repeated code outside the fast loops
-#  (przemieszczenie powtarzającego się kodu poza obręb szybkiej pętli)
-8. Vectorization (wektoryzacja), SIMD Single Instruction, Multiple Data
-9. Ogólna zasada jest taka, że jeśli zadania cechują się zmiennym czasem
-   działania, należy tworzyć wiele małych zadań w celu efektywnego wykorzystania zasobów.
-10. Dziel, mnóż, dodawaj, odejmuj zamiast używać pętl lub inkrementacji(podstawowe działania są najszybsze)
-
-
+   # na czym tak naprawde nam zalezy
+0. Specialize your code - store only the data you need in order to answer specific questions
+1. We should pay close attention to not use loops inside loops, giving us quadratic
+   behavior. We can use built-ins, such as map, ZIP, and reduce, instead of using loops
+   if possible
+2. Always prefer build-in functions e.g: use sum() instead of own counting algorithm
+3. The order of components in logical conditions (e.g. or) its very important,
+   first component should be always the 'fastest' one
+4. Good __hash__ function
+   # when we are inside a loop and reference an outside namespace variable, it is first
+   # searched in local, then nonlocal, followed by global, and then built-in scopes
+   # (global and local dictionaries - LEGB)
+5. Efekty powolnych wyszukiwań w przestrzeniach nazw w pętlach
+6. Specify wich function will be imported in imported statement
+7. Use iterators and generators - data streaming (aka lazy evaluation)
+8. If can, use tuple or numpy arrays instead of list
+   # przemieszczenie powtarzającego się kodu poza obręb szybkiej pętli
+9. Dislocating repeated code outside the fast loops
+10. Vectorization (wektoryzacja), SIMD Single Instruction, Multiple Data
+11. Ogólna zasada jest taka, że jeśli zadania cechują się zmiennym czasem
+    działania, należy tworzyć wiele małych zadań w celu efektywnego wykorzystania zasobów.
+12. Dziel, mnóż, dodawaj, odejmuj zamiast używać pętl lub inkrementacji(podstawowe działania są najszybsze)
 
 
 
@@ -178,6 +242,14 @@ def tight_loop_fast(iterations):
 	for i in xrange(iterations):
 		# to wywołanie funkcji local_sin wymaga wyszukiwania lokalnego(2.02 s per loop)
 		result += local_sin(i)
+
+
+
+
+
+# GIL
+# If we give up GIL, atomicity for data structures is not guaranteed as there
+# may be two threads working on same data structure at a given time
 
 
 
@@ -295,3 +367,10 @@ def tight_loop_fast(iterations):
 # 3. KMinValues
 
 # 4. Licznik LogLog/HyperLogLog
+
+
+
+# Using C speeds
+# SWIG
+# C Foreign Function Interface (CFFI)
+# Cython

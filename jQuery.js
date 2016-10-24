@@ -12,21 +12,21 @@ jQuery(document).ready(function($){
 
 
 
-// Pass message into console
+// Pass messages and variables into console
 console.log('Message');
 window.tmp = 12;
 
 
 
 // Selecting elements (always returning list)
-$('#header');               // by id
-$('.inline_block');         // by class
-$('h3');                	// by tag
-$('[href]') 				// by attributes
-$('[role=banner]');     	// by attributes of the selector which have specify value
+$('#header');                           // by id
+$('.inline_block');                     // by class
+$('h3');                	            // by tag
+$('[href]') 				            // by attributes
+$('[role=banner]');     	            // by attributes of the selector which have specify value
 
-$('li ul');                 // every single ul element in li tag
-$('li > ul');               // all unordered list that are (only) children of list item
+$('li ul');                             // every single ul element in li tag
+$('li > ul');                           // all unordered list that are (only) children of list item
 $("#tours > .class1, .class2");
 
 $("input[name^='news']");               // find all inputs with an attribute name that starts with 'news'
@@ -43,21 +43,21 @@ $('a:visible');
 
 
 // Traversing (faster than selectors)
-$('li').first().next();     // second li tag
-$('li').last().prev();      // penult li tag
+$('li').first().next();                 // second li tag
+$('li').last().prev();                  // penult li tag
 
 $('li').filter('.onsale');
-$('#col_3').closest('.list');   // going up the DOM looking for class .list
+$('#col_3').closest('.list');           // going up the DOM looking for class .list
 
-$('#col_3').find('a');      // finding all 'a' elements inside id=col_3 tag, no only direct children
-$('#col_3').children();     // all direct children
-$('#col_3').children('a');  // all direct children that are 'a' element
+$('#col_3').find('a');                  // finding all 'a' elements inside id=col_3 tag, not only direct children
+$('#col_3').children();                 // all direct children
+$('#col_3').children('a');              // all direct children that are 'a' element
 
-$('#col_3').parent();       // parent element
-$('#col_3').parents();      // all parents, too the root element
-$('#col_3').parents('ol');  // all parents, that are 'ol' element
+$('#col_3').parent();                   // parent element
+$('#col_3').parents();                  // all parents, too the root element
+$('#col_3').parents('ol');              // all parents, that are 'ol' element
 
-$('#col_3').siblings();     // the same level that id='col_3'
+$('#col_3').siblings();                 // the same level that id='col_3'
 
 
 
@@ -103,15 +103,15 @@ $('#boxes').find('li:nth-child(2)').addClass('selected');
 $('#boxes').find('li:nth-child(3)').removeClass('selected');
 $('#boxes').find('li:nth-child(2)').toggleClass('selected');
 
-$('#boxes').hasClass('highlighted');                       // if() {} else {}
+$('#boxes').hasClass('highlighted');                                // if() {} else {}
 
 
 
 // Adding, modifying, and removing content dynamically
-var new_node = $('<p>New node</p>');                       // creating new node
-$('#group-friends').prepend(new_node);                     // first child element after selected tag
+var new_node = $('<p>New node</p>');                                // creating new node
+$('#group-friends').prepend(new_node);                              // first child element after selected tag
 $('#group-friends').append('<input type='text' value='John' placeholder="Friend\'s name">');
-$('#group-friends').after(new_node);                       // next sibling element after selected tag
+$('#group-friends').after(new_node);                                // next sibling element after selected tag
 $('#group-friends').before(new_node);
 
 $('#image').clone().appendTo($(this)).addClass('.ghost'); 
@@ -128,12 +128,14 @@ $('#group-friends').find('.group:first').clone();       // copy element
 
 
 // Triggering a change with events
-$('#name').on('click', myFunction);
+// add even handler
+$('selector').on('click', myHandlerFunction);
 // on mouse events: dbclick, focusin, focusout, mousedown,
 // mouseup, mousemove, mouseout, mouseover, mouseleave, mouseenter
 
-$('#name').on('keyup', myFunction);             // on keyboard events: keypress, keydown
-$('#name').on('change', myFunction);            // on form events: focuse, blur, select, submit
+$('#name').on('keyup', myHandlerFunction);                    // on keyboard events: keypress, keydown
+// multiple event registration
+$('#name').on('change focuse', myHandlerFunction);            // on form events: blur, select, submit
 
 $('#filters').on('mouseenter', '.onsale', function(event) {
     event.stopPropagation();
@@ -143,8 +145,13 @@ $('#filters').on('mouseenter', '.onsale', function(event) {
     // ....
 });
 
-$('#name').on('submit', function(event) {           	  // we pass triggered event to the function
-    $('#id_field').trigger('change');                     // trigger 'change' event
+// remove event handler
+$('selector').off('click');
+$('selector').off('click', myHandlerFunction);
+
+// triger event
+$('#name').on('submit', function(event) {                   // we pass triggered event to the function
+    $('#id_field').trigger('change');                       // trigger 'change' event
 });
 
 
@@ -190,6 +197,8 @@ $('#flower-item').find('a').on('click', function(e){
 	);
 })
 
+
+
 // Chaining
 var grid = $('#grid')
     .find('li')
@@ -200,8 +209,13 @@ var grid = $('#grid')
 
 
 
-// Ajax (technologia oferująca asynchroniczną funkcjonalność)
+// AJAX (technologia oferująca asynchroniczną funkcjonalność)
 // Ajax pozwala na żądanie danych z serwera oraz wczytanie ich bez konieczności odświeżenia całej strony
+
+// Na początku Ajax był akronimem oznaczającym technologie używane podczas wykonywania żądań
+// asynchronicznych, takich jak asynchroniczny JavaScript i XML. Od tamtego czasu
+// wiele się zmieniło, technologie są rozwijane, a pojęcie Ajax oznacza teraz grupę
+// technologii oferujących asynchroniczną funkcjonalność w przeglądarce internetowej.
 $('#update').load('update_data.html #content');
 
 $.getJSON('data.json', function(data) {
@@ -212,6 +226,44 @@ $.getJSON('data.json', function(data) {
 	output += '</ul>';
 	$('#update').append(output);
 });
+
+
+// dynamic content
+$('nav a').on('click', function(e) {
+    e.preventDefault();
+    var url = this.href;
+
+    $('nav a.current').removeClass('current');
+    $(this).addClass('current');
+
+    $('#container').remove();
+    $('#content').load(url + ' #content').hide().fadeIn('slow');
+});
+
+
+
+// dynamic search
+$('#search').keyup(function() {
+    var searchField = $('#search').val();
+    var myExp = new RegExp(searchField, "i");
+    $.getJSON('data.json', function(data) {
+        var output = '<ul class="searchresults">';
+        $.each(data, function(key, val) {
+            if ((val.name.search(myExp) != -1) ||
+            (val.bio.search(myExp) != -1)) {
+                output += '<li>';
+                output += '<h2>'+ val.name +'</h2>';
+                output += '<img src="images/'+ val.shortname +'_tn.jpg" alt="'+ val.name +'" />';
+                output += '<p>'+ val.bio +'</p>';
+                output += '</li>';
+            }
+        });
+        output += '</ul>';
+        $('#update').html(output);
+    });
+});
+
+
 
 function delete_record(data_url) {
     var data = {};
@@ -257,30 +309,7 @@ function delete_record(data_url) {
 
 
 
-// Dynamic Search
-$('#search').keyup(function() {
-	var searchField = $('#search').val();
-	var myExp = new RegExp(searchField, "i");
-	$.getJSON('data.json', function(data) {
-		var output = '<ul class="searchresults">';
-		$.each(data, function(key, val) {
-			if ((val.name.search(myExp) != -1) ||
-			(val.bio.search(myExp) != -1)) {
-				output += '<li>';
-				output += '<h2>'+ val.name +'</h2>';
-				output += '<img src="images/'+ val.shortname +'_tn.jpg" alt="'+ val.name +'" />';
-				output += '<p>'+ val.bio +'</p>';
-				output += '</li>';
-			}
-		});
-		output += '</ul>';
-		$('#update').html(output);
-	});
-});
-
-
-
-// Submiting forms
+// submiting forms
 $('#submit-button').click(function(e) {
     e.preventDefault();
     var form = $('#document-form');
@@ -301,6 +330,8 @@ $('#submit-button').click(function(e) {
         }
     });
 });
+
+
 
 $(function() {
     $('#submit-button').click(function(e) {
@@ -346,33 +377,7 @@ $(function() {
 });
 
 
-// To Do
-$.Nazwa = function(){}// new variable
-// Na początku Ajax był akronimem oznaczającym technologie używane podczas wykonywania żądań
-// asynchronicznych, takich jak omówione powyżej — asynchroniczny JavaScript i XML. Od tamtego czasu
-// wiele się zmieniło, technologie są rozwijane, a pojęcie Ajax oznacza teraz grupę technologii oferujących
-// asynchroniczną funkcjonalność w przeglądarce internetowej.
 
-$('input[name={{ form.products.html_name }}]:checked').each(function() {
-    $('input[name={{ form.free_items.html_name }}][value=' + $(this).val() + ']').prop('disabled', true);
-});
-
-$.items = $('input[name={{ form.products.html_name }}]');
-
-$('nav a').on('click', function(e) { // Użytkownik kliknął łącze.
-    e.preventDefault(); // Zatrzymanie wczytywania nowego łącza.
-    var url = this.href; // Pobranie wartości atrybutu href.
-
-    $('nav a.current').removeClass('current'); // Usunięcie klasy current.
-    $(this).addClass('current'); // Określenie nowego elementu jako bieżącego.
-
-    $('#container').remove(); // Usunięcie starej zawartości.
-    $('#content').load(url + ' #content').hide().fadeIn('slow'); // Nowa zawartość.
-});
-
-
-
-// Pluralsight
 // TYPE TESTING FUNCTIONS
 $.type(object)
 $.isArray(array)
@@ -394,36 +399,24 @@ if($.inArray(4, myArray) != -1) {
     console.log("4 is in the array")
 }
 
-
-
 // unique
 $.unique(myArray);
 
-
-
 // merge
 $.merge(myArray, myArray2);
-
-
 
 // map
 var newArray = $.map(myArray, function(item, index) {
     return item * 2;
 });
 
-
-
 // grep (filter)
 var greppedArray = $.grep(myArray, function(item) {
     return item%2 == 0;
 })
 
-
-
 // makeArray returns simple javascript array with nodes
 $.makeArray($("div"));
-
-
 
 // getScript, execute script from the url (like ajax call)
 // it is non blocking call
@@ -452,13 +445,17 @@ $("#clickme").click(function() {
 
 
 
-// each()
+// each function
 // $.each(collection, callback(index, element))
 // $(selector).each(acllback(index, element))
 $("div").each(function(index, element) {
     var wrappedElem = $(elem);
     wrappedElem.addClass("myclass");
     // terminated loop before it finished: return false;
+});
+
+$('input[name={{ form.products.html_name }}]:checked').each(function() {
+    $('input[name={{ form.free_items.html_name }}][value=' + $(this).val() + ']').prop('disabled', true);
 });
 
 
@@ -498,19 +495,7 @@ $("#clickme").click($.proxy(eventHandler.clickButtonHandler, eventHandler));
 
 
 
-// Custom Selectors
-(function($) {
-    $.expr[':'].every = function(elem, idx, meta, items) {
-        return (idx + 1) % parseFloat(meta[3]) == 0;
-    }
-})(jQuery);
-
-$(function() {
-    $("div:every(4)").css('background-color', 'red');
-});
-
-
-
+// ADDING UTILITY METHODS AND PLUGINS
 // Adding utility methods that are part of jQuery
 (function($) {
     $.log = function(value) {
@@ -540,13 +525,13 @@ $(function() {
 
 // Basic plugin pattern
 // fn property(object) - prototype for jQuery object
-// that is why we have $('div').myPlugin();
-// 'this' in myPlugin is $('div')
 (function($) {
     $.fn.myPlugin = function() {
         return this;
     };
 })(jQuery);
+// that is why we have $('div').myPlugin();
+// 'this' in myPlugin is $('div')
 
 
 
@@ -569,8 +554,103 @@ $(function() {
 });
 
 // Tracking state Plaugin
-// use closures to maintain plugin-level state
+// use closures to maintain plugin-level state(outside )
 // use this.data() to maintain node-level state
+
+
+
+// Custom Selectors
+(function($) {
+    $.expr[':'].every = function(elem, idx, meta, items) {
+        return (idx + 1) % parseFloat(meta[3]) == 0;
+    }
+})(jQuery);
+
+$(function() {
+    $("div:every(4)").css('background-color', 'red');
+});
+
+
+
+// DATA STORING
+// Data method (storing data in jQuery(cache) not in Html(it dont change html))
+// keys - case sensitive
+// Reserved keys: 'events', 'handle', "_anything that starts with an underscore"
+$('#div').data("three", 3);
+var _number = $('#div').data("three");
+
+// storing js objects
+var object = { val1: 3, val2: "hi"}
+$('#div').data("object", object);
+$('#div').data("object").val1;
+
+// storing js functions
+function myFunc() {
+    console.log("called my function");
+}
+
+$('#div').data("func", myFunc);
+$('#div').data("func")();
+
+// $.data()
+// $.data(object, 'key', value)
+// the fastest storing method
+var div = $("#div");
+$.data(div.get(0), 'number', 25);
+
+var val = $.data(div.get(0), 'number');
+// all data
+var data = div.data();
+
+// data events (lising to events)
+div.on('setData', function(e, key, value) { console.log('data set', key, value); });
+div.on('changeData', function(e, key, value) { console.log('data change', key, value); });
+
+div.on('get Data', function(e, key, value) { return 25; });
+
+// Remove data
+div.removeData('number');
+
+// remove all data
+div.removeData();
+
+
+
+// DEFERRED, PROMISE
+// Deferred
+// an object for holding & calling a queue of success/failure/complete callbacks
+// allows multiple callback registration
+// allows registration of callbacks at any time
+
+// Promise object
+// don't have succes and fail methods
+// other objects can't decide to reject or recive that object
+
+// $.when
+// combine 1 or more deferred objects
+// return a promise, not a deferred object
+// only resolves if all subordinate defferred objects resolve
+// rejects instantly if any subordinate deferred objects reject
+
+
+// Execute the function myFunc when both ajax requests are successful,
+// or myFailure if either one has an error
+$.when( $.ajax( "/page1.php" ), $.ajax( "/page2.php" ) )
+    .then( myFunc, myFailure );
+
+// The method will resolve its master Deferred as soon as all the Deferreds resolve,
+// or reject the master Deferred as soon as one of the Deferreds is rejected.
+// If the master Deferred is resolved, the doneCallbacks for the master Deferred are executed
+var d1 = $.Deferred();
+var d2 = $.Deferred();
+ 
+$.when( d1, d2 ).done(function ( v1, v2 ) {
+    console.log( v1 ); // "Fish"
+    console.log( v2 ); // "Pizza"
+});
+ 
+d1.resolve( "Fish" );
+d2.resolve( "Pizza" );
 
 
 
@@ -598,87 +678,3 @@ $.each(arr, function() {
 });
 
 $('#parent').append('<div>' + appendString + '</div>');
-
-
-
-// Data method (storing data in jQuery(cache) not in Html(it dont change html))
-// keys - case sensitive
-// Reserved keys: 'events', 'handle', "_anything that starts with an underscore"
-$('#div').data("three", 3);
-var _number = $('#div').data("three");
-
-
-
-// storing js objects
-var object = { val1: 3, val2: "hi"}
-$('#div').data("object", object);
-
-$('#div').data("object").val1;
-
-
-
-// storing js functions
-function myFunc() {
-    console.log("called my function");
-}
-
-$('#div').data("func", myFunc);
-
-$('#div').data("func")();
-
-
-
-// $.data()
-// $.data(object, 'key', value)
-// the fastest storing method
-var div = $("#div");
-$.data(div.get(0), 'number', 25);
-
-var val = $.data(div.get(0), 'number');
-// all data
-var data = div.data();
-
-
-
-// Data events (lising to events)
-div.on('setData', function(e, key, value) { console.log('data set', key, value); });
-div.on('changeData', function(e, key, value) { console.log('data change', key, value); });
-
-div.on('get Data', function(e, key, value) { return 25; });
-
-
-
-// Remove data
-div.removeData('number');
-
-// remove all data
-div.removeData();
-
-
-
-// Event handling
-// add even handler
-$('selector').on('click', myHandlerFunction);
-// multiple event registration
-$('selector').on('click hover', myHandlerFunction);
-
-// remove event handler
-$('selector').off('click');
-$('selector').off('click', myHandlerFunction);
-
-
-
-// Deferred
-// an object for holding & calling a queue of success/failure/complete callbacks
-// allows multiple callback registration
-// allows registration of callbacks at any time
-
-// Promise object
-// don't have succes and fail methods
-// other objects can't decide to reject or recive that object
-
-// $.when
-// combine 1 or more deferred objects
-// return a promise, not a deferred object
-// only resolves if all subordinate defferred objects resolve
-// rejects instantly if any subordinate deferred objects reject
