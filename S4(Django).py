@@ -26,7 +26,7 @@ python manage.py loaddata db_backup.json
 ./manage.py inspectdb > models.py                   # copy to models.py file
 
 
-./manage.py test -v3					     # Test whole site with verbosity level 2(0-3)
+./manage.py test -v3					     # Test whole site with verbosity level(0-3)
 ./manage.py test myapp 						 # Test only myapp
 ./manage.py test -v3 --keepdb                # Preserving test database
 ./manage.py test --pattern="tests_*.py"      # Specify custom filename pattern
@@ -413,12 +413,12 @@ Model objects (ORM object-relational mapper, mapowanie obiektowo-relacyjne)
 ##########################################################################################################
 # W systemie Django wyróżnia się trzy typy dziedziczenia modeli:
 # abstrakcyjne klasy bazowe (Abstract base classes),
-# dziedziczenie wielotabelowe (Multi-table inheritance) oraz modele proxy (Proxy models)
+# dziedziczenie wielotabelowe (Multi-table inheritance or concrete) oraz modele proxy (Proxy models)
 
 # Domieszki(Mixins) modeli są abstrakcyjnymi klasami modeli z określonymi polami, własnościami i metodami
 # Mixins encourage code reuse. A mixin can also be viewed as an interface with implemented methods
 
-# Each model corresponds to its own database table and can be queried and created individually
+# Concrete - each model corresponds to its own database table and can be queried and created individually
 # The inheritance relationship introduces links between the child model and each of its parents
 # (via an automatically-created OneToOneField)
 
@@ -841,10 +841,18 @@ item = Item(...)
 item.full_clean()
 validate_unique()           # forms and models
 
-customizing auth, e.g. AUTH_USER_MODEL, AUTHENTICATION_BACKENDS
 
-# from django.contrib.auth import get_user_model
-# User = get_user_model()
+
+# Custom user model
+# customizing auth, e.g. AUTH_USER_MODEL, AUTHENTICATION_BACKENDS
+# AUTH_USER_MODEL = 'accounts.User'
+# AUTHENTICATION_BACKENDS = (
+#     'accounts.authentication.PersonaAuthenticationBackend',
+# )
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
 
 obj, created = Item.objects.get_or_create(**kwargs, default)
 

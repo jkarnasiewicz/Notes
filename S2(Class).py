@@ -704,7 +704,17 @@ class Example:
 
 
 
-# Design Patterns:
+# Design Patterns
+# Each pattern describes a problem, which occurs over and over again in our environment,
+# and then describes the core of the solution to that problem in such a way that you can
+# use this solution a million times over, without ever doing it the same way twice
+
+# In the world of software, the term design pattern refers to a general repeatable
+# solution to a commonly occurring problem in software design
+
+
+
+
 
 # Observer pattern - Spreading information to all listeners
 # This is the basic pattern in which an object tells other objects about something

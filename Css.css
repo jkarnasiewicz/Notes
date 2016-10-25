@@ -51,3 +51,7 @@ body {
 .text-center {
    text-align:center
 }
+
+body {
+	background: #e0ebff none repeat scroll 0 0;
+}
