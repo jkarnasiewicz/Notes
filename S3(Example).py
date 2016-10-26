@@ -345,10 +345,10 @@ print(sorted(portfolio, key = lambda s: s['price'], reverse = False)[:3])
 
 
 # Itertools
-import itertools
+from itertools import chain, product, permutations
 sorted(chain(collection_1, collections_2), key=lambda instance: instance.name.lower())
-print(list(itertools.product([1, 2], repeat=2)))
-print(list(itertools.permutations([1, 2, 3, 4], 3)))
+print(list(product([1, 2], repeat=2)))
+print(list(permutations([1, 2, 3, 4], 3)))
 
 
 

@@ -32,7 +32,7 @@ were imported or implemented in models.py (which was unreliable
 
 
 
-
+# MODELS
 # Structural patterns
 
 # Patterns – normalized models
@@ -56,5 +56,49 @@ Solution: Extract common fields and methods into various reusable model mixins.
 # Pattern – service/utils objects
 Problem: Models can get large and unmanageable. Testing and maintenance
 get harder as a model does more than one thing.
-Solution: Refactor out a set of related methods(e.g. @staticmethod with celery)
+Solution: Refactor out a set of related methods(e.g. @staticmethod or celery tasks)
 into a specialized 'service' or 'utils' object.
+
+
+
+# Retrieval patterns
+# This section contains design patterns that deal with accessing model properties or
+# performing queries on them.
+
+# Pattern – property field
+Problem: Models have attributes that are implemented as methods. However, these
+attributes should not be persisted to the database.
+Solution: Use the property decorator on such methods(@property)
+# If it is an expensive calculation, we might want to cache the result(@cached_property)
+
+
+
+# Pattern – custom model managers
+Problem: Certain queries on models are defined and accessed repeatedly
+throughout the code violating the DRY principle.
+Solution: Define custom managers to give meaningful names to common queries
+
+
+
+# VIEWS
+# Pattern – context enhancers
+Problem: Several views need the same context variable
+Solution: Create a mixin or context processors(TEMPLATE_CONTEXT_PROCESSORS)
+that sets the shared context variable
+
+
+
+# Pattern – services
+# This form of a service is usually called a web Application Programming Interface (API).
+Problem: Information from your website is often scraped and processed by
+other applications.
+Solution: Create lightweight services that return data in machine-friendly formats,
+such as JSON or XML(e.g. Django REST framework)
+
+
+
+# TEMPLATES
+# Pattern – template inheritance tree
+Problem: Templates have lots of repeated content in several pages.
+Solution: Use template inheritance wherever possible and include snippets elsewhere.
+

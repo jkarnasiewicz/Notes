@@ -177,6 +177,10 @@ django-admin.py compilemessages              # Compiling message files
 
 Templates
 ##########################################################################################################
+# Keep business logic out of your templates
+
+from django.template import Template, Context
+# Template("<h1>{{ title }}</h1>").render(Context({"title": "SuperBook"}))      =>    '<h1>SuperBook</h1>'
 
 # Blocks
 {% extends "base.html" %}
@@ -189,7 +193,7 @@ Templates
 
 {% load static %}
 {% load staticfiles %}
-{% static "css/base.css" %}
+<link href="{% static 'css/base.min.css' %}" rel="stylesheet">
 
 {% block content %} {% endblock %}
 
@@ -205,7 +209,7 @@ Templates
 # Caches a complex variable under a simpler name(only between start and end tag)
 {% with request.resolver.mach.url_name as urlname %}{% endwith %}
 
-# Logic
+# Logic (e.g. 'if' or 'for' tags)
 {% for field in form %}
     {{ forloop.counter }}: {% field.label != 'user' and != 'material'}
 {% empty %}
@@ -215,6 +219,9 @@ Templates
 {% if article.count > 0 %}
 {% else %}
 {% endif %}
+
+# Date tag
+Date is {% now 'd-m-Y' %}
 
 # Required field test
 {% if form_experiment.name.field.required %}*{% endif %}
@@ -267,7 +274,7 @@ Templates
 Views
 ##########################################################################################################
 from django.contrib import messages
-return render_to_response('experiments/management.html', ret, context_instance=RequestContext(request))
+return render_to_response('experiments/management.html', ctx, context_instance=RequestContext(request))
 return HttpResponseRedirect(reverse('print_data') + '?' + urlencode(kwargs))
 response = HttpResponse(mimetype='application/force-download')
 
@@ -516,6 +523,13 @@ qs1.exclude(pk__in=qs2)
 
 
 
+# Chaining multiple QuerySets(from different models)
+from itertools import chain
+recent = chain(qs1, qs2)
+sorted(recent, key=lambda e: e.modified, reverse=True)[:3]
+
+
+
 # Q object (OR)
 from django.db.models import Q
 queryset.filter(
@@ -604,6 +618,7 @@ class PostManager(models.Manager):
 
     def active(self, *args, **kwargs):
         return super(PostManager, self).filter(draft=False).filter(publish__lte=timzone.now())
+        # !!! return self.filter(draft=False).filter(publish__lte=timzone.now())
 
 
 class Post(models.Model):
@@ -864,3 +879,17 @@ logger = logging.getLogger(__name__)
 
 # Tworzenie domieszek do modeli do obsługi relacji generycznych (Django - Najlepsze receptury 46)
 # Wysyłanie obrazów na serwer i tworzenie miniatur obrazow (Django - Najlepsze receptury 66)
+
+
+# Queryset(lazy objects) - keep QuerySets unevaluated as long as possible.
+
+if not request.user.is_authenticated():
+    raise PermissionDenied
+
+
+# json response
+return HttpResponse(list(msgs), content_type="application/json")
+
+# fast tesating
+from django.test import Client
+Client().get("http://0.0.0.0:8000/public/").content

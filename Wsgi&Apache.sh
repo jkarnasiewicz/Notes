@@ -31,7 +31,7 @@ Domain Name System
 
 # Protocol(protokół):
 # ===========================
-Http, Htpps
+Http, Https
 
 # apache
 # =================================

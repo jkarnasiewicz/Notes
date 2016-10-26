@@ -657,6 +657,7 @@ Binary trees
 
 # REST - representational state transfer
 # Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
+# RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
 
 # API - Application Programming Interface
 
@@ -664,3 +665,6 @@ Binary trees
 numpy.show_config()
 numpy.arange()
 numpy.array()
+
+# JSON
+import json
