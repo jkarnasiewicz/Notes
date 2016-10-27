@@ -2,7 +2,7 @@
 
 # app.py
 Previously, there was no specific place for initializing the signal code. Typically, they
-were imported or implemented in models.py (which was unreliable
+were imported or implemented in models.py (which was unreliable)
 
 
 
@@ -102,3 +102,44 @@ such as JSON or XML(e.g. Django REST framework)
 Problem: Templates have lots of repeated content in several pages.
 Solution: Use template inheritance wherever possible and include snippets elsewhere.
 
+
+
+
+
+# ADMIN
+# Don't give admin access to end users
+
+# Pattern – feature flags
+# selected users within a controlled experiment, performance testing for new features
+Problem: Publishing of new features to users and deployment of the corresponding
+code in production should be independent.
+Solution: Use feature flags to selectively enable or disable features after deployment
+
+
+
+
+
+# FORMS
+# Pattern – dynamic form generation
+Problem: Adding form fields dynamically or changing form fields from what
+has been declared.
+Solution: Add or change fields during initialization of the form.
+
+class PersonDetailsForm(forms.Form):
+	name = forms.CharField(max_length=100)
+	age = forms.IntegerField()
+
+	def __init__(self, *args, **kwargs):
+		upgrade = kwargs.pop("upgrade", False)
+		super().__init__(*args, **kwargs)
+
+		if upgrade:
+			self.fields["first_class"] = forms.BooleanField(
+				label="Fly First Class?")
+
+# PersonDetailsForm(upgrade=True)
+
+
+
+# Pattern – multiple form actions per view with prefix
+form = SubscribeForm(prefix="offers")

@@ -236,7 +236,7 @@ Date is {% now 'd-m-Y' %}
 # Filters with function
 {{ synth_obj.material.material_category.all|join:', ' }}
 
-# Security
+# Security(Cross-Site Request Forgery)
 {% csrf_token %}                                        # full html tag
 {{ csrf_token }}                                        # unmodified token string
 
@@ -738,6 +738,7 @@ class PostModelAdmin(admin.ModelAdmin):
     list_display_links = ['updated']
     list_editable = ['title']
 
+    ordering = ['updated']
     list_filter = ['update', 'timestamp']
 
     search_fields = ['title', 'content']
@@ -750,6 +751,30 @@ class PostModelAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostModelAdmin)
 
+
+# in model class add:
+# better presentation
+def __str__()
+
+# This attribute is handy if you like to switch between
+# the admin view and the object's detail view on your website. If this method
+# is defined, then a button labelled "View on site" will appear in the top
+# right-hand side of the object's edit page in its admin page.
+def get_absolute_url()
+
+# Without this meta option, your entries can appear in any order as
+# returned from the database
+ordering
+
+# If you omit this attribute, your model's name would be
+# converted from CamelCase into camel case
+verbose_name and verbose_name_plural
+
+# in main urls add:
+admin.site.site_header = "Secret Area"
+
+# admin templates
+django/contrib/admin/templates/admin
 
 
 
