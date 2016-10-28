@@ -67,24 +67,24 @@ import unittest
 class TestSomething(unittest.TestCase):
 
     @classmethod
-    def setUpClass(cls):                                    # Create test configuration for the class (it will be executed only once)
+    def setUpClass(cls):                                    # create test configuration for the class (it will be executed only once)
         ...
 
     @classmethod
     def tearDownClass(cls):
         ...
 
-    def setUp(self):							            # setUp() and tearDown() runs before and after each test 
+    def setUp(self):							            # this method will be run before each test method
 	   ...
 
-    def tearDown(self):
+    def tearDown(self):                                     # this method will be run after each test method, irrespective of whether the test passed or not
         for method, error in self._outcome.errors:
             if error:
                 ...                                         # more TDD 372
         super().tearDown()
 
     # django
-    def test_django(self):                                  # all methods that starts with 'test' will be run as the tests
+    def test_django(self):                                  # any method whose name starts with 'test' will be executed as a test method
         self.assertEqual(Item.objects.count(),  1, msg)     # if values are not equal it will throw an AssertionError
         self.assertTrue(element in self.nums, msg)          # verify the condition
         self.assertLess(element, 4, "not less")

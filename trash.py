@@ -143,3 +143,247 @@ class PersonDetailsForm(forms.Form):
 
 # Pattern – multiple form actions per view with prefix
 form = SubscribeForm(prefix="offers")
+
+
+
+
+
+# TESTING AND DEBUGGING
+
+# Here are some qualities of a good test case (which is a subjective term, of course)
+# in the form of an easy-to-remember mnemonic "F.I.R.S.T. class test case":
+1. Fast: the faster the tests, the more often they are run. Ideally, your tests
+should complete in a few seconds.
+2. Independent: Each test case must be independent of others and can be
+run in any order.
+3. Repeatable: The results must be the same every time a test is run. Ideally,
+all random and varying factors must be controlled or set to known values
+before a test is run.
+4. Small: Test cases must be as short as possible for speed and ease of
+understanding.
+5. Transparent: Avoid tricky implementations or ambiguous test cases.
+
+
+
+# Perhaps, even more important are the don'ts to remember while writing test cases:
+1. Do not (re)test the framework: Django is well tested. Dont check for URL
+lookup, template rendering, and other framework-related functionality.
+2. Do not test implementation details: Test the interface and leave the minor
+implementation details. It makes it easier to refactor this later without
+breaking the tests.
+3. Test models most, templates least: Templates should have the least business
+logic, and they change more often.
+4. Avoid HTML output validation: Test views use their context variables
+output rather than its HTML-rendered output.
+5. Avoid using the web test client in unit tests: Web test clients invoke several
+components and are therefore, better suited for integration tests.
+6. Avoid interacting with external systems: Mock them if possible. Database is
+an exception since test database is in-memory and quite fast.
+
+
+
+# https://docs.python.org/3/library/unittest.html#assert-methods
+# https://docs.djangoproject.com/en/1.10/topics/testing/tools/#assertions
+assertWarns
+
+
+
+# TestCase
+# Before running each test, Django resets the database to its initial state
+
+
+
+# Mocks (create new class for mocks in S5 file)
+# Mock objects are objects that can test the behavior, and stubs are
+# simply placeholder implementations
+
+
+from django.test import TestCase
+from unittest.mock import patch
+from django.contrib.auth.models import User
+
+class TestSuperHeroCheck(TestCase):
+	def test_checks_superhero_service_obj(self):
+		with patch("profiles.models.SuperHeroWebAPI") as ws:
+			ws.is_hero.return_value = True
+			u = User.objects.create_user(username="t")
+			r = u.profile.is_superhero()
+		ws.is_hero.assert_called_with('t')
+		self.assertTrue(r)
+
+
+
+# Pattern – test fixtures and factories
+
+# fixtures
+fixtures = ['posts']
+
+# factory
+class PostFactory:
+
+	def make_post(self):
+		return Post.objects.create(message="")
+
+class PostTestCase(TestCase):
+
+	def setUp(self):
+		self.blank_message = PostFactory().makePost()
+
+	def test_some_post_functionality(self):
+		pass
+
+# factory_boy library
+
+# libraries: py.test, nose and coverage.py
+
+
+
+# DEBUGGING
+# stop a django application in the middle of execution
+# assert False
+
+
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
+def complicated_view():
+	logger.debug("Entered the complicated_view()!")
+
+
+
+# The Django Debug Toolbar
+
+
+
+# The Python debugger pdb
+import pdb
+pdb.set_trace()
+
+# also try:
+# ipdb
+# pudb => import pudb; pudb.set_trace()
+
+
+
+# Debugging Django templates
+set TEMPLATE_DEBUG to True
+
+# debug tag(dump all the variables)
+<textarea onclick="this.focus();this.select()" style="width: 100%;">
+	{% filter force_escape %}
+		{% debug %}
+	{% endfilter %}
+</textarea>
+
+
+
+# custom template tag debug
+# templatetags/debug.py
+import pudb as dbg
+from django.template import Library, Node
+
+register = Library()
+
+class PdbNode(Node):
+
+	def render(self, context):
+		dbg.set_trace() # Debugger will stop here
+		return ''
+
+@register.tag
+def pdb(parser, token):
+	return PdbNode()
+
+# template.html
+{% load debug %}
+{% for item in items %}
+	{# Some place you want to break #}
+	{% pdb %}
+{% endfor %}
+
+Within the debugger
+print(context["item"])
+
+
+
+
+
+# SECURITY
+# Cross-site scripting (XSS)
+# considered the most prevalent web application security flaw today,
+# enables an attacker to execute his malicious scripts (usually JavaScript)
+# on web pages viewed by users
+
+
+
+# Cross-Site Request Forgery (CSRF)
+# is an attack that tricks a user into making
+# unwanted actions on a website, where they are already authenticated, while they
+# are visiting another site. Say, in a forum, an attacker can place an IMG or IFRAME tag
+# within the page that makes a carefully crafted request to the authenticated site.
+
+
+
+# SQL injection
+# is the second most common vulnerability of web applications,
+# after XSS. The attack involves entering malicious SQL code into a query that
+# gets executed on the database. It could result in data theft, by dumping database
+# contents, or the distruction of data, say, by using the DROP TABLE command.
+
+
+
+# Clickjacking('django.middleware.clickjacking.XFrameOptionsMiddleware')
+# is a means of misleading a user to click on a hidden link or button in
+# the browser when they were intending to click on something else. This is typically
+# implemented using an invisible IFRAME that contains the target website over a
+# dummy web page(shown here) that the user is likely to click on
+
+
+
+# Shell injection
+# As the name suggests, shell injection or command injection allows an attacker
+# to inject malicious code to a system shell such as bash. Even web applications use
+# command-line programs for convenience and their functionality. Such processes
+# are typically run within a shell.
+
+
+
+# A handy security checklist
+1. Dont trust data from a browser, API, or any outside sources: This is a
+fundamental rule. Make sure you validate and sanitize any outside data.
+2. Dont keep SECRET_KEY in version control: As a best practice, pick
+SECRET_KEY from the environment. Check out the django-environ package.
+3. Dont store passwords in plain text: Store your application password hashes
+instead. Add a random salt as well.
+4. Dont log any sensitive data: Filter out the confidential data such as credit
+card details or API keys from your log files.
+5. Any secure transaction or login should use SSL: Be aware that
+eavesdroppers in the same network as you are could listen to your web
+traffic if is not in HTTPS. Ideally, you ought to use HTTPS for the entire site.
+6. Avoid using redirects to user-supplied URLs: If you have redirects such as
+http://example.com/r?url=http://evil.com, then always check against
+whitelisted domains.
+7. Check authorization even for authenticated users: Before performing
+any change with side effects, check whether the logged-in user is allowed
+to perform it.
+8. Use the strictest possible regular expressions: Be it your URLconf or
+form validators, you must avoid lazy and generic regular expressions.
+9. Dont keep your Python code in web root: This can lead to an accidental
+leak of source code if it gets served as plain text.
+10. Use Django templates instead of building strings by hand: Templates
+have protection against XSS attacks.
+11. Use Django ORM rather than SQL commands: The ORM offers protection
+against SQL injection.
+12. Use Django forms with POST input for any action with side effects: It might
+seem like overkill to use forms for a simple vote button. Do it.
+13. CSRF should be enabled and used: Be very careful if you are exempting
+certain views using the @csrf_exempt decorator.
+14. Ensure that Django and all packages are the latest versions: Plan for
+updates. They might need some changes to be made to your source code.
+However, they bring shiny new features and security fixes too.
+15. Limit the size and type of user-uploaded files: Allowing large file uploads
+can cause denial-of-service attacks. Deny uploading of executables or scripts.
+16. Have a backup and recovery plan: Thanks to Murphy, you can plan for an
+inevitable attack, catastrophe, or any other kind of downtime. Make sure
+you take frequent backups to minimize data loss.
