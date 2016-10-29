@@ -387,3 +387,150 @@ can cause denial-of-service attacks. Deny uploading of executables or scripts.
 16. Have a backup and recovery plan: Thanks to Murphy, you can plan for an
 inevitable attack, catastrophe, or any other kind of downtime. Make sure
 you take frequent backups to minimize data loss.
+
+
+
+
+# PRODUCTION
+# hosting options, including PaaS(platform as a service) and VPS(virtual private server)
+
+Components of a stack
+1. Which OS and distribution? For example: Debian, Red Hat, or OpenBSD.
+2. Which WSGI server? For example: Gunicorn, uWSGI.
+3. Which web server? For example: Apache, Nginx.
+4. Which database? For example: PostgreSQL, MySQL, or Redis.
+5. Which caching system? For example: Memcached, Redis.
+6. Which process control and monitoring system? For example: Upstart,
+   Systemd, or Supervisord.
+7. How to store static media? For example: Amazon S3, CloudFront.
+
+
+
+
+
+# PRODUCTION PERFORMANCE(DDP 175)
+# profiling and finding bottleneck
+# Frondend performance
+1. Cache infinitely with CachedStaticFilesStorage
+2. Use a static asset manager (e.g. django-pipeline or webassets)
+
+
+# Backend performance
+django-debug-toolbar
+django-silk
+
+enable the cached template loader in production
+
+Reduce database hits with select_related: If you are using a
+OneToOneField or a Foreign Key relationship, in forward direction,
+for a large number of objects, then select_related() can perform a
+SQL join and reduce the number of database hits.
+
+Reduce database hits with prefetch_related: For accessing a
+ManyToManyField method or, a Foreign Key relation, in reverse direction,
+or a Foreign Key relation in a large number of objects, consider using
+prefetch_related to reduce the number of database hits.
+
+Fetch only needed fields with values or values_list: You can save time
+and memory usage by limiting queries to return only the needed fields
+and skip model instantiation using values() or values_list()
+
+Denormalize models: Selective denormalization improves performance
+by reducing joins at the cost of data consistency
+
+Add an Index: If a non-primary key gets searched a lot in your queries,
+consider setting that fields db_index to True in your model definition
+
+Create, update, and delete multiple rows at once: Multiple objects can
+be operated upon in a single database query with the bulk_create(),
+update(), and delete() methods
+
+Most production systems use a memory-based caching system such as Redis or
+Memcached
+
+Cached session backend
+By default, Django stores its user session in the database. This usually gets
+retrieved for every request. To improve performance, the session data can be
+stored in memory by changing the SESSION_ENGINE setting. For instance,
+add the following in settings.py to store the session data in your cache:
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+
+
+
+
+# PYTHON 2 VS PYTHON 3
+difference in the way Python 3 treats strings.
+In Python 2, the human-readable representation of a class can be returned by
+__str__() (bytes) or __unicode__() (text). However, in Python 3 the readable
+representation is simply returned by __str__() (text).
+
+
+
+All classes inherit from the object class
+Python 2 has two kinds of classes: old-style (classic) and new-style. New-style classes
+are classes that directly or indirectly inherit from object. Only the new-style classes
+can use Pythons advanced features, such as slots, descriptors, and properties. Many
+of these are used by Django. However, classes were still old-style by default for
+compatibility reasons.
+In Python 3, the old-style classes dont exist anymore. As seen in the following table,
+even if you dont explicitly mention any parent classes, the object class will be
+present as a base. So, all the classes are new-style.
+
+
+
+Calling super() is easier
+
+
+
+Relative imports must be explicit
+no  "import models"
+yes "from . import models"
+
+
+
+HttpRequest and HttpResponse have str and bytes types
+Essentially, for the HttpRequest and HttpResponse objects:
+- Headers will always be the str objects
+- Input and output streams will always be the byte objects
+
+
+
+Exception syntax changes and improvements
+In Python 3, you cannot use the comma-separated syntax for the except clause.
+Use the as keyword instead
+In Python 3, all the exceptions must be derived (directly or indirectly) from
+BaseException. In practice, you would create your custom exceptions by deriving
+from the Exception class
+As a major improvement in error reporting, if an exception occurs while handling an
+exception, then the entire chain of exceptions are reported
+
+
+
+Standard library reorganized and new features
+asyncio: This contains asynchronous I/O, event loop, coroutines, and tasks
+unittest.mock: This contains the mock object library for testing
+pathlib: This contains object-oriented file system paths
+statistics: This contains mathematical statistics functions
+
+
+
+Using Pyvenv and Pip
+python -m venv djenv
+...
+pip install django
+
+
+
+1. print() is now a function: Previously, it was a statement, that is, arguments
+were not in parenthesis.
+2. Integers dont overflow: sys.maxint is outdated, integers will have
+unlimited precision.
+3. Inequality operator <> is removed: Use != instead.
+4. True integer division: In Python 2, 3 / 2 would evaluate to 1. It will be
+correctly evaluated to 1.5 in Python 3.
+5. Use range instead of xrange(): range() will now return iterators as
+xrange() used to work before.
+6. Dictionary keys are views: dict and dict-like classes (such as QueryDict)
+will return iterators instead of lists for the keys(), items(), and values()
+method calls
