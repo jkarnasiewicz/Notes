@@ -915,6 +915,6 @@ if not request.user.is_authenticated():
 # json response
 return HttpResponse(list(msgs), content_type="application/json")
 
-# fast tesating
+# fast testing
 from django.test import Client
 Client().get("http://0.0.0.0:8000/public/").content
