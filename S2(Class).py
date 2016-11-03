@@ -145,7 +145,7 @@ class SortedSet(Set):
         return "SortedSet({})".format(self._items if self._items else '')
 
 # Equality and inequality protocol(default behavior is to comparing objects id's):
-# Testing using '=='(is)
+# Testing using '=='
 
     def __eq__(self, rhs):
         if not isinstance(rhs, SortedSet):

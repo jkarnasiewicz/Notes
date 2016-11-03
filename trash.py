@@ -534,3 +534,112 @@ xrange() used to work before.
 6. Dictionary keys are views: dict and dict-like classes (such as QueryDict)
 will return iterators instead of lists for the keys(), items(), and values()
 method calls
+
+
+
+
+
+# PYTHON FUNDAMENTALS
+# Think of named references to objects rather than variables
+# shallow copy - copy only the reference to the key, value paires not the objects themselves
+# e.g.
+# a = [[0, 1]]*4
+# a[2].append(7)
+
+
+# Dynamic type system
+# In dynamic type system objects types are only resolved at runtime (w czasie wykonywania programu)
+
+# Strong type system
+# In a strong type system there is no implicit type conversion
+# e.g. 'string' + 43 => TypeError
+
+
+
+# Python name scopes(names are looked up in four nested scopes)
+Local - inside the current function
+Enclosing - any and all enclosing functions
+Global - top-level of module
+Built-in - provide by the builtins module
+
+
+
+# Value equality vs. identity(id())
+# Value comparison can be controlled program atically('==')
+# [] == [] => True
+Value - equivalent 'contents'
+
+# 'is'
+# [] is [] => False
+Identity - same object
+
+
+
+# Default argument expressions evaluated once, when def is executed
+# Always use immutable objects as a default argument value
+
+
+
+# raise without an argument re-raises the current exception
+
+
+
+# output of print() can be redirected using the optional file argument
+
+
+# Docstring
+def sqrt(x):
+	'''Compute square root using the method of Heron of Alexandria.
+
+	Args:
+		x: The number for which the square root is to be computed.
+
+	Returns:
+		The square root of x.
+
+	Raises:
+		ValueError: If x is negative.
+	'''
+	...
+
+
+# prime numbers
+def is_prime(x):
+	if x <2:
+		return False
+	for i in range(2, int(sqrt(x)) + 1):
+		if x% i == 0:
+			return False
+	return True
+
+
+
+# ITERATION PROTOCOLS
+# Iterable protocol
+# Iterables are objects over which we can iterate item by item
+Iterable objects can be passed to the built-in iter() function to get an iterator
+iterator = iter(iterable)
+
+# Iterator protocol
+# we retrive an iterator from an iterable object using the built-in iter() function
+# iterators produce items one-by-one from the underlying iterable series each time
+# they are passed to the nuilt-in next() function
+Iterator objects ca be passed to the built-in next() function to fetch the next item
+item = next(iterator)
+
+
+# GENERATORS
+# generators are defined by any python function witch using the 'yield'
+# keyword at least once in it's definition
+specify iterable sequences - all generators are iterators
+lazily evaluated - the next value in the sequence is computed on demand
+can model infinite sequence - such as data streams with no definite end
+
+# Stateful generators
+generators resume execution
+can maintain state in local variables
+complex control flow
+lazy evaluation
+
+# generators comprehensions
+(expr(item) for item in iterable)

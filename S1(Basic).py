@@ -1,15 +1,16 @@
 # HELP
 # dir(object)        every method for object or dir() for list of names defined in the current module
 # help(object)
-# object.__doc__     documentation Strings
-# .....__class__
-# type(object)       type of the object
-# id()				 id of the object
+# __doc__     			# docstring for a function or module object
+# __name__				# name of a function or module objec
+# .....__class__		# ??
+# type(object)       	# type of the object
+# id()				 	# id of the object
 
 # Class_Name.__mro__ == Class_Name.mro()    # info about linear order of the inheritance(super())
 
 # Immutable basic types (numbers, strings, tuples)
-# Mutable objects such as lists, dictionaries, and other types - meaning you can change their content without
+# Mutable objects such as lists, dictionaries, sets and other types - meaning you can change their content without
 # 																 changing their identity
 
 # Sequence (such as a string, bytes, tuple, list, or range)
@@ -88,7 +89,7 @@
 # BUILT-IN FUNCTIONS
 locals()											# return a dictionary mapping local variable names to their value
 
-global variable_name								# create global name
+global variable_name								# use global to assign to global references from a local scope
 nonlocal variable_name								# introduce names from the enclosing namespace into the local namespace
 
 callable(obj)										# return True or False(callable or not)
@@ -202,6 +203,9 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 
 # STRINGS
+# always prefer 'join' over regular concatenation
+# strings are immutable, so the += operator re-binds the reference to a new object(adding memory usage)
+
 # r"This is a\tstring!"					   # raw string
 # len('Python')                            # length of the string
 
@@ -213,8 +217,12 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 # "key/value".split("/",1)          	=> ['key', 'value']    # .split() by "space"
 # .splitlines()                     	=> []
+
 # "-".join(str(i) for i in [1, 3, 6])   => "1-3-6"
 # " ".join("string")                	=> "s t r i n g"
+
+# "unforgetable".partition(forget)		=> ('un', 'forget', 'able')
+
 # "string".replace("r", "-", 5)     	=> "st-ing"
 # "string".find('r')                	=> 2
 
@@ -333,13 +341,13 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 #              which is always a list, and adds each of the
 #              items of that list to a list
 
-# a.remove(333)  # remove the first occurrence of number 333
-# del a[3]       # delete the object at index 3
-# a.pop()        =>  333
-# a.pop(1)       =>  -1
+# a.remove(333)  	# remove the first occurrence of number 333
+# del a[3]       	# delete the object at index 3
+# a.pop()        	=>  333
+# a.pop(1)       	=>  -1
 
-# a.reverse()    =>  [333, 1234.5, 1, 333, -1, 66.25]
-# a.sorted()     =>  [-1, 1, 66.25, 333, 333, 1234.5]
+# a.reverse()    							=>  [333, 1234.5, 1, 333, -1, 66.25] # reverse in place
+# a.sort(key=len, reverse=True)     		=>  [-1, 1, 66.25, 333, 333, 1234.5] # sorts in place
 
 
 # Using Lists as Stacks (Stos)
@@ -361,19 +369,21 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 
 
-# SETS (Unordered Collection With No Duplicate Elements)(Zbiory)
-# basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+# SETS (unordered collection of unique, immutable objects)(Zbiory)
+# basket = set(['apple', 'orange', 'apple', 'pear', 'orange', 'banana'])
 # {'orange', 'banana', 'pear', 'apple'}  # duplicates have been removed
 
 # basket.add()     The add() method takes a single argument, which can be any datatype, and adds the given value to the set
 # basket.update()  You can actually call the update() method with any number of arguments
 
-# basket.remove()  if the value doesn’t exist in the set, the remove() method raises a KeyError exception.
-# basket.discard()
+# basket.remove()  			if the value doesn’t exist in the set, the remove() method raises a KeyError exception,
+# basket.discard() 			discard don't raises any exception
+# basket.copy() 			# shallow copy of the set
 
 # a = set('abracadabra') => {'a', 'r', 'b', 'c', 'd'}   # unique letters in a
 # b = {'m', 'l', 'z', 'a', 'c'}
 # 'r' in a  => True                                     # fast membership testing
+
 # a.difference(b),           a - b     => {'r', 'd', 'b'}                          # letters in a but not in b (Roznica)
 # a.union(b),                a | b     => {'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'} # letters in either a or b (Suma)
 # a.intersection(),          a & b     => {'a', 'c'}                               # letters in both a and b (Iloczyn)
@@ -381,13 +391,14 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 # if(len(set(exp_type)) != 1)                                                      # If True, list have more than one diffrent object
 
-# Subset and Superset(podzbiory, nadzbiory i zawieranie sie zbiorow)
+# Subset and Superset(podzbiory, nadzbiory i rozłączność)
 # a.issubset(b)   => False
 # a.issuperset(b) => False
+# a.isdisjoint(b) => False
 
 
 
-# DICTIONARIES (Unordered Set Of Key: Value Pairs)
+# DICTIONARIES (unordered mapping from unique, immutable keys to mutable values -> Key: Value)
 # a = {'sape': 4139, 'guido': 4127, 'jack': 4098}
 # a = dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
 
@@ -403,6 +414,8 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 # del a['sape']									# remove entry with key 'sape'
 # a.pop('sape')                                 # remove and return value of 'sape'
 # a.clear()										# remove all entries in dict
+
+# d = a.copy()									# copying the dictionary(shallow copy)
 # del a  										# delete entire dictionary
 
 # b = dict( one = 'first', two = 'second', three = 'third', four = 'fourth',
@@ -493,6 +506,7 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 # TIME
 # import time
 # time.localtime()
+# time.ctime()
 # time.time()
 # print(".".join(str(i) for i in time.localtime()[:6]))
 # time.sleep(2)
@@ -668,3 +682,7 @@ numpy.array()
 
 # JSON
 import json
+
+# Built-ins
+sorted() built-in function sorts any iterable series and returns a list
+reversed() built-in function reverses any iterable series, returns a reverse iterator

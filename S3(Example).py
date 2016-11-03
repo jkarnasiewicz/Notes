@@ -353,7 +353,7 @@ print(list(permutations([1, 2, 3, 4], 3)))
 
 
 # Handling Exception (try, except, raise)
-# NotImplementedError, IndexError, NameError, KeyError, ImportError, ValueError, IOError, SyntaxError
+# NotImplementedError, IndexError, NameError, KeyError, ImportError, ValueError, TypeError, IOError, SyntaxError
 def readfile(filename):
     if filename.endswith('.txt'):
         fh = open(filename)
