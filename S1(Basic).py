@@ -438,16 +438,30 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 
 # READING AND WRITING FILES
+# file object support iterator protocol(and yield line by line)
+
+# open(file="path to file", mode="read/write/append, binary/text", encoding="text encoding")
+# rt = read text
+# at = append text
+
 # with open("Example.txt", mode = "w", encoding = "utf-8") as plik:   # creating the new file or overwriting the existing file
 #     plik.write("Hello\n...")
 # with open("Example.txt") as plik:                                   # default mode is "r"
 # 	print(plik.read())                                                # no need to plik.close() because of "with"
 # with open("Example.txt", mode = "a", encoding = "utf-8") as plik:   # append to the file instead of overwriting
 # 	plik.write("\nYupii\r...")
+
+# f = open('Example.txt', mode='at', encoding='utf-8')
+# f.writelines(
+# 		['example text, \n', you cannot say, or guess, 'where the sun beats\n']
+# )
+# f.close()
+
 # with open("Example.txt", mode = "r", encoding = "utf-8") as plik:
 # 	print(plik.read())
 
-# print("Example.txt".readlines())                                    # List of Strings
+# file.readline() 													  # read single line
+# print("Example.txt".readlines())                                    # list of all the lines
 
 # with open("0.52930300392065.jpg", mode = "rb") as image:            # open to read in binary mode
 # 	print(len(image.read())/1024,"KB")
@@ -570,6 +584,7 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 # To Do
 sys.modules 									# modules imports
+sys.stdout.write(line) 							# the same as print
 More regular expressions, e.g string stars with st and ends with st
 math.copysign(1, y)
 math.log10(abs(y))
@@ -603,8 +618,19 @@ regular expressions:
 os.path.splitext
 os.path.basename
 
+
+
+# PDB
+# run on module
+python -m pdb file_name.py
+
+# in code
 import pdb
 pdb.set_trace()
+
+next, step, print(variable_name), where
+
+
 
 # Monkey patching lub guerrilla patching to technika polegająca na dostarczeniu kodu rozszerzającego
 # lub modyfikującego inny kod w czasie jego działania (podmiana funkcji)
@@ -656,6 +682,7 @@ x < 10 < x*10 < 100			# x < 10 and 10 < x * 10 and x*10 < 100
 # chain - laczy w łańcuch wiele generatorów
 # takewhile - dodaje warunek, który powoduje zakończenie działania generatora
 # cycle - rzez ciągłe powtarzanie skończonego generatora powoduje, że staje się on nieskończony
+# count - ???
 import itertools
 qiter = itertools.chain(query_set_1, query_set_2)
 

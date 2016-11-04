@@ -631,6 +631,14 @@ item = next(iterator)
 # GENERATORS
 # generators are defined by any python function witch using the 'yield'
 # keyword at least once in it's definition
+
+# generators are iterators. when advanced with next() the generator starts or resumes
+# execution up to and including the next yield
+
+# each call to generator function creates a new generator object
+
+# generators are lazy, and so can model infinite series of data
+
 specify iterable sequences - all generators are iterators
 lazily evaluated - the next value in the sequence is computed on demand
 can model infinite sequence - such as data streams with no definite end
@@ -643,3 +651,48 @@ lazy evaluation
 
 # generators comprehensions
 (expr(item) for item in iterable)
+
+
+
+
+
+# CLASSES
+# Classes define the structure and behavior of objects
+
+# __new__ is static class method, while __init__ is instance method.
+# __new__ has to create the instance first, so __init__ can initialize it
+
+# Instance method - functions which can be called on objects(with self argument)
+# instance.number() == Class.number(instance)
+
+
+
+
+
+# Distributing modules
+# the distutils package is used to help you distribute your python code
+# the main function in distutils is setup()
+# python setup.py --help
+
+# setup.py
+from distutils.core import setup
+
+setup(
+	name='',
+	version='',
+	py_modules=['module_name'],
+
+	# metadata
+	author='',
+	author_email='',
+	description='',
+	license='',
+	keywords='',
+)
+
+# install module
+python setup.py install
+
+# creating version(file) for distribution
+# python setup.py sdist --help-formats
+python setup.py sdist --format zip
