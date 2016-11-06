@@ -614,6 +614,8 @@ def is_prime(x):
 
 
 
+
+
 # ITERATION PROTOCOLS
 # Iterable protocol
 # Iterables are objects over which we can iterate item by item
@@ -628,9 +630,15 @@ Iterator objects ca be passed to the built-in next() function to fetch the next 
 item = next(iterator)
 
 
+
 # GENERATORS
 # generators are defined by any python function witch using the 'yield'
 # keyword at least once in it's definition
+
+# When a generator function is called, it returns a generator object without
+# even beginning execution of the function. When next method is called for the first time,
+# the function starts executing until it reaches yield statement.
+# The yielded value is returned by the next call.
 
 # generators are iterators. when advanced with next() the generator starts or resumes
 # execution up to and including the next yield
@@ -649,8 +657,103 @@ can maintain state in local variables
 complex control flow
 lazy evaluation
 
-# generators comprehensions
+# generators comprehensions/generator expressions
 (expr(item) for item in iterable)
+
+
+
+# Data streaming in Python: generators, iterators, iterables
+# Both iterables and generators produce an iterator
+
+
+
+# The difference between iterables and generators: once you’ve burned through a generator once, you’re done, no more data: 
+
+generator = (word + '!' for word in 'baby let me iterate ya'.split())
+
+for val in generator: 	# real processing happens here, during iteration
+    print val,			# baby! let! me! iterate! ya!
+
+# Nothing printed! No more data, generator stream already exhausted above. 
+for val in generator:
+    print val,
+
+# On the other hand, an iterable creates a new iterator every time it’s looped over
+# (technically, every time iterable.__iter__() is called, such as when Python hits a “for” loop): 
+
+class BeyonceIterable(object):
+    def __iter__(self):
+        """
+        The iterable interface: return an iterator from __iter__().
+ 
+        Every generator is an iterator implicitly (but not vice versa!),
+        so implementing `__iter__` as a generator is the easiest way
+        to create streamed iterables.
+ 
+        """
+        for word in 'baby let me iterate ya'.split():
+            yield word + '!'  # uses yield => __iter__ is a generator
+
+iterable = BeyonceIterable()
+ 
+for val in iterable:  # iterator created here
+    print val,
+baby! let! me! iterate! ya!
+ 
+for val in iterable:  # another iterator created here
+    print val,
+baby! let! me! iterate! ya!
+
+# So iterables are more universally useful than generators, because we can go over the sequence more than once.
+# Of course, when your data stream comes from a source that cannot be readily repeated (such as hardware sensors),
+# a single pass via a generator may be your only option. 
+
+
+
+# def take(n, seq):
+#     """Returns first n values from the given sequence."""
+#     # seq = iter(seq)
+#     result = []
+#     try:
+# 	    for i in range(n):
+# 	        result.append(seq.__next__())
+#     except StopIteration:
+#         pass
+#     return result
+
+# print(take(15, (i for i in range(10))))
+
+
+# Normal version
+# def grep(pattern, filenames):
+#     for f in filenames:
+#         for line in open(f):
+#             if pattern in line:
+#                 print line,
+
+
+# Generator version
+# def readfiles(filenames):
+#     for f in filenames:
+#         for line in open(f):
+#             yield line
+
+# def grep(pattern, lines):
+#     return (line for line in lines if pattern in line)
+
+# def printlines(lines):
+#     for line in lines:
+#         print(line)
+
+# def main(pattern, filenames):
+# 	import pdb
+# 	pdb.set_trace()
+# 	lines = readfiles(filenames) # => generator
+# 	lines = grep(pattern, lines) # => generator expresion
+# 	printlines(lines)
+
+
+# main('open', [__file__])
 
 
 

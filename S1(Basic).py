@@ -585,6 +585,12 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 # To Do
 sys.modules 									# modules imports
 sys.stdout.write(line) 							# the same as print
+
+import os
+for root, dirs, files in os.walk(os.path.dirname(__file__)):
+	for fname in filter(lambda fname: fname.endswith('.py'), files):
+			document = open(os.path.join(root, fname), mode='rt', encoding='utf-8')
+
 More regular expressions, e.g string stars with st and ends with st
 math.copysign(1, y)
 math.log10(abs(y))
@@ -684,6 +690,7 @@ x < 10 < x*10 < 100			# x < 10 and 10 < x * 10 and x*10 < 100
 # cycle - rzez ciągłe powtarzanie skończonego generatora powoduje, że staje się on nieskończony
 # count - ???
 import itertools
+# chain – chains multiple iterators together.
 qiter = itertools.chain(query_set_1, query_set_2)
 
 import functools
@@ -713,3 +720,7 @@ import json
 # Built-ins
 sorted() built-in function sorts any iterable series and returns a list
 reversed() built-in function reverses any iterable series, returns a reverse iterator
+
+# 
+Counter
+defaultdictionary(Counter)
