@@ -471,3 +471,144 @@ class SomeModel(models.Model):
 # {% if object.some_expensive_function %}
 #     <span class="special">{{ object.some_expensive_function }}</span>
 # {% endif %}
+
+
+
+
+
+# TO DO
+# prime numbers
+def is_prime(x):
+    if x <2:
+        return False
+    for i in range(2, int(sqrt(x)) + 1):
+        if x% i == 0:
+            return False
+    return True
+
+
+
+# GENERATORS
+# =====================
+
+# Send to yield
+
+def reciver():
+    while True:
+        item = yield
+        print('Got: ', item)
+
+fun = reciver()
+print(fun, dir(fun))
+
+next(fun)
+print(fun, dir(fun))
+
+fun.send('hello')
+next(fun)
+fun.send('hello again')
+
+fun.close()
+
+# =====================
+
+def chain(x, y):
+    yield from x
+    yield from y
+
+a = [1, 2, 3]
+b = ['a', 'b', 'c']
+
+# for item in chain(a, b):
+for item in chain(chain(a, a), chain(b, b)):
+    print(item)
+
+# =====================
+
+Context Manager Example
+# Automatically deleted temp directories
+
+import tempfile
+import shutil
+
+class TempDir:
+    def __enter__(self):
+        self.dirname = tempfile.mkdtemp()
+        return self.dirname
+
+    def __exit__(self, exc, val, tb):
+        shutil.rmtree(self.dirname)
+
+with TempDir() as dirname:
+    ...
+
+
+# Its the same code, glued together differently
+import tempfile
+import shutil
+from contexlib import contextmanager
+
+@contextmanager
+def tempdir():
+    dirname = tempfile.mkdtemp()
+    try:
+        yield dirname
+    finally:
+        shutil.rmtree(dirname)
+
+# =====================
+
+import time
+
+class TimeIi:
+
+    def __enter__(self):
+        self.start = time.time()
+
+    def __exit__(self, exc, val, tb):
+        self.end = time.time()
+        print('Overall time: ', self.end - self.start)
+
+
+with TimeIi():
+    ...
+
+# =====================
+
+# Threads
+from concurrent.futures import ThreadPoolExecutor
+import time
+
+# Creating 8 workers
+pool = ThreadPoolExecutor(8)
+
+def func(x, y):
+    time.sleep(5)
+    return x + y
+
+def handle_result(future_obj):
+    try:
+        result = future_obj.result()
+        print('Got: ', result)
+    except Exception as e:
+        print('Failed: {} {}'.format(type(e).__name__, e))
+
+# future = pool.submit(func, 2, 3)
+# blocking and waiting for result
+# print(future.result())
+# future.add_done_callback(handle_result)
+
+
+
+pool.submit(func, 2, 3).add_done_callback(handle_result)
+pool.submit(func, 20, 30).add_done_callback(handle_result)
+pool.submit(func, 200, 'J').add_done_callback(handle_result)
+pool.submit(func, 2000, 3000).add_done_callback(handle_result)
+
+print('Normal execution:')
+print(func(2, 3))
+print(func(20, 30))
+print(func(200, 300))
+print(func(2000, 3000))
+
+# =====================

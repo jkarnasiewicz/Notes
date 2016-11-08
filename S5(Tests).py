@@ -294,3 +294,93 @@ class FunctionalTest(StaticLiveServerTestCase):
         mock_log_warning.assert_called_once_with(
             'Persona says no. Json was: {}'.format(response_json)
         )
+
+
+# TO DO
+# TESTING
+
+# Here are some qualities of a good test case (which is a subjective term, of course)
+# in the form of an easy-to-remember mnemonic "F.I.R.S.T. class test case":
+1. Fast: the faster the tests, the more often they are run. Ideally, your tests
+should complete in a few seconds.
+2. Independent: Each test case must be independent of others and can be
+run in any order.
+3. Repeatable: The results must be the same every time a test is run. Ideally,
+all random and varying factors must be controlled or set to known values
+before a test is run.
+4. Small: Test cases must be as short as possible for speed and ease of
+understanding.
+5. Transparent: Avoid tricky implementations or ambiguous test cases.
+
+
+
+# Perhaps, even more important are the don'ts to remember while writing test cases:
+1. Do not (re)test the framework: Django is well tested. Dont check for URL
+lookup, template rendering, and other framework-related functionality.
+2. Do not test implementation details: Test the interface and leave the minor
+implementation details. It makes it easier to refactor this later without
+breaking the tests.
+3. Test models most, templates least: Templates should have the least business
+logic, and they change more often.
+4. Avoid HTML output validation: Test views use their context variables
+output rather than its HTML-rendered output.
+5. Avoid using the web test client in unit tests: Web test clients invoke several
+components and are therefore, better suited for integration tests.
+6. Avoid interacting with external systems: Mock them if possible. Database is
+an exception since test database is in-memory and quite fast.
+
+
+
+# https://docs.python.org/3/library/unittest.html#assert-methods
+# https://docs.djangoproject.com/en/1.10/topics/testing/tools/#assertions
+assertWarns
+
+
+
+# TestCase
+# Before running each test, Django resets the database to its initial state
+
+
+
+# Mocks (create new class for mocks in S5 file)
+# Mock objects are objects that can test the behavior, and stubs are
+# simply placeholder implementations
+
+
+from django.test import TestCase
+from unittest.mock import patch
+from django.contrib.auth.models import User
+
+class TestSuperHeroCheck(TestCase):
+    def test_checks_superhero_service_obj(self):
+        with patch("profiles.models.SuperHeroWebAPI") as ws:
+            ws.is_hero.return_value = True
+            u = User.objects.create_user(username="t")
+            r = u.profile.is_superhero()
+        ws.is_hero.assert_called_with('t')
+        self.assertTrue(r)
+
+
+
+# Pattern – test fixtures and factories
+
+# fixtures
+fixtures = ['posts']
+
+# factory
+class PostFactory:
+
+    def make_post(self):
+        return Post.objects.create(message="")
+
+class PostTestCase(TestCase):
+
+    def setUp(self):
+        self.blank_message = PostFactory().makePost()
+
+    def test_some_post_functionality(self):
+        pass
+
+# factory_boy library
+
+# libraries: py.test, nose and coverage.py

@@ -691,78 +691,156 @@ class Example:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Design Patterns
-# Each pattern describes a problem, which occurs over and over again in our environment,
-# and then describes the core of the solution to that problem in such a way that you can
-# use this solution a million times over, without ever doing it the same way twice
-
-# In the world of software, the term design pattern refers to a general repeatable
-# solution to a commonly occurring problem in software design
-
-
-
-
-
-# Observer pattern - Spreading information to all listeners
-# This is the basic pattern in which an object tells other objects about something
-# interesting
-
-# Strategy pattern - Changing the behavior of an algorithm
-# Sometimes, the same piece of code must have different behavior for different
-# invocation by different clients
-
-# Singleton pattern - Providing the same view to all
-# The singleton pattern maintains the same state for all instances of a class
-
-# Template pattern - Refining algorithm to use case(Inheritance, overide methods)
-
-# Adaptor pattern - Bridging class interfaces
-# This pattern is used to adapt a given class to a new interface
-
-    # def __getattr__(self, attr):
-    #   return getattr(self.fish,attr)
-
-# Facade pattern - Hiding system complexity for a simpler interface
-
-# Flyweight pattern - Consuming less memory with shared objects
-
-# Command pattern - Easy-execution management for commands (83 Python Unlock)
-
-# Abstract factory
-# class Animal(six.with_metaclass(abc.ABCMeta, object)):
-#   """ clients only need to know this interface for animals"""
-#   @abc.abstractmethod
-#   def sound(self, ):
-#       pass
-
-# Registry pattern - Adding functionality from anywhere in code to class
-
-# State pattern - Changing execution based on state
-
-
-
-
-
-
-
-
-
-
 # TO DO
 atrybut, właściwość, metoda
+# ITERATION PROTOCOLS
+# Iterable protocol
+# Iterables are objects over which we can iterate item by item
+Iterable objects can be passed to the built-in iter() function to get an iterator
+iterator = iter(iterable)
+
+# Iterator protocol
+# we retrive an iterator from an iterable object using the built-in iter() function
+# iterators produce items one-by-one from the underlying iterable series each time
+# they are passed to the nuilt-in next() function
+Iterator objects ca be passed to the built-in next() function to fetch the next item
+item = next(iterator)
 
 
 
+# GENERATORS
+# generators are defined by any python function witch using the 'yield'
+# keyword at least once in it's definition
+
+# When a generator function is called, it returns a generator object without
+# even beginning execution of the function. When next method is called for the first time,
+# the function starts executing until it reaches yield statement.
+# The yielded value is returned by the next call.
+
+# generators are iterators. when advanced with next() the generator starts or resumes
+# execution up to and including the next yield
+
+# each call to generator function creates a new generator object
+
+# generators are lazy, and so can model infinite series of data
+
+specify iterable sequences - all generators are iterators
+lazily evaluated - the next value in the sequence is computed on demand
+can model infinite sequence - such as data streams with no definite end
+
+# Stateful generators
+generators resume execution
+can maintain state in local variables
+complex control flow
+lazy evaluation
+
+# generators comprehensions/generator expressions
+(expr(item) for item in iterable)
+
+
+
+# Data streaming in Python: generators, iterators, iterables
+# Both iterables and generators produce an iterator
+
+
+
+# The difference between iterables and generators: once you’ve burned through a generator once, you’re done, no more data: 
+
+generator = (word + '!' for word in 'baby let me iterate ya'.split())
+
+for val in generator:   # real processing happens here, during iteration
+    print val,          # baby! let! me! iterate! ya!
+
+# Nothing printed! No more data, generator stream already exhausted above. 
+for val in generator:
+    print val,
+
+# On the other hand, an iterable creates a new iterator every time it’s looped over
+# (technically, every time iterable.__iter__() is called, such as when Python hits a “for” loop): 
+
+class BeyonceIterable(object):
+    def __iter__(self):
+        """
+        The iterable interface: return an iterator from __iter__().
+ 
+        Every generator is an iterator implicitly (but not vice versa!),
+        so implementing `__iter__` as a generator is the easiest way
+        to create streamed iterables.
+ 
+        """
+        for word in 'baby let me iterate ya'.split():
+            yield word + '!'  # uses yield => __iter__ is a generator
+
+iterable = BeyonceIterable()
+ 
+for val in iterable:  # iterator created here
+    print val,
+baby! let! me! iterate! ya!
+ 
+for val in iterable:  # another iterator created here
+    print val,
+baby! let! me! iterate! ya!
+
+# So iterables are more universally useful than generators, because we can go over the sequence more than once.
+# Of course, when your data stream comes from a source that cannot be readily repeated (such as hardware sensors),
+# a single pass via a generator may be your only option. 
+
+
+
+# def take(n, seq):
+#     """Returns first n values from the given sequence."""
+#     # seq = iter(seq)
+#     result = []
+#     try:
+#       for i in range(n):
+#           result.append(seq.__next__())
+#     except StopIteration:
+#         pass
+#     return result
+
+# print(take(15, (i for i in range(10))))
+
+
+# Normal version
+# def grep(pattern, filenames):
+#     for f in filenames:
+#         for line in open(f):
+#             if pattern in line:
+#                 print line,
+
+
+# Generator version
+# def readfiles(filenames):
+#     for f in filenames:
+#         for line in open(f):
+#             yield line
+
+# def grep(pattern, lines):
+#     return (line for line in lines if pattern in line)
+
+# def printlines(lines):
+#     for line in lines:
+#         print(line)
+
+# def main(pattern, filenames):
+#   import pdb
+#   pdb.set_trace()
+#   lines = readfiles(filenames) # => generator
+#   lines = grep(pattern, lines) # => generator expresion
+#   printlines(lines)
+
+
+# main('open', [__file__])
+
+
+
+
+
+# CLASSES
+# Classes define the structure and behavior of objects
+
+# __new__ is static class method, while __init__ is instance method.
+# __new__ has to create the instance first, so __init__ can initialize it
+
+# Instance method - functions which can be called on objects(with self argument)
+# instance.number() == Class.number(instance)

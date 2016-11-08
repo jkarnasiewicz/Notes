@@ -724,3 +724,77 @@ reversed() built-in function reverses any iterable series, returns a reverse ite
 # 
 Counter
 defaultdictionary(Counter)
+
+
+# PYTHON FUNDAMENTALS
+# Think of named references to objects rather than variables
+# shallow copy - copy only the reference to the key, value paires not the objects themselves
+# e.g.
+# a = [[0, 1]]*4
+# a[2].append(7)
+
+
+# Dynamic type system
+# In dynamic type system objects types are only resolved at runtime (w czasie wykonywania programu)
+
+# Strong type system
+# In a strong type system there is no implicit type conversion
+# e.g. 'string' + 43 => TypeError
+
+
+
+# Python name scopes(names are looked up in four nested scopes)
+Local - inside the current function
+Enclosing - any and all enclosing functions
+Global - top-level of module
+Built-in - provide by the builtins module
+
+
+
+# Value equality vs. identity(id())
+# Value comparison can be controlled programatically('==')
+# [] == [] => True
+Value - equivalent 'contents'
+
+# 'is'
+# [] is [] => False
+Identity - same object id
+
+
+
+# Default argument expressions evaluated once, when def is executed
+# Always use immutable objects as a default argument value
+
+
+
+# raise without an argument re-raises the current exception
+
+
+
+# output of print() can be redirected using the optional file argument
+
+
+# Docstring
+def sqrt(x):
+	'''Compute square root using the method of Heron of Alexandria.
+
+	Args:
+		x: The number for which the square root is to be computed.
+
+	Returns:
+		The square root of x.
+
+	Raises:
+		ValueError: If x is negative.
+	'''
+	...
+
+
+# prime numbers
+def is_prime(x):
+	if x <2:
+		return False
+	for i in range(2, int(sqrt(x)) + 1):
+		if x% i == 0:
+			return False
+	return True

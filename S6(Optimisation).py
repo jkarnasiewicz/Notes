@@ -1,3 +1,5 @@
+# OPTIMISATION/PROFILING/DEBUGING/SECURITY/DESIGN PATTERNS/PYTHON 2VS3
+
 # PROFILING TO FIND BOTTLENECKS
 
 # timeit (overall time)
@@ -374,3 +376,464 @@ def tight_loop_fast(iterations):
 # SWIG
 # C Foreign Function Interface (CFFI)
 # Cython
+
+
+
+# General informations
+
+# Gathering requirements:
+
+1. Talk directly to the application owners even if they are not technical savvy.
+2. Make sure you listen to their needs fully and note them.
+3. Dont use technical jargon such as "models". Keep it simple and use end-user
+   friendly terms such as a "user profile".
+4. Set the right expectations. If something is not technically feasible or difficult,
+   make sure you tell them right away.
+5. Sketch as much as possible. Humans are visual in nature. Websites more so.
+   Use rough lines and stick figures. No need to be perfect.
+6. Break down process flows such as user signup. Any multistep functionality
+   needs to be drawn as boxes connected by arrows.
+7. Finally, work through the features list in the form of user stories or in any
+   easy way to understand the form.
+8. Play an active role in prioritizing the features into high, medium,
+   or low buckets.
+9. Be very, very conservative in accepting new features.
+10. Post-meeting, share your notes with everyone to avoid misinterpretations.
+
++. Single-page document that quickly tells what the site is meant to be
+
+
+
+# Design Patterns
+
+Each pattern describes a problem, which occurs over and over again in our environment,
+and then describes the core of the solution to that problem in such a way that you can
+use this solution a million times over, without ever doing it the same way twice
+
+In the world of software, the term design pattern refers to a general repeatable
+solution to a commonly occurring problem in software design
+
+# Observer pattern - Spreading information to all listeners
+This is the basic pattern in which an object tells other objects about something
+interesting
+
+# Strategy pattern - Changing the behavior of an algorithm
+Sometimes, the same piece of code must have different behavior for different
+invocation by different clients
+
+# Singleton pattern - Providing the same view to all
+The singleton pattern maintains the same state for all instances of a class
+
+# Template pattern - Refining algorithm to use case(Inheritance, overide methods)
+
+# Adaptor pattern - Bridging class interfaces
+This pattern is used to adapt a given class to a new interface
+
+    def __getattr__(self, attr):
+      return getattr(self.fish, attr)
+
+# Facade pattern - Hiding system complexity for a simpler interface
+
+# Flyweight pattern - Consuming less memory with shared objects
+
+# Command pattern - Easy-execution management for commands (83 Python Unlock)
+
+# Abstract factory
+class Animal(six.with_metaclass(abc.ABCMeta, object)):
+ 	""" clients only need to know this interface for animals"""
+ 	@abc.abstractmethod
+ 	def sound(self, ):
+		pass
+
+# Registry pattern - Adding functionality from anywhere in code to class
+
+# State pattern - Changing execution based on state
+
+
+
+
+
+# MODELS
+# Structural patterns
+
+# Patterns – normalized models
+# denormalization(speed of the queries) and normalization(space with consistent data)
+Problem: By design, model instances have duplicated data that cause data inconsistencies.
+Solution: Break down your models into smaller models through normalization.
+Connect these models with logical relationships between them.
+
+# Pattern – model mixins
+# Smaller mixins are better. Whenever a mixin becomes large and violates the Single
+# Responsibility Principle, consider refactoring it into smaller classes. Let a mixin do
+# one thing and do it well
+Problem: Distinct models have the same fields and/or methods duplicated violating
+the DRY principle.
+Solution: Extract common fields and methods into various reusable model mixins.
+
+# Pattern – service/utils objects
+Problem: Models can get large and unmanageable. Testing and maintenance
+get harder as a model does more than one thing.
+Solution: Refactor out a set of related methods(e.g. @staticmethod or celery tasks)
+into a specialized 'service' or 'utils' object.
+
+# Retrieval patterns
+This section contains design patterns that deal with accessing model properties or
+performing queries on them.
+
+# Pattern – property field
+Problem: Models have attributes that are implemented as methods. However, these
+attributes should not be persisted to the database.
+Solution: Use the property decorator on such methods(@property)
+# If it is an expensive calculation, we might want to cache the result(@cached_property)
+
+# Pattern – custom model managers
+Problem: Certain queries on models are defined and accessed repeatedly
+throughout the code violating the DRY principle.
+Solution: Define custom managers to give meaningful names to common queries
+
+# VIEWS
+# Pattern – context enhancers
+Problem: Several views need the same context variable
+Solution: Create a mixin or context processors(TEMPLATE_CONTEXT_PROCESSORS)
+that sets the shared context variable
+
+# Pattern – services
+# This form of a service is usually called a web Application Programming Interface (API).
+Problem: Information from your website is often scraped and processed by
+other applications.
+Solution: Create lightweight services that return data in machine-friendly formats,
+such as JSON or XML(e.g. Django REST framework)
+
+# TEMPLATES
+# Pattern – template inheritance tree
+Problem: Templates have lots of repeated content in several pages.
+Solution: Use template inheritance wherever possible and include snippets elsewhere.
+
+# ADMIN
+# Don't give admin access to end users
+
+# Pattern – feature flags
+# selected users within a controlled experiment, performance testing for new features
+Problem: Publishing of new features to users and deployment of the corresponding
+code in production should be independent.
+Solution: Use feature flags to selectively enable or disable features after deployment
+
+# FORMS
+# Pattern – dynamic form generation
+Problem: Adding form fields dynamically or changing form fields from what
+has been declared.
+Solution: Add or change fields during initialization of the form.
+
+class PersonDetailsForm(forms.Form):
+	name = forms.CharField(max_length=100)
+	age = forms.IntegerField()
+
+	def __init__(self, *args, **kwargs):
+		upgrade = kwargs.pop("upgrade", False)
+		super().__init__(*args, **kwargs)
+
+		if upgrade:
+			self.fields["first_class"] = forms.BooleanField(
+				label="Fly First Class?")
+
+# PersonDetailsForm(upgrade=True)
+
+# Pattern – multiple form actions per view with prefix
+form = SubscribeForm(prefix="offers")
+
+
+
+
+
+# DEBUGGING
+# stop a django application in the middle of execution
+# assert False
+
+
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
+def complicated_view():
+	logger.debug("Entered the complicated_view()!")
+
+# The Django Debug Toolbar
+
+# The Python debugger pdb
+import pdb
+pdb.set_trace()
+
+# also try:
+# ipdb
+# pudb => import pudb; pudb.set_trace()
+
+
+
+# Debugging Django templates
+set TEMPLATE_DEBUG to True
+
+# debug tag(dump all the variables)
+<textarea onclick="this.focus();this.select()" style="width: 100%;">
+	{% filter force_escape %}
+		{% debug %}
+	{% endfilter %}
+</textarea>
+
+
+
+# custom template tag debug
+# templatetags/debug.py
+import pudb as dbg
+from django.template import Library, Node
+
+register = Library()
+
+class PdbNode(Node):
+
+	def render(self, context):
+		dbg.set_trace() # Debugger will stop here
+		return ''
+
+@register.tag
+def pdb(parser, token):
+	return PdbNode()
+
+# template.html
+{% load debug %}
+{% for item in items %}
+	{# Some place you want to break #}
+	{% pdb %}
+{% endfor %}
+
+Within the debugger
+print(context["item"])
+
+
+
+
+
+# SECURITY
+# Cross-site scripting (XSS)
+# considered the most prevalent web application security flaw today,
+# enables an attacker to execute his malicious scripts (usually JavaScript)
+# on web pages viewed by users
+
+
+
+# Cross-Site Request Forgery (CSRF)
+# is an attack that tricks a user into making
+# unwanted actions on a website, where they are already authenticated, while they
+# are visiting another site. Say, in a forum, an attacker can place an IMG or IFRAME tag
+# within the page that makes a carefully crafted request to the authenticated site.
+
+
+
+# SQL injection
+# is the second most common vulnerability of web applications,
+# after XSS. The attack involves entering malicious SQL code into a query that
+# gets executed on the database. It could result in data theft, by dumping database
+# contents, or the distruction of data, say, by using the DROP TABLE command.
+
+
+
+# Clickjacking('django.middleware.clickjacking.XFrameOptionsMiddleware')
+# is a means of misleading a user to click on a hidden link or button in
+# the browser when they were intending to click on something else. This is typically
+# implemented using an invisible IFRAME that contains the target website over a
+# dummy web page(shown here) that the user is likely to click on
+
+
+
+# Shell injection
+# As the name suggests, shell injection or command injection allows an attacker
+# to inject malicious code to a system shell such as bash. Even web applications use
+# command-line programs for convenience and their functionality. Such processes
+# are typically run within a shell.
+
+
+
+# A handy security checklist
+1. Dont trust data from a browser, API, or any outside sources: This is a
+fundamental rule. Make sure you validate and sanitize any outside data.
+2. Dont keep SECRET_KEY in version control: As a best practice, pick
+SECRET_KEY from the environment. Check out the django-environ package.
+3. Dont store passwords in plain text: Store your application password hashes
+instead. Add a random salt as well.
+4. Dont log any sensitive data: Filter out the confidential data such as credit
+card details or API keys from your log files.
+5. Any secure transaction or login should use SSL: Be aware that
+eavesdroppers in the same network as you are could listen to your web
+traffic if is not in HTTPS. Ideally, you ought to use HTTPS for the entire site.
+6. Avoid using redirects to user-supplied URLs: If you have redirects such as
+http://example.com/r?url=http://evil.com, then always check against
+whitelisted domains.
+7. Check authorization even for authenticated users: Before performing
+any change with side effects, check whether the logged-in user is allowed
+to perform it.
+8. Use the strictest possible regular expressions: Be it your URLconf or
+form validators, you must avoid lazy and generic regular expressions.
+9. Dont keep your Python code in web root: This can lead to an accidental
+leak of source code if it gets served as plain text.
+10. Use Django templates instead of building strings by hand: Templates
+have protection against XSS attacks.
+11. Use Django ORM rather than SQL commands: The ORM offers protection
+against SQL injection.
+12. Use Django forms with POST input for any action with side effects: It might
+seem like overkill to use forms for a simple vote button. Do it.
+13. CSRF should be enabled and used: Be very careful if you are exempting
+certain views using the @csrf_exempt decorator.
+14. Ensure that Django and all packages are the latest versions: Plan for
+updates. They might need some changes to be made to your source code.
+However, they bring shiny new features and security fixes too.
+15. Limit the size and type of user-uploaded files: Allowing large file uploads
+can cause denial-of-service attacks. Deny uploading of executables or scripts.
+16. Have a backup and recovery plan: Thanks to Murphy, you can plan for an
+inevitable attack, catastrophe, or any other kind of downtime. Make sure
+you take frequent backups to minimize data loss.
+
+
+
+
+# PRODUCTION
+# hosting options, including PaaS(platform as a service) and VPS(virtual private server)
+
+Components of a stack
+1. Which OS and distribution? For example: Debian, Red Hat, or OpenBSD.
+2. Which WSGI server? For example: Gunicorn, uWSGI.
+3. Which web server? For example: Apache, Nginx.
+4. Which database? For example: PostgreSQL, MySQL, or Redis.
+5. Which caching system? For example: Memcached, Redis.
+6. Which process control and monitoring system? For example: Upstart,
+   Systemd, or Supervisord.
+7. How to store static media? For example: Amazon S3, CloudFront.
+
+
+
+
+
+# PRODUCTION PERFORMANCE(DDP 175)
+# profiling and finding bottleneck
+# Frondend performance
+1. Cache infinitely with CachedStaticFilesStorage
+2. Use a static asset manager (e.g. django-pipeline or webassets)
+
+
+# Backend performance
+django-debug-toolbar
+django-silk
+
+enable the cached template loader in production
+
+Reduce database hits with select_related: If you are using a
+OneToOneField or a Foreign Key relationship, in forward direction,
+for a large number of objects, then select_related() can perform a
+SQL join and reduce the number of database hits.
+
+Reduce database hits with prefetch_related: For accessing a
+ManyToManyField method or, a Foreign Key relation, in reverse direction,
+or a Foreign Key relation in a large number of objects, consider using
+prefetch_related to reduce the number of database hits.
+
+Fetch only needed fields with values or values_list: You can save time
+and memory usage by limiting queries to return only the needed fields
+and skip model instantiation using values() or values_list()
+
+Denormalize models: Selective denormalization improves performance
+by reducing joins at the cost of data consistency
+
+Add an Index: If a non-primary key gets searched a lot in your queries,
+consider setting that fields db_index to True in your model definition
+
+Create, update, and delete multiple rows at once: Multiple objects can
+be operated upon in a single database query with the bulk_create(),
+update(), and delete() methods
+
+Most production systems use a memory-based caching system such as Redis or
+Memcached
+
+Cached session backend
+By default, Django stores its user session in the database. This usually gets
+retrieved for every request. To improve performance, the session data can be
+stored in memory by changing the SESSION_ENGINE setting. For instance,
+add the following in settings.py to store the session data in your cache:
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+
+
+
+
+# PYTHON 2 VS PYTHON 3
+difference in the way Python 3 treats strings.
+In Python 2, the human-readable representation of a class can be returned by
+__str__() (bytes) or __unicode__() (text). However, in Python 3 the readable
+representation is simply returned by __str__() (text).
+
+
+
+All classes inherit from the object class
+Python 2 has two kinds of classes: old-style (classic) and new-style. New-style classes
+are classes that directly or indirectly inherit from object. Only the new-style classes
+can use Pythons advanced features, such as slots, descriptors, and properties. Many
+of these are used by Django. However, classes were still old-style by default for
+compatibility reasons.
+In Python 3, the old-style classes dont exist anymore. As seen in the following table,
+even if you dont explicitly mention any parent classes, the object class will be
+present as a base. So, all the classes are new-style.
+
+
+
+Calling super() is easier
+
+
+
+Relative imports must be explicit
+no  "import models"
+yes "from . import models"
+
+
+
+HttpRequest and HttpResponse have str and bytes types
+Essentially, for the HttpRequest and HttpResponse objects:
+- Headers will always be the str objects
+- Input and output streams will always be the byte objects
+
+
+
+Exception syntax changes and improvements
+In Python 3, you cannot use the comma-separated syntax for the except clause.
+Use the as keyword instead
+In Python 3, all the exceptions must be derived (directly or indirectly) from
+BaseException. In practice, you would create your custom exceptions by deriving
+from the Exception class
+As a major improvement in error reporting, if an exception occurs while handling an
+exception, then the entire chain of exceptions are reported
+
+
+
+Standard library reorganized and new features
+asyncio: This contains asynchronous I/O, event loop, coroutines, and tasks
+unittest.mock: This contains the mock object library for testing
+pathlib: This contains object-oriented file system paths
+statistics: This contains mathematical statistics functions
+
+
+
+Using Pyvenv and Pip
+python -m venv djenv
+...
+pip install django
+
+
+
+1. print() is now a function: Previously, it was a statement, that is, arguments
+were not in parenthesis.
+2. Integers dont overflow: sys.maxint is outdated, integers will have
+unlimited precision.
+3. Inequality operator <> is removed: Use != instead.
+4. True integer division: In Python 2, 3 / 2 would evaluate to 1. It will be
+correctly evaluated to 1.5 in Python 3.
+5. Use range instead of xrange(): range() will now return iterators as
+xrange() used to work before.
+6. Dictionary keys are views: dict and dict-like classes (such as QueryDict)
+will return iterators instead of lists for the keys(), items(), and values()
+method calls

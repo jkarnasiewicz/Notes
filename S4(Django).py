@@ -274,11 +274,24 @@ Date is {% now 'd-m-Y' %}
 Views
 ##########################################################################################################
 from django.contrib import messages
-return render_to_response('experiments/management.html', ctx, context_instance=RequestContext(request))
-return HttpResponseRedirect(reverse('print_data') + '?' + urlencode(kwargs))
-response = HttpResponse(mimetype='application/force-download')
+from django.http import HttpResponse, HttpResponseRedirect, StreamingHttpResponse, JsonResponse
+from django.shortcuts import render_to_response, render, redirect
 
-return JsonResponse({'status': False, 'message': form.errors}, 'application/json', 200)
+HttpResponse(mimetype='application/force-download')
+HttpResponseRedirect(reverse('print_data') + '?' + urlencode(kwargs))
+
+# streaming data
+StreamingHttpResponse(stream_response_generator())
+
+# json
+JsonResponse({'status': False, 'message': form.errors}, 'application/json', 200)
+
+# shortcuts
+render_to_response('template_name.html', ctx, context_instance=RequestContext(request))
+render(request, 'template_name.html', ctx)
+redirect('user_profile', id=instance.pk)
+redirect(instance)                                   # this calls instance.get_absolute_url()
+
 
 
 form = UserForm(data=request.GET/POST or None, files=request.FILES or None, instance=object_instance)
@@ -289,8 +302,6 @@ if form.is_valid():
     # we can put pure html in the message, then add extra_tags='html_safe', but in templates we need to use something like this:
     # {% if 'html_safe' in message.tags %} {{ message|safe }} {% else %} {{ message }} {% endif %}
     return HttpResponseRedirect(instance.get_absolute_url())
-    return redirect(instance)                                   # this calls instance.get_absolute_url()
-    return redirect('user_profile', id=instance.pk)
 
  
 
@@ -299,6 +310,14 @@ if form.is_valid():
 Forms
 ##########################################################################################################
 from django.core.exceptions import ValidationError, ImproperlyConfigured
+
+def __init__(self, owner, *args, **kwargs):
+    # super(ClassName, self).__init__(*args, **kwargs)      # python 2
+    super().__init__(*args, **kwargs)                       # python 3
+    self.instance.owner = owner
+    self.fields['field_name'].label = commercial_label
+    self.fields['field_name'].initial = datetime.datetime.now()
+    self.fields['field_name'].disabled = True
 
 # Form class validation
 def clean_user(self):
@@ -317,15 +336,6 @@ def clean(self):
         self._errors["value"] = self.error_class(
             [_('This field is required.')])
     return cleaned_data
-
-
-def __init__(self, owner, *args, **kwargs):
-    # super(ClassName, self).__init__(*args, **kwargs)      # python 2
-    super().__init__(*args, **kwargs)                       # python 3
-    self.instance.owner = owner
-    self.fields['field_name'].label = commercial_label
-    self.fields['field_name'].initial = datetime.datetime.now()
-    self.fields['field_name'].disabled = True
 
 
 
