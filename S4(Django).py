@@ -928,3 +928,7 @@ return HttpResponse(list(msgs), content_type="application/json")
 # fast testing
 from django.test import Client
 Client().get("http://0.0.0.0:8000/public/").content
+
+# app.py
+Previously, there was no specific place for initializing the signal code. Typically, they
+were imported or implemented in models.py (which was unreliable)

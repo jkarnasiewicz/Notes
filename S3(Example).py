@@ -353,6 +353,7 @@ print(list(permutations([1, 2, 3, 4], 3)))
 
 
 # Handling Exception (try, except, raise)
+# raise without an argument re-raises the current exception
 # NotImplementedError, IndexError, NameError, KeyError, ImportError, ValueError, TypeError, IOError, SyntaxError
 def readfile(filename):
     if filename.endswith('.txt'):
@@ -399,10 +400,30 @@ assert isinstance(instance_of_the_class, ClassName), 'Comments'
 
 
 
+# Pickle (Python objects converted into a byte stream)
+import pickle
+li = [2, "Hello", 3.14, "..."]
+with open("Example.data", mode = "wb") as plik:
+    pickle.dump(li, plik)
+
+with open("Example.data", mode = "rb") as plik:
+    example = pickle.load(plik)
+
+
+
 # ZipFile Module
 from zipfile import ZipFile
-with ZipFile('Zip.zip', 'w') as myzip:                              # We Don't Need To Use myzip.close()
+# We Don't Need To Use myzip.close()
+with ZipFile('Zip.zip', 'w') as myzip:
     myzip.write(r'C:\Users\Shades\Desktop\Sc2.txt', 'Sc2.txt')
+
+
+
+# os.walk
+import os
+for root, dirs, files in os.walk(os.path.dirname(__file__)):
+    for fname in filter(lambda fname: fname.endswith('.py'), files):
+            document = open(os.path.join(root, fname), mode='rt', encoding='utf-8')
 
 
 
@@ -428,6 +449,18 @@ def zip_file(self, sample):
 
 
 
+# tarfile
+import tarfile, os, glob
+os.mkdir('Apps')
+for i in glob.glob('D:/Science/And Whatnot Final/*'):
+    t = tarfile.open(i)
+    try:
+        t.extractall('Apps')
+    except:
+        continue
+
+
+
 # Bytes and Bytearrays (an 8-bit word of data holds up to 256 values)
 fin = open('C:/Python34/Scripts/utf8.txt', 'r', encoding='utf-8')
 fout = open('C:/Python34/Scripts/utf8.html', 'w')
@@ -446,12 +479,19 @@ print('Done.')
 
 
 # Documentation Strings
-def function(inst):
-    """Do nothing, but document it.
+def square(x):
+    '''Do nothing, but document it.
     No, really, it doesn't do anything.
 
-    :param inst: an instance of :class: ClassName
-    """
+    Args:
+        x: The number for which the square root is to be computed
+
+    Returns:
+        The square root of x.
+
+    Raises:
+        ValueError: If x is negative.
+    '''
     pass
 
 print(function.__doc__)
@@ -612,3 +652,62 @@ print(func(200, 300))
 print(func(2000, 3000))
 
 # =====================
+
+# Distributing modules
+# the distutils package is used to help you distribute your python code
+# the main function in distutils is setup()
+# python setup.py --help
+
+# setup.py
+from distutils.core import setup
+
+setup(
+    name='',
+    version='',
+    py_modules=['module_name'],
+
+    # metadata
+    author='',
+    author_email='',
+    description='',
+    license='',
+    keywords='',
+)
+
+# install module
+python setup.py install
+
+# creating version(file) for distribution
+# python setup.py sdist --help-formats
+python setup.py sdist --format zip
+
+
+
+# SQLITE3
+# import sqlite3
+# db = sqlite3.connect('test.db')
+# db.row_factory = sqlite3.Row                    # specify how rows will be returned from the cursor
+# db.execute('drop table if exists test')
+# db.execute('create table test (t1 text, i1 int)')
+# db.execute('insert into test (t1, i1) values (?, ?)', ('one', 1))
+# db.execute('insert into test (t1, i1) values (?, ?)', ('two', 2))
+# db.commit()
+# cursor = db.execute('select * from test order by t1')
+# for row in cursor:
+#   print(dict(row))                            # dict because of the row_factory
+#   print(row['t1'], row['i1'])
+
+
+
+
+# IMPORT LOGGING
+import logging
+
+logging.basicConfig(filename='example.log', level=logging.DEBUG)
+logging.debug('This message should go to the log file')
+logging.info('So should this')
+logging.warning('And this, too')
+
+
+logger = logging.getLogger('app.location')
+logger.info('any message')

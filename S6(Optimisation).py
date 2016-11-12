@@ -837,3 +837,23 @@ xrange() used to work before.
 6. Dictionary keys are views: dict and dict-like classes (such as QueryDict)
 will return iterators instead of lists for the keys(), items(), and values()
 method calls
+
+
+
+# PDB
+# run on module
+python -m pdb file_name.py
+
+# in code
+import pdb
+pdb.set_trace()
+next, step, print(variable_name), where
+
+
+
+# Monkey patching lub guerrilla patching to technika polegająca na dostarczeniu kodu rozszerzającego
+# lub modyfikującego inny kod w czasie jego działania (podmiana funkcji)
+from django.utils import text
+from slugify import slugify_de as awesome_slugify
+awesome_slugify.to_lower = True
+text.slugify = awesome_slugify

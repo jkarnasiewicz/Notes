@@ -1,6 +1,6 @@
 # Sublime Text
 
-# Package Control: Anaconda, SideBarEnhancements, Git,
+# Package Control: Anaconda, SideBarEnhancements, SublimeREPL, Git,
 # 				   SublimeLinter, Emmet
 
 # Defining new interpreter version => New Build System

@@ -1,20 +1,53 @@
-# HELP
-# dir(object)        every method for object or dir() for list of names defined in the current module
-# help(object)
-# __doc__     			# docstring for a function or module object
-# __name__				# name of a function or module objec
-# .....__class__		# ??
-# type(object)       	# type of the object
-# id()				 	# id of the object
+# GENERAL INFORMATION/HELP
 
-# Class_Name.__mro__ == Class_Name.mro()    # info about linear order of the inheritance(super())
+dir(object)        				# every method for object or dir() for list of names defined in the current module
+help(object)
 
-# Immutable basic types (numbers, strings, tuples)
-# Mutable objects such as lists, dictionaries, sets and other types - meaning you can change their content without
-# 																 changing their identity
+object.__doc__     				# docstring for a function or module object
+object.__name__					# name of a function or module object, or just __name__ for current module name
+object.__file__					# object file path, or just __file__ for current file path(absolute path)
+
+type(object)       				# type of the object
+id(object)				 		# id of the object
+
+# mro - informations about linear order of the inheritance(super())
+ClassName.__mro__ == Class_Name.mro()
+
+# Immutable basic types such as numbers, strings, tuples
+
+# Mutable objects such as lists, dictionaries, sets and other types -
+# meaning you can change their content without changing their identity
 
 # Sequence (such as a string, bytes, tuple, list, or range)
 # Collection (such as a dictionary, set, or frozen set)
+
+# python objects/variables - think of named references to objects rather than variables
+
+# shallow copy - copy only the reference to the key, value paires not the objects themselves e.g.
+# a = [[0, 1]]*4
+# a[2].append(7)
+
+# Dynamic type system
+# In dynamic type system objects types are only resolved at runtime (w czasie wykonywania programu)
+
+# Strong type system
+# In a strong type system there is no implicit type conversion
+# e.g. 'string' + 43 => TypeError
+
+# Default argument expressions evaluated once, when def is executed
+# Always use immutable objects as a default argument value
+
+# Value equality(equivalent 'contents') vs. identity(same object id())
+# Value comparison can be controlled programatically('__eq__')
+# [] == [] => True
+# [] is [] => False
+
+
+# Python name scopes(names are looked up in four nested scopes)
+# Local - inside the current function
+# Enclosing - any and all enclosing functions
+# Global - top-level of module
+# Built-in - provide by the builtins module
 
 # Module < Package
 
@@ -22,61 +55,541 @@
 
 
 
+
+
 # IMPORT MODULES
-# import ...
-# from ... import ... as ...
-# from ... import *                                	# This will import all public names but would not
-#                                                     import __something__ because it starts with
-#                                                     double underscores.
-# from .b import B                        			# Relative imports
-# from ..a import A (parent directory)
-# __all__ = ['names', 'available', 'in_module']		# In __init__.py, if we "import *" we get only names from that list
-# __main__.py 										# Executable directories. Run: python folder_name(where __main__.py is)
+import module
+from module import object_name as alias_name
+
+# This will import all public names but would not import __name__ because it starts with double underscores
+from module import *
+
+# Selective import - if use "from module import *" and that module has define __all__ we get only names from that list(e.g. in __init__.py)
+__all__ = ['names', 'available', 'in_module']
+
+# Relative imports
+from .b import B
+# Parent directory
+from ..a import A
+
+
+
+
+
+# BUILT-IN FUNCTIONS
+# return a dictionary representing the current global symbol table
+globals()
+
+# return a dictionary mapping local variable names to their value
+locals()
+
+# use global to assign to global references from a local scope
+global variable_name
+
+# introduce names from the enclosing namespace into the local namespace
+nonlocal variable_name
+
+# return True or False (callable or not)
+callable(obj)
+
+# isinstance
+isinstance(3, (int, str))
+# issublclass
+issubclass(list, object)
+
+# return True if every element of the iterable is truthy, all([]) returns True
+all(iterable)
+
+# return True if any element of the iterable is truthy any([]) returns False
+any(iterable)
+
+# has, get and setattr
+hasattr(object, 'atribute_name')					# return True or False
+getattr(object, 'atribute_name', default)			# default argument if 'atribute_name' doesn't exist
+setattr(object, 'atribute_name', value)
+
+# apply a function to every element in a sequence, producing a new sequence finish when get the last element in the sequence
+map(function, sequence, sequence)
+
+# apply a function to each element in a sequence, constructing a new sequence with the elements for witch the function returns True
+filter(function, sequence)
+
+# function that aggregates elements from each of the iterables
+zip(sequence, sequence, sequence)
+
+# sorts any iterable series and returns a list
+sorted(iterable, key=None, reverse=False) 
+
+# reverses any iterable series, returns a reverse iterator
+reversed(sequence)
+
+
+
+
+
+# CONVERT VALUES
+# return a boolean value (True or False)
+bool(object)
+
+# unlimited precision signed integer
+int(x)
+# bases from 2 to 36 (oct(x) - base 8, hex(x) - base 16)
+int(string, base)
+
+# convert an integer number to a binary string (base 2)
+bin(x)
+
+# floating point number constructed from a number or string x
+# 1bit(sign) - 11bits(exponent) - 52bits(fraction) 15 to 17 bits of decimal precision
+float(x)
+
+# convert x to string, calling __str__ method
+str(x)
+# string representation of an object, calling __repr__ method
+repr(x)
+
+# replace non-ASCII characters with escape sequences
+ascii()
+
+# return the string representing a character whose Unicode codepoint is the integer
+chr(97)												# returns the string 'a'     
+
+# return an integer representing the Unicode code point of that character
+ord('a')											# returns the integer 97     
+
+
+
+
+
+# NUMBERS
+# power
+2 ** 4 == pow(2,4)									# 16
+
+# classic division returns a float(divide)
+17 / 3        										# 5.666666666666667 	
+
+# floor division discards the fractional part
+17 // 3       										# 5
+
+# the % operator returns the remainder of the division(modulo)
+17 % 3        										# 2
+
+# float remainder
+(-7) % 3					 						# 2
+
+# decimal remainder
+Decimal(-7) % Decimal(3)	 						# -1
+
+# divmod = (floor division, remainder)
+divmod(5, 3)										# (1, 2)
+
+# absolute value of a number
+abs(-4)												# 4
+
+# return the smallest item in an iterable or the smallest of two or more arguments
+min(iterable, key, default)
+
+# return the largest item in an iterable or the largest of two or more arguments
+max(iterable, key, default)
+
+# rounding function, be carefull with float numbers which can't be represented exacly in binary
+round(17/9)
+# how many digits we want to round to
+round(Decimal('3.456'), 2)
+# Fraction(3, 5)
+round(Fraction(57, 100), 1)
+
+# increment and decrement operators
++=, -=, *=, /=, //=
+
+# comparing values
+<, >, <=, >=, ==, !=
+
+# x < 10 and 10 < x * 10 and x*10 < 100
+x < 10 < x*10 < 100
+
+# comparing sequences and other types
+[1, 2, 3] < [1, 2, 4]
+'ABC' < 'C' < 'Pascal' < 'Python'
+(1, 2, 3, 4) < (1, 2, 4)
+(1, 2) < (1, 2, 1)
+(1, 2, ('aa', 'ab')) < (1, 2, ('abc', 'a'), 4)
+
+# testing ids of the objects/compare ids
+is, is not
+
+# membership testing using
+in, not in
+
+# i, lub
+and, or
+
+# Exclusive or(alternatywa wykluczająca)
+bool(a) != bool(b)
+
+
+
+# Decimal
+# import decimal
+decimal.getcontext().prec = 6
+# always use quotes
+decimal.Decimal('0.8')
+
+# from decimal import Decimal as d
+# d('Infinity'), d('-Infinity'), d('NaN')
+d('1.234567') + d(1)								# d('2.23457')
+
+
+
+# Fractions (ulamki)
+# from fractions import Fraction as f
+f(1, 2) + f(3, 4)									# Fraction(5, 4)
+f('0.1') == f(Decimal('0.1'))						# Fraction(1. 10)
+f(0.1)												# 3602879701896397/36028797018963968
+
+
+
+# Complex Numbers
+complex(2, 3)										# (2 + 3j)
+complex('2+3j')										# (2 + 3j)
+c = 2 + 3j											# (2 + 3j)
+c.real 												# 2.0
+c.imag 												# 3.0
+# sprzężenie zespolone
+c.conjugate()										# (1 - 3j)
+
+# import cmath - Mathematical functions for complex numbers
+cmath.sqrt(-1)										# 1j
+cmath.polar(1+1j)									# (1.4142135623730951, 0.7853981633974483) = modulus, phase
+cmath.rect(modulus, phase)
+
+
+
+# Statistics
+# import statistics as s
+a = [2, 4, 5, 1, 3, 6, 3, 7]
+print(s.median(a), s.mean(a), s.variance(a))
+
+
+
+# Bitwise operators
+# 2 is represented by 10 in bits(left shift) Left shifting by 2 bits gives 1000 which represents the decimal 8
+2 << 2        										# 8
+
+# (right shift) Shifts the bits of the number to the right by the number
+# of bits specified. 11 is represented in bits by 1011 which when right
+# shifted by 1 bit gives 101 which is the decimal 5.
+11 >> 1												# 5
+
+
+
+
+
+# STRINGS
+# raw string (no 'escape sequences')
+r'This is a\tstring!'
+
+# breaking string with \
+s = 'This is a string. \
+	This continues the string.'
+
+# length of the string
+len('Python')
+
+# slice [start:stop:step]
+'string'[0:6:3]										# 'si'
+# last character
+'string'[-1]				                 		# 'g'
+# characters from position 2 (included) to 5 (excluded)
+'string'[2:5]                						# 'rin'
+# characters from the second-last (included) to the end
+'string'[-2:]                						# 'ng'
+'python'[:2] + 'python'[2:]  						# 'python'
+
+# split()
+'key value pair'.split()							# ['key', 'value', 'pair']
+'key/value/pair'.split('/', 2)          			# ['key', 'value', 'pair']
+
+# splitlines()
+'st\nri\nng'.splitlines()							# ['st', 'ri', 'ng']
+
+# join()
+# always prefer 'join' over regular concatenation, strings are immutable,
+# so the += operator re-binds the reference to a new object(adding memory usage)
+'-'.join(str(i) for i in [1, 3, 6])   				# '1-3-6'
+' '.join("string")                					# 's t r i n g'
+
+# partition()
+'unforgetable'.partition('forget')					# ('un', 'forget', 'able')
+
+
+# replace(old, new, count)
+'string'.replace('r', '-', 5)     					# 'st-ing'
+'string'.find('r')                					# 2
+
+# checks if the string has only alphanumeric characters in it (A-Z, a-z and 0-9)
+''.isalnum()
+
+# only alpha characters (A-Z, a-z)
+'Ng'.isalpha()
+
+# checks if there are only digits (0-9)
+'37'.isdigit()
+
+.capitalize()
+.lower()
+.upper()
+.swapcase()
+# find extension
+.lower().endswith('.mp3')
+# all chars have been stripped from begining and the end of the string
+.strip('chars')
+# removing whitespaces from the end of string
+.rstrip()
+.center(80)
+
+# from string to byte object (python 3)
+string_object.encode(encoding='utf-8', errors='strict')
+
+# from byte to string object (python 3)
+byte_object.decode('utf-8')
+
+
+
+# Formating And "Print"
+# output of print can be redirected using the optional file argument
+print(*objects, sep = " \t", end = "\n", file=sys.stdout)
+
+print( "{0}'s password is {1}".format(username, password) )
+print( "real part:{0.r}, imaginary part:{0.i} i liczba {1:.1f}".format(Complex(3, 6), 123.345) )
+
+# table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+print('Jack: {Jack}; Sjoerd: {Sjoerd:.2f}; Dcab: {Dcab}'.format(**table))
+
+# to righr, 40 characters, one character after dot, float
+print( "{0:>40.1f}".format(123.345) )
+print('{0}, lub {0:.3}'.format(1/3))
+print('{0:_^11}'.format('hello'))
+
+# requesting __repr__()
+print('{0!r}'.format(object))
+
+# requesting __str__()
+print('{0!s}'.format(object))
+
+# line feed
+'\n'
+# carriage return
+'\r'
+# tabulator
+'\t'
+
+
+
+
+
+# TUPLE
+t = 1, 2, 3, 4, 3
+# creating tuple with one element
+t = 1,
+
+# return number of occurrences of value
+t.count(value)
+
+# return first index of value
+t.index(value)
+
+
+
+
+
+# LISTS
+li = [1, 8, 27, [0, 1], 125]
+# replace value
+li[3][1] = 3
+
+# count value
+li.count(value)
+
+# return first index of value
+li.index(value)
+
+# insert object
+li.insert(index, object)
+
+# append object to end
+li.append(object)
+
+# The extend() method takes a single argument, which is always a list, and adds each of the items of that list to a list
+li.extend(iterable)
+
+# remove the first occurrence of object
+li.remove(object)
+
+# delete the object at index 3
+del li[3]
+
+# remove and return item at index (default last)
+li.pop(index)
+
+# reverse in place
+li.reverse()
+
+# sorts in place
+li.sort(key=callable, reverse=True)
+
+
+
+
+
+# SETS (unordered collection of unique, immutable objects)(Zbiory)
+# duplicates are removed, only unique items stay
+basket = set(['apple', 'orange', 'apple', 'pear', 'orange', 'banana'])			# {'orange', 'banana', 'pear', 'apple'}
+
+# The add() method takes a single argument, which can be any immutable datatype, and adds the given object to the set
+basket.add(object)
+
+# You can actually call the update() method with any number of arguments, update a set with the union of itself and others
+basket.update(iterable)
+
+# remove object, if the value doesn’t exist in the set, the remove() method raises a KeyError exception,
+basket.remove(object)
+
+# remove object, discard don't raises any exception
+basket.discard(object)
+
+# shallow copy of the set
+basket.copy()
+
+# a | b, letters in either a or b (Suma)
+a.union(b)
+
+# a - b, letters in a but not in b (Roznica)
+a.difference(b)
+
+# a & b, letters in both a and b (Iloczyn)
+a.intersection()
+
+# a ^ b, letters in a or b but not both (Roznica symetryczna)
+a.symetric_difference(b)
+
+# Subset and Superset(podzbiór, nadzbiór i rozłączność)
+a.issubset(b)
+a.issuperset(b)
+a.isdisjoint(b)
+
+# If True, list have more than one diffrent object
+if(len(set(iterable)) != 1)
+
+
+
+
+ 
+# DICTIONARIES (unordered mapping from unique, immutable keys to mutable values -> Key: Value)
+di = {'sape': 4139, 'ivy': 4127, 'jack': 4098}
+di = dict([('sape', 4139), ('ivy', 4127), ('jack', 4098)])
+
+# get object - like switch
+di.get(key, default=None)
+# factory_class(arg1, arg2)
+factory_class = {'a': ClassOne, 'b': ClassTwo}.get('b', ClassThree)
+
+# the method will set dict[key]=default if key is not already in dict
+di.setdefault(key, default=None)
+
+# update existing entry
+di['jack'] = 9744
+
+# add new entry
+a['lee'] = 4567
+
+# update, adds dictionary key-values pairs to 'di'
+di.update(dictionary)
+
+# remove entry with key 'sape'
+del di['sape']
+
+# remove and return value of 'sape'
+di.pop('sape')
+
+# remove all entries in dict
+di.clear()
+
+# shallow copy of the dictionary
+di.copy()
+
+# delete entire dictionary
+del a
+
+di.items()
+di.keys()
+di.values()
+di.fromkeys(range(10), 10)
+
+
+
+
+
+# READING AND WRITING FILES
+# file object support iterator protocol(and yield line by line)
+
+open(file="path to file", mode="read/write/append, binary/text", encoding="text encoding")
+
+# creating the new file or overwriting the existing file
+with open("Example.txt", mode="wt", encoding="utf-8") as f:
+	f.write("Hello\n...")
+
+# append to the file instead of overwriting
+with open("Example.txt", mode = "at", encoding = "utf-8") as f:
+	f.write("\nYupii\r...")
+
+# open to read in text mode(default mode is "rt"), no need to f.close() because of "with"
+with open("Example.txt") as f:
+	f.read()
+
+# writelines
+f = open('Example.txt', mode='at', encoding='utf-8')
+f.writelines( ['example text, \n', you cannot say, or guess, 'where the sun beats\n'] )
+f.close()
+
+# readline and readlines
+f.readline() 													  		# read single line
+f.readlines()                                    						# list of all the lines
+
+# method track the number of bytes read
+f.tell()
+
+# reposition of the read/write pointer within the file
+f.seek(position)
+
+# open to read in binary mode
+with open("Example.jpg", mode="rb") as image:
+	print(len(image.read())/1024, "KB")
+
+
+
+# Reading and Writting with Buffer
+# number of bytes
+buffersize = 50000
+infile = open('bigfile.txt', 'rt')
+outfile = open('newfile.txt', 'wt')
+buffer = infile.read(buffersize)
+while len(buffer):
+	outfile.write(buffer)
+	print('.', end='')
+	buffer = infile.read(buffersize)
+print('Done.')
+
+
+
 
 
 # RUNNING FILES AND SCRIPTS
-# exec(open("./filename").read())
-# exec(open("C:/Python33/Scripts/1.py").read())    	# run files from python shell
-
-# C:\Python33>python ./Scripts/1.py                	# run files from cmd
-# C:\Python33>python C:/.../1.py
-
-
-
-# SYS.PATH (THE import SEARCH PATH)(built-in modules - in C)
-# import sys
-# sys.path 											# the list of search path imports
-# sys.path.insert(0,'C:\\...')
-# sys.path.extend(['path1', 'path2'])    			# add to the end of the list
-
-# sys.argv                 							# contains the list of command line arguments
-
-
-# import os, glob
-# __file__											# absolute file path
-# os.listdir('D:/')
-# os.path.splitext('')
-# os.path.dirname(__file__)							# current working directory
-# os.getcwd()              							# current working directory
-# os.path.abspath(__file__)							# current working file
-# os.sep                   							# system dependence separator
-
-# os.chdir()               							# change the current working directory to path
-# os.stat(file)            							# file information e.g. st.size
-# os.mkdir                 							# create folders
-# os.system("dir")         							# os.system function which runs the command as if
-#													  it was run from the system, in the shell - it returns 0 if
-#                            						  the command was successfully, else it returns
-#                            						  an error number.
-# sys.getsizeof(object)								# size of the object in bytes
-# glob.glob('D:\Filmy\*' ) 							# every file in the directory
-
-
-# RUNING SCRIPTS and Module Built-in attribute
-# if __name__ == '__main__':                        # __name__  is the module's filename
-# 	print('This program is being run by itself')
-# else:
-# 	print('I am being imported from another module')
+# __name__  is the module's filename
+if __name__ == '__main__':
+	print('This program is being run by itself')
+else:
+	print('I am being imported from another module')
 
 # python filename.py                                # This program is being run by itself
 # import filename                                   # I am being imported from another module
@@ -84,189 +597,242 @@
 # Every Python module has its __name__ defined. If this is ’__main__’, that
 # implies that the module is being run standalone
 
+# __main__.py
+# Executable directories. Run: python folder_name (where __main__.py is)
 
-
-# BUILT-IN FUNCTIONS
-locals()											# return a dictionary mapping local variable names to their value
-
-global variable_name								# use global to assign to global references from a local scope
-nonlocal variable_name								# introduce names from the enclosing namespace into the local namespace
-
-callable(obj)										# return True or False(callable or not)
-
-# isinstance
-isinstance(3, (int, str))
-# issublclass
-issubclass(list, object)
-
-all(iterable)										# return True if every element of the iterable is truthy
-#													# all([]) returns True
-
-any(iterable)										# return True if any element of the iterable is truthy
-# 													# any([]) returns False
-
-# has, get and setattr
-a = [1, 4, 'reduce']
-hasattr(a, "index")									# Results are True or False
-getattr(object, "atribute_name", default)			# default argument if "atribute_name" doesn't exist
-setattr(object, "atribute_name", value)
-
-map(function, sequence, sequence)					# apply a function to every element in a sequence, producing a new sequence
-# 													  finish when get the last element in the sequence
-
-filter(function, sequence)							# apply a function to each element in a sequence, constructing a new sequence
-# 													  with the elements for witch the function returns True
+# run files from python shell
+exec(open("Example.py").read())
 
 
 
 
-# CONVERT VALUES
-# int(x)									 # unlimited precision signed integer
-# int(x, base)								 # bases from 2 to 36
-# bin(x) - base 2, oct(x) - base 8, hex(x) - base 16
-# float(x)	  								 # 1bit(sign) - 11bits(exponent) - 52bits(fraction)
-#											 # 15 to 17 bits of decimal precision
-# str(x)      								 # convert x to string
-# repr(x)
 
-# ascii()	  								 # replace non-ASCII characters with escape sequences
-# chr(97)      => returns the string 'a'     # return the string representing a character
-#                                              whose Unicode codepoint is the integer
-# ord('a')     => returns the integer 97     # return an integer representing the Unicode
-#                                              code point of that character
+# OS
+import os
 
+# list containing names of the files and directories
+os.listdir('D:/')
+# list containing names of the files and directories(regexp)
+# import glob
+glob.glob('D:/*' )
 
+# current working directory
+os.getcwd()
 
+# directory tree generator(dirpath, dirnames, filenames)
+os.walk()
 
-# NUMBERS
-# 17 / 3        => 5.666666666666667 	# classic division returns a float(divide)
-# 17 // 3       => 5                 	# floor division discards the fractional part
-# 17 % 3        => 2                 	# the % operator returns the remainder of the division(modulo)
-# (-7) % 3					 => 2		# float remainder
-# Decimal(-7) % Decimal(3)	 => -1		# decimal remainder
-# divmod(5, 3)	=> (1, 2)		     	# (floor division, remainder)
-# 5 * 3 + 2     => 17                	# result * divisor + remainder
-# 2 * 3         => 6                 	# multiply
-# 2 ** 4        => 16                	# power == pow(2,4)
-# abs(-4)								# absolute value of a number
-# round(17/9)          				 	# rounding function
-# 										# Be carefull with float numbers which can't be represented exacly in binary
-# round(Decimal('3.456'), 2)       		# how many digits we want to round to
-# round(Fraction(57, 100), 1)			# Fraction(3, 5)
+# create folders
+os.mkdir('folder_name')
 
-# +=, -=, *=, /=, //=                	# increment and decrement operators
-# <, >, <=, >=, ==, !=				 	# comparing values
-# is, is not						 	# testing ids of the objects/compare ids
-# and                  				 	# i
-# or                   				 	# lub
-# bool(a) != bool(b)                    # Exclusive or(alternatywa wykluczająca)
+# change the current working directory to path
+os.chdir(path)
 
-# Bitwise operators
-# 2 << 2        => 8   # 2 is represented by 10 in bits(left shift)
-#                        Left shifting by 2 bits gives 1000 which represents the decimal 8.
-# 11 >> 1       => 5   # (right shift) Shifts the bits of the number to the right by the number
-#                        of bits specified. 11 is represented in bits by 1011 which when right
-#                        shifted by 1 bit gives 101 which is the decimal 5.
+# perform a stat system call on the given path
+os.stat(path)
 
-# Decimal
-# import decimal
-# decimal.getcontext().prec = 6
-# decimal.Decimal('0.8')				# always use quotes
-# from decimal import Decimal as d
-# d('1.234567') + d(1)	=> d('2.23457')
-# d('Infinity'), d('-Infinity'), d('NaN')
+# system dependence separator
+os.sep
 
-# Fractions (ulamki)
-# from fractions import Fraction as f
-# f(1,2)+f(3,4)							=> 5/4
-# f('0.1') == f(Decimal('0.1'))			=> 1/10
-# f(0.1)								=> 3602879701896397/36028797018963968
+# os.system function which runs the command as if it was run from the system, in the shell - it returns 0 if
+# the command was successfully, else it returns an error number
+os.system("dir")
 
-# Complex Numbers
-# complex(2, 3)							=> (2 + 3j)
-# complex('2+3j')						=> (2 + 3j)
-# c = 2 + 3j							=> (2 + 3j)
-# c.real 								=> 2.0
-# c.imag 								=> 3.0
-# c.conjugate()							=> (1 - 3j)		# sprzężenie zespolone
+# returns the directory component of a pathname
+os.path.dirname(path)
 
-# import cmath - Mathematical functions for complex numbers
-# cmath.sqrt(-1)						=> 1j
-# cmath.polar(1+1j)						=> (1.4142135623730951, 0.7853981633974483) = modulus, phase
-# cmath.rect(modulus, phase)
+# returns the absolute version of a path
+os.path.abspath(path/file_name)
 
-# Statistics
-# import statistics as s
-# a = [2, 4, 5, 1, 3, 6, 3, 7]
-# print(s.median(a), s.mean(a), s.variance(a))
+# split the extension from a pathname, returns (root, ext)
+os.path.splitext(string)
+
+# returns the final component of a pathname
+os.path.basename(path)
 
 
 
-# STRINGS
-# always prefer 'join' over regular concatenation
-# strings are immutable, so the += operator re-binds the reference to a new object(adding memory usage)
-
-# r"This is a\tstring!"					   # raw string
-# len('Python')                            # length of the string
-
-# "string"[0:6:3]              => 'si'     # slice [start:stop:step]
-# "string"[-1]                 => 'g'      # last character
-# "string"[2:5]                => 'rin'    # characters from position 2 (included) to 5 (excluded)
-# "string"[-2:]                => 'ng'     # characters from the second-last (included) to the end
-# "python"[:2] + "python"[2:]  => 'python'
-
-# "key/value".split("/",1)          	=> ['key', 'value']    # .split() by "space"
-# .splitlines()                     	=> []
-
-# "-".join(str(i) for i in [1, 3, 6])   => "1-3-6"
-# " ".join("string")                	=> "s t r i n g"
-
-# "unforgetable".partition(forget)		=> ('un', 'forget', 'able')
-
-# "string".replace("r", "-", 5)     	=> "st-ing"
-# "string".find('r')                	=> 2
-
-# .isalnum()                       # checks if the strnig has only alphanumeric
-#                                  # characters in it
-# .isalpha()                       # only alpha characters
-# .isdigit()                       # checks if there are only digits
-
-# .center(80)
-# .capitalize()
-# .lower()
-# .upper()
-# .swapcase()
-# .lower().endswith('.mp3')        # find extension
-# .rstrip()                        # removing whitespaces from the end of string
-# .strip([chars])				   # all chars have been stripped from begining and
-#								   # the end of the string
-
-# .encode('utf-8')                 # from bytes to unicode characters e.g. gb18030, big5
-# .decode('utf-16')				   # from unicode characters to bytes
 
 
-# Formating And "Print"
-# li = [123, 456, 789]
-# print(*li, sep = " \t", end = "\n")						# optional kwargs: file = ''
+# SYS
+import sys
 
-# s = 'This is a string. \
-# This continues the string.'
+# SYS.PATH (THE 'import' SEARCH PATH)(built-in modules - in C)
+# the list of search path imports
+sys.path
+sys.path.insert(0,'C:\\...')
+# add to the end of the list
+sys.path.extend(['path1', 'path2'])
 
-# \n - line feed
-# \r - carriage return
-# \t - tabulator
+# contains the list of command line arguments
+sys.argv
 
-# print( "{0}'s password is {1}".format(username, password) )
-# print( "real part:{0.r}, imaginary part:{0.i} i liczba {1:.1f}".format(Complex(3, 6), 123.345) )
-# print( "{0:>40.1f}".format(123.345) )					   # to righr, 40 characters, one character after dot, float
-# print('{0}, lub {0:.3}'.format(1/3))
-# print('{0:_^11}'.format('hello'))
+# imported modules
+sys.modules
 
-# print('{0!r}'.format(object))							   # we're requesting __repr__()
-# print('{0!s}'.format(object))							   # we're requesting __str__()
+# print(file=sys.stdout)
+sys.stdout.write(string)
 
-# table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-# print('Jack: {Jack}; Sjoerd: {Sjoerd:.2f}; Dcab: {Dcab}'.format(**table))
+# exit the interpreter by raising SystemExit(status)
+sys.exit(status)
+
+# size of the object in bytes
+sys.getsizeof(object)
+
+# who called the function(is it coroutine)
+sys.getframe(func).f_code.co_flags
+
+
+
+
+
+# TIME/DATETIME
+import time
+
+# localtime returns (tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst)
+time.localtime()									# ".".join(str(i) for i in time.localtime()[:6])
+
+# convert a time in seconds since the Epoch to a string in local time
+time.ctime()
+
+# return the current time in seconds since the Epoch
+time.time()
+
+
+
+import datetime
+
+# datetime.datetime
+# date
+datetime.datetime(2014, 2, 27, 12, 22, 45, 38543).date()
+
+# time
+datetime.datetime(2014, 2, 27, 12, 22, 45, 38543).time()
+
+# local datetime
+datetime.datetime.now()
+
+# utc datetime (Universal Time Coordinated)
+datetime.datetime.utcnow()
+
+# strftime - from datetime object to string
+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+#								('%A %-d %B %Y')
+
+# strptime - from string to datetime object
+# string, format -> new datetime parsed from a string
+datetime.datetime.strptime('2000-01-01 00:00', '%Y-%m-%d %H:%M')
+#						  ('Monday 6 January 2014, 12:13:31', '%A %d %B %Y, %H:%M:%S')
+
+# combine
+datetime.datetime.combine(dt_object.date(), dt_object.time())
+
+
+
+# datetime.date
+datetime.date(year=2014, month=1, day=6)
+datetime.date.today()
+
+date_object.year
+date_object.month
+date_object.day
+date_object.weekday()
+date_object.isoweekday()
+
+# local date from a POSIX timestamp
+datetime.date.fromtimestamp(1000000000)
+
+
+
+# datetime.time
+# datetime.time.min, datetime.time.max, datetime.time.resolution
+datetime.time(hour=23, minute=57, second=59, microsecond=999)
+time_object.isoformat()
+time_object.strftime('%Hh%Mm%Ss')
+
+
+
+# datetime.timedelta
+# timedelta instance store only days, seconds, microseconds
+datetime.timedelta(days=4, hours=3, minutes=45, weeks=3)
+datetime.date.today() + datetime.timedelta(weeks=3)
+
+
+
+
+
+# RANDOM
+import random
+
+# random floating point number from (0, 1)
+random.random()
+
+# get a random floating point number in the range (start, stop)
+random.uniform(-10.5, 10.5)
+
+# choose a random integer number from range (start, stop, step)
+random.randrange(-10, 101, 3)
+
+# choose a random element from a non-empty sequence
+random.choice('asdfgh')
+
+weighted_choices = [('Red', 3), ('Blue', 2), ('Yellow', 1), ('Green', 4)]
+population = [val for val, cnt in weighted_choices for i in range(cnt)]
+random.choice(population)
+
+# chooses k unique random elements from a population sequence or set
+random.sample(range(10000000), 60)
+
+# shuffle list x in place, and return None
+random.shuffle(items)
+
+
+
+
+
+# IMPORTLIB
+import importlib
+
+obj = getattr(importlib.import_module('module_name'), 'object_name')
+
+
+
+
+
+# COLLECTIONS
+from collections import OrderedDict, Counter, defaultdict, deque
+
+# dictionary that remembers insertion order
+OrderedDict()
+
+
+
+# dict subclass for counting hashable items
+Counter('aaabbc')
+
+# n most common elements
+counter_obj.most_common(n)
+
+# total of all counts
+sum(counter_obj.values())
+
+
+# dict subclass that calls a factory function to supply missing values
+# defaultdict means that if a key is not found in the dictionary, then instead of a KeyError being thrown,
+# a new entry is created. The type of this new entry is given by the argument of defaultdict.
+defaultdict(callable)
+
+
+
+# list-like container with fast appends and pops on either end
+deque(iterable, maxlen=None)
+
+deque_obj.append(obj)
+deque_obj.appendleft(obj)
+deque_obj.pop()
+deque_obj.popleft()
+
+
 
 
 
@@ -308,288 +874,39 @@ filter(function, sequence)							# apply a function to each element in a sequenc
 
 
 
-# TUPLE
-# t = 1,                                  # creating tuple with one element
-# t = 1, 2, 3, 4, 3
-
-# t.count(3)
-# t.index(4)
-
-# min(t)
-# max(t)
-
-
-
-# LISTS
-# cubes = [1, 8, 27, 65, 125]
-# cubes[3] = 64  # replace the wrong value
-
-# [['a', 'b', 'c'], [1, 2, 3]]
-# x[0]      => ['a', 'b', 'c']
-# x[0][1]   => 'b'
-
-# a = [66.25, 333, 333, 1, 1234.5]
-# a.count(333) => 2
-# a.count('x') => 0
-# a.index(333) => 1
-# 333 in a     => True
-# 333 not in a => False
-
-# a.insert(2, -1) => [66.25, 333, -1, 333, 1, 1234.5]
-# a.append(333)   => [66.25, 333, -1, 333, 1, 1234.5, 333]
-# a.extend() - The extend() method takes a single argument,
-#              which is always a list, and adds each of the
-#              items of that list to a list
-
-# a.remove(333)  	# remove the first occurrence of number 333
-# del a[3]       	# delete the object at index 3
-# a.pop()        	=>  333
-# a.pop(1)       	=>  -1
-
-# a.reverse()    							=>  [333, 1234.5, 1, 333, -1, 66.25] # reverse in place
-# a.sort(key=len, reverse=True)     		=>  [-1, 1, 66.25, 333, 333, 1234.5] # sorts in place
-
-
-# Using Lists as Stacks (Stos)
-# stack = [3, 4, 5]
-# stack.append(6)   =>  [3, 4, 5, 6]
-# stack.pop()       =>  6
-# stack             =>  [3, 4, 5]
-# stack.pop(0)      =>  3
-
-
-# Using Lists as Queues (Kolejka)
-# from collections import deque
-# queue = deque(["Eric", "John", "Michael"])
-# queue.append("Terry")
-# queue.popleft()
-# 'Eric'
-# queue
-# deque(['Joh', Michael', 'Terry'])
-
-
-
-# SETS (unordered collection of unique, immutable objects)(Zbiory)
-# basket = set(['apple', 'orange', 'apple', 'pear', 'orange', 'banana'])
-# {'orange', 'banana', 'pear', 'apple'}  # duplicates have been removed
-
-# basket.add()     The add() method takes a single argument, which can be any datatype, and adds the given value to the set
-# basket.update()  You can actually call the update() method with any number of arguments
-
-# basket.remove()  			if the value doesn’t exist in the set, the remove() method raises a KeyError exception,
-# basket.discard() 			discard don't raises any exception
-# basket.copy() 			# shallow copy of the set
-
-# a = set('abracadabra') => {'a', 'r', 'b', 'c', 'd'}   # unique letters in a
-# b = {'m', 'l', 'z', 'a', 'c'}
-# 'r' in a  => True                                     # fast membership testing
-
-# a.difference(b),           a - b     => {'r', 'd', 'b'}                          # letters in a but not in b (Roznica)
-# a.union(b),                a | b     => {'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'} # letters in either a or b (Suma)
-# a.intersection(),          a & b     => {'a', 'c'}                               # letters in both a and b (Iloczyn)
-# a.symetric_difference(b),  a ^ b     => {'r', 'd', 'b', 'm', 'z', 'l'}           # letters in a or b but not both (Roznica symetryczna)
-
-# if(len(set(exp_type)) != 1)                                                      # If True, list have more than one diffrent object
-
-# Subset and Superset(podzbiory, nadzbiory i rozłączność)
-# a.issubset(b)   => False
-# a.issuperset(b) => False
-# a.isdisjoint(b) => False
-
-
-
-# DICTIONARIES (unordered mapping from unique, immutable keys to mutable values -> Key: Value)
-# a = {'sape': 4139, 'guido': 4127, 'jack': 4098}
-# a = dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
-
-# a.get(key, default=None))          			# like switch
-# factory_class = {'a': ClassOne, 'b': ClassTwo}.get('b', ClassThree)		# factory_class(arg1, arg2)
-
-# a.setdefault(key, default=None)				# the method will set dict[key]=default if key is not already in dict
-
-# a['jack'] = 9744								# update existing entry
-# a['thx'] = 4567								# add new entry
-# a.update(dictionary)							# adds dictionary key-values pairs to 'a'
-
-# del a['sape']									# remove entry with key 'sape'
-# a.pop('sape')                                 # remove and return value of 'sape'
-# a.clear()										# remove all entries in dict
-
-# d = a.copy()									# copying the dictionary(shallow copy)
-# del a  										# delete entire dictionary
-
-# b = dict( one = 'first', two = 'second', three = 'third', four = 'fourth',
-#			five = 'fifth', **a)
-# b.items()
-# b.keys()
-# b.values()
-# dict.fromkeys(range(10), 10)
-# print('jack' not in b)
-
-
-
-# Comparing Sequences And Other Types
-# [1, 2, 3]              < [1, 2, 4]
-# 'ABC' < 'C' < 'Pascal' < 'Python'
-# (1, 2, 3, 4)           < (1, 2, 4)
-# (1, 2)                 < (1, 2, 1)
-# (1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4)
-
-
-
-# READING AND WRITING FILES
-# file object support iterator protocol(and yield line by line)
-
-# open(file="path to file", mode="read/write/append, binary/text", encoding="text encoding")
-# rt = read text
-# at = append text
-
-# with open("Example.txt", mode = "w", encoding = "utf-8") as plik:   # creating the new file or overwriting the existing file
-#     plik.write("Hello\n...")
-# with open("Example.txt") as plik:                                   # default mode is "r"
-# 	print(plik.read())                                                # no need to plik.close() because of "with"
-# with open("Example.txt", mode = "a", encoding = "utf-8") as plik:   # append to the file instead of overwriting
-# 	plik.write("\nYupii\r...")
-
-# f = open('Example.txt', mode='at', encoding='utf-8')
-# f.writelines(
-# 		['example text, \n', you cannot say, or guess, 'where the sun beats\n']
-# )
-# f.close()
-
-# with open("Example.txt", mode = "r", encoding = "utf-8") as plik:
-# 	print(plik.read())
-
-# file.readline() 													  # read single line
-# print("Example.txt".readlines())                                    # list of all the lines
-
-# with open("0.52930300392065.jpg", mode = "rb") as image:            # open to read in binary mode
-# 	print(len(image.read())/1024,"KB")
-# image.tell(), image.read(?), image.seek(?)                          # methods track the number of bytes read
-
-
-# Reading and Writting with Buffer
-# buffersize = 50000                    # number of bytes
-# infile = open('C:/Python34/Scripts/bigfile.txt', 'r')
-# outfile = open('C:/Python34/Scripts/newfile.txt', 'w')
-# buffer = infile.read(buffersize)
-# while len(buffer):
-# 	outfile.write(buffer)
-# 	print('.', end='')
-# 	buffer = infile.read(buffersize)
-# print('Done.')
-
-
-
-# RANDOM
-# import random
-# print(10*random.random())					# Random number from (0, 1)
-# print(random.uniform(-10.5, 10.5))
-
-# a = random.randrange(0, 101, 3)
-# print(a)
-
-# weighted_choices = [('Red', 3), ('Blue', 2), ('Yellow', 1), ('Green', 4)]
-# population = [val for val, cnt in weighted_choices for i in range(cnt)]
-# print(population)
-# print(random.choice(population))
-
-# a = random.choice('asdfgh')
-# print(a)
-
-# a = random.sample(range(10000000),60)
-# print(a)
-
-# items = [1, 2, 3, 4, 5, 6, 7]
-# random.shuffle(items)
-# print(items)
-
-
-
-# PICKLE (Python objects converted into a byte stream)
-# import pickle
-# li = [2, "Hello", 3.14, "..."]
-# with open("Example.data", mode = "wb") as plik:
-# 	pickle.dump(li, plik)
-
-# with open("Example.data", mode = "rb") as plik:
-# 	example = pickle.load(plik)
-
-
-
-# TIME
-# import time
-# time.localtime()
-# time.ctime()
-# time.time()
-# print(".".join(str(i) for i in time.localtime()[:6]))
-# time.sleep(2)
-
-# import datetime
-
-# dt = datetime.datetime(2014, 2, 27, 12, 22, 45, 38543)
-# print(dt.now(), dt.date(), dt.time(), dt.utcnow())
-# print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))                 # strftime - from datetime object to string
-# 										('%A %-d %B %Y')
-# print(datetime.datetime.strptime('2000-01-01 00:00', '%Y-%m-%d %H:%M')       # strptime - from string to datetime object
-# 								  ('Monday 6 January 2014, 12:13:31',
-# 								   '%A %d %B %Y, %H:%M:%S')
-# datetime.datetime.combine(dt.date, dt.time)
-
-# print(datetime.date(year=2014, month=1, day=6))
-# d = datetime.date.today()
-# d.year, d.month, d.day, d.weekday(), d.isoweekday()
-# print(datetime.date.fromtimestamp(1000000000))
-
-# t = datetime.time(hour=23, minute=57, second=59, microsecond=999)
-# t.isoformat(), t.strftime('%Hh%Mm%Ss')
-# print(datetime.time.min, datetime.time.max, datetime.time.resolution)
-
-# timedelta instance store only days, seconds, microseconds
-# datetime.timedelta(days=4, hours=3, minutes=45, weeks=3)					   # constructor accepts and sums
-# datetime.date.today() + datetime.timedelta(weeks=3)
-
-
-
-# TARFILE
-# import tarfile
-# import os
-# import glob
-# os.mkdir('Apps')
-# for i in glob.glob('D:/Science/And Whatnot Final/*'):
-#   t = tarfile.open(i)
-#   try:
-#       t.extractall('Apps')
-#   except:
-#       continue
-
-
-
-# SQLITE3
-# import sqlite3
-# db = sqlite3.connect('test.db')
-# db.row_factory = sqlite3.Row                    # specify how rows will be returned from the cursor
-# db.execute('drop table if exists test')
-# db.execute('create table test (t1 text, i1 int)')
-# db.execute('insert into test (t1, i1) values (?, ?)', ('one', 1))
-# db.execute('insert into test (t1, i1) values (?, ?)', ('two', 2))
-# db.commit()
-# cursor = db.execute('select * from test order by t1')
-# for row in cursor:
-# 	print(dict(row))                            # dict because of the row_factory
-# 	print(row['t1'], row['i1'])
 
 
 
 
 # To Do
-sys.modules 									# modules imports
-sys.stdout.write(line) 							# the same as print
 
-import os
-for root, dirs, files in os.walk(os.path.dirname(__file__)):
-	for fname in filter(lambda fname: fname.endswith('.py'), files):
-			document = open(os.path.join(root, fname), mode='rt', encoding='utf-8')
+
+
+# IMPORT ITERTOOLS
+# Itertools
+# imap, ireduce, ifilter i izip === map, reduce, filter, zip (python 3)
+# islice - umożliwia podział potencjalnie nieskończonego generatora
+# takewhile - dodaje warunek, który powoduje zakończenie działania generatora
+# cycle - rzez ciągłe powtarzanie skończonego generatora powoduje, że staje się on nieskończony
+# count - ???
+import itertools
+# chains multiple iterators together
+qiter = itertools.chain(query_set_1, query_set_2)
+
+
+
+# IMPORT JSON
+import json
+
+
+
+# IMPORT FUNCTOOLS
+import functools
+functools.partial(foo, 10, 20, v1=23)
+functools.reduce(function, iterable, initializer)
+functools.wraps
+
+
 
 More regular expressions, e.g string stars with st and ends with st
 math.copysign(1, y)
@@ -600,6 +917,7 @@ Data split(big data, each proces have own set of data)
 Functional split(multiple small tasks)
 process
 threads/subtask in parent process
+Binary trees
 # ===========================
 # FORMAT method
 re.compile(
@@ -621,180 +939,16 @@ regular expressions:
 \s
 \w
 
-os.path.splitext
-os.path.basename
-
-
-
-# PDB
-# run on module
-python -m pdb file_name.py
-
-# in code
-import pdb
-pdb.set_trace()
-
-next, step, print(variable_name), where
-
-
-
-# Monkey patching lub guerrilla patching to technika polegająca na dostarczeniu kodu rozszerzającego
-# lub modyfikującego inny kod w czasie jego działania (podmiana funkcji)
-from django.utils import text
-from slugify import slugify_de as awesome_slugify
-awesome_slugify.to_lower = True
-text.slugify = awesome_slugify
-
-# logging
-import logging
-logger = logging.getLogger('app.location')
-logger.info('any message')
-
-# stx
-# testing
-coverage
-c9.io
-https://github.com/stxnext/php-sources
-https://github.com/stxnext/grot-client
-grot-server.games.stxnext.pl/games
-grot-server.games.stxnext.pl
-
-# imports
-import importlib
-MyClass = getattr(importlib.import_module(module_name), class_name)
-middleware = MyClass()
-
-sys.exit
-
-
-
-from coupons.models import Coupon
-my = Coupon.objects.filter(template=661)  # 703 generate numeric only
-beta = Coupon.objects.filter(template=657)  # 704
-
-if my.count() == beta.count():
-	for i in range(50):
-		instance = beta[i]
-		instance.code = 'TECHL' + str(my[i].code)
-		instance.save()
 
 import inspect
 =============
-x < 10 < x*10 < 100			# x < 10 and 10 < x * 10 and x*10 < 100
 
-# Itertools
-# imap, ireduce, ifilter i izip === map, reduce, filter, zip (python 3)
-# islice - umożliwia podział potencjalnie nieskończonego generatora
-# chain - laczy w łańcuch wiele generatorów
-# takewhile - dodaje warunek, który powoduje zakończenie działania generatora
-# cycle - rzez ciągłe powtarzanie skończonego generatora powoduje, że staje się on nieskończony
-# count - ???
-import itertools
-# chain – chains multiple iterators together.
-qiter = itertools.chain(query_set_1, query_set_2)
 
-import functools
-functools.partial(foo, 10, 20, v1=23)
 
-getsizeof
-collections.deque and orderedDict
 
-SortedList, SortedSet, and SortedDict
-
-Binary trees
 
 # REST - representational state transfer
 # Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
 # RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
 
 # API - Application Programming Interface
-
-# NUMPY
-numpy.show_config()
-numpy.arange()
-numpy.array()
-
-# JSON
-import json
-
-# Built-ins
-sorted() built-in function sorts any iterable series and returns a list
-reversed() built-in function reverses any iterable series, returns a reverse iterator
-
-# 
-Counter
-defaultdictionary(Counter)
-
-
-# PYTHON FUNDAMENTALS
-# Think of named references to objects rather than variables
-# shallow copy - copy only the reference to the key, value paires not the objects themselves
-# e.g.
-# a = [[0, 1]]*4
-# a[2].append(7)
-
-
-# Dynamic type system
-# In dynamic type system objects types are only resolved at runtime (w czasie wykonywania programu)
-
-# Strong type system
-# In a strong type system there is no implicit type conversion
-# e.g. 'string' + 43 => TypeError
-
-
-
-# Python name scopes(names are looked up in four nested scopes)
-Local - inside the current function
-Enclosing - any and all enclosing functions
-Global - top-level of module
-Built-in - provide by the builtins module
-
-
-
-# Value equality vs. identity(id())
-# Value comparison can be controlled programatically('==')
-# [] == [] => True
-Value - equivalent 'contents'
-
-# 'is'
-# [] is [] => False
-Identity - same object id
-
-
-
-# Default argument expressions evaluated once, when def is executed
-# Always use immutable objects as a default argument value
-
-
-
-# raise without an argument re-raises the current exception
-
-
-
-# output of print() can be redirected using the optional file argument
-
-
-# Docstring
-def sqrt(x):
-	'''Compute square root using the method of Heron of Alexandria.
-
-	Args:
-		x: The number for which the square root is to be computed.
-
-	Returns:
-		The square root of x.
-
-	Raises:
-		ValueError: If x is negative.
-	'''
-	...
-
-
-# prime numbers
-def is_prime(x):
-	if x <2:
-		return False
-	for i in range(2, int(sqrt(x)) + 1):
-		if x% i == 0:
-			return False
-	return True
