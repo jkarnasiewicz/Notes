@@ -168,7 +168,7 @@ print([num for elem in vec for num in elem])
 
 
 print(len([n for n in list_of_numbers if n % 3 == 0]))                  # divisible_by_three
-# # Generator elementow
+# Generator elementow
 print(sum((1 for n in list_of_numbers if n % 3 == 0)))                  # divisible_by_three
 
 
@@ -204,7 +204,8 @@ c = {(i, v)for i, v in enumerate(['jack','jill','ivy'])}
 print(sorted(c, key = lambda s: s[1]))
 
 import os, glob
-d = {f: os.stat(f).st_size for f in glob.glob('*')} # Files Size In Current Working Directory
+# Files Size In Current Working Directory
+d = {f: os.stat(f).st_size for f in glob.glob('*')}
 print(d)
 
 
@@ -225,7 +226,7 @@ print(prices.keys() & prices.values())
 # Map (returns lazy iterable object)
 # map(f, sequence1, sequence2) is equivalent to [f(x1, x2) for x1, x2 in zip(sequence1, sequence2)]
 f = map(ord, 'The quick brown fox')
-s = list(map(lambda x, y: x*y , itertools.count(), range(10))))
+s = list(map(lambda x, y: x*y , itertools.count(), range(10)))
 a = map(lambda x, y: x**2 + y, [0, 1, 2, 3], [4, 5, 6, 7])
 print(type(a))
 print(a)
@@ -236,13 +237,6 @@ print(a)
 trues = filter(None, [0, 1, False, True, [], [1, 2, 3]])        # Remove elements which evaluate to False
 positives = filter(lambda x: x%2 == 0, [-3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9])      # Even numbers
 print(list(trues), list(positives))
-
-
-
-# Reduce - repeatedly apply a function to the elements of a sequence, reducing them to a single value
-# reduce(function, sequence, initial value)
-from functools import reduce
-print(reduce(lambda x, y: x*y, range(10), 1))
 
 
 
@@ -341,14 +335,6 @@ portfolio = [
 ]
 print(heapq.nsmallest(3, portfolio, key=lambda s: s['price']))
 print(sorted(portfolio, key = lambda s: s['price'], reverse = False)[:3])
-
-
-
-# Itertools
-from itertools import chain, product, permutations
-sorted(chain(collection_1, collections_2), key=lambda instance: instance.name.lower())
-print(list(product([1, 2], repeat=2)))
-print(list(permutations([1, 2, 3, 4], 3)))
 
 
 
@@ -711,3 +697,16 @@ logging.warning('And this, too')
 
 logger = logging.getLogger('app.location')
 logger.info('any message')
+
+
+
+# REST - representational state transfer
+# Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
+# RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
+
+# API - Application Programming Interface
+
+# Runing python with -O option, allow to run python without active assertions
+
+math.copysign(1, y)
+math.log10(abs(y))

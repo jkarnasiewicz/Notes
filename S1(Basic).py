@@ -51,8 +51,6 @@ ClassName.__mro__ == Class_Name.mro()
 
 # Module < Package
 
-# Runing python with -O option, allow to run python without active assertions
-
 
 
 
@@ -799,6 +797,19 @@ obj = getattr(importlib.import_module('module_name'), 'object_name')
 
 
 
+# JSON
+import json
+
+# encoding basic python object to json
+json.dumps({'a': 'text', '4': 5, '7': [3, 7]}, sort_keys=True, indent=4)
+
+# decoding json
+json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
+
+
+
+
+
 # COLLECTIONS
 from collections import OrderedDict, Counter, defaultdict, deque
 
@@ -824,6 +835,7 @@ defaultdict(callable)
 
 
 
+
 # list-like container with fast appends and pops on either end
 deque(iterable, maxlen=None)
 
@@ -836,119 +848,156 @@ deque_obj.popleft()
 
 
 
-# Regular Expressions
-# import re
+# ITERTOOLS
+# imap, ireduce, ifilter i izip === map, reduce, filter, zip (python 3)
+from itertools import (count, cycle, repeat, chain, islice, product, permutations,
+combinations_with_replacement, combinations)
 
-# re.compile(pattern)                                      # compile pattern
-# re.sub(pattern, replacement, string, count=0, flags=0)
+# count, infinite iterators
+count(start=0, step=2)
+
+# cycle, repeats indefinitely
+# make an iterator returning elements from the iterable and saving a copy of each,
+# when the iterable is exhausted, return elements from the saved copy.
+cycle(iterable)
+
+# repeat, if time not specified, returns the object endlessly
+repeat(object, times=5)
+
+# chains multiple iterators together
+# make an iterator that returns elements from the first iterable until it is exhausted,
+# then proceeds to the next iterable, until all of the iterables are exhausted
+# sorted(chain(collection_1, collections_2), key=lambda instance: instance.name.lower())
+chain(*iterables)
+
+# islice(umożliwia podział potencjalnie nieskończonego generatora)
+# make an iterator that returns selected elements from the iterable
+# islice(iterable, start, stop, step)
+islice(iterable, 0, None, 3)
+
+
+
+# Combinatoric generators
+
+# cartesian product (ciąg, kolejność istotna)
+# product('AB', repeat=2) => AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD
+product(*iterables, repeat=1)
+
+# r-length tuples, all possible orderings, no repeated elements (ciąg, kolejność istotna)
+# permutations('ABCD', 2) => AB AC AD BA BC BD CA CB CD DA DB DC
+permutations(iterable, r)
+
+# r-length tuples, in sorted order, with repeated elements (zbiór, kolejność nieistotna)
+# combinations_with_replacement('ABCD', 2) => AA AB AC AD BB BC BD CC CD DD
+combinations_with_replacement(iterable, r)
+
+# r-length tuples, in sorted order, no repeated elements (zbiór, kolejność nieistotna)
+# combinations('ABCD', 2) => AB AC AD BC BD CD
+combinations(iterable, r)
+
+
+
+
+
+# FUNCTOOLS
+from functools import wraps, lru_cache, partial, reduce
+
+# without the use of this decorator factory, the name of the wrap function would have been
+# 'wrapper', and the docstring of the original function would have been lost
+@wraps
+
+# decorator to wrap a function with a memoizing callable that saves up to the maxsize most recent calls
+@lru_cache(maxsize=128, typed=False)
+
+# the partial is used for partial function application which “freezes” some portion of
+# a function’s arguments and/or keywords resulting in a new object with a simplified signature
+partial(function, *args, **kwargs)
+
+# repeatedly apply a function to the elements of a sequence, reducing them to a single value
+reduce(function, iterable, initial_value)
+reduce(lambda x, y: x*y, range(10), 1)
+
+
+
+
+
+# REGULAR EXPRESSIONS
+import re
+
+# compile - compile regexp pattern
+re.compile(r'pattern')
+# re.compile(r'(\d{3})-(\d{3})-(\d{4})-(\d+)')
+
+# findall - return all matches of pattern
+re.findall(pattern, string)
+# re.findall("[a-zA-Z]+|[0-9]+", string)            # every word, and every number
+# re.findall('http[^"]*', string)                   # every string that start with http and end with "
+# re.findall('href="(.+?)"', string)                # everything between href=" and "
+# re.findall(' s.*? s', string)                     # regular expression looks for a space,
+#                                                   # an s, and then the shortest possible
+#                                                   # series of any character(.*?),
+#                                                   # then a space, then another s
+
+# sub - replace occurances of pattern
+re.sub(pattern, replacement, string, count=0, flags=0)
 # re.sub("D:[^\ ]Filmy[^\ ]", "", string)                  # D:\Filmy\ => ""
-# re.findall("[a-zA-Z]+|[0-9]+", string)                   # every word, and every number
-# re.findall('http[^"]*', string)                          # every string that start with http and end with "
-# re.findall('href="(.+?)"', string)                       # everything between href=" and "
-# re.findall(' s.*? s', string)                            # regular expression looks for a space,
-#                                                          # an s, and then the shortest possible
-#                                                          # series of any character(.*?),
-#                                                          # then a space, then another s
-# re.split(r'[;,\s]\s*', 'asdf fjdk; afed, fjek,asdf, foo')
-# re.search(pattern, string, flags=0)
+
+# split - split string by occurrences of pattern
+re.split(pattern, string)
+# re.split(r'[;,\s]+', 'asdf fjdk; afed, fjek,asdf, foo')
+
+# search - search for pattern in string
+re.search(pattern, string, flags=0)
 # re.search(pattern, string, re.VERBOSE)  # verbose regular expressions
 
-# re.match("c", "abcdef")                 # No match
-# re.search("c", "abcdef")                # Match
-# re.groups()
+# match - checks if string starts with pattern
+re.match(pattern, string)
+# re.match("c", "abcdef")                 			# no match
+# re.search("c", "abcdef")                			# match
 
-# [^/]+                                   # which will match everything up to the first /
-# ^ matches the start of a string         # ^cos
-# $ matches the end of a string.          # cos$
-# ?                                       # ? makes a pattern optional
-# \b                                      # matches a word boundary
-# M?M?M?                                  # you’re matching anywhere from zero to three M characters in a row
-# ^M{0,3}$                                # {0,3} matches between 0 and 3 occurrences of a pattern, exacly 3, {3}
-# \d                                      # matches any numeric digit (0–9)
-# \D                                      # matches anything but digits
-# +                                       # means 1 or more
-# *                                       # means zero or more
-# (A|B|C)                                 # means, match exactly one of A, B, or C
-# (x)                                     # you can get the value of what matched by using the groups()
-#                                           method of the object returned by re.search.
+# group - returns one or more subgroups of the match
+search_object.group()								# group(1)/groups()
 
 
 
+# .					matches any character except a newline
+# *                 match 0 or more repetitions of the preceding RE
+# +                 match 1 or more repetitions of the preceding RE
+# ?					match 0 or 1 repetitions of the preceding RE
+
+# greedy - they match as much text as possible
+# <.*> is matched against '<a> b <c>', it will match the entire string, and not just <a>
+
+# non-greedy or minimal fashion - they match as few characters as possible
+# <.*?> is matched against '<a> b <c>', will match only <a>
 
 
 
+# ^					matches the start of a string
+# $					matches the end of the string or just before the newline at the end of the string
 
-# To Do
+# {m}				specifies that exactly m copies of the previous RE should be matched
+# {m, n}			(greedy)causes the resulting RE to match from m to n repetitions of the preceding RE, attempting to match as many repetitions as possible
+# {m, n}?			(non-greedy)causes the resulting RE to match from m to n repetitions of the preceding RE, attempting to match as few repetitions as possible
 
+# [] 				indicate a set of characters, e.g. [amk] will match 'a', 'm', or 'k', special characters lose their special meaning inside sets e.g. [(+*)] will match any of the literal characters '(', '+', '*', or ')'
+# [^/]+             which will match everything up to the first /
 
+# (...)             matches whatever regular expression is inside the parentheses, and indicates the start and end of a group
+# (A|B|C)           match exactly one of A, B, or C
+# (?P<name>...)     similar to regular parentheses, but the substring matched by the group is accessible via the symbolic group name name
 
-# IMPORT ITERTOOLS
-# Itertools
-# imap, ireduce, ifilter i izip === map, reduce, filter, zip (python 3)
-# islice - umożliwia podział potencjalnie nieskończonego generatora
-# takewhile - dodaje warunek, który powoduje zakończenie działania generatora
-# cycle - rzez ciągłe powtarzanie skończonego generatora powoduje, że staje się on nieskończony
-# count - ???
-import itertools
-# chains multiple iterators together
-qiter = itertools.chain(query_set_1, query_set_2)
+# \d                digit (0–9)
+# \D                non digits
 
+# \b                empty string boundary
+# \B 				empty string non boundary
 
+# \w 				alphanumeric
+# \W 				non-alphanumeric
 
-# IMPORT JSON
-import json
+# \s 				whitespace
+# \S 				non whitespace
 
-
-
-# IMPORT FUNCTOOLS
-import functools
-functools.partial(foo, 10, 20, v1=23)
-functools.reduce(function, iterable, initializer)
-functools.wraps
-
-
-
-More regular expressions, e.g string stars with st and ends with st
-math.copysign(1, y)
-math.log10(abs(y))
-# ===========================
-Parallel programming
-Data split(big data, each proces have own set of data)
-Functional split(multiple small tasks)
-process
-threads/subtask in parent process
-Binary trees
-# ===========================
-# FORMAT method
-re.compile(
-    r"(?P<fill_align>.?[\<\>=\^])?"
-    "(?P<sign>[-+ ])?"
-    "(?P<alt>#)?"
-    "(?P<padding>0)?"
-    "(?P<width>\d*)"
-    "(?P<comma>,)?"
-    "(?P<precision>\.\d*)?"
-    "(?P<type>[bcdeEfFgGnosxX%])?" )
-
-execfile(filename, globals, locals) ===
-exec(compile(open(filename, "rb").read(), filename, 'exec'), globals, locals) ===
-exec(open(filename).read())
-
-regular expressions:
-.
-\s
-\w
-
-
-import inspect
-=============
-
-
-
-
-
-# REST - representational state transfer
-# Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
-# RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
-
-# API - Application Programming Interface
+# \A 				start of the string
+# \Z 				end of the string
