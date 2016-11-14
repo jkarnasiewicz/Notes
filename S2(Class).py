@@ -1,6 +1,7 @@
 # Classes, Function Factories, Decorators
+
 # Callable objects: regular functions, lambdas expressions, classes(constructor),
-# 					methods, instance objects with __call__
+# methods, instance objects with __call__
 
 # Functions can be treated like any other objects
 
@@ -8,13 +9,13 @@
 # @classmethod - first arg 'cls'. Refere to class object within the method class, e.g. class attribute
 import random
 class ShippingContainer:
-    next_serial = 1337						# Class attribute
+    next_serial = 1337						# class attribute
 
-    @staticmethod							# Static method
+    @staticmethod							# static method
     def get_code(owner, serial):
         return '{0}/{1}/{2}'.format(owner.upper(), random.randint(0, 100), serial)
 
-    @classmethod							# Class method
+    @classmethod							# class method
     def get_serial(cls):
         result = cls.next_serial
         cls.next_serial += 1
@@ -22,10 +23,10 @@ class ShippingContainer:
 
     @classmethod
     def create_empty_container(cls, owner):
-        return cls(owner, content=None)		# Create new Class Instance
+        return cls(owner, content=None)		# create new class instance
 
     def __init__(self, owner, content):
-        self.owner = owner					# Instance attribute
+        self.owner = owner					# instance attribute
         self.content = content
         self.serial = ShippingContainer.get_serial()
         # or
@@ -44,7 +45,104 @@ print(c.__dict__)
 
 
 
+
+# Properties
+
+# @property is read only
+# gracefully convert public attributes to private
+class Example:
+
+    def __init__(self, name):
+        self.name = name
+
+    @property
+    def name(self):
+        print('get')
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        print('set')
+        self._name = value
+
+    @name.deleter
+    def name(self):
+        print('del')
+        self._name = None
+
+
+e = Example('John')
+print(e.__dict__)
+del e.name
+print(e.name)
+
+
+
+
+
+# Interface
+
+# Abstract classes are available via the standard abc library package
+# They are useful for the definition of interfaces and common functionality
+
+from abc import ABCMeta, abstractmethod
+class Worker(metaclass=ABCMeta):
+
+    @abstractmethod
+    def do(self, func, args, kwargs):
+        "work on function"
+
+    @abstractmethod
+    def is_busy(self,):
+        "tell if busy"
+
+
+
+
+
+# Super
+
+# inheritance(dziedziczenie)
+# tool for code reused, share implementation, one class use code from another class children before parents,
+# parents stay in order - remember the line order - help(obj)
+# super() mean => NEXT IN LINE, not call your parents
+# use self - starting over again from begining,
+# use super - next in line
+
+# super with args - only in python2, python3 do it on its own. super(who do we looking, from who do we start)
+super(Class_Name, self).__init__(*args, **kwargs)   # python 2
+super().__init__(*args, **kwargs)                   # python 3
+
+# super(Base, Derived) => class super proxy
+# super(Base, self) => instance super proxy
+
+
+# The tuple of base classes of a class object
+Class_Name.__bases__
+
+# Method Resolution Order, information about linear order of the inheritance(super())
+Class_Name.__mro__ == Class_Name.mro()
+
+from collections import OrderedDict, Counter
+
+class OrderedCounter(Counter, OrderedDict):
+
+  def __repr__(self):
+      return '{} {}'.format(self.__class__.__name__, OrderedDict(self))
+
+  def __reduce__(self):
+      return self.__class__, (OrderedDict(self),)
+
+
+oc = OrderedCounter('abracaadabra')
+print('{}'.format(oc))
+
+
+
+
+
 # __init__, and super().__init__
+
 # Even if __init__ fails, class call its __del__ method
 class Card:
     def __init__(self, number, color, soft, hard):
@@ -58,8 +156,10 @@ class AceCard(Card):
         super().__init__(number, color, 11, 1)
         self.__dict__.update(kwargs)
 
+
 a = AceCard(3, "spade", name="Ivy")
 print(a.number, a.color, a.soft, a.hard, a.name, a.__dict__)
+
 
 
 
@@ -77,10 +177,12 @@ class Resolver:
             self._cache[host] = socket.gethostbyname(host)
         return self._cache[host]
 
+
 a = Resolver()
 a("wp.pl")
 a("nba.com")
 print(a._cache)
+
 
 
 
@@ -103,7 +205,8 @@ class Unit:
 
 
 a = Unit(3, 7)
-print("{0!s}, and {0!r}".format(a))         # format default calls __str__
+print("{0!s}, and {0!r}".format(a))         # format calls __str__ by default
+
 
 
 
@@ -123,6 +226,7 @@ class RandomList:
 rl = RandomList()
 while rl:
     card = rl.pop_item()
+
 
 
 
@@ -229,7 +333,7 @@ class SortedSet(Set):
         # return sum(1 for v in self._items if v == item)
 
 # Produce a reversed sequence, reversed(seq)
-# If sepcial method __reversed__() is not implemented then it
+# If special method __reversed__() is not implemented then it
 # fallback to __getitem__() and __len__() methods
 
 # Concatenation with + operator
@@ -277,7 +381,9 @@ print(25 in s, 7 not in r, s.count(23), s.index(29), 3*r, r + s, r.intersection(
 
 
 
+
 # Context Manager
+
 # An object designed to be used in a with-statement. A context-manager
 # ensures that resources are properly and automatically managed
 # e.g try, finally statement
@@ -311,7 +417,6 @@ with LoggingContextManager() as x:
     print('=====', x, '=====', sep='\n')
 
 
-
  
 # Context manager with contextlib decorator
 import contextlib
@@ -337,7 +442,6 @@ with logging_context_manager() as x:
 
 
 
-
 # Multiple context managers
 @contextlib.contextmanager
 def nest_test(name):
@@ -358,11 +462,6 @@ with nest_test('outer'):
 
 
 
-
-
-
-
-
 # Function Factories - function that returns new, specialized functions
 def sequence_class(immutable):
     if immutable:
@@ -373,6 +472,9 @@ def sequence_class(immutable):
 
 seq = sequence_class(immutable=True)
 print(seq("ivy"))
+
+
+
 
 
 # Closures (functions with state) - maintain reference to objects from earlier scopes
@@ -413,6 +515,7 @@ t1 = make_timer()
 print(t1())
 time.sleep(3)
 print(t1())
+
 
 
 
@@ -534,6 +637,11 @@ print(creat_list(123, -6))
 
 
 
+
+
+
+
+
 # Iterators and Generators
 
 # Iterable object - Objects which can be used with a for loop.
@@ -584,115 +692,6 @@ gen = generator()
 print(next(gen))
 
 
-
-
-
-
-
-
-
-
-# Super()
-
-# inheritance(dziedziczenie) - tool for code reused, share implementation,
-#                              one class use code from another class
-#                              children before parents, parents stay in order - remember the line order - help(obj)
-#                              super() mean => NEXT IN LINE, not call your parents
-#                              use self - starting over again from begining,
-#                              use super - next in line
-# super with args - only in python2, python3 do it on its own. super(who do we looking, from who do we start)
-super(Class_Name, self).__init__(*args, **kwargs)   # python 2
-super().__init__(*args, **kwargs)                   # python 3
-
-# super(Base, Derived) => class super proxy
-# super(Base, self) => instance super proxy
-
-# Class_Name.__bases__,
-
-# Method Resolution Order
-# Class_Name.__mro__ == Class_Name.mro()    # info about linear order of the inheritance(super())
-
-from collections import OrderedDict, Counter
-
-class OrderedCounter(Counter, OrderedDict):
-
-  def __repr__(self):
-      return '{} {}'.format(self.__class__.__name__, OrderedDict(self))
-
-  def __reduce__(self):
-      return self.__class__, (OrderedDict(self),)
-
-oc = OrderedCounter('abracaadabra')
-print('{}'.format(oc))
-
-
-
-
-
-
-
-
-
-
-
-# Interface
-
-# Abstract classes are available via the standard abc library package.
-# They are useful for the definition of interfaces and common functionality
-
-from abc import ABCMeta, abstractmethod
-class Worker(metaclass=ABCMeta):
-
-    @abstractmethod
-    def do(self, func, args, kwargs):
-        "work on function"
-
-    @abstractmethod
-    def is_busy(self,):
-        "tell if busy"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Properties
-class Example:
-
-    def __init__(self, foo):
-        self.foo = foo
-
-    @property
-    def foo(self):
-        print('prop')
-        return self._foo
-
-    @foo.setter
-    def foo(self, value):
-        print('set')
-        self._foo = value
-
-
-
-# TO DO
-atrybut, właściwość, metoda
 # ITERATION PROTOCOLS
 # Iterable protocol
 # Iterables are objects over which we can iterate item by item
@@ -831,16 +830,3 @@ baby! let! me! iterate! ya!
 
 
 # main('open', [__file__])
-
-
-
-
-
-# CLASSES
-# Classes define the structure and behavior of objects
-
-# __new__ is static class method, while __init__ is instance method.
-# __new__ has to create the instance first, so __init__ can initialize it
-
-# Instance method - functions which can be called on objects(with self argument)
-# instance.number() == Class.number(instance)
