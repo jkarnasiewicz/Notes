@@ -395,6 +395,9 @@ with open("Example.data", mode = "wb") as plik:
 with open("Example.data", mode = "rb") as plik:
     example = pickle.load(plik)
 
+pickle.dumps(obj)
+pickle.loads(obj)
+
 
 
 # ZipFile Module

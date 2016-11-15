@@ -1,4 +1,7 @@
 # dict.iteritems(), dict.viewitems()(reflect dict changes)
+# iter(), next()
+
+
 
 # CLASSES
 # Classes define the structure and behavior of objects
@@ -12,14 +15,30 @@
 # a dictionary or other mapping object used to store an object’s (writable) attributes
 object.__dict__
 
-class Fib:                                       
-    def __iter__(self):                          
-        self.a = 0
-        self.b = 1
-        return self
 
-    def next(self):                          
-        ...
-        if self.index >= len(self.data):
-            raise StopIteration
-        ...
+class Container(object):
+
+    def __init__(self, sequence):
+        self.sequence = sequence
+
+    # def __iter__(self):
+    #     # for i in self.sequence:
+    #     #     yield i
+    #     # print(type(self.sequence))
+    #     # print(type(iter(self.sequence)))
+    #     # return iter(self.sequence)
+    #     return iter(self.sequence)
+
+
+
+
+    # def __next__(self):
+    #     # for i in self.sequence:
+    #     #     yield i
+    #     return iter(self.sequence)
+
+
+cont = Container([1, 2, 3, 5])
+
+for i in cont:
+    print(i)

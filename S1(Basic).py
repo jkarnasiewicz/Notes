@@ -10,9 +10,6 @@ object.__file__					# object file path, or just __file__ for current file path(a
 type(object)       				# type of the object
 id(object)				 		# id of the object
 
-# mro - informations about linear order of the inheritance(super())
-ClassName.__mro__ == Class_Name.mro()
-
 # Immutable basic types such as numbers, strings, tuples
 
 # Mutable objects such as lists, dictionaries, sets and other types -
@@ -849,7 +846,7 @@ deque_obj.popleft()
 
 
 # ITERTOOLS
-# imap, ireduce, ifilter i izip === map, reduce, filter, zip (python 3)
+# imap, ireduce, ifilter, izip, xrange === map, reduce, filter, zip, range (python 3)
 from itertools import (count, cycle, repeat, chain, islice, product, permutations,
 combinations_with_replacement, combinations)
 

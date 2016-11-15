@@ -1,4 +1,4 @@
-# Classes, Function Factories, Decorators
+# Classes, Function Factories, Decorators, Special Methods
 
 # Callable objects: regular functions, lambdas expressions, classes(constructor),
 # methods, instance objects with __call__
@@ -25,7 +25,7 @@ class ShippingContainer:
     def create_empty_container(cls, owner):
         return cls(owner, content=None)		# create new class instance
 
-    def __init__(self, owner, content):
+    def __init__(self, owner, content):     # ? instance method
         self.owner = owner					# instance attribute
         self.content = content
         self.serial = ShippingContainer.get_serial()
@@ -82,8 +82,8 @@ print(e.name)
 
 # Interface
 
-# Abstract classes are available via the standard abc library package
-# They are useful for the definition of interfaces and common functionality
+# abstract classes are available via the standard abc library package
+# they are useful for the definition of interfaces and common functionality
 
 from abc import ABCMeta, abstractmethod
 class Worker(metaclass=ABCMeta):
@@ -102,14 +102,19 @@ class Worker(metaclass=ABCMeta):
 
 # Super
 
+# return a proxy object that delegates method calls to a parent or sibling class of type
+
 # inheritance(dziedziczenie)
-# tool for code reused, share implementation, one class use code from another class children before parents,
-# parents stay in order - remember the line order - help(obj)
+# tool for code reused, share implementation, one class use code from another class
+
 # super() mean => NEXT IN LINE, not call your parents
+# children before parents, parents stay in order - remember the line order - help(obj)
+
 # use self - starting over again from begining,
 # use super - next in line
 
-# super with args - only in python2, python3 do it on its own. super(who do we looking, from who do we start)
+# super with args - only in python2, python3 do it on its own.
+# super(who do we looking, from who do we start)
 super(Class_Name, self).__init__(*args, **kwargs)   # python 2
 super().__init__(*args, **kwargs)                   # python 3
 
@@ -123,25 +128,302 @@ Class_Name.__bases__
 # Method Resolution Order, information about linear order of the inheritance(super())
 Class_Name.__mro__ == Class_Name.mro()
 
+
+
+
+
+# Iterables, Iterators and Generators
+
+# Iterables
+# ===================================
+
+# Iterable protocol
+# __iter__ and __getitem__
+# __iter__ method is called on initialization of an iterator, this should return an object that has a __next__ method
+
+    def __getitem__(self, index):
+        return self.sequence[index]
+
+# Iterables are objects over which we can iterate item by item (lists, dict, strings or files)
+# there are many functions which consume these iterables, e.g. join, list
+
+# Iterable objects can be passed to the built-in iter() function to get an iterator
+# iterator = iter(iterable)
+
+    def __iter__(self):
+        return iter(self._items)
+
+# or
+# iterator = iter(callable, sentinel) - callable without arguments
+
+with open('some_file.txt', 'rt') as f:
+  for line in iter(lambda: f.readline().split(), 'END'):
+      print(line)
+
+
+
+
+
+# Iterators
+# ===================================
+
+# Iterator protocol
+# __iter__ and __next__ with raise StopIteration()
+
+# we retrive an iterator from an iterable object using the built-in iter() function
+# iterators produce items one-by-one from the underlying iterable series each time
+# they are passed to the built-in next() function
+
+# Iterator objects can be passed to build-in next() function to fetch the next item
+# item = next(iterator)
+
+class Sensor:
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        return random.random()
+
+sensor = Sensor()
+timstamps = iter(datetime.datetime.now, None)
+
+for stamp, value in itertools.islice(zip(timstamps, sensor), 10):
+    print(stamp, value)
+    time.sleep(3)
+
+
+
+
+
+# Generators
+# ===================================
+
+# Generators simplifies creation of iterators
+
+# Generators are defined by any python function witch using the 'yield' keyword at least once in it's definition
+# (produces a sequence of results instead of a single value)
+
+# All generators are iterators, when advanced with next() the generator starts or resumes
+# execution up to and including the next yield
+
+# Generators are lazily evaluated - the next value in the sequence is computed on demand
+# (can model infinite sequence - such as data streams with no definite end)
+
+# When a generator function is called, it returns a generator object without
+# even beginning execution of the function. When next method is called for the first time,
+# the function starts executing until it reaches yield statement.
+# The yielded value is returned by the next call.
+
+import random
+
+def generator():
+    while True:
+        yield random.random()
+
+gen = generator()
+print(next(gen))
+
+# Generators provide a convenient way to implement the iterator protocol,
+# if a container object’s __iter__() method is implemented as a generator,
+# it will automatically return an iterator object
+
+    def __iter__(self):
+        for i in self._items:
+            yield i
+
+# Generators comprehensions/generator expressions
+(expr(item) for item in iterable)
+
+# Stateful generators:
+#   generators resume execution
+#   can maintain state in local variables
+#   complex control flow
+#   lazy evaluation
+
+
+
+# Comparison
+# Both iterables and generators produce an iterator
+
+# The difference between iterables and generators:
+#   once you’ve burned through a generator, you’re done, no more data: 
+
+generator = (word + '!' for word in 'baby let me iterate ya'.split())
+
+# real processing happens during iteration
+for val in generator:
+    print(val)
+
+# nothing printed, no more data, generator stream already exhausted above
+for val in generator:
+    print(val)
+
+
+# On the other hand, an iterable creates a new iterator every time it’s looped over
+# (technically, every time iterable.__iter__() is called, such as when Python hits a 'for' loop): 
+
+class BeyonceIterable(object):
+    def __iter__(self):
+        """
+        The iterable interface: return an iterator from __iter__()
+ 
+        Every generator is an iterator implicitly (but not vice versa!),
+        so implementing '__iter__' as a generator is the easiest way
+        to create streamed iterables
+ 
+        """
+        for word in 'baby let me iterate ya'.split():
+            yield word + '!'
+
+
+iterable = BeyonceIterable()
+
+# iterator created here
+for val in iterable:
+    print(val)
+
+# another iterator created here
+for val in iterable:
+    print(val)
+
+
+# So iterables are more universally useful than generators, because we can go over the sequence more than once
+# Of course, when your data stream comes from a source that cannot be readily repeated (such as hardware sensors),
+# a single pass via a generator may be your only option
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# __missing__
+# called by dict.__getitem__() to implement self[key] for dict subclasses
+# when key is not in the dictionary
+    def __missing__(self, key):
+        return 0
+
+
+
+
+
+# __reduce__
+# __reduce__ is used by pickle
+# __reduce__() method takes no argument and shall return a tuple, with:
+#   a callable object that will be called to create the initial version of the object(e.g. self.__class__)
+#   tuple of arguments for the callable object. An empty tuple must be given if the callable does not accept any argument
+
 from collections import OrderedDict, Counter
+import pickle
 
 class OrderedCounter(Counter, OrderedDict):
 
-  def __repr__(self):
-      return '{} {}'.format(self.__class__.__name__, OrderedDict(self))
+    def __repr__(self):
+        return '{} {}'.format(self.__class__.__name__, OrderedDict(self))
 
-  def __reduce__(self):
-      return self.__class__, (OrderedDict(self),)
-
-
-oc = OrderedCounter('abracaadabra')
-print('{}'.format(oc))
+    def __reduce__(self):
+        return (self.__class__, (OrderedDict(self),))
 
 
+pickle.dumps(OrderedCounter('abracaadabra'))
+pickle.loads(pickled_obj)
 
 
 
-# __init__, and super().__init__
+
+
+# __init__ and __new__
+# because __new__() and __init__() work together in constructing objects (__new__() to create it, and __init__() to customize it),
+# no non-None value may be returned by __init__()
 
 # Even if __init__ fails, class call its __del__ method
 class Card:
@@ -164,7 +446,8 @@ print(a.number, a.color, a.soft, a.hard, a.name, a.__dict__)
 
 
 
-# __call__ - callable instances(like the functions)
+# __call__
+# callable instances(like the functions)
 import socket
 
 class Resolver:
@@ -222,7 +505,7 @@ class RandomList:
     def pop_item(self):
         return self._list.pop()
 
-# e.g. we can use it with 'if', 'while'
+# we can use it with 'if', 'while'
 rl = RandomList()
 while rl:
     card = rl.pop_item()
@@ -278,29 +561,6 @@ class SortedSet(Set):
 
     def __len__(self):
         return len(self._items)             # Non negative integer
-
-# Iterable protocol:
-# Can produce an iterator with iter
-
-    def __iter__(self):
-        return iter(self._items)
-        # for i in self._items:
-        #   yield i
-
-# __iter__ method is called on initialization of an iterator.
-# This should return an object that has a next method
-# (In python 3 this is changed to __next__)
-# class Fib:                                       
-#     def __iter__(self):                          
-#         self.a = 0
-#         self.b = 1
-#         return self
-
-#     def next(self):                          
-#         ...
-#         if self.index >= len(self.data):
-#             raise StopIteration
-#         ...
 
 
 # Sequence protocol:
@@ -642,147 +902,31 @@ print(creat_list(123, -6))
 
 
 
-# Iterators and Generators
-
-# Iterable object - Objects which can be used with a for loop.
-#                   There are many functions which consume these iterables, e.g. join, list.
-
-# iter(callable, sentinel) - The built-in function iter takes an iterable object and returns an iterator.(no args callable)
-with open('some_file.txt', 'rt') as f:
-  for line in iter(lambda: f.readline().split(), 'END'):
-      print(line)
-
-
-# reading big file
-f = open('really_big_file.dat')
-def read1k():
-    return f.read(1024)
-
-for piece in iter(read1k, ''):
-    process_data(piece)
-
-
-# Iterators are implemented as classes.
-# Iterable protocol(__iter__, __next__ and raise StopIteration())
-class Sensor:
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        return random.random()
-
-sensor = Sensor()
-timstamps = iter(datetime.datetime.now, None)
-
-for stamp, value in itertools.islice(zip(timstamps, sensor), 10):
-    print(stamp, value)
-    time.sleep(3)
-
-
-# Generators simplifies creation of iterators.
-# A generator is a function that produces a sequence of results instead of a single value.
-import random
-
-def generator():
-    while True:                     # infinite loop
-        yield random.random()
-
-gen = generator()
-print(next(gen))
-
-
-# ITERATION PROTOCOLS
-# Iterable protocol
-# Iterables are objects over which we can iterate item by item
-Iterable objects can be passed to the built-in iter() function to get an iterator
-iterator = iter(iterable)
-
-# Iterator protocol
-# we retrive an iterator from an iterable object using the built-in iter() function
-# iterators produce items one-by-one from the underlying iterable series each time
-# they are passed to the nuilt-in next() function
-Iterator objects ca be passed to the built-in next() function to fetch the next item
-item = next(iterator)
 
 
 
-# GENERATORS
-# generators are defined by any python function witch using the 'yield'
-# keyword at least once in it's definition
-
-# When a generator function is called, it returns a generator object without
-# even beginning execution of the function. When next method is called for the first time,
-# the function starts executing until it reaches yield statement.
-# The yielded value is returned by the next call.
-
-# generators are iterators. when advanced with next() the generator starts or resumes
-# execution up to and including the next yield
-
-# each call to generator function creates a new generator object
-
-# generators are lazy, and so can model infinite series of data
-
-specify iterable sequences - all generators are iterators
-lazily evaluated - the next value in the sequence is computed on demand
-can model infinite sequence - such as data streams with no definite end
-
-# Stateful generators
-generators resume execution
-can maintain state in local variables
-complex control flow
-lazy evaluation
-
-# generators comprehensions/generator expressions
-(expr(item) for item in iterable)
 
 
 
-# Data streaming in Python: generators, iterators, iterables
-# Both iterables and generators produce an iterator
 
 
 
-# The difference between iterables and generators: once you’ve burned through a generator once, you’re done, no more data: 
 
-generator = (word + '!' for word in 'baby let me iterate ya'.split())
 
-for val in generator:   # real processing happens here, during iteration
-    print val,          # baby! let! me! iterate! ya!
 
-# Nothing printed! No more data, generator stream already exhausted above. 
-for val in generator:
-    print val,
 
-# On the other hand, an iterable creates a new iterator every time it’s looped over
-# (technically, every time iterable.__iter__() is called, such as when Python hits a “for” loop): 
 
-class BeyonceIterable(object):
-    def __iter__(self):
-        """
-        The iterable interface: return an iterator from __iter__().
- 
-        Every generator is an iterator implicitly (but not vice versa!),
-        so implementing `__iter__` as a generator is the easiest way
-        to create streamed iterables.
- 
-        """
-        for word in 'baby let me iterate ya'.split():
-            yield word + '!'  # uses yield => __iter__ is a generator
 
-iterable = BeyonceIterable()
- 
-for val in iterable:  # iterator created here
-    print val,
-baby! let! me! iterate! ya!
- 
-for val in iterable:  # another iterator created here
-    print val,
-baby! let! me! iterate! ya!
 
-# So iterables are more universally useful than generators, because we can go over the sequence more than once.
-# Of course, when your data stream comes from a source that cannot be readily repeated (such as hardware sensors),
-# a single pass via a generator may be your only option. 
+
+
+
+
+
+
+
+
+
 
 
 
