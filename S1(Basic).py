@@ -1,4 +1,4 @@
-# GENERAL INFORMATION/HELP
+# GENERAL INFORMATION
 
 dir(object)        				# every method for object or dir() for list of names defined in the current module
 help(object)
@@ -112,7 +112,7 @@ filter(function, sequence)
 # function that aggregates elements from each of the iterables
 zip(sequence, sequence, sequence)
 
-# sorts any iterable series and returns a list
+# sorts any iterable series and returns a list, 'key' specifies a function of one argument
 sorted(iterable, key=None, reverse=False) 
 
 # reverses any iterable series, returns a reverse iterator
@@ -431,6 +431,8 @@ li.pop(index)
 li.reverse()
 
 # sorts in place
+# tri = [(1, 'one', 'jeden'), (2, 'two', 'dwa'), (3, 'three', 'trzy'), (4, 'four', 'cztery')]
+# tri.sort(key=lambda trio: trio[1])
 li.sort(key=callable, reverse=True)
 
 
@@ -519,7 +521,10 @@ del a
 di.items()
 di.keys()
 di.values()
-di.fromkeys(range(10), 10)
+
+# The method fromkeys() creates a new dictionary with keys from sequence and values set to value
+dict.fromkeys(sequence, value)
+# di.fromkeys(range(10), 10) => {0: 10, 1: 10, 2: 10, 3: 10, 4: 10, 5: 10, 6: 10, 7: 10, 8: 10, 9: 10}
 
 
 
@@ -624,6 +629,7 @@ os.mkdir('folder_name')
 os.chdir(path)
 
 # perform a stat system call on the given path
+# {f: os.stat(f).st_size for f in glob.glob('*')}
 os.stat(path)
 
 # system dependence separator
@@ -825,11 +831,11 @@ counter_obj.most_common(n)
 sum(counter_obj.values())
 
 
+
 # dict subclass that calls a factory function to supply missing values
 # defaultdict means that if a key is not found in the dictionary, then instead of a KeyError being thrown,
 # a new entry is created. The type of this new entry is given by the argument of defaultdict.
 defaultdict(callable)
-
 
 
 
@@ -851,7 +857,7 @@ from itertools import (count, cycle, repeat, chain, islice, product, permutation
 combinations_with_replacement, combinations)
 
 # count, infinite iterators
-count(start=0, step=2)
+count(start=0, step=1)
 
 # cycle, repeats indefinitely
 # make an iterator returning elements from the iterable and saving a copy of each,

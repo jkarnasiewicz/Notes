@@ -5,6 +5,10 @@
 
 # Functions can be treated like any other objects
 
+# Classes define the structure and behavior of objects
+# Instance method - functions which can be called on objects(with self argument)
+# instance.method() == Class.method(instance)
+
 # @staticmethod - without 'self' in method args. Code organization(like free function)
 # @classmethod - first arg 'cls'. Refere to class object within the method class, e.g. class attribute
 import random
@@ -25,7 +29,7 @@ class ShippingContainer:
     def create_empty_container(cls, owner):
         return cls(owner, content=None)		# create new class instance
 
-    def __init__(self, owner, content):     # ? instance method
+    def __init__(self, owner, content):     # instance method
         self.owner = owner					# instance attribute
         self.content = content
         self.serial = ShippingContainer.get_serial()
@@ -41,6 +45,11 @@ b = ShippingContainer("Ivy", "all")
 print(b.__dict__)
 c = ShippingContainer.create_empty_container("Yuri")
 print(c.__dict__)
+
+
+
+
+
 
 
 
@@ -80,6 +89,11 @@ print(e.name)
 
 
 
+
+
+
+
+
 # Interface
 
 # abstract classes are available via the standard abc library package
@@ -95,6 +109,11 @@ class Worker(metaclass=ABCMeta):
     @abstractmethod
     def is_busy(self,):
         "tell if busy"
+
+
+
+
+
 
 
 
@@ -132,6 +151,11 @@ Class_Name.__mro__ == Class_Name.mro()
 
 
 
+
+
+
+
+
 # Iterables, Iterators and Generators
 
 # Iterables
@@ -157,8 +181,8 @@ Class_Name.__mro__ == Class_Name.mro()
 # iterator = iter(callable, sentinel) - callable without arguments
 
 with open('some_file.txt', 'rt') as f:
-  for line in iter(lambda: f.readline().split(), 'END'):
-      print(line)
+    for line in iter(lambda: f.readline().split(), 'END'):
+        print(line)
 
 
 
@@ -244,6 +268,8 @@ print(next(gen))
 
 
 # Comparison
+# ===================================
+
 # Both iterables and generators produce an iterator
 
 # The difference between iterables and generators:
@@ -287,7 +313,6 @@ for val in iterable:
 for val in iterable:
     print(val)
 
-
 # So iterables are more universally useful than generators, because we can go over the sequence more than once
 # Of course, when your data stream comes from a source that cannot be readily repeated (such as hardware sensors),
 # a single pass via a generator may be your only option
@@ -301,426 +326,7 @@ for val in iterable:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# __missing__
-# called by dict.__getitem__() to implement self[key] for dict subclasses
-# when key is not in the dictionary
-    def __missing__(self, key):
-        return 0
-
-
-
-
-
-# __reduce__
-# __reduce__ is used by pickle
-# __reduce__() method takes no argument and shall return a tuple, with:
-#   a callable object that will be called to create the initial version of the object(e.g. self.__class__)
-#   tuple of arguments for the callable object. An empty tuple must be given if the callable does not accept any argument
-
-from collections import OrderedDict, Counter
-import pickle
-
-class OrderedCounter(Counter, OrderedDict):
-
-    def __repr__(self):
-        return '{} {}'.format(self.__class__.__name__, OrderedDict(self))
-
-    def __reduce__(self):
-        return (self.__class__, (OrderedDict(self),))
-
-
-pickle.dumps(OrderedCounter('abracaadabra'))
-pickle.loads(pickled_obj)
-
-
-
-
-
-# __init__ and __new__
-# because __new__() and __init__() work together in constructing objects (__new__() to create it, and __init__() to customize it),
-# no non-None value may be returned by __init__()
-
-# Even if __init__ fails, class call its __del__ method
-class Card:
-    def __init__(self, number, color, soft, hard):
-        self.number = number
-        self.color = color
-        self.soft = soft
-        self.hard = hard
-
-class AceCard(Card):
-    def __init__(self, number, color, **kwargs):
-        super().__init__(number, color, 11, 1)
-        self.__dict__.update(kwargs)
-
-
-a = AceCard(3, "spade", name="Ivy")
-print(a.number, a.color, a.soft, a.hard, a.name, a.__dict__)
-
-
-
-
-
-# __call__
-# callable instances(like the functions)
-import socket
-
-class Resolver:
-
-    def __init__(self):
-        self._cache = {}
-
-    def __call__(self, host):
-        if host not in self._cache:
-            self._cache[host] = socket.gethostbyname(host)
-        return self._cache[host]
-
-
-a = Resolver()
-a("wp.pl")
-a("nba.com")
-print(a._cache)
-
-
-
-
-
-# __str__, and __repr__
-class Unit:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __str__(self):                      # readable, human-friendly representation of an object
-        return "Class dict: {x} and {y}".format(**self.__dict__)
-
-    def __repr__(self):                     # debug-friendly, logging representation of an object
-        return '{}(x={}, y={})'.format(self.__class__.__name__, self.x, self.y)
-
-    def __format__(self, f):
-        # '{0:r}'.format(obj) => f == 'r'
-        return '{}'.format()
-
-
-a = Unit(3, 7)
-print("{0!s}, and {0!r}".format(a))         # format calls __str__ by default
-
-
-
-
-
-# __bool__
-class RandomList:
-    def __init__(self):
-        self._list = range(10)
-
-    def __bool__(self):
-        return bool(self._list)
-
-    def pop_item(self):
-        return self._list.pop()
-
-# we can use it with 'if', 'while'
-rl = RandomList()
-while rl:
-    card = rl.pop_item()
-
-
-
-
-
-# Collection Protocol
-from collections.abc import Set
-from itertools import chain
-try:
-    from _bisect import *
-except ImportError:
-    pass
-
-# Immutable sorted set
-class SortedSet(Set):
-
-    def __init__(self, items=None):
-        self._items = sorted(set(items)) if items is not None else []
-
-    def __repr__(self):
-        return "SortedSet({})".format(self._items if self._items else '')
-
-# Equality and inequality protocol(default behavior is to comparing objects id's):
-# Testing using '=='
-
-    def __eq__(self, rhs):
-        if not isinstance(rhs, SortedSet):
-            return NotImplemented           # Not, raise NotImplementedError
-        return self._items == rhs._items
-
-# Testing using '!='
-
-    def __ne__(self, rhs):
-        if not isinstance(rhs, SortedSet):
-            return NotImplemented           # Not, raise NotImplementedError
-        return self._items != rhs._items
-
-# Container protocol:
-# Membership testing using 'in' and 'not in'
-
-    def __contains__(self, item):
-        try:
-            self.index(item)
-            return True
-        except ValueError:
-            return False
-
-# Sized protocol:
-# Determine number of elements with len(s)
-
-    def __len__(self):
-        return len(self._items)             # Non negative integer
-
-
-# Sequence protocol:
-# Retrive elements by index and slices by slicing
-
-    def __getitem__(self, index):
-        return self._items[index]
-
-# Find index by item
-
-    def index(self, item):
-        # Binary search (Logarithmic complexity)
-        index = bisect_left(self._items, item)
-        if (index != len(self._items)) and (self._items[index] == item):
-            return index
-        raise ValueError('{} not found'.format(item))
-
-        # Linear complexity
-        # for i, v in enumerate(self._items):
-        #   if v == value:
-        #       return i
-        # raise ValueError
-
-# Count items
-
-    def count(self, item):
-        # Binary search (Logarithmic complexity)
-        return int(item in self)
-        # Linear complexity
-        # return sum(1 for v in self._items if v == item)
-
-# Produce a reversed sequence, reversed(seq)
-# If special method __reversed__() is not implemented then it
-# fallback to __getitem__() and __len__() methods
-
-# Concatenation with + operator
-
-    def __add__(self, rhs):
-        return SortedSet(chain(self._items, rhs._items))
-
-# Repetition with * operator
-
-    def __mul__(self, rhs):
-        return self if rhs > 0 else SortedSet()
-
-    def __rmul__(self, lhs):        # Reversed multiplication
-        return self * lhs
-    # __rmul__ = __mul__
-
-# Set protocol:
-# Set algebra operations(rest inheritate from Set)
-    
-    def issubset(self, iterable):
-        return self <= SortedSet(iterable)
-
-    def issuperset(self, iterable):
-        return self >= SortedSet(iterable)
-
-    def intersection(self, iterable):
-        return self & SortedSet(iterable)
-
-    def union(self, iterable):
-        return self | SortedSet(iterable)
-
-    def symetric_difference(self, iterable):
-        return self ^ SortedSet(iterable)
-
-    def difference(self, iterable):
-        return self - SortedSet(iterable)
-
-
-
-s = SortedSet(range(20, 30))
-r = SortedSet(range(10))
-
-print(25 in s, 7 not in r, s.count(23), s.index(29), 3*r, r + s, r.intersection(s), s^r, sep='\n')
-
-
-
-
-
-# Context Manager
-
-# An object designed to be used in a with-statement. A context-manager
-# ensures that resources are properly and automatically managed
-# e.g try, finally statement
-
-# Context-Manager Protocol
-# (__enter__(self), __exit__(self, exception_type, exception_value, exception_traceback))
-
-1. with expression
-2. context-manager
-3. __enter__()          # The retur value of expression.__enter__() is bound to 'x',
-4. as x:                # not the value of expression
-5. body
-6. __exit__()           # Exception information is passed to __exit__()
-
-
-class LoggingContextManager:
-    def __enter__(self):
-        print('LoggingContextManager.__enter__()')
-        return 'You are in a with-block!'
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        print('LoggingContextManager.__exit__({}, {}, {})'. format(
-            exc_type, exc_val, exc_tb))
-        return
-        # if __exit__() return False, the exception is propagated,
-        # if returns True, __exit__() will swallow exceptions
-
-
-with LoggingContextManager() as x:
-    # raise ValueError('Something has gone wrong!')
-    print('=====', x, '=====', sep='\n')
-
-
- 
-# Context manager with contextlib decorator
-import contextlib
-import sys
-
-@contextlib.contextmanager
-def logging_context_manager():
-    print('logging_context_manager: __enter__()')
-    try:
-        yield 'You are in a with-block!'
-        print('logging_context_manager: normal exit')
-    except Exception:
-        print('logging_context_manager: exceptional exit',
-            sys.exc_info())
-        raise
-        # if raise, exception will be raise,
-        # if not exception wont be propagated
-
-
-with logging_context_manager() as x:
-    # raise ValueError('Something has gone wrong!')
-    print('=====', x, '=====', sep='\n')
-
-
-
-# Multiple context managers
-@contextlib.contextmanager
-def nest_test(name):
-    print('Entering', name)
-    yield name
-    print('Exiting', name)
-
-
-with nest_test('outer') as n1, nest_test('inner, nested in ' + n1):
-    print('BODY')
-
-# The same as
-with nest_test('outer'):
-    with nest_test('inner'):
-        print('BODY')
-
-
-
-
+# Function Factories, Closures and Decorators
 
 # Function Factories - function that returns new, specialized functions
 def sequence_class(immutable):
@@ -750,9 +356,9 @@ def raise_to(exp):
     return raise_to_exp
 
 square = raise_to(2)
-print(square.__closure__)						# show 2 values remembered by fun, exp and y
+# show 2 values remembered by fun, exp and y
+print(square.__closure__)
 print(square(11))
-
 
 
 import time
@@ -790,12 +396,12 @@ def escape_unicode(f):
 
 # equivalent using class as decorator
 # class escape_unicode:
-# 	def __init__(self, f):
-# 		self.f = f
+#   def __init__(self, f):
+#       self.f = f
 
-# 	def __call__(self, *args, **kwargs):
-# 		x = self.f(*args, **kwargs)
-# 		return ascii(x)
+#   def __call__(self, *args, **kwargs):
+#       x = self.f(*args, **kwargs)
+#       return ascii(x)
 
 @escape_unicode
 def string(s):
@@ -813,7 +419,7 @@ return deco
 
 @closure_deco(2)
 def func(x):
-    ...
+    return x
 
 
 
@@ -838,33 +444,18 @@ print(hello.f.__name__)
 
 
 
-# Instance as decorators
-# @AnotherDec()								# In __call__ we have decorator
-
-# Multiple decorators(decorator3 will return callable to decorator2,
-# 					  and decorator 2 will return callable to decorator 1)
-# @decorator1
-# @decorator2
-# @decorator3
-# def some_function()
+# Class instance as decorator(in __call__ method we have decorator)
+@AnotherDec()
 
 
 
-# Important metadata with Decorators
-# functools.wrap() - naive decorators can lose important metadata
-#					 e.g. fun.__doc__, fun.__name__
-import functools
-
-def noop(f):
-    @functools.wraps(f)
-    def wrap():
-        return f()
-    return wrap
-
-@noop
-def hello():
-    "Print a well-known message."
-    print('Hello, world!')
+# Multiple decorators
+# decorator3 will return callable to decorator2, and decorator 2 will return callable to decorator 1
+@decorator1
+@decorator2
+@decorator3
+def some_function():
+    pass
 
 
 
@@ -890,6 +481,21 @@ print(creat_list(123, -6))
 
 
 
+# Important metadata with Decorators
+# functools.wrap() - naive decorators can lose important metadata
+#                    e.g. fun.__doc__, fun.__name__
+import functools
+
+def doc(f):
+    @functools.wraps(f)
+    def wrap():
+        return f()
+    return wrap
+
+@doc
+def hello():
+    "Print a well-known message."
+    print('Hello, world!')
 
 
 
@@ -900,6 +506,95 @@ print(creat_list(123, -6))
 
 
 
+# Context Manager
+
+# An object designed to be used in a with-statement. A context-manager
+# ensures that resources are properly and automatically managed
+# e.g try, finally statement
+
+# Context-Manager Protocol
+# (__enter__(self), __exit__(self, exception_type, exception_value, exception_traceback))
+
+1. with expression
+2. context-manager
+3. __enter__()          # The return value of expression.__enter__() is bound to 'x',
+4. as x:                # not the value of expression
+5. body
+6. __exit__()           # Exception information is passed to __exit__()
+
+
+class LoggingContextManager:
+    def __enter__(self):
+        print('LoggingContextManager.__enter__()')
+        return 'You are in a with-block!'
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print('LoggingContextManager.__exit__({}, {}, {})'. format(
+            exc_type, exc_val, exc_tb))
+        return
+        # if __exit__() return False, the exception is propagated,
+        # if returns True, __exit__() will swallow exceptions
+
+
+with LoggingContextManager() as x:
+    # raise ValueError('Something has gone wrong!')
+    print('=====', x, '=====', sep='\n')
+
+
+
+
+
+# Context manager with contextlib decorator
+# Automatically deleted temp directories
+
+import tempfile
+import shutil
+from contexlib import contextmanager
+
+class TempDir:
+    def __enter__(self):
+        self.dirname = tempfile.mkdtemp()
+        return self.dirname
+
+    def __exit__(self, exc, val, tb):
+        shutil.rmtree(self.dirname)
+
+with TempDir() as dirname:
+    ...
+
+
+# Its the same code, glued together differently
+@contextmanager
+def temp_dir():
+    dirname = tempfile.mkdtemp()
+    try:
+        yield dirname
+    except Exception:
+        raise
+        # if raise, exception will be raise,
+        # if not exception wont be propagated
+    finally:
+        shutil.rmtree(dirname)
+
+
+
+
+
+# Multiple context managers
+@contextlib.contextmanager
+def nest_test(name):
+    print('Entering', name)
+    yield name
+    print('Exiting', name)
+
+
+with nest_test('outer') as n1, nest_test('inner, nested in ' + n1):
+    print('BODY')
+
+# The same as
+with nest_test('outer'):
+    with nest_test('inner'):
+        print('BODY')
 
 
 
@@ -910,67 +605,299 @@ print(creat_list(123, -6))
 
 
 
+# Special methods
+
+# __init__ and __new__
+
+# because __new__() and __init__() work together in constructing objects,
+# __new__() to create it, and __init__() to customize it,
+# no non-None value may be returned by __init__()
+
+# __new__ is (special)static class method, while __init__ is instance method
+# __new__ has to create the instance first, so __init__ can initialize it
+
+# Even if __init__ fails, class call its __del__ method
+class Card(object):
+    def __init__(self, number, color, soft, hard):
+        self.number = number
+        self.color = color
+        self.soft = soft
+        self.hard = hard
+
+class AceCard(Card):
+    avaiable_objects = 4
+
+    # args and kwargs are from initialiazing class
+    def __new__(cls, *args, **kwargs):
+        if not cls.avaiable_objects:
+            raise ValueError("Cannot crate more objects")
+        cls.avaiable_objects -= 1
+        return super(AceCard, cls).__new__(cls)
+
+    def __init__(self, number, color, **kwargs):
+        super().__init__(number, color, 11, 1)
+        # remember additional kwargs
+        self.__dict__.update(kwargs)
+
+
+a = AceCard(3, "spade", name="Ivy")
+print(a.number, a.color, a.soft, a.hard, a.__dict__)
 
 
 
 
 
+# __call__
+
+# called when the instance is 'called' as a function (callable instances)
+import socket
+
+class Resolver:
+
+    def __init__(self):
+        self._cache = {}
+
+    def __call__(self, host):
+        if host not in self._cache:
+            self._cache[host] = socket.gethostbyname(host)
+        return self._cache[host]
+
+
+a = Resolver()
+a("python.org")
+a("nba.com")
+print(a._cache)
 
 
 
 
 
+# __bool__
+
+# called to implement truth value testing and the built-in operation bool()
+# should return False or True
+# we can use it with 'if' or 'while'
+# if a class defines neither __len__() nor __bool__(), all its instances are considered true
+class RandomList(object):
+    def __init__(self):
+        self._list = list(range(10))
+
+    def __bool__(self):
+        return bool(self._list)
+
+    def pop_item(self):
+        return self._list.pop()
+
+
+rl = RandomList()
+while rl:
+    item = rl.pop_item()
 
 
 
 
 
+# __str__, __repr__ and __format__
+
+# __repr__, called by the repr() built-in function to compute the 'official' string
+# representation of an object. if at all possible, this should look like a valid python
+# expression that could be used to recreate an object with the same value
+
+# __str__, called by str(object) and the built-in functions format() and print()
+# to compute the 'informal' or nicely printable string representation of an object
+
+# __format__, called by the format() built-in function, and the str.format() method
+class Unit:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    # readable, human-friendly representation of an object
+    def __str__(self):
+        return "Class dict: {x} and {y}".format(**self.__dict__)
+
+    # debug-friendly, logging representation of an object
+    def __repr__(self):
+        return '{}(x={}, y={})'.format(self.__class__.__name__, self.x, self.y)
+
+    def __format__(self, f):
+        custom_formating = {'a': 'custom format a', 'b': 'custom format b', 'c': 'custom format c'}
+        return custom_formating.get(f, 'no custom format avaiable')
+
+
+a = Unit(3, 7)
+print("{0!s},\n{0!r},\n{0:a},\n{0:b},\n{0:d}".format(a))
 
 
 
 
 
-# def take(n, seq):
-#     """Returns first n values from the given sequence."""
-#     # seq = iter(seq)
-#     result = []
-#     try:
-#       for i in range(n):
-#           result.append(seq.__next__())
-#     except StopIteration:
-#         pass
-#     return result
+# __missing__
 
-# print(take(15, (i for i in range(10))))
+# called by dict.__getitem__() to implement self[key] for dict subclasses
+# when key is not in the dictionary
+    def __missing__(self, key):
+        return 0
 
 
-# Normal version
-# def grep(pattern, filenames):
-#     for f in filenames:
-#         for line in open(f):
-#             if pattern in line:
-#                 print line,
 
 
-# Generator version
-# def readfiles(filenames):
-#     for f in filenames:
-#         for line in open(f):
-#             yield line
 
-# def grep(pattern, lines):
-#     return (line for line in lines if pattern in line)
+# __reduce__
 
-# def printlines(lines):
-#     for line in lines:
-#         print(line)
+# __reduce__() method is used by pickle and takes no argument and shall return a tuple, with:
+#   a callable object that will be called to create the initial version of the object(e.g. self.__class__)
+#   tuple of arguments for the callable object. An empty tuple must be given if the callable does not accept any argument
 
-# def main(pattern, filenames):
-#   import pdb
-#   pdb.set_trace()
-#   lines = readfiles(filenames) # => generator
-#   lines = grep(pattern, lines) # => generator expresion
-#   printlines(lines)
+from collections import OrderedDict, Counter
+import pickle
+
+class OrderedCounter(Counter, OrderedDict):
+
+    def __repr__(self):
+        return '{} {}'.format(self.__class__.__name__, OrderedDict(self))
+
+    def __reduce__(self):
+        return (self.__class__, (OrderedDict(self),))
 
 
-# main('open', [__file__])
+pickle.dumps(OrderedCounter('abracaadabra'))
+pickle.loads(pickled_obj)
+
+
+
+
+
+# Collection Protocol
+from collections.abc import Set
+from itertools import chain
+try:
+    from _bisect import *
+except ImportError:
+    pass
+
+# Immutable sorted set
+class SortedSet(Set):
+
+    def __init__(self, items=None):
+        self._items = sorted(set(items)) if items is not None else []
+
+    def __repr__(self):
+        return "SortedSet({})".format(self._items if self._items else '')
+
+# Container protocol:
+# Membership testing using 'in' and 'not in'
+
+    def __contains__(self, item):
+        try:
+            self.index(item)
+            return True
+        except ValueError:
+            return False
+
+# Sized protocol:
+# Determine number of elements with len(s)
+
+    def __len__(self):
+        return len(self._items)             # return non negative integer
+
+
+# Sequence protocol:
+# Retrive elements by index and slices by slicing
+
+    def __getitem__(self, index):
+        return self._items[index]
+
+# Equality and inequality protocol(default behavior is to comparing objects id's):
+# Testing using '=='
+
+    def __eq__(self, rhs):
+        if not isinstance(rhs, SortedSet):
+            return NotImplemented           # Not, raise NotImplementedError
+            # NotImplemented signals to the runtime that it should ask someone else to satisfy the operation.
+            # In the expression a == b, if a.__eq__(b) returns NotImplemented, then Python tries b.__eq__(a).
+            # If b knows enough to return True or False, then the expression can succeed. If it doesn't,
+            # then the runtime will fall back to the built-in behavior (which is based on identity for == and !=)
+        return self._items == rhs._items
+
+
+# Testing using '!='
+
+    def __ne__(self, rhs):
+        if not isinstance(rhs, SortedSet):
+            return NotImplemented           # Not, raise NotImplementedError
+        return self._items != rhs._items
+
+# Concatenation with + operator
+
+    def __add__(self, rhs):
+        return SortedSet(chain(self._items, rhs._items))
+
+# Repetition with * operator
+
+    def __mul__(self, rhs):
+        return self if rhs > 0 else SortedSet()
+
+    # Reversed multiplication
+    def __rmul__(self, lhs):
+        return self * lhs
+    # __rmul__ = __mul__
+
+# Set protocol:
+# Set algebra operations(rest inheritate from Set)
+    
+    def issubset(self, iterable):
+        return self <= SortedSet(iterable)
+
+    def issuperset(self, iterable):
+        return self >= SortedSet(iterable)
+
+    def intersection(self, iterable):
+        return self & SortedSet(iterable)
+
+    def union(self, iterable):
+        return self | SortedSet(iterable)
+
+    def symetric_difference(self, iterable):
+        return self ^ SortedSet(iterable)
+
+    def difference(self, iterable):
+        return self - SortedSet(iterable)
+
+# Iterable protocol:
+
+    def __iter__(self):
+        return iter(self._items)
+
+# Find index by item
+
+    def index(self, item):
+        # Binary search (Logarithmic complexity)
+        index = bisect_left(self._items, item)
+        if (index != len(self._items)) and (self._items[index] == item):
+            return index
+        raise ValueError('{} not found'.format(item))
+
+        # Linear complexity
+        # for i, v in enumerate(self._items):
+        #   if v == value:
+        #       return i
+        # raise ValueError
+
+# Count items
+
+    def count(self, item):
+        # Binary search (Logarithmic complexity)
+        return int(item in self)
+        # Linear complexity
+        # return sum(1 for v in self._items if v == item)
+
+# Produce a reversed sequence, reversed(seq)
+# If special method __reversed__() is not implemented then it
+# fallback to __getitem__() and __len__() methods
+
+
+s = SortedSet(range(20, 30))
+r = SortedSet(range(10))
+
+print(25 in s, 7 not in r, s.count(23), s.index(29), 3*r, r + s, r.intersection(s), s^r, sep='\n')
