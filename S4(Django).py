@@ -879,7 +879,6 @@ python manage.py dbshell < ~/db_backups/db.sql
 
 
 
-# TO DO
 {% include "delete_modal.html" with obj_name=_("discount") %}
 
 {% if forloop.last %} class='last'{% endif %}>{{ item }}

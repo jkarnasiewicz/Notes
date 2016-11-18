@@ -300,6 +300,51 @@ for item in chain(chain(a, a), chain(b, b)):
 
 
 
+# iter and __next__
+def take(n, seq):
+    """Returns first n values from the given sequence."""
+    seq = iter(seq)
+    result = []
+    try:
+      for i in range(n):
+          result.append(seq.__next__())
+    except StopIteration:
+        pass
+    return result
+
+print(take(7, [i for i in range(10)]))
+
+
+
+# Normal version of grep
+# def grep(pattern, filenames):
+#     for f in filenames:
+#         for line in open(f):
+#             if pattern in line:
+#                 print(line)
+
+# Generator version
+def readfiles(filenames):
+    for f in filenames:
+        for line in open(f):
+            yield line
+
+def grep(pattern, lines):
+    return (line for line in lines if pattern in line)
+
+def printlines(lines):
+    for line in lines:
+        print(line)
+
+def main(pattern, filenames):
+    lines = readfiles(filenames) # => generator
+    lines = grep(pattern, lines) # => generator expresion
+    printlines(lines)
+
+main('grep', [__file__])
+
+
+
 # Change a Sequence You Are Iterating Over While Inside The Loop
 words = ['cat', 'window', 'defenestrate']
 for w in words[:]:                                                              # Loop over a slice copy of the entire list

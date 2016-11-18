@@ -857,3 +857,11 @@ from django.utils import text
 from slugify import slugify_de as awesome_slugify
 awesome_slugify.to_lower = True
 text.slugify = awesome_slugify
+
+
+
+# REST - representational state transfer
+# Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
+# RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
+
+# API - Application Programming Interface

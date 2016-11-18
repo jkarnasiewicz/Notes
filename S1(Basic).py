@@ -6,6 +6,7 @@ help(object)
 object.__doc__     				# docstring for a function or module object
 object.__name__					# name of a function or module object, or just __name__ for current module name
 object.__file__					# object file path, or just __file__ for current file path(absolute path)
+object.__dict__					# a dictionary or other mapping object used to store an object’s (writable) attributes
 
 type(object)       				# type of the object
 id(object)				 		# id of the object
@@ -224,8 +225,8 @@ bool(a) != bool(b)
 
 
 
-# Decimal
 # import decimal
+
 decimal.getcontext().prec = 6
 # always use quotes
 decimal.Decimal('0.8')
@@ -253,7 +254,31 @@ c.imag 												# 3.0
 # sprzężenie zespolone
 c.conjugate()										# (1 - 3j)
 
-# import cmath - Mathematical functions for complex numbers
+
+
+# import math
+
+# return the square root of x
+math.sqrt(x)
+
+# with one argument, return the natural logarithm of x (to base e)
+math.log(x, base)
+
+# return the base-10 logarithm of x
+math.log10(x)
+
+# return x factorial (silnia)
+math.factorial(6)
+
+# return the ceiling of x, the smallest integer greater than or equal to x
+math.ceil(-0.5)
+
+# return the floor of x, the largest integer less than or equal to x
+math.floor(x)
+
+
+
+# import cmath - mathematical functions for complex numbers
 cmath.sqrt(-1)										# 1j
 cmath.polar(1+1j)									# (1.4142135623730951, 0.7853981633974483) = modulus, phase
 cmath.rect(modulus, phase)
