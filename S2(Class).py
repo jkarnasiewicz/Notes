@@ -59,6 +59,7 @@ print(c.__dict__)
 
 # @property is read only
 # gracefully convert public attributes to private
+# property function, property(fget=None, fset=None, fdel=None, doc=None)
 class Example:
 
     def __init__(self, name):
@@ -84,6 +85,100 @@ e = Example('John')
 print(e.__dict__)
 del e.name
 print(e.name)
+
+
+
+
+
+
+
+
+
+
+# Descriptors
+
+# Descriptor is an object attribute with 'binding behavior'(wiążącym zachowaniem),
+# one whose attribute access has been overridden by methods in the descriptor protocol.
+# Those methods are __get__(), __set__(), and __delete__().
+# If any of those methods are defined for an object, it is said to be a descriptor.
+
+# Descriptor works only in a class. Storing attribute data directly in a descriptor means sharing between instances
+
+# Descriptors are a great solutions for attributes with common behavior across multiple classes
+# - reusable propertise (e.g. database fields, attached to many different classes with many different names)
+
+# Descriptors are the mechanism behind properties, methods, static methods, class methods, and super()
+
+
+
+# Descriptor Protocol
+descr.__get__(self, obj, type=None) --> value
+descr.__set__(self, obj, value) --> None
+descr.__delete__(self, obj) --> None
+
+
+class RevealAccess(object):
+    "A data descriptor that sets and returns values normally and prints a message logging their access."
+
+    def __init__(self, initval=None, name='var'):
+        self.val = initval
+        self.name = name
+
+    def __get__(self, obj, objtype):
+        print('Retrieving', self.name)
+        return self.val
+
+    def __set__(self, obj, val):
+        print('Updating', self.name)
+        self.val = val
+
+
+class MyClass(object):
+    x = RevealAccess(10, 'var "x"')
+    y = 5
+
+
+m = MyClass()
+print(m.x)
+m.x = 20
+print(m.x, m.y)
+
+
+
+# Accessing an attribute on an object like obj.foo gets you:
+#   1. The result of the __get__ method of the data descriptor of the same name attached to the class if it exists
+#   2. The corresponding value in obj.__dict__ if it exists
+#   3. The result of the __get__ method of the non-data descriptor of the same name on the class
+#   4. It falls back to look in the type(obj).__dict__
+#   5. Repeating for each type in the mro until it find a match
+#   6. Assignment always creates an entry in obj.__dict__
+#   7. Unless there was a setter property(which is a descriptor) in which case we're calling a function
+
+
+
+# Implement advanced attribute access patterns like 'cached fields'
+# lazy evaluation
+class LazyProperty(object):
+
+    def __init__(self, func):
+        self._func = func
+        self.__name__ = func.__name__
+
+    def __get__(self, obj, klass):
+        print('Called the func')
+        result = self._func(obj)
+        obj.__dict__[self.__name__] = result
+        return result
+
+class MyClass(object):
+
+    @LazyProperty
+    def x(self):
+        return 42
+
+m = MyClass()
+m.x
+m.x
 
 
 
@@ -609,7 +704,7 @@ with nest_test('outer'):
 
 # __init__ and __new__
 
-# because __new__() and __init__() work together in constructing objects,
+# __new__() and __init__() work together in constructing objects,
 # __new__() to create it, and __init__() to customize it,
 # no non-None value may be returned by __init__()
 

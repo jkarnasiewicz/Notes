@@ -26,7 +26,7 @@ python manage.py loaddata db_backup.json
 ./manage.py inspectdb > models.py                   # copy to models.py file
 
 
-./manage.py test -v3					     # Test whole site with verbosity level(0-3)
+./manage.py test -v3					     # Test whole project with verbosity level(0-3)
 ./manage.py test myapp 						 # Test only myapp
 ./manage.py test -v3 --keepdb                # Preserving test database
 ./manage.py test --pattern="tests_*.py"      # Specify custom filename pattern
@@ -40,7 +40,7 @@ python -Wall manage.py test                  # The -Wall flag tells Python to di
 ./manage.py update --help					 # Help for additional management command(update)
 
 
-# Migrations (table with migrated schema tables: django_migrations)
+# Migrations (tables with migrated schemas: django_migrations)
 ./manage.py makemigrations
 ./manage.py migrate
 ./manage.py showmigrations
@@ -57,89 +57,7 @@ operation = [
 
 
 
-Django DB
-##########################################################################################################
 
-# This will run on the 'default' database.
-Author.objects.all()
-
-# So will this.
-Author.objects.using('default').all()
-
-# This will run on the 'other' database.
-Author.objects.using('other').all()
-
-
-
-# To save an object to the legacy_users database
-my_object.save(using='legacy_users')
-# Working with MySQL DB
-apt-get install python-mysqldb
-apt-get install build-essential python-dev libmysqlclient-dev
-pip install MySQL-python
-
-
-# Working with MsSQL DB
-# http://blog.tryolabs.com/2012/06/25/connecting-sql-server-database-python-under-ubuntu/
-sudo apt-get install unixodbc unixodbc-dev freetds-dev tdsodbc
-(virtual-env) pip instal pyodbc
-
-# edit the file /etc/freetds/freetds.conf
-[sqlserver]
-    host = <ip address of the computer running SQL Server>
-    port = <port>
-    tds version = 7.2
-
-# edit the file /etc/odbcinst.ini
-# edit the file /etc/odbc.ini
-# and from python PYODBC
-import pyodbc
-dsn = 'sqlserverdatasource'
-user = ''
-password = ''
-database = ''
-
-con_string = 'DSN={};UID={};PWD={};DATABASE={};'.format(dsn, user, password, database)
-cnxn = pyodbc.connect(con_string)
-cursor = cnxn.cursor()
-
-cursor.execute("Select id From SpinLab_Stations;")
-cursor.fetchall()
-
-
-
-
-South
-##########################################################################################################
-
-# Normal Changes
-manage.py schemamigration myapp --auto       # manage.py schemamigration southtut --auto --update
-manage.py migrate myapp                      # re add initial_data from json
-
-
-# The First Migration
-manage.py schemamigration myapp --initial
-manage.py migrate myapp --fake
-
-
-# Converting Existing Applications
-manage.py syncdb
-manage.py convert_to_south myapp
-manage.py migrate 0001 --fake
-
-
-# Listing Current Migrations
-manage.py migrate --list
-
-# Discard migration
-manage.py migrate name 0003 --fake
-
-# Moving to 2 migration
-manage.py migrate myapp 0002
-manage.py migrate myapp						# moving to the next migration
-
-# Creating own schema(e.g. datamigration)
-manage.py datamigration myapp schema_name
 
 
 
@@ -457,7 +375,7 @@ class Meta:
 # Create
 Article(title='Cheddar Talk', tagline='Thoughts on cheese.').save()			# Create new instance and save it into DB
 Article.objects.create(title='Cheddar Talk', tagline='Thoughts on cheese.')
-Object.save(update_fields=['title'])										# Update only 'title' column
+object.save(update_fields=['title'])										# Update only 'title' column
 # def save(commit=True, author=None, *args, **kwargs):                      # Remember about *args and **kwargs(especially with super)
 #     art = super(Article, self).save(commit=False)
 #     if author:
@@ -468,6 +386,20 @@ Object.save(update_fields=['title'])										# Update only 'title' column
 #     return art
 
 Article.objects.select_related().filter(blog=b).update(headline='Everything is the same')   # Updating multiple objects at once
+
+
+# This will run on the 'default' database
+Author.objects.all()
+
+# So will this
+Author.objects.using('default').all()
+
+# This will run on the 'other' database.
+Author.objects.using('other').all()
+
+# To save an object to the legacy_users database
+object.save(using='legacy_users')
+
 
 
 # Filter
@@ -642,6 +574,10 @@ Post.post_objects.all()
 
 
 
+
+
+
+
 Django Generic Foreign Key (Django Content Type)
 ##########################################################################################################
 # content_type_field => manager with qs => model property => instance.property in templates
@@ -677,6 +613,10 @@ class Post(models.Model):
 
 
 
+
+
+
+
 Pre and Post save
 ##########################################################################################################
 from django.db.models.signals import pre_save
@@ -686,6 +626,11 @@ def pre_save_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_receiver, sender=model_name)
+
+
+
+
+
 
 
 
@@ -710,17 +655,9 @@ escape("q's")
 
 
 
-Django Statics
-##########################################################################################################
-STATIC_URL = '/static/'                                                 # Urls for static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')                                    # Django server
-]                                                                       # From django server => manage.py collectstatic => static server
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn')     # Static server
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 
 
 
@@ -733,6 +670,11 @@ from django.contrib.auth.forms import UserCreationForm
 user = auth.authenticate(username=username, password=password)
 auth.login(request, user)
 auth.logout(request)
+
+
+
+
+
 
 
 
@@ -818,6 +760,38 @@ handler500 = 'mysite.views.my_custom_error_view'                        # server
 
 
 
+
+Django Statics
+##########################################################################################################
+STATIC_URL = '/static/'                                                 # Urls for static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')                                    # Django server
+]                                                                       # From django server => manage.py collectstatic => static server
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn')     # Static server
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+
+
+Django settings
+##########################################################################################################
+/django/conf/global_settings.py
+/django/conf/project_template/project_name/settings.py-tpl
+
+LOGIN_REDIRECT_URL = '/'
+ADMINS = (('name', 'email'),)           # if errors e.g. 400, 403, 404, 500, those admins get emails
+
+
+
+
+
+
+
 File 'import' structure
 ##########################################################################################################
 # -*- coding: UTF-8 -*-
@@ -835,13 +809,13 @@ import app_settings
 
 
 
-Django settings
-##########################################################################################################
-/django/conf/global_settings.py
-/django/conf/project_template/project_name/settings.py-tpl
 
-LOGIN_REDIRECT_URL = '/'
-ADMINS = (('name', 'email'),)           # if errors e.g. 400, 403, 404, 500, those admins get emails
+
+
+
+
+
+
 
 
 
@@ -931,3 +905,103 @@ Client().get("http://0.0.0.0:8000/public/").content
 # app.py
 Previously, there was no specific place for initializing the signal code. Typically, they
 were imported or implemented in models.py (which was unreliable)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Django DB
+##########################################################################################################
+
+# Working with MySQL DB
+apt-get install python-mysqldb
+apt-get install build-essential python-dev libmysqlclient-dev
+pip install MySQL-python
+
+
+# Working with MsSQL DB
+# http://blog.tryolabs.com/2012/06/25/connecting-sql-server-database-python-under-ubuntu/
+sudo apt-get install unixodbc unixodbc-dev freetds-dev tdsodbc
+(virtual-env) pip instal pyodbc
+
+# edit the file /etc/freetds/freetds.conf
+[sqlserver]
+    host = <ip address of the computer running SQL Server>
+    port = <port>
+    tds version = 7.2
+
+# edit the file /etc/odbcinst.ini
+# edit the file /etc/odbc.ini
+# and from python PYODBC
+import pyodbc
+dsn = 'sqlserverdatasource'
+user = ''
+password = ''
+database = ''
+
+con_string = 'DSN={};UID={};PWD={};DATABASE={};'.format(dsn, user, password, database)
+cnxn = pyodbc.connect(con_string)
+cursor = cnxn.cursor()
+
+cursor.execute("Select id From SpinLab_Stations;")
+cursor.fetchall()
+
+
+
+
+South
+##########################################################################################################
+
+# Normal Changes
+manage.py schemamigration myapp --auto       # manage.py schemamigration southtut --auto --update
+manage.py migrate myapp                      # re add initial_data from json
+
+
+# The First Migration
+manage.py schemamigration myapp --initial
+manage.py migrate myapp --fake
+
+
+# Converting Existing Applications
+manage.py syncdb
+manage.py convert_to_south myapp
+manage.py migrate 0001 --fake
+
+
+# Listing Current Migrations
+manage.py migrate --list
+
+# Discard migration
+manage.py migrate name 0003 --fake
+
+# Moving to 2 migration
+manage.py migrate myapp 0002
+manage.py migrate myapp                     # moving to the next migration
+
+# Creating own schema(e.g. datamigration)
+manage.py datamigration myapp schema_name

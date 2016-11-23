@@ -9,6 +9,7 @@ object.__file__					# object file path, or just __file__ for current file path(a
 object.__dict__					# a dictionary or other mapping object used to store an object’s (writable) attributes
 
 type(object)       				# type of the object
+# 								# creating class:	C = type('C', (object,), dict(__init__=__init__, add=add))
 id(object)				 		# id of the object
 
 # Immutable basic types such as numbers, strings, tuples
