@@ -193,7 +193,7 @@ print(a)
 b = {x: x**2 for x in (2, 4, 6)}
 print(b)
 
-c = {(i, v) for i, v in enumerate(['jack','jill','ivy'])}
+c = {(i, v) for i, v in enumerate(['jack','jill','ivy'], start=1)}
 print(sorted(c, key = lambda s: s[1]))
 
 

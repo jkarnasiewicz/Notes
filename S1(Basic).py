@@ -514,8 +514,7 @@ di = dict([('sape', 4139), ('ivy', 4127), ('jack', 4098)])
 
 # get object - like switch
 di.get(key, default=None)
-# factory_class(arg1, arg2)
-factory_class = {'a': ClassOne, 'b': ClassTwo}.get('b', ClassThree)
+factory_class = {'a': ClassOne, 'b': ClassTwo}.get('b', ClassThree)			# and then factory_class(arg1, arg2)
 
 # the method will set dict[key]=default if key is not already in dict
 di.setdefault(key, default=None)

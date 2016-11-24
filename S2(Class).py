@@ -112,9 +112,9 @@ print(e.name)
 
 
 # Descriptor Protocol
-descr.__get__(self, obj, type=None) --> value
-descr.__set__(self, obj, value) --> None
-descr.__delete__(self, obj) --> None
+descr.__get__(self, instance, type=None) --> value          # type == cls
+descr.__set__(self, instance, value) --> None
+descr.__delete__(self, instance) --> None
 
 
 class RevealAccess(object):
@@ -124,11 +124,11 @@ class RevealAccess(object):
         self.val = initval
         self.name = name
 
-    def __get__(self, obj, objtype):
+    def __get__(self, instance, objtype):
         print('Retrieving', self.name)
         return self.val
 
-    def __set__(self, obj, val):
+    def __set__(self, instance, val):
         print('Updating', self.name)
         self.val = val
 
@@ -145,13 +145,13 @@ print(m.x, m.y)
 
 
 
-# Accessing an attribute on an object like obj.foo gets you:
+# Accessing an attribute on an instance like instance.foo gets you:
 #   1. The result of the __get__ method of the data descriptor of the same name attached to the class if it exists
-#   2. The corresponding value in obj.__dict__ if it exists
+#   2. The corresponding value in instance.__dict__ if it exists
 #   3. The result of the __get__ method of the non-data descriptor of the same name on the class
-#   4. It falls back to look in the type(obj).__dict__
+#   4. It falls back to look in the type(instance).__dict__
 #   5. Repeating for each type in the mro until it find a match
-#   6. Assignment always creates an entry in obj.__dict__
+#   6. Assignment always creates an entry in instance.__dict__
 #   7. Unless there was a setter property(which is a descriptor) in which case we're calling a function
 
 
@@ -164,10 +164,10 @@ class LazyProperty(object):
         self._func = func
         self.__name__ = func.__name__
 
-    def __get__(self, obj, klass):
+    def __get__(self, instance, klass):
         print('Called the func')
-        result = self._func(obj)
-        obj.__dict__[self.__name__] = result
+        result = self._func(instance)
+        instance.__dict__[self.__name__] = result
         return result
 
 class MyClass(object):
@@ -581,10 +581,10 @@ print(creat_list(123, -6))
 #                    e.g. fun.__doc__, fun.__name__
 import functools
 
-def doc(f):
-    @functools.wraps(f)
-    def wrap():
-        return f()
+def doc(func):
+    @functools.wraps(func)
+    def wrapper():
+        return func()
     return wrap
 
 @doc
