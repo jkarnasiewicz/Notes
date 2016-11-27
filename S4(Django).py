@@ -326,7 +326,8 @@ height_field = models.IntegerField(default=0)
 
 
 # Pre and Post save
-# from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save
+
 def pre_save_receiver(sender, instance, *args, **kwargs):
     ...
 
@@ -369,6 +370,10 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, StreamingHttpResponse, JsonResponse
 from django.shortcuts import render_to_response, render, redirect
 
+from django.template import RequestContext
+from django.template.loader import render_to_string
+
+# an HTTP response class with a string as content
 HttpResponse(mimetype='application/force-download')
 HttpResponseRedirect(reverse('print_data') + '?' + urlencode(kwargs))
 
@@ -386,8 +391,12 @@ render_to_response('template_name.html', ctx, context_instance=RequestContext(re
 render(request, 'template_name.html', ctx)
 
 redirect('user_profile', id=instance.pk)
-# this calls instance.get_absolute_url()
-redirect(instance)
+redirect(instance)                              # this calls instance.get_absolute_url()
+
+
+
+# loads a template and renders it with a context, returns a string
+render_to_string(template_name, context=None, request=None, using=None)
 
 
 
@@ -411,17 +420,17 @@ if form.is_valid():
 
 # Forms
 
+from django import forms
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 
 def __init__(self, owner, *args, **kwargs):
     # super(ClassName, self).__init__(*args, **kwargs)      # python 2
     super().__init__(*args, **kwargs)                       # python 3
     self.instance.owner = owner
-    self.fields['field_name'].label = commercial_label
+    self.fields['field_name'].label = 'label_name'
     self.fields['field_name'].initial = datetime.datetime.now()
     self.fields['field_name'].disabled = True
 
-# Form class validation
 def clean_user(self):
     user = self.cleaned_data['user']
     if self.instance:
@@ -430,10 +439,10 @@ def clean_user(self):
         user = UserProfile.objects.get(pk=int(user))
     except UserProfile.DoesNotExists, TypeError:
         raise forms.ValidationError("Error")
-    return user    								# or return self.cleaned_data if 'def clean(self):'
+    return user
 
 def clean(self):
-    cleaned_data = super(CouponTemplateForm, self).clean()
+    cleaned_data = super(ClassName, self).clean()
     if not cleaned_data.get('value'):
         self._errors["value"] = self.error_class(
             [_('This field is required.')])
@@ -454,7 +463,7 @@ class MessageForm(forms.Form):
 def message_to_user(request):
     if request.method == "POST":
         form = MessageForm(request, data=request.POST)
-        if form.is_valid():
+        if form.is_valid():                                 # calling form.full_clean() directly trigger cleaning and validation
             # ...
             return redirect("message_to_user_done")
     else:
@@ -492,7 +501,9 @@ class CalendarWidget(forms.TextInput):
 
 # django Pagedown widget
 from pagedown.widgets import PagedownWidget
+
 content = forms.CharField(widget=PagedownWidget)
+
 # templates
 {% block head_extra %}
     {{ form.media }}
@@ -507,30 +518,12 @@ content = forms.CharField(widget=PagedownWidget)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Templates
-##########################################################################################################
-# Keep business logic out of your templates
+# Templates
+# keep business logic out of your templates
 
 from django.template import Template, Context
-# Template("<h1>{{ title }}</h1>").render(Context({"title": "SuperBook"}))      =>    '<h1>SuperBook</h1>'
+Template("<h1>{{ title }}</h1>").render(Context({"title": "SuperBook"}))                    # => '<h1>SuperBook</h1>'
 
-# Blocks
 {% extends "base.html" %}
 
 {% include "messages.html" %}
@@ -539,25 +532,44 @@ from django.template import Template, Context
 # If you want to render the context only with the variables provided (or even no variables at all)
 {% include "name_snippet.html" with greeting="Hi" only %}
 
+
+
+# static
 {% load static %}
 {% load staticfiles %}
 <link href="{% static 'css/base.min.css' %}" rel="stylesheet">
 
+
+
+# blocks
 {% block content %} {% endblock %}
 
 # block.super - get everything from original block
 {% block title %}{{ block.super }} - {{ slug|capfirst }}{% endblock %}
 
-# Url
+
+
+# url
 {% url 'myapp:url-name' %}
-# With additional parameters to url
+
+# with additional parameters to url
 <a href="{% url 'material' mat_cat_id=file.material_reference.get_category %}?mat_id={{ mat_id }}">
 <form action="{% url 'url_name' %}?id={{ obj.pk }}" method="POST">
 
-# Caches a complex variable under a simpler name(only between start and end tag)
+
+
+# caches a complex variable under a simpler name(only between start and end tag)
 {% with request.resolver.mach.url_name as urlname %}{% endwith %}
 
-# Logic
+# cache template fragment
+{% load cache %}
+    {% cache 500 sidebar request.user.username %}
+        .. sidebar for logged in user ..
+{% endcache %}
+
+
+
+# for
 {% for field in form %}
     {{ forloop.counter }}: {% field.label != 'user' and != 'material'}
     {% if forloop.last %} class='last'{% endif %}
@@ -565,45 +577,35 @@ from django.template import Template, Context
     <li>Sorry, no fields in this list.</li>
 {% endfor %}
 
+
+
+# if-else
 {% if article.count > 0 %}
 {% else %}
 {% endif %}
 
-# Date tag
-Date is {% now 'd-m-Y' %}
 
-# Required field test
-{% if form_experiment.name.field.required %}*{% endif %}
 
-# Foreign Key
-{% for a in article.comment_set.all %}
-{% endfor %}
-
-# Filters
+# filters
 {{ article.body|lower|truncatewords:"10"|truncatechars:120|timesince|urlize|linebreaks(białe znaki sa respektowane) }}
 
-# Filters with function
+# filters with function
 {{ synth_obj.material.material_category.all|join:', ' }}
 
-# Security(Cross-Site Request Forgery)
-{% csrf_token %}                                        # full html tag
-{{ csrf_token }}                                        # unmodified token string
 
-# Internet protocol
-{% if request.is_secure %}https{% else %}http{% endif %}
 
-# Form
+# form
 <div class="fieldWrapper">
     {{ form.subject.errors }}
     {{ form.subject.label_tag }}
     {{ form.subject }}
 </div>
 
-# Form(with file upload)
+# form(with file upload)
 <form action="/article/create/" method="POST/GET" enctype="multipart/form-data">
 <input type="text" name="query" placeholder="Search posts" value="{{ request.GET.query }}" />
 
-# Form errors
+# form errors
 {{ form.non_field_errors }}
 
 {% if form.errors %}                                                # all errors for this form
@@ -612,17 +614,32 @@ Date is {% now 'd-m-Y' %}
     </div>
 {% endif %}
 
-# Request/query
+# required field test
+{% if form_experiment.name.field.required %}*{% endif %}
+
+
+
+# security(Cross-Site Request Forgery)
+{% csrf_token %}                                        # full html tag
+{{ csrf_token }}                                        # unmodified token string
+
+
+
+# internet protocol
+{% if request.is_secure %}https{% else %}http{% endif %}
+
+# date tag
+Date is {% now 'd-m-Y' %}
+
+# foreign key
+{% for a in article.comment_set.all %}
+{% endfor %}
+
+# request/query
 <a href="?{{ page }}={{ object.page_number }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">...</a>
 
-# Verbatim, stops the template engine from rendering the content of this block tag
+# verbatim, stops the template engine from rendering the content of this block tag
 {% verbatim %} ... {% endverbatim %}
-
-# Cache template fragment
-{% load cache %}
-    {% cache 500 sidebar request.user.username %}
-        .. sidebar for logged in user ..
-{% endcache %}
 
 
 
@@ -641,7 +658,9 @@ Date is {% now 'd-m-Y' %}
 {% trans "Welcome to our page" %}
 {% blocktrans %} {{ object }} details {% endblocktrans %}
 # or
-{{ form.instance.name|default:_('New Two for One promotion') }}
+{{ form.instance.name|default:_('New item') }}
+
+
 
 # In python code:
 # Models - lazy
@@ -651,6 +670,7 @@ _('The file was successfully saved')
 # Views
 from django.utils.translation import ugettext as _
 _('The file was successfully saved')
+
 
 
 # Creating message files
@@ -678,26 +698,25 @@ django-admin.py compilemessages
 
 
 
+# Urls
 
-
-
-
-
-
-
-
-
-
-
-Urls
-##########################################################################################################
+from django.conf.urls import url
 from django.core.urlresolvers import reverse, resolve
-reverse('admin:app_list', kwargs={'app_label': 'auth'})
 
+# reverse - first argument can be a URL pattern name or the callable view object
+reverse('admin:app_list', kwargs={'app_label': 'auth'})
+reverse(view.app_list, kwargs={'app_label': 'auth'})
+
+# resolve - first argument is the URL path you want to resolve
 func, args, kwargs = resolve('/some/path/')
 
-url(r'^image/', include('image.urls', namespace='image'))
-url(r'^(?P<width>[0-9]+)x(?P<height>[0-9]+)/$', placeholder, name='placeholder')
+
+
+# url conf
+urlpatterns  = [
+    url(r'^image/', include('image.urls', namespace='image')),
+    url(r'^(?P<width>[0-9]+)x(?P<height>[0-9]+)/$', placeholder, name='placeholder'),
+]
 
 # url with class method
 def get_absolute_url(self):
@@ -707,6 +726,8 @@ def get_absolute_url(self):
 {% url 'image:placeholder' width=obj.width height=obj.height %}
 or
 {{ obj.get_absolute_url }}
+
+
 
 # view errors
 handler400 = 'mysite.views.my_custom_bad_request_view'                  # bad_request()
@@ -723,14 +744,7 @@ handler500 = 'mysite.views.my_custom_error_view'                        # server
 
 
 
-
-
-
-
-
-
-Request
-##########################################################################################################
+# Request
 
 request.META['HTTP_REFERER'].split('/')
 request.FILES
@@ -740,19 +754,27 @@ request.is_ajax()								# check HTTP_X_REQUESTED_WITH header for the string 'XM
 #  e.g.
 # form = UserForm(data=request.GET/POST or None, files=request.FILES or None, instance=object_instance)
 
+
+
 request.user.is_staff
 request.user.is_superuser
 request.user.is_authenticated()
 # if not request.user.is_authenticated():
 #     raise PermissionDenied
 
-request.is_secure()
+
+
+request.is_secure()                             # https or http
 request.build_absolute_uri()                    # https://www.djangoproject.com/...
 request.get_full_path()                         # /app_name/...
+
+
 
 # Cookies
 request.COOKIES['lang']
 response.set_cookie('lang', language)
+
+
 
 # Session
 request.session['lang'] = language
@@ -766,12 +788,11 @@ request.session['lang'] = language
 
 
 
+# Authentication and User
 
-
-Authentication and User
-##########################################################################################################
 from django.contrib import auth
 from django.contrib.auth import get_user_model
+# from django.contrib.auth.models import Group                          # fields: name, permissions
 # from django.contrib.auth.models import User
 # from django.contrib.auth.forms import UserCreationForm
 User = get_user_model()
@@ -781,6 +802,8 @@ AUTH_USER_MODEL = 'accounts.User'
 AUTHENTICATION_BACKENDS = (
     'accounts.authentication.CustomAuthenticationBackend',
 )
+
+
 
 # authenticate
 user = auth.authenticate(username=username, password=password)
@@ -796,15 +819,8 @@ auth.logout(request)
 
 
 
+# Django Generic Foreign Key (Django Content Type)
 
-
-
-
-
-
-
-Django Generic Foreign Key (Django Content Type)
-##########################################################################################################
 # content_type_field => manager with qs => model property => instance.property in templates
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -844,32 +860,37 @@ class Post(models.Model):
 
 
 
-
-
-
-
-
-
-
-
-
-Django Utilities
-##########################################################################################################
+# Django Utilities
 
 # Time
 from django.utils import timezone
-date_time = models.DateTimeField(default=timezone.now)		# Without parenthesis, create function and 
-#															  then in the view call it
+# Without parenthesis, create function and then in the view call it
+date_time = models.DateTimeField(default=timezone.now)
+
+
 
 # Slugify
 from django.utils.text import slugify
 slug = models.SlugField(unique=True)
 
-slugify('Tesla motor 1')                                    # 'tesla-motor-1'
+slugify('Tesla motor 1')                                    # => 'tesla-motor-1'
 
-# Escape characters
+
+
+# Escape characters - returns the given text with ampersands, quotes and angle brackets encoded for use in HTML
 from django.utils.html import escape
-escape("q's")
+escape("q'<>&s")
+
+
+
+# Tries to remove anything that looks like an HTML tag from the string, that is anything contained within <>
+from django.utils.html import strip_tags
+strip_tags('string')
+
+
+# Explicitly mark a string as safe for (HTML) output purposes
+from django.utils.safestring import mark_safe
+mark_safe('string')
 
 
 
@@ -880,29 +901,11 @@ escape("q's")
 
 
 
+# Admin
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Admin
-#####################################################f#####################################################
 from django.contrib import admin
 from .models import Post
+# default admin.site.register(Post)
  
 class PostModelAdmin(admin.ModelAdmin):
     date_hierarchy = 'updated'
@@ -957,27 +960,19 @@ django/contrib/admin/templates/admin
 
 
 
+# Django settings
 
-
-
-
-
-
-Django settings
-##########################################################################################################
-/django/conf/global_settings.py
-/django/conf/project_template/project_name/settings.py-tpl
+# /django/conf/global_settings.py
+# /django/conf/project_template/project_name/settings.py-tpl
 
 LOGIN_REDIRECT_URL = '/'
+
 ADMINS = (('name', 'email'),)           # if errors e.g. 400, 403, 404, 500, those admins get emails
 
 
 
+# Static
 
-
-
-Django Statics
-##########################################################################################################
 STATIC_URL = '/static/'                                                 # Urls for static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')                                    # Django server
@@ -992,6 +987,92 @@ if settings.DEBUG:
 
 
 
+
+
+
+
+
+# Django DB
+
+# Working with MySQL DB
+apt-get install python-mysqldb
+apt-get install build-essential python-dev libmysqlclient-dev
+pip install MySQL-python
+
+mysqldump -u USERNAME -p PASSWORD DATABASE_NAME > DATABASE_FILE.sql
+
+
+
+# Working with MsSQL DB
+# http://blog.tryolabs.com/2012/06/25/connecting-sql-server-database-python-under-ubuntu/
+sudo apt-get install unixodbc unixodbc-dev freetds-dev tdsodbc
+(virtual-env) pip instal pyodbc
+
+# edit the file /etc/freetds/freetds.conf
+[sqlserver]
+    host = <ip address of the computer running SQL Server>
+    port = <port>
+    tds version = 7.2
+
+# edit the file /etc/odbcinst.ini
+# edit the file /etc/odbc.ini
+# and from python PYODBC
+import pyodbc
+dsn = 'sqlserverdatasource'
+user = ''
+password = ''
+database = ''
+
+con_string = 'DSN={};UID={};PWD={};DATABASE={};'.format(dsn, user, password, database)
+cnxn = pyodbc.connect(con_string)
+cursor = cnxn.cursor()
+
+cursor.execute("Select id From SpinLab_Stations;")
+cursor.fetchall()
+
+
+
+
+
+
+
+
+
+
+# South
+
+# Creating necessary db for settings.py
+python manage.py syncdb
+python manage.py syncdb --database=external_db
+
+# Normal Changes
+manage.py schemamigration myapp --auto       # manage.py schemamigration southtut --auto --update
+manage.py migrate myapp                      # re add initial_data from json
+
+
+# The First Migration
+manage.py schemamigration myapp --initial
+manage.py migrate myapp --fake
+
+
+# Converting Existing Applications
+manage.py syncdb
+manage.py convert_to_south myapp
+manage.py migrate 0001 --fake
+
+
+# Listing Current Migrations
+manage.py migrate --list
+
+# Discard migration
+manage.py migrate name 0003 --fake
+
+# Moving to 2 migration
+manage.py migrate myapp 0002
+manage.py migrate myapp                     # moving to the next migration
+
+# Creating own schema(e.g. datamigration)
+manage.py datamigration myapp schema_name
 
 
 
@@ -1025,45 +1106,13 @@ import app_settings
 
 
 
+# apps.py
 
+This file is created to help the user include any application configuration for the app.
+Using this, you can configure some of the attributes of the application.
+Application configuration objects store metadata for an application.
+Some attributes can be configured in AppConfig subclasses. Others are set by Django and read-only.
 
-
-
-
-# To Do
-from django.contrib.auth.models import Group
-from django.db.models.query import CollectedObjects
-from django.db.models.fields.related import ForeignKey
-from django.utils.safestring import mark_safe
-from django.utils.encoding import smart_str, force_unicode
-from django.utils.html import strip_tags
-
-django_markdown
-django_markdown_deux
-
-<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-<a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
-{% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
-
-&rsaquo; {% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
-
-
-item = Item(...)
-item.full_clean()
-validate_unique()           # forms and models
-
-
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.dev")
-
-# Tworzenie domieszek do modeli do obsługi relacji generycznych (Django - Najlepsze receptury 46)
-# Wysyłanie obrazów na serwer i tworzenie miniatur obrazow (Django - Najlepsze receptury 66)
-
-
-# fast testing
-from django.test import Client
-Client().get("http://0.0.0.0:8000/public/").content
-
-# app.py
 Previously, there was no specific place for initializing the signal code. Typically, they
 were imported or implemented in models.py (which was unreliable)
 
@@ -1076,98 +1125,6 @@ were imported or implemented in models.py (which was unreliable)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Django DB
-##########################################################################################################
-
-# Working with MySQL DB
-apt-get install python-mysqldb
-apt-get install build-essential python-dev libmysqlclient-dev
-pip install MySQL-python
-
-mysqldump -u USERNAME -p PASSWORD DATABASE_NAME > DATABASE_FILE.sql
-
-
-# Working with MsSQL DB
-# http://blog.tryolabs.com/2012/06/25/connecting-sql-server-database-python-under-ubuntu/
-sudo apt-get install unixodbc unixodbc-dev freetds-dev tdsodbc
-(virtual-env) pip instal pyodbc
-
-# edit the file /etc/freetds/freetds.conf
-[sqlserver]
-    host = <ip address of the computer running SQL Server>
-    port = <port>
-    tds version = 7.2
-
-# edit the file /etc/odbcinst.ini
-# edit the file /etc/odbc.ini
-# and from python PYODBC
-import pyodbc
-dsn = 'sqlserverdatasource'
-user = ''
-password = ''
-database = ''
-
-con_string = 'DSN={};UID={};PWD={};DATABASE={};'.format(dsn, user, password, database)
-cnxn = pyodbc.connect(con_string)
-cursor = cnxn.cursor()
-
-cursor.execute("Select id From SpinLab_Stations;")
-cursor.fetchall()
-
-
-
-
-South
-##########################################################################################################
-# Creating necessary db for settings.py
-python manage.py syncdb
-python manage.py syncdb --database=external_db
-
-# Normal Changes
-manage.py schemamigration myapp --auto       # manage.py schemamigration southtut --auto --update
-manage.py migrate myapp                      # re add initial_data from json
-
-
-# The First Migration
-manage.py schemamigration myapp --initial
-manage.py migrate myapp --fake
-
-
-# Converting Existing Applications
-manage.py syncdb
-manage.py convert_to_south myapp
-manage.py migrate 0001 --fake
-
-
-# Listing Current Migrations
-manage.py migrate --list
-
-# Discard migration
-manage.py migrate name 0003 --fake
-
-# Moving to 2 migration
-manage.py migrate myapp 0002
-manage.py migrate myapp                     # moving to the next migration
-
-# Creating own schema(e.g. datamigration)
-manage.py datamigration myapp schema_name
+# Additional informations
+# Tworzenie domieszek do modeli do obsługi relacji generycznych (Django - Najlepsze receptury 46)
+# Wysyłanie obrazów na serwer i tworzenie miniatur obrazow (Django - Najlepsze receptury 66)

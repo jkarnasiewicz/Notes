@@ -307,7 +307,7 @@ print(s.median(a), s.mean(a), s.variance(a))
 
 
 # STRINGS
-# raw string (no 'escape sequences')
+# raw string (no 'escape sequences' - nothing in the string should be escaped)
 r'This is a\tstring!'
 
 # breaking string with \

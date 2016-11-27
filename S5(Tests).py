@@ -384,3 +384,7 @@ class PostTestCase(TestCase):
 # factory_boy library
 
 # libraries: py.test, nose and coverage.py
+
+# fast testing
+from django.test import Client
+Client().get("http://0.0.0.0:8000/public/").content
