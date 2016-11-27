@@ -17,53 +17,19 @@ refaktoryzacja - próba ulepszenia kodu bez wprowadzania zmian w jego funkcjonal
 
 
 
-# Informacje:
-Poszczególne testy wykonują sie do pierwszego błedu
 
 
 
-# Imitacja (Mock) - tworzenie fikcyjnej implementacji API
-from unittest.mock import Mock, patch, create_autospec
-
-mock_obj = Mock()
-mock_obj.return_value
-mock_obj.side_effect
-# assert that the mock was called exactly once and with the specified arguments (TDD 345)
-mock_obj.assert_called_once_with(*args, **kwargs)
 
 
 
-# create_autospec - for ensuring that the mock objects in your tests have the
-# same api as the objects they are replacing, you can use auto-speccing
-class TestWorkerReporting(unittest.TestCase):
 
-    def test_worker_busy(self,):
-        # mock_function = create_autospec(function, return_value='fishy')
-        mworker = create_autospec(IWorker)
-        mworker.configure_mock(**{'is_busy.return_value':True})
-        self.assertFalse(assign_if_free(mworker, {}))
-
-
-
-# subTest
-# parameterization - manageable inputs to tests
-def convert(alpha):
-    return ','.join([str(ord(i)-96) for i in alpha])
-
-class TestOne(unittest.TestCase):
-    def test_system(self,):
-        cases = [("aa","1,1"),("bc","2,3"),("jk","4,5"),("xy","24,26")]
-        for case in cases:
-            with self.subTest(case=case):
-                self.assertEqual(convert(case[0]),case[1])
-
-
-
-# TestCase
+# TestCase - before running each test, django resets the database to its initial state
+# The individual tests are performed to the first error (poszczególne testy wykonują sie do pierwszego błedu)
 import unittest
-# from django.test import TestCase, LiveServerTestCase, modify_settings, override_settings
-# from unittest.mock import patch
-# from django.contrib.auth import get_user_model, SESSION_KEY       # User = get_user_model()
+from django.test import TestCase, LiveServerTestCase, modify_settings, override_settings
+# from django.contrib.auth import get_user_model, SESSION_KEY
+
 class TestSomething(unittest.TestCase):
 
     @classmethod
@@ -157,7 +123,87 @@ class TestSomething(unittest.TestCase):
         pass
 
 
-    # Mock
+# unnecessary when using django test engine
+if __name__ == "__main__":
+    unittest.main()
+    # unittest.main(warnings='ignore')
+
+
+# Creating custom test runners (Python Unlock(99))
+unittest.main(verbosity=2, testRunner=XMLRunner)
+
+# Running test cases in parallel
+# The py.test library has an xdist plugin, which adds the capability to run tests in parallel
+
+
+
+
+
+
+
+
+
+
+# subTest
+# parameterization - manageable inputs to tests
+def convert(alpha):
+    return ','.join([str(ord(i)-96) for i in alpha])
+
+class TestOne(unittest.TestCase):
+    def test_system(self,):
+        cases = [("aa","1,1"),("bc","2,3"),("jk","4,5"),("xy","24,26")]
+        for case in cases:
+            with self.subTest(case=case):
+                self.assertEqual(convert(case[0]),case[1])
+
+
+
+
+
+
+
+
+
+
+# Mocks (Imitacja) - tworzenie fikcyjnej implementacji API
+
+# Mock are objects that can test the behavior, and stubs are
+# simply placeholder implementations
+from unittest.mock import Mock, patch, create_autospec
+
+mock_obj = Mock()
+mock_obj.return_value
+mock_obj.side_effect
+# assert that the mock was called exactly once and with the specified arguments (TDD 345)
+mock_obj.assert_called_once_with(*args, **kwargs)
+
+
+
+
+
+# create_autospec - for ensuring that the mock objects in your tests have the
+# same api as the objects they are replacing, you can use auto-speccing
+class TestWorkerReporting(unittest.TestCase):
+
+    def test_worker_busy(self,):
+        # mock_function = create_autospec(function, return_value='fishy')
+        mworker = create_autospec(IWorker)
+        mworker.configure_mock(**{'is_busy.return_value':True})
+        self.assertFalse(assign_if_free(mworker, {}))
+
+
+
+
+
+class TestMocks(TestCase):
+    def test_checks_superhero_service_obj(self):
+        with patch("profiles.models.SuperHeroWebAPI") as ws:
+            ws.is_hero.return_value = True
+            user = User.objects.create_user(username="ivy")
+            check_superhero = user.profile.is_superhero()
+        ws.is_hero.assert_called_with('ivy')
+        self.assertTrue(check_superhero)
+
     @patch('accounts.views.authenticate')
     def test_calls_authenticate_with_assertion_from_post(
             self, mock_authenticate):
@@ -174,18 +220,35 @@ class TestSomething(unittest.TestCase):
         self.client.post('/accounts/login', {'assertion': 'a'})
         self.assertEqual(self.client.session[SESSION_KEY], str(user.pk))
 
-        
- 
-if __name__ == "__main__":                                  # unnecessary when using django test engine
-	unittest.main()
-    # unittest.main(warnings='ignore')
 
 
-# Creating custom test runners (Python Unlock(99))
-unittest.main(verbosity=2, testRunner=XMLRunner)
 
-# Running test cases in parallel
-# The py.test library has an xdist plugin, which adds the capability to run tests in parallel
+
+
+
+
+
+
+# Fixtures
+class TestMocks(TestCase):
+    fixtures = ['posts.json']
+
+# factory class
+class PostFactory:
+
+    def make_post(self):
+        return Post.objects.create(message="")
+
+class PostTestCase(TestCase):
+
+    def setUp(self):
+        self.blank_message = PostFactory().makePost()
+
+    def test_some_post_functionality(self):
+        pass
+
+
+
 
 
 
@@ -197,6 +260,7 @@ unittest.main(verbosity=2, testRunner=XMLRunner)
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+
 class FunctionalTest(StaticLiveServerTestCase):
 
     @classmethod
@@ -296,95 +360,58 @@ class FunctionalTest(StaticLiveServerTestCase):
         )
 
 
-# TO DO
-# TESTING
+
+
+
+
+
+
+
+
+# Additional informations
 
 # Here are some qualities of a good test case (which is a subjective term, of course)
 # in the form of an easy-to-remember mnemonic "F.I.R.S.T. class test case":
 1. Fast: the faster the tests, the more often they are run. Ideally, your tests
-should complete in a few seconds.
+should complete in a few seconds
 2. Independent: Each test case must be independent of others and can be
-run in any order.
+run in any order
 3. Repeatable: The results must be the same every time a test is run. Ideally,
 all random and varying factors must be controlled or set to known values
-before a test is run.
+before a test is run
 4. Small: Test cases must be as short as possible for speed and ease of
-understanding.
-5. Transparent: Avoid tricky implementations or ambiguous test cases.
+understanding
+5. Transparent: Avoid tricky implementations or ambiguous test cases
 
 
 
 # Perhaps, even more important are the don'ts to remember while writing test cases:
 1. Do not (re)test the framework: Django is well tested. Dont check for URL
-lookup, template rendering, and other framework-related functionality.
+lookup, template rendering, and other framework-related functionality
 2. Do not test implementation details: Test the interface and leave the minor
 implementation details. It makes it easier to refactor this later without
-breaking the tests.
+breaking the tests
 3. Test models most, templates least: Templates should have the least business
-logic, and they change more often.
+logic, and they change more often
 4. Avoid HTML output validation: Test views use their context variables
-output rather than its HTML-rendered output.
+output rather than its HTML-rendered output
 5. Avoid using the web test client in unit tests: Web test clients invoke several
-components and are therefore, better suited for integration tests.
+components and are therefore, better suited for integration tests
 6. Avoid interacting with external systems: Mock them if possible. Database is
-an exception since test database is in-memory and quite fast.
+an exception since test database is in-memory and quite fast
 
 
 
-# https://docs.python.org/3/library/unittest.html#assert-methods
-# https://docs.djangoproject.com/en/1.10/topics/testing/tools/#assertions
-assertWarns
-
-
-
-# TestCase
-# Before running each test, Django resets the database to its initial state
-
-
-
-# Mocks (create new class for mocks in S5 file)
-# Mock objects are objects that can test the behavior, and stubs are
-# simply placeholder implementations
-
-
-from django.test import TestCase
-from unittest.mock import patch
-from django.contrib.auth.models import User
-
-class TestSuperHeroCheck(TestCase):
-    def test_checks_superhero_service_obj(self):
-        with patch("profiles.models.SuperHeroWebAPI") as ws:
-            ws.is_hero.return_value = True
-            u = User.objects.create_user(username="t")
-            r = u.profile.is_superhero()
-        ws.is_hero.assert_called_with('t')
-        self.assertTrue(r)
-
-
-
-# Pattern – test fixtures and factories
-
-# fixtures
-fixtures = ['posts']
-
-# factory
-class PostFactory:
-
-    def make_post(self):
-        return Post.objects.create(message="")
-
-class PostTestCase(TestCase):
-
-    def setUp(self):
-        self.blank_message = PostFactory().makePost()
-
-    def test_some_post_functionality(self):
-        pass
-
-# factory_boy library
-
-# libraries: py.test, nose and coverage.py
-
-# fast testing
+# Fast testing
 from django.test import Client
 Client().get("http://0.0.0.0:8000/public/").content
+
+
+
+# Assertions methods
+https://docs.python.org/3/library/unittest.html
+https://docs.djangoproject.com/en/1.10/topics/testing/tools/
+
+
+
+# Libraries: py.test, nose, coverage.py and factory_boy(fixtures)

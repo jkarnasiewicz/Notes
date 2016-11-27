@@ -26,5 +26,3 @@
 # TypeError: fun() missing 1 required keyword-only argument: 'post'
 # def fun(*args, post, **kwargs): pass
 # fun(1, 2, 'st', p=33, k=44, j='o')
-
-print(__name__)
