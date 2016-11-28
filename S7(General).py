@@ -1,8 +1,115 @@
-# REST - representational state transfer
-# Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
-# RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
+# REST - Representational State Transfer
+Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struktury danych
+RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
 
 # API - Application Programming Interface
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Network
+# The layers operating below the socket() API are two different protocols(UDP and TCP)
+
+# TCP
+The Transmission Control Protocol supports two-way conversations made of streams of
+bytes by sending (or perhaps re-sending), receiving, and re-ordering small network messages
+called packets.
+
+# UDP
+
+# IP
+The Internet Protocol knows how to send packets between different computers.
+The Internet Protocol is a scheme for imposing a uniform system of addresses on all of the Internet-connected
+computers in the entire world and to make it possible for packets to travel from one end of the Internet to the other
+
+# Link layer
+The 'link layer' at the very bottom, consists of network hardware devices such as Ethernet
+ports and wireless cards, which can send physical messages between directly linked
+computers.
+
+
+
+# Decoding
+Decoding is what happens when bytes are on their way into your application and you need to figure out what they
+mean.
+
+# Translating from the outside world of bytes to Unicode characters.
+input_bytes = b'\xff\xfe4\x001\x003\x00 \x00i\x00s\x00 \x00i\x00n\x00.\x00'
+input_characters = input_bytes.decode('utf-16')
+print(repr(input_characters))
+
+
+
+# Encoding
+Encoding is the process of taking character strings that you are ready to present to the outside world and turning
+them into bytes using one of the many encodings that digital computers use when they need to transmit or store
+symbols using the bytes that are their only real currency
+
+# Translating characters back into bytes before sending them.
+output_characters = 'We copy you down, Eagle.\n'
+output_bytes = output_characters.encode('utf-8')
+print(repr(output_bytes))
+
+
+
+
+
+# Simple Python server
+python -m http.server 9000
+
+# DNS - Domain Name System
+
+# Protocol(protokół) e.g. Http, Https
+
+
+
+# Status code:
+# 2XX Success
+200 Ok
+201 Created
+
+# 3XX Redirection
+301 Moved Permanently (Trwale przeniesiony – żądany zasób zmienił swój URI i w przyszłości zasób powinien być szukany pod wskazanym nowym adresem)
+302 Found (Znaleziono – żądany zasób jest chwilowo dostępny pod innym adresem a przyszłe odwołania do zasobu powinny być kierowane pod adres pierwotny)
+304 Not Modified
+
+# 4XX Client Error
+400 Bad Request (Nieprawidłowe zapytanie – żądanie nie może być obsłużone przez serwer z powodu błędnej składni zapytania)
+403 Forbidden (Zabroniony – serwer zrozumiał zapytanie lecz konfiguracja bezpieczeństwa zabrania mu zwrócić żądany zasób)
+404 Not Found
+
+# 5XX Server Error
+500 Internal Server Error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,3 +188,332 @@ xrange() used to work before.
 6. Dictionary keys are views: dict and dict-like classes (such as QueryDict)
 will return iterators instead of lists for the keys(), items(), and values()
 method calls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# SECURITY
+# Cross-site scripting (XSS)
+considered the most prevalent web application security flaw today,
+enables an attacker to execute his malicious scripts (usually JavaScript)
+on web pages viewed by users
+
+
+
+# Cross-Site Request Forgery (CSRF)
+is an attack that tricks a user into making
+unwanted actions on a website, where they are already authenticated, while they
+are visiting another site. Say, in a forum, an attacker can place an IMG or IFRAME tag
+within the page that makes a carefully crafted request to the authenticated site.
+
+
+
+# SQL injection
+is the second most common vulnerability of web applications,
+after XSS. The attack involves entering malicious SQL code into a query that
+gets executed on the database. It could result in data theft, by dumping database
+contents, or the distruction of data, say, by using the DROP TABLE command.
+
+
+
+# Clickjacking('django.middleware.clickjacking.XFrameOptionsMiddleware')
+is a means of misleading a user to click on a hidden link or button in
+the browser when they were intending to click on something else. This is typically
+implemented using an invisible IFRAME that contains the target website over a
+dummy web page(shown here) that the user is likely to click on
+
+
+
+# Shell injection
+As the name suggests, shell injection or command injection allows an attacker
+to inject malicious code to a system shell such as bash. Even web applications use
+command-line programs for convenience and their functionality. Such processes
+are typically run within a shell.
+
+
+
+# A handy security checklist
+1. Dont trust data from a browser, API, or any outside sources: This is a
+fundamental rule. Make sure you validate and sanitize any outside data.
+2. Dont keep SECRET_KEY in version control: As a best practice, pick
+SECRET_KEY from the environment. Check out the django-environ package.
+3. Dont store passwords in plain text: Store your application password hashes
+instead. Add a random salt as well.
+4. Dont log any sensitive data: Filter out the confidential data such as credit
+card details or API keys from your log files.
+5. Any secure transaction or login should use SSL: Be aware that
+eavesdroppers in the same network as you are could listen to your web
+traffic if is not in HTTPS. Ideally, you ought to use HTTPS for the entire site.
+6. Avoid using redirects to user-supplied URLs: If you have redirects such as
+http://example.com/r?url=http://evil.com, then always check against
+whitelisted domains.
+7. Check authorization even for authenticated users: Before performing
+any change with side effects, check whether the logged-in user is allowed
+to perform it.
+8. Use the strictest possible regular expressions: Be it your URLconf or
+form validators, you must avoid lazy and generic regular expressions.
+9. Dont keep your Python code in web root: This can lead to an accidental
+leak of source code if it gets served as plain text.
+10. Use Django templates instead of building strings by hand: Templates
+have protection against XSS attacks.
+11. Use Django ORM rather than SQL commands: The ORM offers protection
+against SQL injection.
+12. Use Django forms with POST input for any action with side effects: It might
+seem like overkill to use forms for a simple vote button. Do it.
+13. CSRF should be enabled and used: Be very careful if you are exempting
+certain views using the @csrf_exempt decorator.
+14. Ensure that Django and all packages are the latest versions: Plan for
+updates. They might need some changes to be made to your source code.
+However, they bring shiny new features and security fixes too.
+15. Limit the size and type of user-uploaded files: Allowing large file uploads
+can cause denial-of-service attacks. Deny uploading of executables or scripts.
+16. Have a backup and recovery plan: Thanks to Murphy, you can plan for an
+inevitable attack, catastrophe, or any other kind of downtime. Make sure
+you take frequent backups to minimize data loss.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Design Patterns
+
+Each pattern describes a problem, which occurs over and over again in our environment,
+and then describes the core of the solution to that problem in such a way that you can
+use this solution a million times over, without ever doing it the same way twice
+
+In the world of software, the term design pattern refers to a general repeatable
+solution to a commonly occurring problem in software design
+
+# Observer pattern - Spreading information to all listeners
+This is the basic pattern in which an object tells other objects about something
+interesting
+
+# Strategy pattern - Changing the behavior of an algorithm
+Sometimes, the same piece of code must have different behavior for different
+invocation by different clients
+
+# Singleton pattern - Providing the same view to all
+The singleton pattern maintains the same state for all instances of a class
+
+# Template pattern - Refining algorithm to use case(Inheritance, overide methods)
+
+# Adaptor pattern - Bridging class interfaces
+This pattern is used to adapt a given class to a new interface
+
+    def __getattr__(self, attr):
+      return getattr(self.fish, attr)
+
+# Facade pattern - Hiding system complexity for a simpler interface
+
+# Flyweight pattern - Consuming less memory with shared objects
+
+# Command pattern - Easy-execution management for commands (83 Python Unlock)
+
+# Abstract factory
+class Animal(six.with_metaclass(abc.ABCMeta, object)):
+ 	""" clients only need to know this interface for animals"""
+ 	@abc.abstractmethod
+ 	def sound(self, ):
+		pass
+
+# Registry pattern - Adding functionality from anywhere in code to class
+
+# State pattern - Changing execution based on state
+
+
+
+
+
+# MODELS
+# Structural patterns
+
+# Patterns – normalized models
+# denormalization(speed of the queries) and normalization(space with consistent data)
+Problem: By design, model instances have duplicated data that cause data inconsistencies.
+Solution: Break down your models into smaller models through normalization.
+Connect these models with logical relationships between them.
+
+# Pattern – model mixins
+# Smaller mixins are better. Whenever a mixin becomes large and violates the Single
+# Responsibility Principle, consider refactoring it into smaller classes. Let a mixin do
+# one thing and do it well
+Problem: Distinct models have the same fields and/or methods duplicated violating
+the DRY principle.
+Solution: Extract common fields and methods into various reusable model mixins.
+
+# Pattern – service/utils objects
+Problem: Models can get large and unmanageable. Testing and maintenance
+get harder as a model does more than one thing.
+Solution: Refactor out a set of related methods(e.g. @staticmethod or celery tasks)
+into a specialized 'service' or 'utils' object.
+
+# Retrieval patterns
+This section contains design patterns that deal with accessing model properties or
+performing queries on them.
+
+# Pattern – property field
+Problem: Models have attributes that are implemented as methods. However, these
+attributes should not be persisted to the database.
+Solution: Use the property decorator on such methods(@property)
+# If it is an expensive calculation, we might want to cache the result(@cached_property)
+
+# Pattern – custom model managers
+Problem: Certain queries on models are defined and accessed repeatedly
+throughout the code violating the DRY principle.
+Solution: Define custom managers to give meaningful names to common queries
+
+# VIEWS
+# Pattern – context enhancers
+Problem: Several views need the same context variable
+Solution: Create a mixin or context processors(TEMPLATE_CONTEXT_PROCESSORS)
+that sets the shared context variable
+
+# Pattern – services
+# This form of a service is usually called a web Application Programming Interface (API).
+Problem: Information from your website is often scraped and processed by
+other applications.
+Solution: Create lightweight services that return data in machine-friendly formats,
+such as JSON or XML(e.g. Django REST framework)
+
+# TEMPLATES
+# Pattern – template inheritance tree
+Problem: Templates have lots of repeated content in several pages.
+Solution: Use template inheritance wherever possible and include snippets elsewhere.
+
+# ADMIN
+# Don't give admin access to end users
+
+# Pattern – feature flags
+# selected users within a controlled experiment, performance testing for new features
+Problem: Publishing of new features to users and deployment of the corresponding
+code in production should be independent.
+Solution: Use feature flags to selectively enable or disable features after deployment
+
+# FORMS
+# Pattern – dynamic form generation
+Problem: Adding form fields dynamically or changing form fields from what
+has been declared.
+Solution: Add or change fields during initialization of the form.
+
+class PersonDetailsForm(forms.Form):
+	name = forms.CharField(max_length=100)
+	age = forms.IntegerField()
+
+	def __init__(self, *args, **kwargs):
+		upgrade = kwargs.pop("upgrade", False)
+		super().__init__(*args, **kwargs)
+
+		if upgrade:
+			self.fields["first_class"] = forms.BooleanField(
+				label="Fly First Class?")
+
+# PersonDetailsForm(upgrade=True)
+
+# Pattern – multiple form actions per view with prefix
+form = SubscribeForm(prefix="offers")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Gathering requirements:
+
+1. Talk directly to the application owners even if they are not technical savvy.
+2. Make sure you listen to their needs fully and note them.
+3. Dont use technical jargon such as "models". Keep it simple and use end-user
+   friendly terms such as a "user profile".
+4. Set the right expectations. If something is not technically feasible or difficult,
+   make sure you tell them right away.
+5. Sketch as much as possible. Humans are visual in nature. Websites more so.
+   Use rough lines and stick figures. No need to be perfect.
+6. Break down process flows such as user signup. Any multistep functionality
+   needs to be drawn as boxes connected by arrows.
+7. Finally, work through the features list in the form of user stories or in any
+   easy way to understand the form.
+8. Play an active role in prioritizing the features into high, medium,
+   or low buckets.
+9. Be very, very conservative in accepting new features.
+10. Post-meeting, share your notes with everyone to avoid misinterpretations.
+
++. Single-page document that quickly tells what the site is meant to be

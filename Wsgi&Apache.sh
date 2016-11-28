@@ -1,38 +1,3 @@
-# Simple Python server
-# =================================
-hostname $ python -m http.server 9000
-
-
-# Status code:
-# ===========================
-# 2XX Success
-200 Ok
-201 Created
-
-# 3XX Redirection
-301 Moved Permanently (Trwale przeniesiony – żądany zasób zmienił swój URI i w przyszłości zasób powinien być szukany pod wskazanym nowym adresem)
-302 Found (Znaleziono – żądany zasób jest chwilowo dostępny pod innym adresem a przyszłe odwołania do zasobu powinny być kierowane pod adres pierwotny)
-
-304 Not Modified
-
-# 4XX Client Error
-400 Bad Request (Nieprawidłowe zapytanie – żądanie nie może być obsłużone przez serwer z powodu błędnej składni zapytania)
-403 Forbidden (Zabroniony – serwer zrozumiał zapytanie lecz konfiguracja bezpieczeństwa zabrania mu zwrócić żądany zasób)
-404 Not Found
-
-# 5XX Server Error
-500 Internal Server Error
-
-
-# DNS:
-# ===========================
-Domain Name System
-
-
-# Protocol(protokół):
-# ===========================
-Http, Https
-
 # apache
 # =================================
 <VirtualHost 10.26.27.25:80>

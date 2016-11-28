@@ -610,6 +610,15 @@ print('Done.')
 
 
 # RUNNING FILES AND SCRIPTS
+
+# executable directories with __main__.py
+python folder_name (where __main__.py is)
+
+# interative mode with file_name.py
+python -i file_name.py
+
+
+
 # __name__  is the module's filename
 if __name__ == '__main__':
 	print('This program is being run by itself')
@@ -621,9 +630,6 @@ else:
 
 # Every Python module has its __name__ defined. If this is ’__main__’, that
 # implies that the module is being run standalone
-
-# __main__.py
-# Executable directories. Run: python folder_name (where __main__.py is)
 
 # run files from python shell
 exec(open("Example.py").read())
@@ -857,7 +863,7 @@ sum(counter_obj.values())
 
 
 
-# dict subclass that calls a factory function to supply missing values
+# dict subclass, that calls a factory function to supply missing values
 # defaultdict means that if a key is not found in the dictionary, then instead of a KeyError being thrown,
 # a new entry is created. The type of this new entry is given by the argument of defaultdict.
 defaultdict(callable)

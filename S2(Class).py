@@ -1,4 +1,4 @@
-# Classes, Function Factories, Decorators, Special Methods
+# Classes, Function Factories, Decorators and Special Methods
 
 # Callable objects: regular functions, lambdas expressions, classes(constructor),
 # methods, instance objects with __call__
@@ -8,6 +8,13 @@
 # Classes define the structure and behavior of objects
 # Instance method - functions which can be called on objects(with self argument)
 # instance.method() == Class.method(instance)
+
+# Metaprogramming - in a nutshell, code that manipulates code(e.g. decorators, metaclasses, descriptors)
+# (extensively used in frameworks and libraries)
+
+# Metaclasses propagate down hierarchies (genetic mutation - wszystkie klasy które dziedziczą po Base będą mieć 'metaclass=mytype')
+# class Base(metaclasses=mytype):
+#     pass
 
 # @staticmethod - without 'self' in method args. Code organization(like free function)
 # @classmethod - first arg 'cls'. Refere to class object within the method class, e.g. class attribute
@@ -97,6 +104,7 @@ print(e.name)
 
 # Descriptors
 
+# Descriptors - customized processing of attribute access (dostosowany/zindywidualizowany proces dostępu do atrybutu)
 # Descriptor is an object attribute with 'binding behavior'(wiążącym zachowaniem),
 # one whose attribute access has been overridden by methods in the descriptor protocol.
 # Those methods are __get__(), __set__(), and __delete__().
@@ -481,7 +489,8 @@ print(t1())
 
 
 
-# Function Decorators - modify or enhance functions without changing their definition
+# Decorator is a function that creates a wrapper around another function
+# Decorators - modify or enhance functions without changing their definition
 def escape_unicode(f):
     def wrap(*args, **kwargs):
         x = f(*args, **kwargs)

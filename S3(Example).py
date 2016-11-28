@@ -141,6 +141,15 @@ vol(10)
 
 
 
+# Keyword-only args
+def fun(*args, post, **kwargs):
+    pass
+
+# TypeError: fun() missing 1 required keyword-only argument: 'post'
+fun(1, 2, 'st', p=33, k=44, j='o')
+
+
+
 # Lambda Expressions
 def f(a,b,c):
     return lambda x: a*x**2 + b*x + c
