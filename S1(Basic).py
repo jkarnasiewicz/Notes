@@ -12,13 +12,13 @@ type(object)       				# type of the object
 # 								# creating class:	C = type('C', (object,), dict(__init__=__init__, add=add))
 id(object)				 		# id of the object
 
-# Immutable basic types such as numbers, strings, tuples
+# Immutable basic types such as numbers, strings, tuples and bytes
 
 # Mutable objects such as lists, dictionaries, sets and other types -
 # meaning you can change their content without changing their identity
 
 # Sequence (such as a string, bytes, tuple, list, or range)
-# Collection (such as a dictionary, set, or frozen set)
+# Collection (such as a dictionary, set, frozen set or bytearray)
 
 # python objects/variables - think of named references to objects rather than variables
 
@@ -701,6 +701,8 @@ sys.argv
 
 # imported modules
 sys.modules
+# assign new variable to current module
+setattr(sys.modules[__name__], 'new_variable', 7)
 
 # print(file=sys.stdout)
 sys.stdout.write(string)

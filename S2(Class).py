@@ -327,6 +327,7 @@ for stamp, value in itertools.islice(zip(timstamps, sensor), 10):
 # ===================================
 
 # Generators simplifies creation of iterators
+# (It is an easier way to create iterators using a keyword yield from a function)
 
 # Generators are defined by any python function witch using the 'yield' keyword at least once in it's definition
 # (produces a sequence of results instead of a single value)
@@ -780,7 +781,7 @@ print(a._cache)
 
 # called to implement truth value testing and the built-in operation bool()
 # should return False or True
-# we can use it with 'if' or 'while'
+# we can use it with 'if' or 'while', or as operands to 'and', 'or' and 'not'
 # if a class defines neither __len__() nor __bool__(), all its instances are considered true
 class RandomList(object):
     def __init__(self):
