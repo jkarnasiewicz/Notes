@@ -89,4 +89,51 @@
 # for name, cc, pop, (latitude, longitude) in metro_areas:
 #     print('{:20} {}, {}'.format(name, latitude, longitude))
 
+
+
+# bisection algorithms
+# import bisect
+
+# def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
+#     i = bisect.bisect(breakpoints, score)
+#     return grades[i]
+
+# print([grade(score) for score in [33, 99, 77, 70, 89, 90, 100]])               # ['F', 'A', 'C', 'C', 'B', 'A', 'A']
+
+
+
+# import array
+# Return a new array whose items are restricted by typecode, and
+# initialized from the optional initializer value, which must be a list,
+# string or iterable over elements of the appropriate type.
+
+# Arrays represent basic values(characters, integers, floats) and behave very much like lists, except
+# the type of objects stored in them is constrained.
+# array.array(typecode, iterable)
+# floats.tofile(fp)
+# floats2.fromfile(fp, 10**7)
+
+
+
+# collections.abc
+
+
+
+# hashable object
+# An object is hashable if it has a hash value which never changes during its lifetime (it
+# needs a __hash__() method), and can be compared to other objects (it needs an
+# __eq__() method). Hashable objects which compare equal must have the same hash value.
+
+# tuple is immutable but not always hashable:
+# tt = (1, 2, (30, 40))
+# hash(tt)
+# tl = (1, 2, [30, 40])
+# hash(tl)
+
+
+from collections import OrderedDict
 from pprint import pprint as print
+a = {'1': 1, '2': 2, '3': '3'}
+# print(a[3].__hash__())
+a.update((('4', 4), ))
+print(OrderedDict(a))

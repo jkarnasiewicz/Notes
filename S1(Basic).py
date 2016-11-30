@@ -12,7 +12,7 @@ type(object)       				# type of the object
 # 								# creating class:	C = type('C', (object,), dict(__init__=__init__, add=add))
 id(object)				 		# id of the object
 
-# Immutable basic types such as numbers, strings, tuples and bytes
+# Immutable basic types such as numbers, strings, bytes and tuples
 
 # Mutable objects such as lists, dictionaries, sets and other types -
 # meaning you can change their content without changing their identity
@@ -466,6 +466,7 @@ li.sort(key=callable, reverse=True)
 
 
 # SETS (unordered collection of unique, immutable objects)(Zbiory)
+# implemented with hash tables
 # duplicates are removed, only unique items stay
 basket = set(['apple', 'orange', 'apple', 'pear', 'orange', 'banana'])			# {'orange', 'banana', 'pear', 'apple'}
 
@@ -509,6 +510,7 @@ if(len(set(iterable)) != 1)
 
  
 # DICTIONARIES (unordered mapping from unique, immutable keys to mutable values -> Key: Value)
+# implemented with hash tables
 di = {'sape': 4139, 'ivy': 4127, 'jack': 4098}
 di = dict([('sape', 4139), ('ivy', 4127), ('jack', 4098)])
 
@@ -872,7 +874,7 @@ defaultdict(callable)
 
 
 
-# list-like container with fast appends and pops on either end
+# list-like container with fast appends and pops on either end (double-ended queue)
 deque(iterable, maxlen=None)
 
 deque_obj.append(obj)

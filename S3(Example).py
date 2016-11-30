@@ -385,7 +385,9 @@ print(heapq.nsmallest(3, portfolio, key=lambda s: s['price']))
 
 
 
-# Pickle (Python objects converted into a byte stream)
+# Pickle (object serialization, python objects converted into a byte stream)
+# saving an array of floats with pickle.dump is almost as fast as with array.tofile,
+# but pickle handles almost all built-in types
 import pickle
 li = [2, "Hello", 3.14, "..."]
 
