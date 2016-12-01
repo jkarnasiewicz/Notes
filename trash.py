@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # iter(), next()
 # class attribute vs instnace attribute
 # First-Class Functions
@@ -8,6 +9,10 @@
 
 # import inspect
 # inspect.getsource(object_name)
+
+
+
+# prefix 'i' - inplace, e.g. __iadd__
 
 
 
@@ -131,9 +136,59 @@
 # hash(tl)
 
 
-from collections import OrderedDict
+
+# ChainMap
+# UserDict(inherit from userdict rather then dict)
+
+
+
+# MappingProxyType builds a read-only mappingproxy instance from a dict
+# mappingproxy is dynamic: any change in original dictionary is reflected
+# from types import MappingProxyType
+# d = {1: 'A'}
+# d_proxy = MappingProxyType(d)
+# d_proxy
+# d_proxy[1]
+# # changes cannot be made through d_proxy
+# d_proxy[2] = 'x'
+# d[2] = 'B'
+# d_proxy
+# d_proxy[2]
+
+
+
+# Set and frozenset
+# Set elements must be hashable. The set type is not hashable, but frozenset is, so you
+# can have frozenset elements inside a set
+# frozenset(range(10))
+
+# from dis import dis
+# # the disassembler function
+# dis('{1}')
+# # vs
+# dis('set([1])')
+
+
+
+# dict
+# 1: Keys must be hashable objects
+An object is hashable if all of these requirements are met:
+    1. It supports the hash() function via a __hash__() method that always returns the
+    same value over the lifetime of the object.
+    2. It supports equality via an __eq__() method.
+    3. If a == b is True then hash(a) == hash(b) must also be True.
+
+# 2: dicts have significant memory overhead
+# 3: Key search is very fast(example of trading space for time)
+# 4: Key ordering depends on insertion order
+# 5: Adding items to a dict may change the order of existing keys
+
+
+
+# we decode bytes to str to get human readable text, and we encode str to bytes for storage or transmission
+
+
+
 from pprint import pprint as print
 a = {'1': 1, '2': 2, '3': '3'}
-# print(a[3].__hash__())
-a.update((('4', 4), ))
-print(OrderedDict(a))
+a = {1, 3, 5}

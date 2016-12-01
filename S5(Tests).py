@@ -150,7 +150,7 @@ def convert(alpha):
     return ','.join([str(ord(i)-96) for i in alpha])
 
 class TestOne(unittest.TestCase):
-    def test_system(self,):
+    def test_system(self):
         cases = [("aa","1,1"),("bc","2,3"),("jk","4,5"),("xy","24,26")]
         for case in cases:
             with self.subTest(case=case):
