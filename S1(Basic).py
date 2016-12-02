@@ -75,6 +75,7 @@ from ..a import A
 
 # BUILT-IN FUNCTIONS
 # import builtins
+
 # return a dictionary representing the current global symbol table
 globals()
 
@@ -370,8 +371,18 @@ len('Python')
 .rstrip()
 .center(80)
 
+# Encoding to byte sequence
 # from string to byte object (python 3)
 string_object.encode(encoding='utf-8', errors='strict')
+# silently skips characters that cannot be encoded
+string_object.encode(encoding='utf-16', errors='ignore')
+# substitutes unencodable characters with '?'
+string_object.encode(encoding='iso8859_1', errors='replace')
+# replaces unencodable characters with a XML entity
+string_object.encode(encoding='cp437', errors='xmlcharrefreplace')
+# replace each non-decodable byte with a code point in the Unicode range from
+# U+DC00 to U+DCFF that lies in the so-called 'Low Surrogate Area' of the standard
+string_object.encode(encoding='cp437', errors='xmlcharrefreplace')
 
 # from byte to string object (python 3)
 byte_object.decode('utf-8')
@@ -559,20 +570,22 @@ dict.fromkeys(sequence, value)
 
 
 # READING AND WRITING FILES
+# always set encoding
 # file object support iterator protocol(and yield line by line)
 
 open(file="path to file", mode="read/write/append, binary/text", encoding="text encoding")
 
 # creating the new file or overwriting the existing file
 with open("Example.txt", mode="wt", encoding="utf-8") as f:
+	# the write method on a TextIOWrapper returns the number of Unicode characters written
 	f.write("Hello\n...")
 
 # append to the file instead of overwriting
-with open("Example.txt", mode = "at", encoding = "utf-8") as f:
+with open("Example.txt", mode = "at", encoding="utf-8") as f:
 	f.write("\nYupii\r...")
 
 # open to read in text mode(default mode is "rt"), no need to f.close() because of "with"
-with open("Example.txt") as f:
+with open("Example.txt", encoding="utf-8") as f:
 	f.read()
 
 # writelines
@@ -955,6 +968,9 @@ partial(function, *args, **kwargs)
 # repeatedly apply a function to the elements of a sequence, reducing them to a single value
 reduce(function, iterable, initial_value)
 reduce(lambda x, y: x*y, range(10), 1)
+# or
+from operator import add
+reduce(add, range(100))
 
 
 

@@ -715,7 +715,7 @@ with nest_test('outer'):
 # __init__ and __new__
 
 # __new__() and __init__() work together in constructing objects,
-# __new__() to create it, and __init__() to customize it,
+# __new__() to create an instance, then __init__() to customize it,
 # no non-None value may be returned by __init__()
 
 # __new__ is (special)static class method, while __init__ is instance method

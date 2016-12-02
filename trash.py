@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # iter(), next()
 # class attribute vs instnace attribute
-# First-Class Functions
 # __prepare__
 # __getattribute__(self, name)
 # __new__(cls, clsname, bases, clsdict)
@@ -13,6 +12,29 @@
 
 
 # prefix 'i' - inplace, e.g. __iadd__
+
+
+# First-Class Functions
+# Functions in Python are first-class objects
+# “first-class object” as a program entity that can be:
+# • created at runtime;
+# • assigned to a variable or element in a data structure;
+# • passed as an argument to a function;
+# • returned as the result of a function.
+
+
+
+# bound vs unbound
+# Unbound (class) method objects: no self
+# Accessing a function attribute of a class by qualifying the class returns an unbound method object.
+# To call the method, you must provide an instance object explicitly as the first argument.
+# In Python 3.X, an unbound method is the same as a simple function and can be called through the class’s name;
+# in 2.X it’s a distinct type and cannot be called without providing an instance.
+
+# Bound (instance) method objects: self + function pairs
+# Accessing a function attribute of a class by qualifying an instance returns a bound method object.
+# Python automatically packages the instance with the function in the bound method object,
+# so you don’t need to pass an instance to call the method.
 
 
 
@@ -172,11 +194,11 @@
 
 # dict
 # 1: Keys must be hashable objects
-An object is hashable if all of these requirements are met:
-    1. It supports the hash() function via a __hash__() method that always returns the
-    same value over the lifetime of the object.
-    2. It supports equality via an __eq__() method.
-    3. If a == b is True then hash(a) == hash(b) must also be True.
+# An object is hashable if all of these requirements are met:
+#     1. It supports the hash() function via a __hash__() method that always returns the
+#     same value over the lifetime of the object.
+#     2. It supports equality via an __eq__() method.
+#     3. If a == b is True then hash(a) == hash(b) must also be True.
 
 # 2: dicts have significant memory overhead
 # 3: Key search is very fast(example of trading space for time)
@@ -187,8 +209,34 @@ An object is hashable if all of these requirements are met:
 
 # we decode bytes to str to get human readable text, and we encode str to bytes for storage or transmission
 
+# Normalizing Unicode text
+# from unicodedata import normalize, name
+# def nfc_equal(str1, str2):
+#     return normalize('NFC', str1) == normalize('NFC', str2)
+
+# def fold_equal(str1, str2):
+#     return (normalize('NFC', str1).casefold() == normalize('NFC', str2).casefold())
+
+# Sorting Unicode text
+# Python sorts sequences of any type by comparing the items in each sequence one by
+# one. For strings, this means comparing the code points. Unfortunately, this produces
+# unacceptable results for anyone who uses non-ASCII characters
+
+# Sorting with the Unicode Collation Algorithm
+# import pyuca
+# coll = pyuca.Collator()
+# fruits = ['caju', 'atemoia', 'cajá', 'açaí', 'acerola']
+# sorted_fruits = sorted(fruits, key=coll.sort_key)
+
+
 
 
 from pprint import pprint as print
 a = {'1': 1, '2': 2, '3': '3'}
 a = {1, 3, 5}
+
+# print('asdąś€'.encode('utf-8'))
+# print('asdąś€'.encode('utf-16'))
+# print('asdąś€'.encode('cp1252', errors='replace'))
+# print('asdąś€'.encode('latin1', errors='replace'))
+# print('asdąś€'.encode('ascii', 'surrogateescape'))
