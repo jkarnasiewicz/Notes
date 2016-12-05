@@ -4,7 +4,8 @@ RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update,
 
 # API - Application Programming Interface
 
-
+# REDIS
+Redis is in-memory data structure store, used as a database, cache and message broker
 
 
 

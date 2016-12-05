@@ -202,15 +202,17 @@ m.x
 # abstract classes are available via the standard abc library package
 # they are useful for the definition of interfaces and common functionality
 
-from abc import ABCMeta, abstractmethod
-class Worker(metaclass=ABCMeta):
+# from abc import ABCMeta, abstractmethod
+# class Worker(metaclass=ABCMeta):
+from abc import ABC, abstractmethod
+class Worker(ABC):
 
     @abstractmethod
     def do(self, func, args, kwargs):
         "work on function"
 
     @abstractmethod
-    def is_busy(self,):
+    def is_busy(self):
         "tell if busy"
 
 

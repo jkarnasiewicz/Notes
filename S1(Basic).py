@@ -198,7 +198,8 @@ round(Decimal('3.456'), 2)
 # Fraction(3, 5)
 round(Fraction(57, 100), 1)
 
-# increment and decrement operators
+# increment and decrement operators (augmented assignment operators)
+# these change their first argument in-place, if it is mutable object if not, the operators works like the normal ones
 +=, -=, *=, /=, //=
 
 # comparing values
@@ -961,13 +962,14 @@ from functools import wraps, lru_cache, partial, reduce
 # decorator to wrap a function with a memoizing callable that saves up to the maxsize most recent calls
 @lru_cache(maxsize=128, typed=False)
 
-# the partial is used for partial function application which “freezes” some portion of
+# the partial is used for partial function application which 'freezes' some portion of
 # a function’s arguments and/or keywords resulting in a new object with a simplified signature
+# new_partial_func.func, new_partial_func.args, new_partial_func.keywords
 partial(function, *args, **kwargs)
 
 # repeatedly apply a function to the elements of a sequence, reducing them to a single value
 reduce(function, iterable, initial_value)
-reduce(lambda x, y: x*y, range(10), 1)
+reduce(lambda x, y: x + y, range(10), 1)
 # or
 from operator import add
 reduce(add, range(100))

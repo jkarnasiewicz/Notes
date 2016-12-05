@@ -6,8 +6,19 @@
 # __new__(cls, clsname, bases, clsdict)
 # memoryview
 
+
+
 # import inspect
 # inspect.getsource(object_name)
+# ? inspect.getmembers(promotions, inspect.isfunction) / (obj, filter func)
+
+# Extracting the function signature
+# from inspect import signature
+# sig = signature(f)
+# print(sig)
+
+# for name, param in sig.parameters.items():
+#     print(param.kind, ':', name, '=', param.default)
 
 
 
@@ -230,8 +241,15 @@
 
 
 
+# keyword-only arguments do not need to have a default value, but they can be still mandatory
+# def f(a, *, b):
+#     print(a, b)
 
-from pprint import pprint as print
+# f(3, b=4)
+
+
+
+# from pprint import pprint as print
 a = {'1': 1, '2': 2, '3': '3'}
 a = {1, 3, 5}
 
@@ -240,3 +258,8 @@ a = {1, 3, 5}
 # print('asdąś€'.encode('cp1252', errors='replace'))
 # print('asdąś€'.encode('latin1', errors='replace'))
 # print('asdąś€'.encode('ascii', 'surrogateescape'))
+
+from operator import mul
+from functools import partial
+triple = partial(mul, 3)
+print([triple(i) for i in range(1, 10)])

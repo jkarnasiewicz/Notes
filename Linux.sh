@@ -309,3 +309,9 @@ grep id_new_item functional_tests/test*			# grep co_szukamy gdzie_szukamy
 grep -Ir id_new_item functional_tests/
 
 mkdir -p accounts/static/tests
+
+
+
+# curl
+# curl -i is used to dump the headers to standard output
+curl -i django.com

@@ -73,24 +73,24 @@ print(fib2(100))
 
 
 def silnia(n):
-    a = 1
-    if n==0:
-        return 1
-    while n>0:
-        a = a*n
-        n = n-1
-    return a
+    result = 1
+    while n > 1:
+        result = result * n
+        n -= 1
+    return result
 
-def silnia1(n):
-    return n*silnia2(n-1) if n>1 else 1
+def factorial_recursion(n):
+    return n*factorial_recursion(n-1) if n > 1 else 1
 
 from functools import reduce
-def silnia2(n):
-    return reduce(lambda x, y: x * y, range(1, n+1), 1)
+from operator import mul
+
+def factorial_reduce(n):
+    return reduce(mul, range(1, n+1), 1)
 
 print(silnia(5))
-print(silnia1(6))
-print(silnia2(7))
+print(factorial_recursion(6))
+print(factorial_reduce(7))
 
 
 
