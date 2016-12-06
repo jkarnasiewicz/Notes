@@ -494,9 +494,11 @@ print(t1())
 
 # Decorator is a function that creates a wrapper around another function
 # Decorators - modify or enhance functions without changing their definition
-def escape_unicode(f):
+# Function decorators are executed as soon as the module is imported,
+# but the decorated functions only run when they are explicitly invoked
+def escape_unicode(func):
     def wrap(*args, **kwargs):
-        x = f(*args, **kwargs)
+        x = func(*args, **kwargs)
         return ascii(x)
 
     return wrap
@@ -513,6 +515,9 @@ def escape_unicode(f):
 @escape_unicode
 def string(s):
     return s
+
+# the same as
+# string = escape_unicode(string)
 
 print(string("ałó€"))
 

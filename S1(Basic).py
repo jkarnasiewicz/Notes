@@ -37,6 +37,7 @@ id(object)				 		# id of the object
 # Always use immutable objects as a default argument value
 
 # Value equality(equivalent 'contents') vs. identity(same object id())
+# (równość wartości a równość tożsamości)
 # Value comparison can be controlled programatically('__eq__')
 # [] == [] => True
 # [] is [] => False
@@ -959,7 +960,10 @@ from functools import wraps, lru_cache, partial, reduce
 # 'wrapper', and the docstring of the original function would have been lost
 @wraps
 
+# Least Recently Used cache
 # decorator to wrap a function with a memoizing callable that saves up to the maxsize most recent calls
+# memoization: an optimization technique which works by saving the results of previous invocations of an
+# expensive function, avoiding repeat computations on previously used arguments
 @lru_cache(maxsize=128, typed=False)
 
 # the partial is used for partial function application which 'freezes' some portion of

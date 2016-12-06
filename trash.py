@@ -1,4 +1,23 @@
 # -*- coding: utf-8 -*-
+# Peter Norvig Design Patterns book
+# The message from Peter Norvig’s design patterns slides is that the Command and Strategy
+# patterns — along with Template Method and Visitor — can be made simpler or even
+# “invisible” with first class functions, at least for some applications of these patterns
+
+# Python has first-class functions and first-class types, features that Norvig claims affect
+# 10 of the 23 patterns
+
+# The authors are explicit right at the beginning of their book that
+# “some of our patterns are supported directly by the less common object-oriented languages”
+
+
+
+# Scopes
+# Python does not require you to declare variables, but assumes that a variable assigned in the body of a function is local.
+# This is much better than the behavior of JavaScript, which does not require variable declarations
+# either, but if you do forget to declare that a variable is local (with var), you may clobber
+# a global variable without knowing.
+
 # iter(), next()
 # class attribute vs instnace attribute
 # __prepare__
@@ -220,6 +239,12 @@
 
 # we decode bytes to str to get human readable text, and we encode str to bytes for storage or transmission
 
+# print('asdąś€'.encode('utf-8'))
+# print('asdąś€'.encode('utf-16'))
+# print('asdąś€'.encode('cp1252', errors='replace'))
+# print('asdąś€'.encode('latin1', errors='replace'))
+# print('asdąś€'.encode('ascii', 'surrogateescape'))
+
 # Normalizing Unicode text
 # from unicodedata import normalize, name
 # def nfc_equal(str1, str2):
@@ -248,18 +273,38 @@
 # f(3, b=4)
 
 
+# identity, value and aliasing(label/etykieta)
+# The theme is the distinction between objects and their names. A name is not the object;
+# a name is a separate thing
 
-# from pprint import pprint as print
-a = {'1': 1, '2': 2, '3': '3'}
-a = {1, 3, 5}
+# variables are labels, not boxes
 
-# print('asdąś€'.encode('utf-8'))
-# print('asdąś€'.encode('utf-16'))
-# print('asdąś€'.encode('cp1252', errors='replace'))
-# print('asdąś€'.encode('latin1', errors='replace'))
-# print('asdąś€'.encode('ascii', 'surrogateescape'))
+# Python variables are like reference variables in Java, so it’s better to think of them as labels attached to objects
 
-from operator import mul
-from functools import partial
-triple = partial(mul, 3)
-print([triple(i) for i in range(1, 10)])
+# With reference variables it makes much more sense to say that the variable is assigned to an object, and not the
+# other way around. After all, the object is created before the assignment. right-hand side of an assignment happens first
+
+# Every object has an identity, a type and a value. An object’s identity never changes once
+# it has been created; you may think of it as the object’s address in memory. The is operator
+# compares the identity of two objects; the id() function returns an integer representing
+# its identity.
+
+# The == operator compares the values of objects (the data they hold), while is compares
+# their identities
+
+# The is operator is faster than ==, because it cannot be overloaded, so Python does not
+# have to find and invoke special methods to evaluate it, and computing is as simple as
+# comparing two integer ids
+
+# copy.copy(obj)
+# copy.deepcopy(obj)
+
+a = [1]
+
+def f(a):
+    global a
+    a = a + a
+    return a
+
+print(f(a))
+print(a)

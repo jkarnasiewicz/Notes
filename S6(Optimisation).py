@@ -18,25 +18,32 @@ timeit(setup='from __main__ import fun',
 from functools import wraps
 import time
 
-def showtime(func):
-	@wraps(func)
-	def wrap(*args,**kwargs):
-		st = time.time()
-		result = func(*args,**kwargs)
-		et = time.time()
-		print("{}:{}".format(func.__name__, et-st))
-		return result
-	return wrap
+def clock(func):
+    @wraps(func)
+    def wrap(*args, **kwargs):
+        t0 = time.perf_counter()
+        result = func(*args)
+        elapsed = time.perf_counter() - t0
+        name = func.__name__
+        arg_lst = []
+        if args:
+            arg_lst.append(', '.join(repr(arg) for arg in args))
+        if kwargs:
+            pairs = ['%s=%r' % (k, w) for k, w in sorted(kwargs.items())]
+            arg_lst.append(', '.join(pairs))
+        arg_str = ', '.join(arg_lst)
+        print('[{:.8f}] {}({}) -> {}'.format(elapsed, name, arg_str, result))
+        return result
+    return wrap
 
-@showtime
-def func_c():
-	for i in range(1000):
-		for j in range(1000):
-			for k in range(100):
-				pass
+@clock
+def func_c(x):
+    for i in range(100*x):
+        for j in range(10*x):
+            for k in range(x):
+                pass
 
-if __name__ == '__main__':
-	func_c()
+func_c(7)
 
 
 
