@@ -181,6 +181,9 @@
 # needs a __hash__() method), and can be compared to other objects (it needs an
 # __eq__() method). Hashable objects which compare equal must have the same hash value.
 
+# def __hash__(self):
+#     return hash(self.x) ^ hash(self.y)
+
 # tuple is immutable but not always hashable:
 # tt = (1, 2, (30, 40))
 # hash(tt)
@@ -215,7 +218,7 @@
 # frozenset(range(10))
 
 # from dis import dis
-# # the disassembler function
+# # the disassembler function(wywołania instrukcji)
 # dis('{1}')
 # # vs
 # dis('set([1])')
@@ -280,6 +283,7 @@
 # variables are labels, not boxes
 
 # Python variables are like reference variables in Java, so it’s better to think of them as labels attached to objects
+# variables hold references to object
 
 # With reference variables it makes much more sense to say that the variable is assigned to an object, and not the
 # other way around. After all, the object is created before the assignment. right-hand side of an assignment happens first
@@ -299,12 +303,77 @@
 # copy.copy(obj)
 # copy.deepcopy(obj)
 
-a = [1]
+# Function parameters as references
 
-def f(a):
-    global a
-    a = a + a
-    return a
+# The problem is that each default value is evaluated
+# when the function is defined — i.e. usually when the module is loaded — and the
+# default values become attributes of the function object
 
-print(f(a))
-print(a)
+# Unless a method is explicitly intended to mutate an object received
+# as argument, you should think twice before aliasing the argument
+# object by simply assigning it to an instance variable in your class. If
+# in doubt, make a copy
+
+# del does not delete an object, just a reference to it(name/etykiete)
+
+# The presence of references is what keeps an object alive in memory. When the reference
+# count of an object reaches zero, the garbage collector disposes of it
+
+# Weak references to an object do not increase its reference count. The object that is the
+# target of a reference is called the referent. Therefore, we say that a weak reference does
+# not prevent the referent from being garbage collected.
+# (import weakref WeakValueDictionary, WeakSet, ref)
+# wref = weakref.ref(object)
+
+# ender = weakref.finalize(object, callback_function)
+# ender.alive
+
+# class that wants to keep track of all its current instances - This can be done with weak references
+
+# Every Python object has an identity, a type and a value
+
+# The fact that variables hold references has many practical consequences in Python programming.
+# 1. Simple assignment does not create copies.
+# 2. Augmented assignment with +=, *= creates new objects if the left-hand variable is
+# bound to an immutable object, but may modify a mutable object in-place.
+# 3. Assigning a new value to an existing variable does not change the object previously
+# bound to it. This is called a rebinding: the variable is now bound to a different object.
+# If that variable was the last reference to the previous object, that object will be
+# garbage collected.
+# 4. Function parameters are passed as aliases, which means the function may change
+# any mutable object received as an argument. There is no way to prevent this, except
+# making local copies or using immutable objects (eg. passing a tuple instead of a
+# list).
+# 5. Using mutable objects as default values for function parameters is dangerous because
+# if the parameters are changed in-place then the default is changed, affecting
+# every future call that relies on the default.
+
+# duck typing
+# And this can be accomplished without inheritance, in the spirit of
+# duck typing: you just implement the methods needed for your objects to behave as
+# expected
+
+
+
+# repr() - Return a string representing the object as the developer wants to see it.
+# str() -Return a string representing the object as the user wants to see it.
+
+# __iter__ makes a object iterable; this is what makes unpacking work, e.g,
+# x, y = my_object
+
+# Private attribute
+# if you name an instance attribute in the form __mood (two leading
+# underscores and zero or at most one trailing underscore), Python stores the name in
+# the instance __dict__ prefixed with a leading underscore and the class name, so in the
+# Dog class, __mood becomes _Dog__mood
+
+# safety and not security
+
+
+# __slots__
+# special attribute (not a method) that affects the internal storage of an object, with potentially
+# huge impact on the use of memory but little effect on its public interface
+
+# To define __slots__ you create a class attribute with that name and assign it an iterable
+# of str with identifiers for the instance attributes
+# __slots__ = ('__x', '__y')

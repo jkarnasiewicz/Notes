@@ -280,7 +280,7 @@ Class_Name.__mro__ == Class_Name.mro()
 # iterator = iter(iterable)
 
     def __iter__(self):
-        return iter(self._items)
+        return (item for item in self._items)
 
 # or
 # iterator = iter(callable, sentinel) - callable without arguments
