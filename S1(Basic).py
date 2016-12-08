@@ -350,6 +350,8 @@ len('Python')
 
 # replace(old, new, count)
 'string'.replace('r', '-', 5)     					# 'st-ing'
+
+# find returns index of first occurrence of character
 'string'.find('r')                					# 2
 
 # checks if the string has only alphanumeric characters in it (A-Z, a-z and 0-9)
@@ -363,6 +365,7 @@ len('Python')
 
 .capitalize()
 .lower()
+.islower()
 .upper()
 .swapcase()
 # find extension
@@ -973,7 +976,7 @@ partial(function, *args, **kwargs)
 
 # repeatedly apply a function to the elements of a sequence, reducing them to a single value
 reduce(function, iterable, initial_value)
-reduce(lambda x, y: x + y, range(10), 1)
+reduce(lambda x, y: x + y, range(10), 0)
 # or
 from operator import add
 reduce(add, range(100))

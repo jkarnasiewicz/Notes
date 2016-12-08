@@ -372,8 +372,100 @@
 
 # __slots__
 # special attribute (not a method) that affects the internal storage of an object, with potentially
-# huge impact on the use of memory but little effect on its public interface
+# huge impact on the use of memory(removing dict) but little effect on its public interface
 
 # To define __slots__ you create a class attribute with that name and assign it an iterable
 # of str with identifiers for the instance attributes
 # __slots__ = ('__x', '__y')
+
+# Protocols and duck typing
+# In the context of Object Oriented Programming, a protocol is an informal interface,
+# defined only in documentation and not in code. For example, the sequence protocol in
+# Python entails just the __len__ and __getitem__ methods. Any class Spam that implements
+# those methods with the standard signature and semantics can be used anywhere
+# a sequence is expected. Whether Spam is a subclass of this or that is irrelevant, all that
+# matters is that it provides the necessary methods.
+
+# We say it is a sequence because it behaves like one, and that is what matters
+
+# protocols are defined as the informal interfaces that make polymorphism work
+# in languages with dynamic typing like Python
+
+# interface
+# interface is: the subset of an object’s public methods
+# that enable it to play a specific role in the system. That’s what is implied when the
+# Python documentation mentions “a file-like object” or “an iterable”, without specifying
+# a class
+
+# protocol
+# Protocols are interfaces, but because they are informal — defined only by documentation
+# and conventions — protocols cannot be enforced like formal interfaces can. A protocol may be
+# partially implemented in a particular class, and that’s OK.
+
+# “duck typing”: operating with objects regardless
+# of their types, as long as they implement certain protocols.
+
+# Sequence protocol:
+# __getitem__, __len__, __contains__, __iter__??
+
+# slice
+# s[1:4:2, 7:9]       # (slice(1, 4, 2), slice(7, 9, None))
+# print([1, 3, 5, 7, 9][slice(None, None, 2)])
+
+# indices
+# S.indices(len) -> (start, stop, stride)
+# This method produces “normalized” tuples of non-negative start, stop and stride integers
+# adjusted to fit within the bounds of a sequence of the given length
+# slice(None, 10, 2).indices(5)                       # (0, 5, 2)
+# slice(-3, None, None).indices(5)                    # (2, 5, 1)
+
+# def __getitem__(self, index):
+#     cls = type(self)
+#     if isinstance(index, slice):
+#         return cls(self._components[index])
+#     elif isinstance(index, numbers.Integral):
+#         return self._components[index]
+#     else:
+#         msg = '{cls.__name__} indices must be integers'
+#         raise TypeError(msg.format(cls=cls))
+
+
+# dynamic attribute access
+# The __getattr__ method is invoked by the interpreter when attribute lookup fails. In
+# simple terms, given the expression my_obj.x, Python checks if the my_obj instance has
+# an attribute named x; if not, the search goes to the class (my_obj.__class__), and then
+# up the inheritance graph2. If the x attribute is not found, then the __getattr__ method
+# defined in the class of my_obj is called with self and the name of the attribute as a string,
+# e.g. 'x'.
+
+# def __getattr__(self, name):
+#     cls = type(self)
+#     ...
+#     raise AttributeError(msg)
+
+# def __setattr__(self, name, value):
+#     ...
+#     raise AttributeError('readonly attribute'/"can't set attributes")
+#     super().__setattr__(name, value)
+
+
+
+# reduce
+# As examples, for +, |, ^ the initializer should be 0, but for *, & it should be 1.
+
+
+
+# KISS principle - KISS is an acronym for "Keep it simple, stupid"
+def split(string, split_by):
+    result = list()
+    last_index = 0
+    for index, value in enumerate(string, start=0):
+        if value == split_by:
+            result.append(string[last_index:index])
+            last_index = index + 1
+    return result
+
+
+
+print(split('afwerfgwe wegwegfw 34tf34 f43f34f f443f', '4'))
+print('afwerfgwe wegwegfw 34tf34 f43f34f f443f'.split('4'))

@@ -931,6 +931,7 @@ class SortedSet(Set):
             # If b knows enough to return True or False, then the expression can succeed. If it doesn't,
             # then the runtime will fall back to the built-in behavior (which is based on identity for == and !=)
         return self._items == rhs._items
+        # return len(self) == len(other) and all(a == b for a, b in zip(self, other))           # + __iter__
 
 
 # Testing using '!='
