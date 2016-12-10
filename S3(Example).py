@@ -607,7 +607,7 @@ python setup.py sdist --format zip
 
 # Handling Exception (try, except, else, finally, raise)
 # raise without an argument re-raises the current exception
-# NotImplementedError, IndexError, NameError, KeyError, ImportError, ValueError, TypeError, IOError, SyntaxError
+# NotImplementedError, LookupError(IndexError, KeyError), NameError, ImportError, ValueError, TypeError, IOError, SyntaxError
 def readfile(filename):
     if filename.endswith('.txt'):
         fh = open(filename)

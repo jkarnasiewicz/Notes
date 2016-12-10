@@ -456,16 +456,48 @@
 
 
 # KISS principle - KISS is an acronym for "Keep it simple, stupid"
-def split(string, split_by):
-    result = list()
-    last_index = 0
-    for index, value in enumerate(string, start=0):
-        if value == split_by:
-            result.append(string[last_index:index])
-            last_index = index + 1
-    return result
 
 
 
-print(split('afwerfgwe wegwegfw 34tf34 f43f34f f443f', '4'))
-print('afwerfgwe wegwegfw 34tf34 f43f34f f443f'.split('4'))
+# random.SystemRandom()?
+
+
+# Strong versus weak typing
+# If the language rarely performs implicit conversion of types, it’s considered strongly
+# typed; if it often does it, it’s weakly typed. Java, C++ and Python are strongly typed.
+# PHP, JavaScript and Perl are weakly typed.
+
+
+
+# Static versus dynamic typing
+# If type-checking is performed at compile time, the language is statically typed; it it
+# happens at run-time, it’s dynamically typed. Static typing requires type declarations
+# (some modern languages use type inference to avoid some of that). Fortran and
+# Lisp are the two oldest programming languages still alive and they use, respectively,
+# static and dynamic typing.
+
+# To summarize, Python uses dynamic and strong typing
+
+
+
+# Subclassing built-in types is tricky
+# This built-in behavior is a violation of a basic rule of object oriented programming: the
+# search for methods should always start from the class of the target instance (self), even
+# when the call happens inside a method implemented in a superclass.
+
+# from collections import OrderedDict
+# +class DoppelDict(collections.UserDict):
+# -class DoppelDict(dict):
+#     def __setitem__(self, key, value):
+#         super().__setitem__(key, [value] * 2)
+
+# dd = DoppelDict(one=1) #
+# print(dd)
+# dd['two'] = 2
+# print(dd)
+# dd.update(three=3) #
+# print(dd)
+
+# Instead of subclassing the built-ins, derive your classes
+# from UserDict, UserList and UserString from the collections
+# module, which are designed to be easily extended.
