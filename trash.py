@@ -501,3 +501,292 @@
 # Instead of subclassing the built-ins, derive your classes
 # from UserDict, UserList and UserString from the collections
 # module, which are designed to be easily extended.
+
+
+
+# NotImplemented vs NotImplementedError
+# Do not confuse NotImplemented with NotImplementedError. The
+# first, NotImplemented is a special singleton value that an infix operator
+# special method should return to tell the interpreter it cannot
+# handle a given operand. In contrast, NotImplementedError is an
+# exception that stub methods in abstract classes raise to warn that
+# they must be overwritten by subclasses.
+
+
+
+# If an infix operator method raises an exception, it aborts the operator
+# dispatch algorithm. In the particular case of TypeError, it is often
+# better to catch it and return NotImplemented. This allows the interpreter
+# to try calling the reversed operator method which may
+# correctly handle the computation with the swapped operands, if they
+# are of different types.
+
+
+
+# Operator overloading
+# stick to the fundamental rule of operators: always return a new object !!!
+# In other words, do not modify self, but create and return a new instance of a suitable type
+
+# def __abs__(self):
+#     return math.sqrt(sum(x * x for x in self))
+# # - __neg__
+# # Arithmetic unary negation. If x is -2 then -x == 2
+# def __neg__(self):
+#     return Vector(-x for x in self)
+# # + __pos__
+# # Arithmetic unary plus. Usually x == +x
+# def __pos__(self):
+#     return Vector(self)
+# def __add__(self, other):
+#     pairs = itertools.zip_longest(self, other, fillvalue=0.0) #
+#     return Vector(a + b for a, b in pairs) #
+# def __radd__(self, other):
+#     return self + other
+
+# __radd__ = __add__
+
+# def __mul__(self, scalar):
+#     if isinstance(scalar, numbers.Real): #
+#         return Vector(n * scalar for n in self)
+#     else: #
+#         return NotImplemented
+# def __rmul__(self, scalar):
+#     return self * scalar
+
+# __rmul__ = __mul__
+
+# KlassA * KlassB
+# KlassA.__mul__(self, rhs) => KlassB.__rmul__(self, lhs)
+
+
+# += as a shortcut for the list.extend()
+# Very important: augmented assignment special methods must return self
+
+
+# import itertools
+# import numbers
+
+# class Vector:
+#     def __init__(self, sequence):
+#         self.data = list(sequence)
+
+#     def __iter__(self):
+#         return (i for i in self.data)
+
+#     def __add__(self, rhs):
+#         pairs = itertools.zip_longest(self, rhs, fillvalue=0.0)
+#         return Vector(a + b for a, b in pairs)
+
+#     def __radd__(self, lhs):
+#         return self + lhs
+#     # __radd__ = __add__
+
+#     def __mul__(self, scalar):
+#         print('MUL')
+#         if isinstance(scalar, numbers.Real):
+#             return Vector(n * scalar for n in self)
+#         else:
+#             return NotImplemented
+
+#     def __rmul__(self, scalar):
+#         print('RMUL')
+#         return self * scalar
+#     # __rmul__ = __mul__
+
+#     def __eq__(self, other):
+#         if isinstance(other, Vector):
+#             return (len(self) == len(other) and
+#                     all(a == b for a, b in zip(self, other)))
+#         else:
+#             return NotImplemented
+
+#     def __str__(self):
+#         return 'Vector([{}])'.format(self.data)
+
+
+
+
+
+# Iterables, iterators and generators
+# But an iterator — as defined in the GoF book — retrieves
+# items from a collection, while a generator can produce items
+# “out of thin air”
+
+# reprlib.repr ('string ... string')
+
+# Every Python programmer knows that sequences are iterable
+
+# Whenever the interpreter needs to iterate over an object x, it automatically calls iter(x).
+# The iter built-in function:
+# 1. Checks whether the object implements, __iter__, and calls that to obtain an iterator;
+# 2. If __iter__ is not implemented, but __getitem__ is implemented, Python creates
+# an iterator that attempts to fetch items in order, starting from index 0 (zero);
+# 3. If that fails, Python raises TypeError, usually saying "'C' object is not itera
+# ble", where C is the class of the target object.
+
+# The standard interface for an iterator has two methods
+# __next__
+# Returns the next available item, raising StopIteration when there are no more
+# items.
+# __iter__
+# Returns self; this allows iterators to be used where an iterable is expected, for
+# example, in a for loop.
+
+# for loop equivalent
+# while True:
+#     try:
+#         print(next(it))
+#     except StopIteration:
+#         del it
+#         break
+
+# checking if object is iterator
+# isinstance(object, abc.Iterator)
+
+
+# iter - Once exhausted, an iterator becomes useless
+
+
+# iterable
+# Any object from which the iter built-in function can obtain an iterator. Objects
+# implementing an __iter__ method returning an iterator are iterable. Sequences
+# are always iterable; so as are objects implementing a __getitem__ method which
+# takes 0-based indexes
+
+
+# iterator
+# Any object that implements the __next__ no-argument method which returns the
+# next item in a series or raises StopIteration when there are no more items. Python
+# iterators also implement the __iter__ method so they are iterable as well.
+
+
+# issubclass(SentenceInterator, abc.Iterator)
+
+# classic Iterator pattern
+import re
+import reprlib
+
+RE_WORD = re.compile('\w+')
+
+class Sentence:
+
+    def __init__(self, text):
+        self.text = text
+        self.words = RE_WORD.findall(text)
+
+    def __repr__(self):
+        return 'Sentence(%s)' % reprlib.repr(self.text)
+
+    def __iter__(self):
+        return SentenceIterator(self.words)
+
+class SentenceIterator:
+
+    def __init__(self, words):
+        self.words = words
+        self.index = 0
+
+    def __next__(self):
+        try:
+            word = self.words[self.index]
+        except IndexError:
+            raise StopIteration()
+        self.index += 1
+        return word
+
+    def __iter__(self):
+        return self
+
+
+# To 'support multiple traversals' it must be possible to obtain multiple independent
+# iterators from the same iterable instance, and each iterator must keep its own internal
+# state, so a proper implementation of the pattern requires each call to iter(my_itera
+# ble) to create a new, independent, iterator. That is why we need the SentenceItera
+# tor class in this example.
+
+# s = Sentence('2323d 23f23fd 23d23d')
+# # print([i for i in s])
+# it = iter(s)
+# # print([i for i in s])
+# print(it)
+
+# import re
+# import reprlib
+# RE_WORD = re.compile('\w+')
+
+# class Sentence:
+
+#     def __init__(self, text):
+#         self.text = text
+#         self.words = RE_WORD.findall(text)
+
+#     def __repr__(self):
+#         return 'Sentence(%s)' % reprlib.repr(self.text)
+
+#     def __iter__(self):
+#         for word in self.words:
+#             yield word
+# __iter__ is generator function which, when called, builds a generator object which
+# implements the iterator interface, so the SentenceIterator class is no longer needed
+
+
+# s = Sentence('2323d 23f23fd 23d23d')
+# # print([i for i in s])
+# it = iter(s)
+# # print([i for i in s])
+# print(it)
+
+
+
+# Any Python function that contains the yield keyword is a generator function
+
+# A generator doesn’t “return” values in the usual way: the return statement in the body
+# of a generator function causes StopIteration to be raised by the generator object
+
+# lazy is re.finditer() / eager is re.findall()
+
+
+import re
+import reprlib
+RE_WORD = re.compile('\w+')
+
+class Sentence:
+
+    def __init__(self, text):
+        self.text = text
+
+    def __repr__(self):
+        return 'Sentence(%s)' % reprlib.repr(self.text)
+
+    def __iter__(self):
+        # generator function
+        # for match in RE_WORD.finditer(self.text):
+        #     yield match.group()
+        # or
+        # generator expression
+        return (match.group() for match in RE_WORD.finditer(self.text))
+        # The end result is the same: the caller of __iter__ gets a generator object
+
+
+
+def aritprog_gen(begin, step, end=None):
+    result = type(begin + step)(begin)
+    forever = end is None
+    index = 0
+    while forever or result < end:
+        yield result
+        index += 1
+        result = begin + step * index
+
+# from decimal import Decimal as d
+# print(0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1)
+# print(0.1 + 0.1*9)
+
+def aritprog_gen(begin, step, end=None):
+    first = type(begin + step)(begin)
+    ap_gen = itertools.count(first, step)
+    if end is not None:
+        ap_gen = itertools.takewhile(lambda n: n < end, ap_gen)
+    return ap_gen
+
+451
