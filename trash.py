@@ -662,6 +662,13 @@
 
 # issubclass(SentenceInterator, abc.Iterator)
 
+# Generator objects implement both(next, iter), so from this perspective
+# every generator is an iterator
+
+# But you can write an iterator that is not a generator —
+# by implementing the classic Iterator pattern, as we saw in Example 14-4,
+# or by coding an extension in C.
+
 # classic Iterator pattern
 import re
 import reprlib
@@ -789,4 +796,63 @@ def aritprog_gen(begin, step, end=None):
         ap_gen = itertools.takewhile(lambda n: n < end, ap_gen)
     return ap_gen
 
-451
+import itertools
+# list(itertools.accumulate(sample, min)
+# list(itertools.accumulate(range(1, 11), operator.mul)
+# list(itertools.starmap(operator.mul, enumerate('albatroz', 1)))
+# list(itertools.chain(enumerate('ABC')))
+# list(itertools.chain.from_iterable(enumerate('ABC')))
+# list(itertools.zip_longest('ABC', range(5)))
+# list(itertools.zip_longest('ABC', range(5), fillvalue='?'))
+# list(itertools.product('AB', range(2), repeat=2))
+# list(itertools.product('ABC', '!@#', range(2)))
+# list(itertools.islice(itertools.count(1, .3), 3))
+# list(map(operator.mul, range(11), itertools.repeat(5)))
+
+# groupby
+# for char, group in itertools.groupby('LLLLAAAGG'):
+#     print(char, '->', list(group))
+
+# animals = ['duck', 'eagle', 'rat', 'giraffe', 'bear', 'bat', 'dolphin', 'shark', 'lion']
+# for length, group in itertools.groupby(reversed(animals), len):
+#     print(length, '->', list(group))
+
+# tee - tuple of n independent iterators
+# print(list(itertools.tee('ABC', 5)))
+
+# all and any
+# g = (n for n in [0, 0.0, 7, 8])
+# print(all(g))
+# print(next(g))
+# print(next(g))
+# print(next(g))
+
+# iter(callable, sentinel)
+# a marker value which, when returned by the callable, causes the
+# iterator to raise StopIteration instead of yielding the sentinel
+
+# with open('some_file.txt', 'rt') as f:
+#     for line in iter(lambda: f.readline().split(), 'END'):
+#     # for line in iter(f.readline, ''):
+#         print(line)
+
+
+# Coroutines
+# Like .__next__(), .send() causes the generator to advance to the next yield, but it
+# also allows the client using the generator to send data into it: whatever argument is
+# passed to .send() becomes the value of the corresponding yield expression inside the
+# generator function body. In other words, .send() allows two-way data exchange between
+# the client code and the generator — in contrast with .__next__() which only lets
+# the client receive data from the generator.
+# This is such a major “enhancement” that it actually changes the nature of generators:
+# when used in this way, they become coroutines.
+
+
+# Fibonacci series
+# def fibonacci():
+#     a, b = 0, 1
+#     while True:
+#         yield a
+#         a, b = b, a + b
+
+449

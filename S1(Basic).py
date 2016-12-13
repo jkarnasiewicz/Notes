@@ -937,7 +937,7 @@ islice(iterable, 0, None, 3)
 # Combinatoric generators
 
 # cartesian product (ciąg, kolejność istotna)
-# product('AB', repeat=2) => AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD
+# product('ABCD', repeat=2) => AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD
 product(*iterables, repeat=1)
 
 # r-length tuples, all possible orderings, no repeated elements (ciąg, kolejność istotna)

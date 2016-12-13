@@ -287,6 +287,7 @@ Class_Name.__mro__ == Class_Name.mro()
 
 with open('some_file.txt', 'rt') as f:
     for line in iter(lambda: f.readline().split(), 'END'):
+    # for line in iter(f.readline, ''):
         print(line)
 
 
