@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+# eval vs exec
+
 # Peter Norvig Design Patterns book
 # The message from Peter Norvig’s design patterns slides is that the Command and Strategy
 # patterns — along with Template Method and Visitor — can be made simpler or even
@@ -76,6 +79,7 @@
 # from collections import namedtuple
 # City = namedtuple('City', 'name country population coordinates')
 # tokyo = City('Tokyo', 'JP', 36.933, (35.689722, 139.691667))
+# print(tokyo)
 
 
 
@@ -670,39 +674,39 @@
 # or by coding an extension in C.
 
 # classic Iterator pattern
-import re
-import reprlib
+# import re
+# import reprlib
 
-RE_WORD = re.compile('\w+')
+# RE_WORD = re.compile('\w+')
 
-class Sentence:
+# class Sentence:
 
-    def __init__(self, text):
-        self.text = text
-        self.words = RE_WORD.findall(text)
+#     def __init__(self, text):
+#         self.text = text
+#         self.words = RE_WORD.findall(text)
 
-    def __repr__(self):
-        return 'Sentence(%s)' % reprlib.repr(self.text)
+#     def __repr__(self):
+#         return 'Sentence(%s)' % reprlib.repr(self.text)
 
-    def __iter__(self):
-        return SentenceIterator(self.words)
+#     def __iter__(self):
+#         return SentenceIterator(self.words)
 
-class SentenceIterator:
+# class SentenceIterator:
 
-    def __init__(self, words):
-        self.words = words
-        self.index = 0
+#     def __init__(self, words):
+#         self.words = words
+#         self.index = 0
 
-    def __next__(self):
-        try:
-            word = self.words[self.index]
-        except IndexError:
-            raise StopIteration()
-        self.index += 1
-        return word
+#     def __next__(self):
+#         try:
+#             word = self.words[self.index]
+#         except IndexError:
+#             raise StopIteration()
+#         self.index += 1
+#         return word
 
-    def __iter__(self):
-        return self
+#     def __iter__(self):
+#         return self
 
 
 # To 'support multiple traversals' it must be possible to obtain multiple independent
@@ -753,50 +757,50 @@ class SentenceIterator:
 # lazy is re.finditer() / eager is re.findall()
 
 
-import re
-import reprlib
-RE_WORD = re.compile('\w+')
+# import re
+# import reprlib
+# RE_WORD = re.compile('\w+')
 
-class Sentence:
+# class Sentence:
 
-    def __init__(self, text):
-        self.text = text
+#     def __init__(self, text):
+#         self.text = text
 
-    def __repr__(self):
-        return 'Sentence(%s)' % reprlib.repr(self.text)
+#     def __repr__(self):
+#         return 'Sentence(%s)' % reprlib.repr(self.text)
 
-    def __iter__(self):
-        # generator function
-        # for match in RE_WORD.finditer(self.text):
-        #     yield match.group()
-        # or
-        # generator expression
-        return (match.group() for match in RE_WORD.finditer(self.text))
-        # The end result is the same: the caller of __iter__ gets a generator object
+#     def __iter__(self):
+#         # generator function
+#         # for match in RE_WORD.finditer(self.text):
+#         #     yield match.group()
+#         # or
+#         # generator expression
+#         return (match.group() for match in RE_WORD.finditer(self.text))
+#         # The end result is the same: the caller of __iter__ gets a generator object
 
 
 
-def aritprog_gen(begin, step, end=None):
-    result = type(begin + step)(begin)
-    forever = end is None
-    index = 0
-    while forever or result < end:
-        yield result
-        index += 1
-        result = begin + step * index
+# def aritprog_gen(begin, step, end=None):
+#     result = type(begin + step)(begin)
+#     forever = end is None
+#     index = 0
+#     while forever or result < end:
+#         yield result
+#         index += 1
+#         result = begin + step * index
 
 # from decimal import Decimal as d
 # print(0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1)
 # print(0.1 + 0.1*9)
 
-def aritprog_gen(begin, step, end=None):
-    first = type(begin + step)(begin)
-    ap_gen = itertools.count(first, step)
-    if end is not None:
-        ap_gen = itertools.takewhile(lambda n: n < end, ap_gen)
-    return ap_gen
+# def aritprog_gen(begin, step, end=None):
+#     first = type(begin + step)(begin)
+#     ap_gen = itertools.count(first, step)
+#     if end is not None:
+#         ap_gen = itertools.takewhile(lambda n: n < end, ap_gen)
+#     return ap_gen
 
-import itertools
+# import itertools
 # list(itertools.accumulate(sample, min)
 # list(itertools.accumulate(range(1, 11), operator.mul)
 # list(itertools.starmap(operator.mul, enumerate('albatroz', 1)))
@@ -855,4 +859,295 @@ import itertools
 #         yield a
 #         a, b = b, a + b
 
-449
+
+
+# else blocks
+# for/else
+# The else block will run only if and when the for loop runs to completion; i.e. not
+# if the for is aborted with a break
+# for item in my_list:
+#     if item.flavor == 'banana':
+#         break
+# else:
+#     raise ValueError('No banana flavor found!')
+
+# while/else
+# The else block will run only if and when the while loop exits because the condition
+# became falsy; i.e. not when the while is aborted with a break
+
+# try/else
+# The else block will only run if no exception is raised in the try block. The official
+# docs also state: “Exceptions in the else clause are not handled by the preceding
+# except clauses.”
+# try:
+#     dangerous_call()
+# except OSError:
+#     log('OSError...')
+# else:
+#     after_call()
+
+# In all cases, the else clause is also skipped if an exception or a return, break or con
+# tinue statement causes control to jump out of the main block of the compound statement
+
+
+
+# EAFP
+# Easier to ask for forgiveness than permission. This common Python coding style
+# assumes the existence of valid keys or attributes and catches exceptions if the assumption
+# proves false. This clean and fast style is characterized by the presence of
+# many try and except statements. The technique contrasts with the LBYL style common
+# to many other languages such as C.
+
+# LBYL
+# Look before you leap. This coding style explicitly tests for pre-conditions before
+# making calls or lookups. This style contrasts with the EAFP approach and is characterized
+# by the presence of many if statements. In a multi-threaded environment,
+# the LBYL approach can risk introducing a race condition between “the looking” and
+# “the leaping”. For example, the code, if key in mapping: return mapping[key] can
+# fail if another thread removes key from mapping after the test, but before the lookup.
+# This issue can be solved with locks or by using the EAFP approach.
+
+
+
+# with blocks
+# The with statement was designed to simplify the try/finally pattern which guarantees
+# that some operation is performed after a block of code, even if the block is aborted
+# because of an exception, a return or sys.exit() call. The code in the finally clause
+# usually releases a critical resource or restores some previous state that was temporarily
+# changed.
+
+# with blocks don’t define a new scope, as functions and modules do.
+
+# with is not just for
+# resource management, but it’s a tool for factoring out common setup and tear down
+# code, or any pair of operations that need to be done before and after another procedure
+
+
+
+# sys.stdout.write/redirect_stdout
+# import contextlib
+# @contextlib.contextmanager
+# def looking_glass():
+#     # __enter__
+#     import sys
+#     original_write = sys.stdout.write
+#     def reverse_write(text):
+#         original_write(text[::-1])
+#     sys.stdout.write = reverse_write
+#     yield 'JABBERWOCKY'
+#     # __exit__
+#     sys.stdout.write = original_write
+
+# with looking_glass():
+#     print('hello')
+
+# print('hello')
+
+
+
+# Coroutines
+# thinking of yield primarily in terms of control flow
+
+# A coroutine is syntactically like a generator: just a function with the yield keyword in
+# its body. However, in a coroutine, yield usually appears on the right side of an expression,
+# e.g. datum = yield, and it may or may not produce a value — if there is no expression
+# after the yield keyword, the generator yields None. The coroutine may receive
+# data from the caller, which uses .send(datum) instead of next(…) to feed the coroutine.
+# Usually, the caller pushes values into the coroutine
+
+# This allows a generator to be used as a coroutine: a procedure that collaborates
+# with the caller, yielding and receiving values from the caller
+
+# def simple_coro2(a):
+#     print('-> Started: a =', a)
+#     b = yield a
+#     print('-> Received: b =', b)
+#     c = yield a + b
+#     print('-> Received: c =', c)
+#     print(a, b, c)
+#     return 'msg'
+
+# my_coro2 = simple_coro2(14)
+# print(next(my_coro2))
+# print(my_coro2.send(28))
+# my_coro2.send(99)
+
+
+
+# coroutine decorator
+# from functools import wraps
+# def coroutine(func):
+#     """Decorator: primes `func` by advancing to first `yield`"""
+#     @wraps(func)
+#     def primer(*args,**kwargs):
+#         gen = func(*args,**kwargs)
+#         next(gen)
+#         return gen
+#     return primer
+
+
+
+# generator.throw(exc_type[, exc_value[, traceback]])
+# Causes the yield expression where the generator was paused to raise the exception
+# given. If the exception is handled by the generator, flow advances to the next
+# yield, and the value yielded becomes the value of the generator.throw call. If the
+# exception is not handled by the generator, it propagates to the context of the caller.
+
+# generator.close()
+# Causes the yield expression where the generator was paused to raise a Generator
+# Exit exception. No error is reported to the caller if the generator does not handle
+# that exception or raises StopIteration — usually by running to completion. When
+# receiving a GeneratorExit the generator must not yield a value, otherwise a Run
+# timeError is raised. If any other exception is raised by the generator, it propagates
+# to the caller.
+
+
+
+# One of the main reasons why the yield from construct was added to Python 3.3 has to
+# do with throwing exceptions into nested coroutines. The other reason was to enable
+# coroutines to return values more conveniently. Read on to see how
+
+# class DemoException(Exception):
+#     """An exception type for the demonstration."""
+
+# def demo_finally():
+#     print('-> coroutine started')
+#     try:
+#         while True:
+#             try:
+#                 x = yield
+#             except DemoException:
+#                 print('*** DemoException handled. Continuing...')
+#             else:
+#                 print('-> coroutine received: {!r}'.format(x))
+#     finally:
+#         print('-> coroutine ending')
+
+# co = demo_finally()
+# next(co)
+# co.send(22)
+# co.send(47)
+# co.send(5)
+# co.throw(DemoException)
+# co.send(7)
+
+
+
+# Return value from coroutine
+# from collections import namedtuple
+# Result = namedtuple('Result', 'count average')
+
+# def averager():
+#     total = 0.0
+#     count = 0
+#     average = None
+#     while True:
+#         term = yield
+#         if term is None:
+#             break
+#         total += term
+#         count += 1
+#         average = total/count
+#     return Result(count, average)
+
+# coro_avg = averager()
+# next(coro_avg)
+# coro_avg.send(10)
+# coro_avg.send(30)
+# coro_avg.send(6.5)
+# try:
+#     coro_avg.send(None)
+# except StopIteration as exc:
+
+#     result = exc.value
+
+# print(result)
+
+
+# yield from and the StopIteration value from function return 
+# In the case of yield from, the interpreter not only consumes
+# the StopIteration, but its value attribute becomes the value of the yield
+# from expression itself.
+
+# !!!
+# The first thing to know about yield from is that it is a completely new language construct.
+# It does so much more than yield that the reuse of that keyword is arguably
+# misleading
+# Similar constructs in other languages are called await and that is a much
+# better name because it conveys a crucial point: when a generator gen calls yield from
+# subgen(), the subgen takes over and will yield values to the caller of gen; the caller will
+# in effect drive subgen directly. Meanwhile gen will be blocked, waiting until subgen
+# terminantes
+
+# The first thing the yield from x expression does with the x object is to call iter(x) to
+# obtain an iterator from it. This means that x can be any iterable
+
+# !!!
+# The main feature of yield from is to open a bidirectional channel from the outermost
+# caller to the innermost subgenerator, so that values can be sent and yielded back and
+# forth directly from them, and exceptions can be thrown all the way in without adding
+# a lot of exception handling boilerplate code in the intermediate coroutines. This is what
+# enables coroutine delegation in a way that was not possible before
+
+# Since the delegating generator works as a
+# pipe, you can connect any number of them in a pipeline: one delegating generator uses
+# yield from to call a subgenerator, which itself is a delegating generator calling another
+# subgenerator with yield from and so on. Eventually this chain must end in a simple
+# generator that uses just yield, but it may also end in any iterable object
+
+# We saw how the statement return the_result in a generator
+# now raises StopIteration(the_result), allowing the caller to retrieve the_result
+# from the value attribute of the exception. This is a rather cumbersome way to retrieve
+# coroutine results, but it’s handled automatically by the yield from syntax introduced
+# in PEP 380
+
+# The coverage of yield from started with trivial examples using simple iterables, then
+# moved to an example highlighting the three main components of any significant use of
+# yield from: the delegating generator (defined by the use of yield from in its body),
+# the subgenerator activated by yield from and the client code that actually drives the
+# whole setup by sending values to the subgenerator through the pass-through channel
+# established by yield from in the delegating generator
+
+# We closed the chapter with the discrete event simulation example, showing how generators
+# can be used as an alternative to threads and callbacks to support concurrency.
+# Although simple, the taxi simulation gives a first glimpse at how event-driven frameworks
+# like Tornado and asyncio use a main loop to drive coroutines executing concurrent
+# activities with a single thread of execution.
+
+# Coroutine
+# One final note: this chapter adopted a broad, informal definition of a coroutine: a generator
+# function driven by a client sending it data through .send(…) calls or yield from
+
+
+# Example of flattening a nested sequence using subgenerators
+# from collections import Iterable
+
+# def flatten(items, ignore_types=(str, bytes)):
+#     for x in items:
+#         if isinstance(x, Iterable) and not isinstance(x, ignore_types):
+#             yield from flatten(x)
+#         else:
+#             yield x
+
+# items = [1, 2, [3, 4, [5, 6], 7], 8]
+
+# # Produces 1 2 3 4 5 6 7 8
+# for x in flatten(items):
+#     print(x)
+
+# items = ['Dave', 'Paula', ['Thomas', 'Lewis']]
+# for x in flatten(items):
+#     print(x)
+
+
+
+# DES - discrete event simulation
+# Intuitively, turn-based games are examples of discrete event simulations: the state of the
+# game only changes when a player moves, and while a player is deciding the next move,
+# the simulation clock is frozen. Real time games, on the other hand, are continuous
+# simulations where the simulation clock is running all the time, the state of the game is
+# updated many times per second and slow players are at a real disadvantage.
+
+
+raise from lambda !
+Chapter 17
