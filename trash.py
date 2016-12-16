@@ -1149,5 +1149,46 @@
 # updated many times per second and slow players are at a real disadvantage.
 
 
-raise from lambda !
-Chapter 17
+# raise from lambda !
+
+
+# Blocking I/O and the GIL
+# The CPython interpreter is not thread-safe internally, so it has a Global Interpreter Lock
+# (GIL) which allows only one thread at a time to execute Python bytecodes. That’s why
+# a single Python process usually cannot use multiple CPU cores at the same time3.
+# When we write Python code we have no control over the GIL, but a built-in function
+# or an extension written in C can release the GIL while running time consuming tasks.
+# In fact, a Python library coded in C can manage the GIL, launch its own OS threads and
+# take advantage of all available CPU cores. This complicates the code of the library considerably,
+# and most library authors don’t do it.
+
+# Every blocking I/O function in the Python standard library releases
+# the GIL, allowing other threads to run. The time.sleep()
+# function also releases the GIL. Therefore, Python threads are
+# perfectly usable in I/O bound applications, despite the GIL.
+
+
+# Launching processes with concurrent.futures
+# The documentation page for the concurrent.futures package is subtitled “Launching
+# parallel tasks”. The package does enable truly parallel computations because it supports
+# distributing work among multiple Python processes using the ProcessPoolExecutor
+# class — thus bypassing the GIL and leveraging all available CPU cores, if you need to
+# do CPU-bound processing.
+
+# os.cpu_count()
+
+# concurent
+# map vs 
+# The Executor.map function is easy to use but it has a feature that may or may not be
+# helpful, depending on your needs: it returns the results exactly in the same order as the
+# calls are started: if the first call takes 10s to produce a result, and the others take 1s each,
+# your code will block for 10s as it tries to retrieve the first result of the generator returned
+# by map. After that, you’ll get the remaining results without blocking because they will
+# be done. That’s OK when you must have all the results before proceeding, but often it’s
+# preferable to get the results as they are ready, regardless of the order they were submitted.
+# To do that, you need a combination of the Executor.submit method and the fu
+# tures.as_completed function,
+
+# import tqdm(pasek postepu)
+
+554

@@ -530,12 +530,12 @@ print("Host:", myname, "IP:", myaddr)
 
 
 
-# Threads
-from concurrent.futures import ThreadPoolExecutor
+# Concurrency with futures(threads)
+from concurrent import futures
 import time
 
 # Creating 8 workers
-pool = ThreadPoolExecutor(8)
+pool = futures.ThreadPoolExecutor(8)
 
 def func(x, y):
     time.sleep(5)
@@ -548,17 +548,44 @@ def handle_result(future_obj):
     except Exception as e:
         print('Failed: {} {}'.format(type(e).__name__, e))
 
-
-pool.submit(func, 2, 3).add_done_callback(handle_result)
-pool.submit(func, 20, 30).add_done_callback(handle_result)
-pool.submit(func, 200, 300).add_done_callback(handle_result)
-pool.submit(func, 2000, 3000).add_done_callback(handle_result)
-
-print('Normal execution:')
+# sequential execution
 print(func(2, 3))
 print(func(20, 30))
 print(func(200, 300))
 print(func(2000, 3000))
+
+
+
+# submit and add_done_callback
+for i in range(4):
+    pool.submit(func, 2*10**i, 3*10**i).add_done_callback(handle_result)
+
+
+
+# submit and as_completed
+create list with futures
+to_do = []
+for i in range(4):
+    # submit schedules the callable to be executed, and returns a future representing this pending operation
+    future = pool.submit(func, 2*10**i, 3*10**i)
+    to_do.append(future)
+
+result = []
+# as_completed yields futures as they are completed
+for future in futures.as_completed(to_do):
+    res = future.result()
+    result.append(res)
+
+print(result)
+
+
+
+# map
+with futures.ThreadPoolExecutor(8) as executor:
+    # create generator
+    res = executor.map(func, [2, 20, 200, 2000], [3, 30, 300, 3000])
+    print(list(res))
+
 
 
 
