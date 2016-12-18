@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # eval vs exec
+# django bulk_create
 
 # Peter Norvig Design Patterns book
 # The message from Peter Norvig’s design patterns slides is that the Command and Strategy
@@ -851,6 +852,7 @@
 # This is such a major “enhancement” that it actually changes the nature of generators:
 # when used in this way, they become coroutines.
 
+# That’s the big advantage of having coroutines: functions that can be suspended and resumed
 
 # Fibonacci series
 # def fibonacci():
@@ -1178,7 +1180,7 @@
 # os.cpu_count()
 
 # concurent
-# map vs 
+# map vs submit/as_completed
 # The Executor.map function is easy to use but it has a feature that may or may not be
 # helpful, depending on your needs: it returns the results exactly in the same order as the
 # calls are started: if the first call takes 10s to produce a result, and the others take 1s each,
@@ -1189,6 +1191,151 @@
 # To do that, you need a combination of the Executor.submit method and the fu
 # tures.as_completed function,
 
+# Python threads are well suited for I/O intensive applications, and the concurrent.fu
+# tures package makes them trivially simple to use for certain use cases
+# Python threads are well suited for I/O bound applications, despite the
+# GIL: every standard library I/O function written in C releases the GIL, so while a given
+# thread is waiting for I/O, the Python scheduler can switch to another thread.
+
 # import tqdm(pasek postepu)
 
-554
+# highest level                                                                 concurrent.futures.ThreadPoolExecutor/ProcessPoolExecutor
+#                                                                                                 /                \
+# lower level - build your own solution out of basic components(more flexible)            threading               multiprocessing
+
+
+# Concurrency with asyncio
+
+# asyncio uses a stricter definition of “coroutine”. A coroutine suitable for
+# use with the asyncio API must use yield from and not yield in its
+# body. Also, an asyncio coroutine should be driven by a caller invoking
+# it through yield from or by passing the coroutine to one of the
+# asyncio functions such as asyncio.async(…)
+
+# One final point related to threads versus coroutines: if you’ve done any non-trivial programming
+# with threads, you know how challenging it is to reason about the program
+# because the scheduler can interrupt a thread at any time. You must remember to hold
+# locks to protect the critical sections of your program, to avoid getting interrupted in the
+# middle of a multi-step operation — which could leave data in an invalid state.
+# With coroutines, everything is protected against interruption by default. You must explicitly
+# yield to let the rest of the program run. Instead of holding locks to synchronize
+# the operations of multiple threads, you have coroutines that are “synchronized” by definition:
+# only one of them is running at any time. And when you want to give up control,
+# you use yield or yield from to give control back to the scheduler. That’s why it is
+# possible to safely cancel a coroutine: by definition, a coroutine can only be cancelled
+# when it’s suspended at a yield point, so you can perform cleanup by handling the
+# CancelledError exception.
+
+# Using yield from with a future automatically takes care of waiting for it to finish,
+# without blocking the event loop — because in asyncio, yield from is used to give
+# control back to the event loop
+
+# You don’t need my_future.add_done_callback(…) because you can simply put
+# whatever processing you would do after the future is done in the lines that follow
+# yield from my_future in your coroutine. That’s the big advantage of having coroutines:
+# functions that can be suspended and resumed
+
+# To make sense of Table 18-1, bear in mind that modern CPUs with GHz clocks run
+# billions of cycles per second. Let’s say that a CPU runs exactly 1 billion cycles per second.
+# That CPU can make 333,333,333 L1 cache reads in one second, or 4 (four!) network
+# reads in the same time.
+
+
+
+
+# Threading
+# import threading
+# import itertools
+# import time
+# import sys
+
+# class Signal:
+#     go = True
+
+
+# def spin(msg, signal):
+#     write, flush = sys.stdout.write, sys.stdout.flush
+#     for char in itertools.cycle('|/-\\'):
+#         status = char + ' ' + msg
+#         write(status)
+#         flush()
+#         # The trick to do text-mode animation: move the cursor back with backspace characters (\x08)
+#         write('\x08' * len(status))
+#         time.sleep(.1)
+#         if not signal.go:
+#             break
+#     write(' ' * len(status) + '\x08' * len(status))
+
+
+# def slow_function():
+#     # pretend waiting a long time for I/O
+#     time.sleep(3)
+#     return 42
+
+
+# def supervisor():
+#     signal = Signal()
+#     spinner = threading.Thread(target=spin, args=('thinking!', signal))
+#     print('spinner object:', spinner)
+#     spinner.start()
+#     result = slow_function()
+#     signal.go = False
+#     spinner.join()
+#     return result
+
+
+# def main():
+#     result = supervisor()
+#     print('Answer:', result)
+
+# if __name__ == '__main__':
+#     main()
+
+
+import asyncio
+import itertools
+import sys
+
+
+@asyncio.coroutine
+def spin(msg):
+    write, flush = sys.stdout.write, sys.stdout.flush
+    for char in itertools.cycle('|/-\\'):
+        status = char + ' ' + msg
+        write(status)
+        flush()
+        write('\x08' * len(status))
+        try:
+            yield from asyncio.sleep(.1)
+        except asyncio.CancelledError:
+            break
+    write(' ' * len(status) + '\x08' * len(status))
+
+
+@asyncio.coroutine
+def slow_function():
+    # pretend waiting a long time for I/O
+    yield from asyncio.sleep(3)
+    return 42
+
+
+@asyncio.coroutine
+def supervisor():
+    spinner = asyncio.async(spin('thinking!'))
+    print('spinner object:', spinner)
+    result = yield from slow_function()
+    spinner.cancel()
+    return result
+
+
+def main():
+    loop = asyncio.get_event_loop()
+    result = loop.run_until_complete(supervisor())
+    loop.close()
+    print('Answer:', result)
+
+
+if __name__ == '__main__':
+    main()
+
+562
