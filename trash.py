@@ -1353,3 +1353,77 @@
 
 
 # Metaprogramming
+
+# + json.load/dump
+
+# from urllib.request import urlopen
+# import warnings
+# import os
+# import json
+# URL = 'http://www.oreilly.com/pub/sc/osconfeed'
+# JSON = 'data/osconfeed.json'
+
+# def load():
+#     if not os.path.exists(JSON):
+#         msg = 'downloading {} to {}'.format(URL, JSON)
+#         warnings.warn(msg)
+#         # multiple with statement  
+#         with urlopen(URL) as remote, open(JSON, 'wb') as local:
+#             local.write(remote.read())
+
+#     with open(JSON) as fp:
+#         return json.load(fp)
+
+# Exploring JSON-like data with dynamic attributes
+# from collections import abc, namedtuple
+
+# City = namedtuple('City', 'name population')
+# van = City('Vancouver', 800000)
+# a = {'a': {'example': {'qwe': '3 332  23d32d3d23', 'van': (33, van, 33)}, 'list': [-1, -7, 'a', 'r', 6]}, 'b': 5, 'c': [3, 7], 'van': van}
+
+
+# class FrozenJSON:
+#     """A read-only façade for navigating a JSON-like object
+#     using attribute notation
+#     """
+#     def __init__(self, mapping):
+#         self.__data = dict(mapping)
+
+#     def __getattr__(self, name):
+#         if hasattr(self.__data, name):
+#             # searching for method object e.g dict.keys()
+#             return getattr(self.__data, name)
+#         else:
+#             return FrozenJSON.build(self.__data[name])
+
+#     @classmethod
+#     def build(cls, obj):
+#         if isinstance(obj, abc.Mapping):
+#             return cls(obj)
+#         elif isinstance(obj, abc.MutableSequence):
+#             print('list', obj)
+#             return [cls.build(item) for item in obj]
+#         else:
+#             print('obj', obj)
+#             return obj
+
+# fj = FrozenJSON(a)
+# print(fj.a.list[3])
+
+
+
+# import keyword
+# print(len(keyword.kwlist))
+
+
+# This is a common shortcut to build an instance with attributes created from keyword arguments
+# updating an instance __dict__ with a mapping is a quick way to create a bunch of attributes in that instance9
+# class Record:
+#     def __init__(self, **kwargs):
+#         self.__dict__.update(kwargs)
+
+
+# property
+# properties are class attributes designed to manage instance attributes
+
+602
