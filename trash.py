@@ -34,6 +34,7 @@
 # import inspect
 # inspect.getsource(object_name)
 # ? inspect.getmembers(promotions, inspect.isfunction) / (obj, filter func)
+# ? inspect.isclass
 
 # Extracting the function signature
 # from inspect import signature
@@ -1421,9 +1422,80 @@
 # class Record:
 #     def __init__(self, **kwargs):
 #         self.__dict__.update(kwargs)
+#     def __eq__(self, other):
+#         if isinstance(other, Record):
+#             return self.__dict__ == other.__dict__
+#         else:
+#             return NotImplemented
 
+
+# Custom exceptions are usually marker classes, with no body. A docstring
+# explaining the usage of the exception is better than a mere pass statement.
+# class MissingDatabaseError(RuntimeError):
+#     """Raised when a database is required but was not set."""
+
+# vars returns the __dict__ of obj, vars(obj) == obj.__dict__
 
 # property
 # properties are class attributes designed to manage instance attributes
 
-602
+# Properties override instance attributes(Instance attribute does not shadow class property)
+# Properties are always class attributes, but they actually manage attribute access in the
+# instances of the class.
+
+
+# New class property shadows existing instance attribute
+# Class.data = property(lambda self: 'the "data" prop value')
+
+# The main point of this section is that an expression like obj.attr does not search for
+# attr starting with obj. The search actually starts at obj.__class__, and only if there is
+# no property named attr in the class, Python looks in the obj instance itself
+
+
+# documentation of the properties
+
+# class Foo:
+#     @property
+#     def bar(self):
+#         "The bar attribute"
+#         return self.__dict__['bar']
+
+# help(Foo)
+# help(Foo.bar)
+
+# Remember: the right side of an assignment is evaluated first, so when quantity() is invoked, the price class attribute doesn’t even exist
+
+# Property factory
+# def quantity(storage_name):
+
+#     def qty_getter(instance):
+#         # qty_getter references storage_name, so it will be preserved in the closure of
+#         # this function; the value is retrieved directly from the instance.__dict__ to
+#         # bypass the property and avoid an infinite recursion
+#         return instance.__dict__[storage_name]
+
+#     def qty_setter(instance, value):
+#         if value > 0:
+#             instance.__dict__[storage_name] = value
+#         else:
+#             raise ValueError('value must be > 0')
+#     return property(qty_getter, qty_setter, doc='quantity property factory')
+
+
+# class LineItem:
+#     weight = quantity('weight')
+#     price = quantity('price')
+
+#     def __init__(self, description, weight, price):
+#         self.description = description
+#         self.weight = weight
+#         self.price = price
+
+#     def subtotal(self):
+#         return self.weight * self.price
+
+
+# a = quantity('help')
+# print(a.fset.__closure__[0].cell_contents)
+# nutmeg = LineItem('Moluccan nutmeg', 8, 13.95)
+617
