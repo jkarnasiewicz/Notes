@@ -1465,7 +1465,7 @@
 # vars returns the __dict__ of obj, vars(obj) == obj.__dict__
 
 # property
-# properties are class attributes designed to manage instance attributes
+# properties are class attributes designed to manage instance attributes !!!!!!!!!!!!!!!!!!
 
 # Properties override instance attributes(Instance attribute does not shadow class property)
 # Properties are always class attributes, but they actually manage attribute access in the
@@ -1620,24 +1620,24 @@ class LineItem:
 
 
 # Property factory versus descriptor class
-def quantity():
-    try:
-        quantity.counter += 1
-    except AttributeError:
-        quantity.counter = 0
+# def quantity():
+#     try:
+#         quantity.counter += 1
+#     except AttributeError:
+#         quantity.counter = 0
 
-    storage_name = '_{}:{}'.format('quantity', quantity.counter)
+#     storage_name = '_{}:{}'.format('quantity', quantity.counter)
 
-    def qty_getter(instance):
-        return getattr(instance, storage_name)
+#     def qty_getter(instance):
+#         return getattr(instance, storage_name)
 
-    def qty_setter(instance, value):
-        if value > 0:
-            setattr(instance, storage_name, value)
-        else:
-            raise ValueError('value must be > 0')
+#     def qty_setter(instance, value):
+#         if value > 0:
+#             setattr(instance, storage_name, value)
+#         else:
+#             raise ValueError('value must be > 0')
 
-    return property(qty_getter, qty_setter)
+#     return property(qty_getter, qty_setter)
 
 
 
@@ -1645,4 +1645,99 @@ def quantity():
 # A template method defines an algorithm in terms of abstract operations that subclasses
 # override to provide concrete behavior
 
-644
+# Class.descriptor_name triggers the descriptor __get__ method, passing None as the second argument (instance)
+
+# Overriding Descriptor/data descriptors
+# A descriptor that implements the __set__ method it called an overriding descriptor,
+# because although it is a class attribute, a descriptor implementing __set__ will override
+# attempts to assign to instance attributes. This is how Example 20-2 was implemented.
+# Properties are also overriding descriptors: if you don’t provide a setter function, the
+# default __set__ from the property class will raise AttributeError to signal that the
+# attribute is read-only
+
+# Overriding descriptor without __get__/data descriptors without __get__
+# Usually, overriding descriptors implement both __set__ and __get__, but it’s also possible
+# to implement only __set__, as we saw in Example 20-1. In this case, only writing
+# is handled by the descriptor. Reading the descriptor through an instance will return the
+# descriptor object itself because there is no __get__ to handle that access. If a namesake
+# instance attribute is created with a new value via direct access to the instance
+# __dict__, the __set__ method will still override further attempts to set that attribute,
+# but reading that attribute will simply return the new value from the instance, instead of
+# returning the descriptor object. In other words, the instance attribute will shadow the
+# descriptor, but only when reading
+
+# Non-overriding descriptor/non-data descriptors
+# If a descriptor does not implement __set__, then it’s a non-overriding descriptor. Setting
+# an instance attribute with the same name will shadow the descriptor, rendering it
+# ineffective for handling that attribute in that specific instance. Methods are implemented
+# as non-overriding descriptors
+
+# The bound method object also has a __call__ method, which handles the actual invocation.
+# This method calls the original function referenced in __func__, passing the
+# __self__ attribute of the method as the first argument. That’s how the implicit binding
+# of the conventional self argument works
+
+
+
+# Descriptor usage tips
+# 1. Use property to keep it simple
+# The property built-in actually creates overriding descriptors implementing both
+# __set__ and __get__, even if you do not define a setter method. The default __set__
+# of a property raises AttributeError: can't set attribute, so a property is the easiest
+# way to create a read-only attribute, avoiding the issue described next.
+# 2. Read-only descriptors require __set__
+# If you use a descriptor class to implement a read-only attribute you must remember to
+# code both __get__ and __set__, otherwise setting a namesake attribute on an instance
+# will shadow the descriptor. The __set__ method of a read-only attribute should just
+# raise AttributeError with a suitable message 5.
+# 3. Validation descriptors can work with __set__ only
+# In a descriptor designed only for validation, the __set__ method should check the value
+# argument it gets, and if valid, set it directly in the instance __dict__ using the descriptor
+# instance name as key. That way, reading the attribute with the same name from the
+# instance will be as fast as possible, as it will not require a __get__. See the code for
+# Example 20-1.
+# 4. Caching can be done efficiently with __get__ only
+# If you code just the __get__ method you have a non-overriding descriptor. These are
+# useful to make some expensive computation and then cache the result by setting an
+# attribute by the same name on the instance. The namesake instance attribute will shadow
+# the descriptor, so subsequent access to that attribute will fetch it directly from the instance
+# __dict__ and not trigger the descriptor __get__ anymore.
+# 5. Non-special methods can be shadowed by instance attributes
+# Because functions and methods only implement __get__, they do not handle attempts
+# at setting instance attributes with the same name, so a simple assignment like
+# my_obj.the_method = 7 means that further access to the_method through that instance
+# will retrieve the number 7 — without affecting the class or other instances. However,
+# this issue does not interfere with special methods. The interpreter only looks for special
+# methods in the class itself, in other words, repr(x) is executed as
+# x.__class__.__repr__(x), so a __repr__ attribute defined in x has no effect of
+# repr(x). For the same reason, the existence of an attribute named __getattr__ in an
+# instance will not subvert the usual attribute access algorithm.
+
+
+
+# Metaprogramming
+# Invoking type with three arguments is a common way of creating a class dynamically
+# type(my_object) to get the class of the object — same as my_object.__class__
+
+# Class decorators are a simpler way of doing something that
+# previously required a metaclass: customizing a class the moment it’s created
+
+# At import time, the interpreter parses the source code of a .py module in one pass from
+# top to bottom, and generates the bytecode to be executed. That’s when syntax errors
+# may occur. If there is an up-to-date .pyc file available in the local __pycache__, those
+# steps are skipped because the bytecode is ready to run
+
+# That’s why the border between “import time” and “run time” is
+# fuzzy: the import statement can trigger all sorts of “run time” behavior
+
+# In the usual case, this means that the interpreter defines top level
+# functions at import time, but executes their bodies only when — and if — the functions
+# are invoked at run time
+
+# For classes, the story is different: at import time, the interpreter executes the body of
+# every class, even the body of classes nested in other classes. Execution of a class body
+# means that the attributes and methods of the class are defined, and then the class object
+# itself is built. In this sense, the body of classes is “top level code”: it runs at import time
+
+# A metaclass is a class factory, except that instead of a function, like record_factory from Example 21-2, a metaclass is written as a class
+670
