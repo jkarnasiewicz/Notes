@@ -1412,6 +1412,34 @@
 # print(fj.a.list[3])
 
 
+# alternatively implementing with __new__
+# from collections import abc
+# class FrozenJSON:
+#     """A read-only façade for navigating a JSON-like object
+#     using attribute notation
+#     """
+#     def __new__(cls, arg):
+#         if isinstance(arg, abc.Mapping):
+#             return super().__new__(cls)
+#         elif isinstance(arg, abc.MutableSequence):
+#             return [cls(item) for item in arg]
+#         else:
+#             return arg
+
+#     def __init__(self, mapping):
+#         self.__data = {}
+#         for key, value in mapping.items():
+#             if iskeyword(key):
+#                 key += '_'
+#             self.__data[key] = value
+
+#     def __getattr__(self, name):
+#         if hasattr(self.__data, name):
+#             return getattr(self.__data, name)
+#         else:
+#             return FrozenJSON(self.__data[name])
+
+
 
 # import keyword
 # print(len(keyword.kwlist))
@@ -1460,6 +1488,10 @@
 #         "The bar attribute"
 #         return self.__dict__['bar']
 
+#     @bar.setter
+#     def bar(self, value):
+#         return 5
+
 # help(Foo)
 # help(Foo.bar)
 
@@ -1498,4 +1530,119 @@
 # a = quantity('help')
 # print(a.fset.__closure__[0].cell_contents)
 # nutmeg = LineItem('Moluccan nutmeg', 8, 13.95)
-617
+
+
+
+# Essential attributes and functions for attribute handling
+
+# obj.__class__ is the same as type(obj)
+# Python looks for special methods such as __getattr__ only in an object’s class, and not in the instances themselves
+
+# __dict__
+# A mapping that stores the writable attributes of an object or class. An object that
+# has a __dict__ can have arbitrary new attributes set at any time
+
+# __slots__
+# An attribute that may be defined in a class to limit the attributes its instances can
+# have. __slots__ is a tuple of strings naming the allowed attributes
+
+# + obok getattr, setattr, hasattr
+# vars([object])
+# Returns the __dict__ of object; vars can’t deal with instances of classes that define
+# __slots__ and don’t have a __dict__ (contrast with dir, which handles such instances).
+# Without an argument, vars() does the same as locals(): returns a dict
+# representing the local scope.
+
+# __getattr__(self, name)
+# Called only when an attempt to retrieve the named attribute fails, after the obj,
+# Class and its superclasses are searched. The expressions obj.no_such_attr, get
+# attr(obj, 'no_such_attr') and hasattr(obj, 'no_such_attr') may trigger
+# Class.__getattr__(obj, 'no_such_attr'), but only if an attribute by that name
+# cannot be found in obj or in Class and its superclasses.
+
+# __getattribute__(self, name)
+# Always called when there is an attempt to retrieve the named attribute, except when
+# the attribute sought is a special attribute or method. Dot notation and the get
+# tattr and hasattr built-ins trigger this method. __getattr__ is only invoked after
+# __gatattribute__, and only when __gatattribute__ raises AttributeError. To
+# retrieve attributes of the instance obj without triggering an infinite recursion, implementations
+# of __getattribute__ should use super().__getattri
+# bute__(obj, name).
+
+
+# Uniform Access Principle (or a variation of it) is the fact that
+# function calls and object instantiation use the same syntax in Python: my_obj =
+# foo(), where foo may be a class or any other callable
+
+
+
+# Attribute Descriptors are a way of reusing the same access logic in multiple attributes. For example,
+# field types in ORMs such as the Django ORM and SQL Alchemy are descriptors,
+# managing the flow of data from the fields in a database record to Python object attributes
+# and vice-versa
+
+
+
+class Quantity:
+    def __init__(self, storage_name):
+        self.storage_name = storage_name
+
+    def __set__(self, instance, value):
+        if value > 0:
+            instance.__dict__[self.storage_name] = value
+        else:
+            raise ValueError('value must be > 0')
+
+
+class LineItem:
+    weight = Quantity('weight')
+    price = Quantity('price')
+
+    def __init__(self, description, weight, price):
+        self.description = description
+        self.weight = weight
+        self.price = price
+
+    def subtotal(self):
+        return self.weight * self.price
+
+# instance.__dict__[self.storage_name] = value
+# the tempting but bad alternative would be:
+# self.__dict__[self.storage_name] = value
+
+# To understand why this would be wrong, think about the meaning of the first two
+# arguments to __set__: self and instance. Here, self is the descriptor instance, which
+# is actually a class attribute of the managed class. You may have thousands of LineI
+# tem instances in memory at one time, but you’ll only have two instances of the descriptors:
+# LineItem.weight and LineItem.price. So anything you store in the descriptor
+# instances themselves is actually part of a LineItem class attribute, therefore it is shared
+# among all LineItem instances
+
+
+# Property factory versus descriptor class
+def quantity():
+    try:
+        quantity.counter += 1
+    except AttributeError:
+        quantity.counter = 0
+
+    storage_name = '_{}:{}'.format('quantity', quantity.counter)
+
+    def qty_getter(instance):
+        return getattr(instance, storage_name)
+
+    def qty_setter(instance, value):
+        if value > 0:
+            setattr(instance, storage_name, value)
+        else:
+            raise ValueError('value must be > 0')
+
+    return property(qty_getter, qty_setter)
+
+
+
+# Template Method design pattern:
+# A template method defines an algorithm in terms of abstract operations that subclasses
+# override to provide concrete behavior
+
+644
