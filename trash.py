@@ -1583,28 +1583,28 @@
 
 
 
-class Quantity:
-    def __init__(self, storage_name):
-        self.storage_name = storage_name
+# class Quantity:
+#     def __init__(self, storage_name):
+#         self.storage_name = storage_name
 
-    def __set__(self, instance, value):
-        if value > 0:
-            instance.__dict__[self.storage_name] = value
-        else:
-            raise ValueError('value must be > 0')
+#     def __set__(self, instance, value):
+#         if value > 0:
+#             instance.__dict__[self.storage_name] = value
+#         else:
+#             raise ValueError('value must be > 0')
 
 
-class LineItem:
-    weight = Quantity('weight')
-    price = Quantity('price')
+# class LineItem:
+#     weight = Quantity('weight')
+#     price = Quantity('price')
 
-    def __init__(self, description, weight, price):
-        self.description = description
-        self.weight = weight
-        self.price = price
+#     def __init__(self, description, weight, price):
+#         self.description = description
+#         self.weight = weight
+#         self.price = price
 
-    def subtotal(self):
-        return self.weight * self.price
+#     def subtotal(self):
+#         return self.weight * self.price
 
 # instance.__dict__[self.storage_name] = value
 # the tempting but bad alternative would be:
@@ -1740,4 +1740,77 @@ class LineItem:
 # itself is built. In this sense, the body of classes is “top level code”: it runs at import time
 
 # A metaclass is a class factory, except that instead of a function, like record_factory from Example 21-2, a metaclass is written as a class
-670
+
+# The classes object and type have a unique relationship: object is an
+# instance of type, and type is a subclass of object. This relationship
+# is “magic”: it cannot be expressed in Python because either class would
+# have to exist before the other could be defined. The fact that type is
+# an instance of itself is also magical
+
+# Every class is an instance of type, directly or indirectly, but only metaclasses are also subclasses of type
+
+# The important takeaway here is that all classes are instances of type, but metaclasses
+# are also subclasses of type, so they act as class factories. In particular, a metaclass can
+# customize its instances by implementing __init__. A metaclass __init__ method can
+# do everything a class decorator can do, but its effects are more profound, as the next exercise demonstrates.
+
+# class MetaAleph(type):
+
+#     @classmethod
+#     def __prepare__(cls, name, bases):
+#         return collections.OrderedDict()
+
+#     def __init__(cls, name, bases, dic):
+#         def inner_2(self):
+#             pass
+
+#     cls.method_z = inner_2
+
+
+# class ClassFive(metaclass=MetaAleph):
+
+#     def __init__(self):
+#         pass
+
+#     def method_z(self):
+#         pass
+
+# When coding a metaclass, it’s conventional to replace self by cls.
+# For example, in the __init__ method of the metaclass, using cls as
+# the name of the first argument makes it clear that the instance under
+# construction is a class
+
+# The body of __init__ defines an inner_2 function, then binds it to cls.method_z. The
+# name cls in the signature of MetaAleph.__init__ refers to the class being created, e.g.
+# ClassFive. On the other hand, the name self in the signature of inner_2 will eventually
+# refer to an instance of the class we are creating, e.g. an instance of ClassFive.
+
+# The __prepare__ method is invoked by
+# the interpreter before the __new__ method in the metaclass to create the mapping that
+# will be filled with the attributes from the class body
+# @classmethod
+#   def __prepare__(cls, name, bases):
+#       pass
+
+# metaclasses are used in frameworks and libraries that help programmers perform, among other tasks:
+# • attribute validation;
+# • applying decorators to many methods at once;
+# • object serialization or data conversion;
+# • object-relational mapping;
+# • object-based persistency;
+# • dynamic translation of class structures from other languages
+
+
+# Class metaprogramming is about creating or customizing classes dynamically. Classes
+# in Python are first-class objects, so we started the chapter by showing how a class can
+# be created by a function invoking the type built-in metaclass
+
+# !!! check import order in metaprograming chapter
+# but clearly a lot of code runs triggered by the import statement
+
+# I haven’t yet found a language that manages to be easy for beginners, practical for professionals
+# and exciting for hackers in the way that Python is
+
+# “Only those who work make mistakes" - great advice to avoid being paralyzed by the fear of making errors
+
+# 717 python jargon
