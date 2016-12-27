@@ -1,5 +1,6 @@
 // General
 // json - JavaScript Object Notation
+// Shift + F4 open scratchpad in firefox
 
 // Pass message into console
 console.log('Message');
@@ -72,7 +73,7 @@ continue;				// done with this iteration
 
 
 // FUNCTIONS
-function myFunction ( x, y ) {
+function myFunction(x, y) {
 	var myVar = x*y;
 	return myVar;
 }

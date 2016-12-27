@@ -1814,3 +1814,41 @@
 # “Only those who work make mistakes" - great advice to avoid being paralyzed by the fear of making errors
 
 # 717 python jargon
+
+
+
+
+
+
+
+
+
+
+
+
+
+# JavaScript The Good Parts
+# JavaScript is an important language because it is the language of the web browser. Its
+# association with the browser makes it one of the most popular programming languages in the world
+
+# The API of the browser, the Document Object Model (DOM) is quite awful, and JavaScript is unfairly blamed
+
+# literal - notations for atomic values
+# In computer science, a literal is a notation for representing a fixed value in source code.
+# Almost all programming languages have notations for atomic values such as integers,
+# floating-point numbers, and strings, and usually for booleans and characters;
+# some also have notations for elements of enumerated types and compound values such as
+# arrays, records, and objects. An anonymous function is a literal for the function type
+
+
+# When used inside of a function, the var statement defines the function’s private variables
+
+# The switch, while, for, and do statements are allowed to have an optional label prefix
+# that interacts with the break statement
+
+# A function always returns a value. If the return value is not specified, then undefined is returned
+
+# If the function was invoked with the new prefix and the return value is not an object, then this (the new object) is returned instead
+
+# throw/try/catch
+34
