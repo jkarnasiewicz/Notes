@@ -26,7 +26,7 @@ else {
 }
 
 // Ternary, condition ? true : false
-var S1 = ( a > b ) ? a : b;
+var ter = ( a > b ) ? a : b;
 
 
 
@@ -38,15 +38,35 @@ while (a < 10) {
 }
 
 
-do {					// do... while loop will always happen
-	console.log(a);		// at least once
+do {					// do...while loop will always happen at least once
+	console.log(a);
 	a++
-} while ( a < 10);
-
-
-for ( var i = 1; i < 10; i++ ) {
-	//do stuff
 }
+while (a < 10);
+
+
+var node = document.nameForm.nameSelect				// after dot, named attributes of the tags
+for (var i = 1; i < node.options.length; i++) {
+	if(node.options[i].selected) {
+		numberSelected++;
+	}
+}
+
+
+let arr = [3, 5, 7];
+arr.foo = "hello";
+// The for...in statement iterates a specified variable over all the
+// enumerable properties of an object
+for (let i in arr) {
+	console.log(i);	// logs "0", "1", "2", "foo"
+}
+
+// The for...of statement creates a loop Iterating over iterable objects(including Array, Map, Set, arguments object),
+// invoking a custom iteration hook with statements to be executed for the value of each distinct property.
+for (let i of arr) {
+	console.log(i); // logs 3, 5, 7
+}
+
 
 break;					// break jumps out of the loop
 continue;				// done with this iteration
@@ -83,7 +103,7 @@ myFunction(754, 346);
 
 
 // ARRAYS
-var mulitpleValues = [ 50, 60, "Mia", true]
+var mulitpleValues = [50, 60, "Mia", true]
 
 // Array propertise
 mulitpleValues.length;
@@ -487,6 +507,8 @@ console.dir(pattern);
 for(var b in window) { 
  	if(window.hasOwnProperty(b)) console.log(b); 
 }
+// or
+console.log(Object.getOwnPropertyNames(String));
 
 // To Do
 // Join (array.join())

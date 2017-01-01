@@ -1819,6 +1819,24 @@
 
 
 
+# Additional topics
+# Everything is executed at the module level when Python first imports a module. Function bodies
+# (and generator expression bodies) are the exception here, not the rule. Python executes everything
+# to create the objects contained in a module; like everything in Python, classes are objects, and so are functions.
+# The only reason a class body uses a separate code object is because a class body is executed in a separate namespace,
+# with that namespace then forming the class attributes. Class bodies are not the only such namespaces;
+# set and dict comprehensions, and in Python 3, list comprehensions are also executed with a separate namespace,
+# scoping their locals. So functions and generator expressions are the exception, expressly because their whole
+# purpose is to be executed at a later time. Note that the function definition is executed:
+
+# import shelve
+
+# A key difference between __getattr__ and __getattribute__ is that __getattr__ is only invoked if the attribute
+# wasn't found the usual ways. It's good for implementing a fallback for missing attributes,
+# and is probably the one of two you want. __getattribute__ is invoked before looking at the actual attributes on the object,
+# and so can be tricky to implement correctly. You can end up in infinite recursions very easily
+
+
 
 
 
@@ -1851,4 +1869,150 @@
 # If the function was invoked with the new prefix and the return value is not an object, then this (the new object) is returned instead
 
 # throw/try/catch
-34
+
+# Scope in a programming language controls the visibility and lifetimes of variables and parameters
+
+# This is possible because the function has access to the context in which it was created. This is called closure.
+
+# global object - window.foo
+
+# undefine, NaN, null
+
+# Declarations
+# There are three kinds of declarations in JavaScript.
+# var - Declares a variable, optionally initializing it to a value.
+# let - Declares a block scope local variable, optionally initializing it to a value.
+# const - Declares a read-only named constant. 
+
+# hoisting
+# Another unusual thing about variables in JavaScript is that you can refer to a variable
+# declared later, without getting an exception. This concept is known as hoisting;
+# variables in JavaScript are in a sense "hoisted" or lifted to the top of the
+# function or statement. However, variables that are hoisted will return a value of undefine
+
+# Global variables
+# Global variables are in fact properties of the global object.
+# In web pages the global object is window, so you can set and access global variables
+# using the window.variable syntax
+
+
+
+# !
+# let allows you to declare variables that are limited in scope to the block, statement,
+# or expression on which it is used. This is unlike the var keyword,
+# which defines a variable globally, or locally to an entire function regardless of block scope.
+
+# When used inside a block, let limits the variable's scope to that block.
+# Note the difference between var whose scope is inside the function where it is declared.
+# var a = 1;
+# var b = 2;
+
+# if (a === 1) {
+#   var a = 11; // the scope is global
+#   let b = 22; // the scope is inside the if-block
+
+#   console.log(a);  // 11
+#   console.log(b);  // 22
+# } 
+
+# console.log(a); // 11
+# console.log(b); // 2
+
+
+
+# A var has function scope (it declares a variable that's visible throughout the function) even though it looks like it has block scope.
+
+# At the top level of programs and functions, let, unlike var, does not create a property on the global object. For example:
+# var x = 'global';
+# let y = 'global';
+# console.log(this.x); // "global"
+# console.log(this.y); // undefined
+
+
+
+# Adopt let and const(and ===). Stop using var !
+# let x = 'x';
+
+# Constants
+# You can create a read-only, named constant with the const keyword
+# const PI = 3.14;
+# A constant cannot change value through assignment or be re-declared
+# while the script is running. It has to be initialized to a value.
+
+# JavaScript is a dynamically typed language.
+# That means you dont have to specify the data type of a variable when you declare it,
+# and data types are converted automatically as needed during script execution
+
+# .toString()
+# parseInt()
+# parseFloat()
+
+# Literals
+# You use literals to represent values in JavaScript.
+# These are fixed values, not variables, that you literally provide in your script.
+# Array literals 				var coffees = ["French Roast", "Colombian", "Kona"];
+# Boolean literals 				true and false
+# Floating-point literals 		-3.1E+12
+# Integers 						-345
+# Object literals 				var car = { myCar: "Saturn", getCar: carTypes("Honda"), special: sales };
+# RegExp literals 				var re = /ab+c/;
+# String literals 				"John's \n cat"
+# Template literals
+# 	var name = "Bob", time = "today";
+# 	`Hello ${name}, how are you ${time}?`
+
+# var str = "this string \
+# is broken \
+# across multiple\
+# lines."
+
+# FUBAR (fucked up beyond all recognition)
+
+# Exception
+# var log = console.log;
+# try {
+#   throw "myException"; // generates an exception
+# }
+# catch (e) {
+#   // statements to handle any exceptions
+#   log(e); // pass exception object to error handler
+# }
+# finally {
+#   log("finally over");
+# }
+
+
+# Promise
+# function imgLoad(url) {
+#   return new Promise(function(resolve, reject) {
+#     var request = new XMLHttpRequest();
+#     request.open('GET', url);
+#     request.responseType = 'blob';
+#     request.onload = function() {
+#       if (request.status === 200) {
+#         resolve(request.response);
+#       } else {
+#         reject(Error('Image didn\'t load successfully; error code:' 
+#                      + request.statusText));
+#       }
+#     };
+#     request.onerror = function() {
+#       reject(Error('There was a network error.'));
+#     };
+#     request.send();
+#   });
+# }
+
+# addEventListener
+
+# def fac(x):
+# 	return 1 if x < 2 else x*fac(x-1)
+
+def fac(x):
+	result = 1
+	while x > 1:
+		result = result * x
+		x = x - 1
+	return result
+
+print(fac(7))
