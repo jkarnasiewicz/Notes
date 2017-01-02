@@ -81,7 +81,8 @@ continue;				// done with this iteration
 ==						// equality(js is compile variable))
 ===						// strict equality(checking the value and the type)
 +=, -=					// increment/decrement
-++a, ++a 				// adding 1 (prefix, postfix)
+++a, a++ 				// adding 1 (prefix, postfix)
+// If a is 3, then ++a sets a to 4 and returns 4, whereas a++ returns 3 and, only then, sets a to 4.
 
 // Modulus(reszta z dzielenia)
 2003 % 4				// remainder is 3
@@ -89,6 +90,7 @@ continue;				// done with this iteration
 // Logical operators
 &&						// and
 ||						// or
+!						// not
 
 
 

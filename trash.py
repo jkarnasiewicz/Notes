@@ -1944,8 +1944,10 @@
 # and data types are converted automatically as needed during script execution
 
 # .toString()
-# parseInt()
-# parseFloat()
+# parseInt()   function parses a string argument and returns an integer of the specified radix
+# parseFloat() function parses a string argument and returns a floating point number.
+# typeof
+# addEventListener
 
 # Literals
 # You use literals to represent values in JavaScript.
@@ -1982,6 +1984,7 @@
 # }
 
 
+
 # Promise
 # function imgLoad(url) {
 #   return new Promise(function(resolve, reject) {
@@ -2003,16 +2006,210 @@
 #   });
 # }
 
-# addEventListener
 
-# def fac(x):
-# 	return 1 if x < 2 else x*fac(x-1)
 
-def fac(x):
-	result = 1
-	while x > 1:
-		result = result * x
-		x = x - 1
-	return result
+# For example, getting all the nodes of a tree structure (e.g. the DOM)
+# is more easily done using recursion:
 
-print(fac(7))
+# function walkTree(node) {
+# 	if (node == null) {
+#     return;
+#   }
+#   log('AAAA');
+#   if(node.nodeName === 'P') {
+#     log('BBB');
+#     node.style.color = "purple";
+#   }
+  
+#   for (var i = 0; i < node.childNodes.length; i++) {
+#     walkTree(node.childNodes[i]);
+#   }
+
+# }
+
+# walkTree(document.body);
+
+
+
+# closures(function factories, and secure variable of the outer function)
+# ! Be careful - the magical this variable is very tricky in closures.
+# They have to be used carefully, as what this refers to depends completely
+# on where the function was called, rather than where it was defined.
+
+# function outside(x) {
+# 	function inside(y) {
+# 		return Math.pow(x, y);
+# 	}
+# 	return inside;
+# }
+
+# fn_inside = outside(3)
+# fn_inside(3);
+
+
+
+# function createPet(name) {
+#   var sex;
+  
+#   return {
+#     setName: function(newName) {
+#       name = newName;
+#     },
+    
+#     getName: function() {
+#       return name;
+#     },
+    
+#     getSex: function() {
+#       return sex;
+#     },
+    
+#     setSex: function(newSex) {
+#       if(typeof newSex === "string" && (newSex.toLowerCase() === "male" || newSex.toLowerCase() === "female")) {
+#         sex = newSex;
+#       }
+#     }
+#   }
+# }
+
+# var pet = createPet("Vivie");
+# log(pet.getName());                  // Vivie
+
+# log(pet.setName("Oliver"));
+# log(pet.setSex("male"));
+# log(pet.getSex());                   // male
+# log(pet.getName());                  // Oliver
+
+
+
+# Using the arguments
+# function myConcat(separator) {
+#    let result = "";
+#    for (let i = 1; i < arguments.length; i++) {
+#       result += arguments[i] + separator;
+#    }
+#    return result;
+# }
+
+# myConcat(", ", "red", "orange", "blue");
+
+
+
+# Default parameters
+# function multiply(a, b=1) {
+#   return a*b;
+# }
+
+# multiply(5);
+
+
+
+# Rest parameters
+# function multiply(multiplier, ...theArgs) {
+#   return theArgs.map(x => multiplier * x);
+# }
+
+# var arr = multiply(2, 1, 2, 3);
+# console.log(arr); // [2, 4, 6]
+
+
+
+# Arrow functions
+# var a = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+# var a2 = a.map(function(s){ return s.length }); // old
+# var a3 = a.map(s => s.length); // new
+
+
+# Lexical this
+# function Person(){
+#   this.age = 0;
+
+#   setInterval(() => {
+#     // |this| properly refers to the person object, dont need to use 'var self = this;'
+#     this.age++;
+#   }, 1000);
+# }
+
+# var p = new Person();
+
+
+
+# Comparison
+# Strict equal (===) 	Returns true if the operands are equal and of the same type
+# Strict not equal (!==) 	Returns true if the operands are of the same type but not equal, or are of different type.
+
+# Bitwise operators
+# AND 15 & 9 	9 	1111 & 1001 = 1001
+# OR  15 | 9 	15 	1111 | 1001 = 1111
+
+# Unary operators
+# delete objectName.property;
+
+# typeof myFun;         // returns "function"
+# typeof "round";       // returns "string"
+# typeof 4;        	    // returns "number"
+# typeof new Date();    // returns "object"
+# typeof doesntExist;   // returns "undefined"
+# typeof true; 		    // returns "boolean"
+# typeof null; 		    // returns "object"
+
+
+
+# Relational operators
+# in - propNameOrNumber in objectName
+# var trees = ["redwood", "bay", "cedar", "oak", "maple"];
+# 0 in trees;        // returns true
+# 6 in trees;        // returns false
+# "bay" in trees;    // returns false (you must specify the index number,
+#                    // not the value at that index)
+# "length" in trees; // returns true (length is an Array property)
+# "PI" in Math;          // returns true
+
+# var mycar = { make: "Honda", model: "Accord", year: 1998 };
+# "make" in mycar;  // returns true
+
+# The instanceof operator returns true if the specified object is of the specified object type
+# instanceof - objectName instanceof objectType
+# var theDay = new Date(1995, 12, 17);
+# if (theDay instanceof Date) {
+#   // statements to execute
+# }
+
+
+
+# Expresions
+# this
+# <p>Enter a number between 18 and 99:</p>
+# <input type="text" name="age" size=3 onChange="document.writeln(this.value);">
+
+
+# Comprehensions
+
+# Array comprehensions.
+# [for (x of y) x]
+# var abc = [ "A", "B", "C" ];
+# [for (letters of abc) letters.toLowerCase()]; // [ "a", "b", "c" ]
+
+# Generator comprehensions.
+# (for (x of y) y)
+
+
+
+# new
+# You can use the new operator to create an instance of a user-defined
+# object type or of one of the built-in object types. Use new as follows:
+
+# var objectName = new objectType([param1, param2, ..., paramN]);
+
+
+
+# Spread operator
+# The spread operator allows an expression to be expanded in places where multiple arguments
+# (for function calls) or multiple elements (for array literals) are expected
+
+# var parts = ['shoulder', 'knees'];
+# var lyrics = ['head', ...parts, 'and', 'toes'];
+
+# function f(x, y, z) {return x + y + z }
+# var args = [0, 1, 2];
+# f(...args);
