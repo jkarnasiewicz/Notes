@@ -1057,8 +1057,8 @@ search_object.group()								# group(1)/groups()
 # \b                empty string boundary
 # \B 				empty string non boundary
 
-# \w 				alphanumeric
-# \W 				non-alphanumeric
+# \w 				matches any alphanumeric character including the underscore, equivalent to [A-Za-z0-9_]
+# \W 				matches any non-word character(non-alphanumeric), equivalent to [^A-Za-z0-9_]
 
 # \s 				whitespace
 # \S 				non whitespace

@@ -1959,6 +1959,7 @@
 # Object literals 				var car = { myCar: "Saturn", getCar: carTypes("Honda"), special: sales };
 # RegExp literals 				var re = /ab+c/;
 # String literals 				"John's \n cat"
+# !!!!IMP
 # Template literals
 # 	var name = "Bob", time = "today";
 # 	`Hello ${name}, how are you ${time}?`
@@ -2213,3 +2214,21 @@
 # function f(x, y, z) {return x + y + z }
 # var args = [0, 1, 2];
 # f(...args);
+
+
+
+# Numbers(+Infinity, -Infinity, and NaN)
+# Hexadecimal numbers(0123456789abcdef)
+# Internationalization - Intl object is the namespace for the ECMAScript Internationalization API
+
+
+
+# RegExp
+# x(?=y) 	Matches 'x' only if 'x' is followed by 'y'. This is called a lookahead.
+# For example, /Jack(?=Sprat)/ matches 'Jack' only if it is followed by 'Sprat'. /Jack(?=Sprat|Frost)/ matches 'Jack' only if it is followed by 'Sprat' or 'Frost'. However, neither 'Sprat' nor 'Frost' is part of the match results.
+
+
+# x(?!y) Matches 'x' only if 'x' is not followed by 'y'. This is called a negated lookahead.
+# For example, /\d+(?!\.)/ matches a number only if it is not followed by a decimal point. The regular expression /\d+(?!\.)/.exec("3.141") matches '141' but not '3.141'.
+
+# (?:x) Matches 'x' but does not remember the match. The parentheses are called non-capturing parentheses,

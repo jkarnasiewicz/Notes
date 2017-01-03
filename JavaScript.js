@@ -128,29 +128,36 @@ if ( !isNaN(myNumber) ) {
 }
 
 // Math object
-var x = 200.6
-var y = Math.round(x);
+Math.PI;
+Math.round(200.67);
 Math.max(a, b, c);
 Math.min(a, b, c);
-Math.PI;
 Math.random();
 Math.floor((Math.random() * 100) + 1);
-Math.sqrt();
-Math.log();
+Math.pow(2, 4);
+Math.sqrt(4);
+Math.log(x);		// lnx
+Math.exp(x);    	// e**x
 
 
 
 // STRINGS
 var phrase = "Don't mix your quotes.";
-var phrase = "He said \"that's fine,\" and left.";
+var phrase = "He said \"that's fine,\" and left. \u00A9";
 
-var upper = phrase.toUpperCase();
-var word = phrase.split(" ");
-var positions = phrase.indexOf("fine");		// it returns -1 if the term is not found
-var segment = phrase.slice(6, 5);			// find element with index 6, and get 5
-//											   characters from that element(included)
+phrase.toUpperCase();			// toLowerCase
+phrase.concat('?!');
+phrase.trim();					// trims whitespace from the beginning and end of the string
+phrase.split(" ");
+phrase.indexOf("fine");			// it returns -1 if the term is not found
+phrase.slice(6, 5);				// find element with index 6, and get 5 characters from that element(included)
+
 var str1 = "aardvark";
 var str2 = "beluga";
+
+// template literals
+var a = 5, b = 10;
+`Fifteen is ${a + b} and\n not ${2 * a + b}.`
 
 if (  str1 < str2 ) { ... } 				// true
 
@@ -161,9 +168,52 @@ if (  str1 < str2 ) { ... } 				// false (Ascii table)
 
 
 
+// REGULAR EXPRESSIONS
+var myRE = /d(b+)d/g;					// g - global option, i - case-insensitive search, m - multi-line search
+var myRE = new RegExp("d(b+)d", "g");
+var myRe = new RegExp(/Integration Time \(usec\): (\d+) \(HR2B085\)/g);
+var myString = "cdbbdbsb dbd";
+
+// regexp methods
+myRE.test(myString);					// return true or false
+
+myRE.exec(myString);					// return array with first occurence of the regexp: ['dbbd', 'bb']
+myRE.exec(myString);					// return next occurrence: ['dbd', 'b']
+
+// regexp property
+myRE.lastIndex;
+
+// string methods
+myString.match(myRE);					// returns an array of information or null on a mismatch: ["dbbd", "dbd"]
+myString.search(myRE);					// returns the index of the match, or -1 if the search fails
+myString.split(/db+d/);					// break a string into an array of substrings: ["c", "bsb ", ""]
+myString.replace(myRE, new_string);		// replaces the matched substring with a replacement substring: 'c#bsb #'
+// or
+var re = /(\w+)\s(\w+)/;
+var myString = "John Smith";
+myString.replace(re, "$2, $1");
+
+// example
+var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/; 	// \1 is one of the rememberd characters from [-\/\.]
+
+
+/^hello/								// ^ at the start
+/hello$/								// $ at the end
+/hel+o/									// + "l" must appear once or more
+/hel*o/									// * "l" must appear zero or more
+/hel?o/									// ? "l" must appear zero or one
+/hello|goodbye/							// | either/or
+/he..o/									// . any character
+/\wello/								// \w alphanumeric or _
+/\bhello/								// \b word boundary, before hello must be space or new line
+/[crnld]ope/							// [...] range of chars
+
+
+
 // DATES
-var today = new Date();
-var day = new Date(1906, 11, 9);
+var today = new Date();						// without 'new', get string representation of date
+var day = new Date(1906, 11, 25, 6, 30, 0); // year, month, day, hour, minute, seconds
+var Xmas95 = new Date("December 25, 1995 13:30:00");
 
 // date methods
 today.getMonth();				// returns 0-11
@@ -171,10 +221,13 @@ today.getFullYear();			// YYYY
 today.getDate();				// 1-31 day of month
 today.getDay();					// 0-6 day of week, where 0 == sunday
 today.getHours();				// 0-23
+
 today.getTime();				// milliseconds since 1/1/1970
 
 today.setMonth(5);
 today.setFullYear(2012);
+
+day.setTime(Date.parse("Aug 9, 1995"));
 
 
 
@@ -342,26 +395,6 @@ someField.onsubmit = function() {
 	...
 	return false;						// to stop the form from submitting
 }
-
-
-
-// REGULAR EXPRESSIONS
-var myRE = new RegExp("hello");			// var myRE = /hello/;
-var myRe = new RegExp(/Integration Time \(usec\): (\d+) \(HR2B085\)/g);
-var myString = "Does this sentence have word hello int it?";
-myRE.test(myString);					// return true or false
-myRE.search(myString);					// return position of the first occurrence
-
-/^hello/								// ^ at the start
-/hello$/								// $ at the end
-/hel+o/									// + "l" must appear once or more
-/hel*o/									// * "l" must appear zero or more
-/hel?o/									// ? "l" must appear zero or one
-/hello|goodbye/							// | either/or
-/he..o/									// . any character
-/\wello/								// \w alphanumeric or _
-/\bhello/								// \b word boundary, before hello must be space or new line
-/[crnld]ope/							// [...] range of chars
 
 
 
