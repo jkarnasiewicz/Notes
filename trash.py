@@ -2232,3 +2232,141 @@
 # For example, /\d+(?!\.)/ matches a number only if it is not followed by a decimal point. The regular expression /\d+(?!\.)/.exec("3.141") matches '141' but not '3.141'.
 
 # (?:x) Matches 'x' but does not remember the match. The parentheses are called non-capturing parentheses,
+
+
+
+# Arrays
+# Arrays are container-like values that can hold other values. The values inside an array are called elements
+# var array = [100, "paint", [200, "brush"], false];
+# array[array.length - 1] = "yellow"
+
+# be careful, this add property to the array, instead of an array element
+# array[3.4] = 'orange';
+
+
+# length
+# array.length
+# Writing a value that is shorter than the number of stored items truncates the array;
+# writing 0 empties it entirely
+# array['length'] = 3
+
+# let cats = [];
+# cats[30] = ['Dusty'];
+# cats.length;				// 31
+
+
+# // concat method - returns a new array that combines the values of two arrays.
+# var new_array = ["tortilla chips"].concat(["salsa", "queso", "guacamole"]);
+
+# // joins all elements of an array into a string
+# ['red', 'green', 'blue'].join('-'); 		// "red-green-blue"
+
+# // pop method - removes the last element in the array and returns that element’s value
+# ["Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"].pop();
+
+# // push method - adds an elements to the array and returns the array’s length
+# ["John", "Kate"].push('Jill', 'Ivy');
+
+# // shift method removes the first element from an array and returns that element
+# ["1", "2", "3"].shift(); 						// 1
+
+# // unshift method adds one or more elements to the front of an array and returns the new length of the array
+# ["1", "2", "3"].unshift("-1", "0"); 			// ["0", "-1", "1", "2", "3"]
+
+# // slice method extracts a section of an array and returns a new array
+# ["a", "b", "c", "d", "e"].slice(1, 4);			// [ "b", "c", "d"]
+
+# // splice(index, count_to_remove, addElement1, addElement2, ...)
+# removes elements from an array and (optionally) replaces them.
+# It returns the items which were removed from the array
+# ["1", "2", "3", "4", "5"].splice(1, 3, "a", "b", "c", "d");
+
+# // map method returns a new array of the return value from executing callback on every array item
+# ['a', 'b', 'c'].map(item => item.toUpperCase()); 							// ['A', 'B', 'C']
+
+# // filter method returns a new array containing the items for which callback returned true
+# ['a', 10, 'b', 20, 'c', 30].filter(item => typeof item === 'number'); 	// [10, 20, 30]
+
+# // reduce method applies callback(firstValue, secondValue) to reduce the list of items down to a single value
+# [10, 20, 30].reduce((first, second) => first + second, 0);				// 60
+
+# // sort method sorts the elements of an array
+# ["Wind", "Rain", "Fire"].sort();
+
+# // reverse method - returns a copy of the array in opposite order
+# ["a", "b", "c"].reverse();
+
+
+
+# iterating over arrays
+# var colors = ['red', 'green', , 'blue'];
+
+# for(let i of colors) {
+#   console.log(i);			// 'red', 'green', undefined, 'blue'
+# }
+
+# elements of array omitted when the array is defined are not listed when iterating by forEach
+# colors.forEach(function(color) {
+#   console.log(color); 	// 'red', 'green', 'blue'
+# });
+
+
+
+# Sets
+# Set objects are collections of values. You can iterate its elements in insertion order.
+# A value in a Set may only occur once; it is unique in the Set's collection
+# let mySet = new Set();
+# mySet.add(1);
+# mySet.add("some text");
+# mySet.add("foo");
+
+# mySet.has(1);			// true
+# mySet.delete("foo");
+# mySet.size;			// 2
+
+# for (let item of mySet) {
+# 	console.log(item);
+# }
+
+
+
+# Objects
+# var myHonda = {color: "red", wheels: 4, engine: {cylinders: 4, size: 2.2}};
+
+# var myCar = new Object();
+# myCar.make = "Ford";
+# myCar.model = "Mustang";
+# myCar['year'] = 1969;
+
+# Enumerate the properties of an object
+# for (let i in myCar) {
+# 	console.log(i);
+# }
+
+# or
+# Object.getOwnPropertyNames(myCar);
+
+
+# function Person(name, sex) {
+# 	this.name = name;
+# 	this.sex = sex;
+# }
+
+# var rand = new Person("Rand McKinnon", "M");
+# var ken = new Person("Ken Jones", "M");
+
+# The following code adds a age property to all objects of type person
+# Person.prtotype.age = 20;
+
+
+
+# Using this for object references
+# In general, 'this' refers to the calling object in a method
+# <input type="text" name="age" size="3" onChange="validate(this, 18, 99)">
+
+
+
+# Comparing Objects
+# In JavaScript objects are a reference type. Two distinct objects are never equal,
+# even if they have the same properties. Only comparing the same object reference
+# with itself yields true
