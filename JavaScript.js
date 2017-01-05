@@ -67,6 +67,18 @@ for (let i of arr) {
 	console.log(i); // logs 3, 5, 7
 }
 
+// The switch statement can be used for multiple branches based on a number or string
+switch(action) {
+	case 'draw':
+    	drawIt();
+    	break;
+	case 'eat':
+    	eatIt();
+    	break;
+  	default:
+    	doNothing();
+}
+
 
 break;					// break jumps out of the loop
 continue;				// done with this iteration

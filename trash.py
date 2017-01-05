@@ -1902,6 +1902,9 @@
 # or expression on which it is used. This is unlike the var keyword,
 # which defines a variable globally, or locally to an entire function regardless of block scope.
 
+# JavaScript, blocks do not have scope; only functions have scope
+# starting with ECMAScript Edition 6, let and const declarations allow you to create block-scoped variables
+
 # When used inside a block, let limits the variable's scope to that block.
 # Note the difference between var whose scope is inside the function where it is declared.
 # var a = 1;
@@ -1945,6 +1948,7 @@
 
 # .toString()
 # parseInt()   function parses a string argument and returns an integer of the specified radix
+# parseInt("11", 2); // 3
 # parseFloat() function parses a string argument and returns a floating point number.
 # typeof
 # addEventListener
@@ -1953,7 +1957,7 @@
 # You use literals to represent values in JavaScript.
 # These are fixed values, not variables, that you literally provide in your script.
 # Array literals 				var coffees = ["French Roast", "Colombian", "Kona"];
-# Boolean literals 				true and false
+# Boolean literals 				true and false, Boolean("");  // false
 # Floating-point literals 		-3.1E+12
 # Integers 						-345
 # Object literals 				var car = { myCar: "Saturn", getCar: carTypes("Honda"), special: sales };
@@ -2037,6 +2041,8 @@
 # They have to be used carefully, as what this refers to depends completely
 # on where the function was called, rather than where it was defined.
 
+# A closure is the combination of a function and the scope object in which it was created. Closures let you save state
+
 # function outside(x) {
 # 	function inside(y) {
 # 		return Math.pow(x, y);
@@ -2105,7 +2111,7 @@
 
 
 
-# Rest parameters
+# Rest parameters/Spread syntax
 # function multiply(multiplier, ...theArgs) {
 #   return theArgs.map(x => multiplier * x);
 # }
@@ -2331,6 +2337,7 @@
 
 
 # Objects
+# Object literal
 # var myHonda = {color: "red", wheels: 4, engine: {cylinders: 4, size: 2.2}};
 
 # var myCar = new Object();
@@ -2347,6 +2354,8 @@
 # Object.getOwnPropertyNames(myCar);
 
 
+
+# Prototype
 # function Person(name, sex) {
 # 	this.name = name;
 # 	this.sex = sex;
@@ -2356,7 +2365,65 @@
 # var ken = new Person("Ken Jones", "M");
 
 # The following code adds a age property to all objects of type person
-# Person.prtotype.age = 20;
+# Person.prototype.age = 20;
+
+# adding new method to Person object
+# Person.prototype.fullName = function() {
+# 	return `${this.name} ${this.sex}`;
+# };
+
+# !
+# Person.prototype is an object shared by all instances of Person.
+# It forms part of a lookup chain (that has a special name, "prototype chain"):
+# any time you attempt to access a property of Person that isn't set,
+# JavaScript will check Person.prototype to see if that property exists there instead.
+# As a result, anything assigned to Person.prototype becomes available to all instances
+# of that constructor via the this object.
+
+# add things to the prototype of built-in JavaScript objects
+# String.prototype.reversed = function reversed() {
+# 	let r = "";
+# 	for (let i = this.length - 1; i >= 0; i--) {
+# 		r += this[i];
+# 	}
+# 	return r;
+# };
+
+# 'Ivy'.reversed()
+
+
+
+# As mentioned before, the prototype forms part of a chain.
+# The root of that chain is Object.prototype, whose methods include toString()
+# — it is this method that is called when you try to represent an object as a string.
+# This is useful for debugging our Person objects:
+
+# var s = new Person("Simon", "M");
+# s; // [object Object]
+
+# Person.prototype.toString = function() {
+#   return '<Person: ' + this.fullName() + '>';
+# }
+
+# s.toString(); // "<Person: Simon M>"
+
+
+
+# call and apply
+# apply() has a sister function named call, which again lets you set this but takes
+# an expanded argument list as opposed to an array.
+
+# theFunction.apply(valueForThis, arrayOfArgs)
+# theFunction.call(valueForThis, arg1, arg2, ...)
+
+# function lastNameCaps() {
+# 	return this.last.toUpperCase();
+# }
+# var s = new Person("Simon", "Willison");
+# lastNameCaps.call(s);
+# // Is the same as:
+# s.lastNameCaps = lastNameCaps;
+# s.lastNameCaps();
 
 
 
@@ -2370,3 +2437,89 @@
 # In JavaScript objects are a reference type. Two distinct objects are never equal,
 # even if they have the same properties. Only comparing the same object reference
 # with itself yields true
+
+
+
+
+
+# Iterators
+# In JavaScript an iterator is an object that provides a next() method which returns
+# the next item in the sequence. This method returns an object with two properties:
+# done and value
+# function makeIterator(array){
+#     var nextIndex = 0;
+    
+#     return {
+#        next: function(){
+#            return nextIndex < array.length ?
+#                {value: array[nextIndex++], done: false} :
+#                {done: true};
+#        }
+#     }
+# }
+# var it = makeIterator(['yo', 'ya']);
+# it.next().value; // 'yo'
+# it.next().value; // 'ya'
+# it.next().done;  // true
+
+
+
+# Generators
+# A generator is a special type of function that works as a factory for iterators.
+# A function becomes a generator if it contains one or more yield expressions
+# and if it uses the function* syntax
+# function* idMaker(){
+# 	console.log('Start');
+# 	var index = 0;
+# 	while(true)
+# 		yield index++;
+# }
+
+# var gen = idMaker();
+# gen.next().value; // 0
+# gen.next().value; // 1
+# gen.next().value; // 2
+
+
+
+# Iterables
+# In order to be iterable, an object must implement the @@iterator method,
+# meaning that the object (or one of the objects up its prototype chain)
+# must have a property with a Symbol.iterator key
+
+# built-in iterables: String, Array, TypedArray, Map, Set
+
+# var myIterable = {
+#   container: ['a', 'b', 'c'],
+#   [Symbol.iterator]: function*() {
+#    yield* this.container;				// yield from ?
+#   }
+# };
+
+# for (let i of myIterable) {
+#   ...
+# }
+# or(unpacking)
+# [...myIterable]
+
+
+
+# Send to yield
+# A value passed to next() will be treated as the result of the last yield expression
+# that paused the generator
+# function* seq() {
+# 	let result = 0;
+# 	while(true) {
+# 		let current = yield result++;
+# 		if(current) {
+#     		result = current;
+#     	}
+#   	}
+# }
+
+# a = seq();
+# a.next().value;
+# a.next(10).value;
+# a.next().value;
+
+# Generators have a return(value) method that returns the given value and finishes the generator itself
