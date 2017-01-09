@@ -153,6 +153,16 @@ def save(commit=True, author=None, *args, **kwargs):
 
 
 
+# bulk_create inserts the provided list of objects into the database in an efficient manner(generally only 1 query)
+# the model’s save() method will not be called, and the pre_save and post_save signals will not be sent
+bulk_create(objs, batch_size=None)
+
+Item.objects.bulk_create([
+    Item(headline='This is a test'),
+    Item(headline='This is only a test')])
+
+
+
 # This will run on the 'default' database
 Author.objects.all()
 

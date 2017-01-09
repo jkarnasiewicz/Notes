@@ -364,6 +364,21 @@ print(words)
 
 
 
+# memoryview
+# memoryview objects allow python code to access the internal data of an object that supports the buffer protocol(bytes and bytearray) without copying
+# they can be sliced without copying the underlying data, unlike bytes/str
+import time
+for n in (100000, 200000, 300000, 400000):
+    data = b'x'*n
+    start = time.time()
+    # b = data
+    b = memoryview(data)
+    while b:
+        b = b[1:]
+    print('memoryview', n, time.time()-start)
+
+
+
 # Finding the largest or smallest N items
 import random
 import heapq

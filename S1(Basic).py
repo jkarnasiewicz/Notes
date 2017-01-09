@@ -33,6 +33,9 @@ id(object)				 		# id of the object
 # In a strong type system there is no implicit type conversion
 # e.g. 'string' + 43 => TypeError
 
+# Functions in Python are first-class objects
+# (created at runtime, assigned to a variable or element in a data structure, passed as an argument to a function, returned as the result of a function)
+
 # Default argument expressions evaluated once, when def is executed
 # Always use immutable objects as a default argument value
 
@@ -42,6 +45,7 @@ id(object)				 		# id of the object
 # [] == [] => True
 # [] is [] => False
 
+# Python does not require you to declare variables, but assumes that a variable assigned in the body of a function is local
 
 # Python name scopes(names are looked up in four nested scopes)
 # Local - inside the current function
@@ -122,6 +126,12 @@ sorted(iterable, key=None, reverse=False)
 
 # reverses any iterable series, returns a reverse iterator
 reversed(sequence)
+
+# evaluate a single dynamically generated Python expression and returns it value(cannot evaluate a statement, e.g. x = 5)
+eval('a*3')
+
+# execute dynamically generated Python code, always returns None
+exec('a = 7')
 
 
 
@@ -868,7 +878,7 @@ json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
 
 
 # COLLECTIONS
-from collections import OrderedDict, Counter, defaultdict, deque
+from collections import OrderedDict, Counter, defaultdict, deque, namedtuple
 
 # dictionary that remembers insertion order
 OrderedDict()
@@ -900,6 +910,15 @@ deque_obj.append(obj)
 deque_obj.appendleft(obj)
 deque_obj.pop()
 deque_obj.popleft()
+
+
+
+# namedtuple
+# namedtuple function is a factory that produces subclasses of tuple enhanced with field names and a class name — which helps debugging
+# can be used to build classes of objects that are just bundles of attributes with no custom methods, like a databaserecord
+# you can access the fields by name or position
+City = namedtuple('City', 'name country population coordinates')
+tokyo = City('Tokyo', 'JP', 36.933, (35.689722, 139.691667))
 
 
 
@@ -980,6 +999,28 @@ reduce(lambda x, y: x + y, range(10), 0)
 # or
 from operator import add
 reduce(add, range(100))
+
+
+
+
+
+# INSPECT
+from inspect import getsource, isclass, ismethod, getmembers, signature
+
+# source code of the object
+getsource(obj)
+
+# check method
+isclass(obj)
+
+# list all members of object, getmembers(obj, filter function)
+getmembers(obj, ismethod)
+
+# Extracting the function signature
+sig = signature(obj)
+
+for name, param in sig.parameters.items():
+	print(param.kind, ':', name, '=', param.default)
 
 
 

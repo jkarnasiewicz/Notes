@@ -740,7 +740,7 @@ class Card(object):
 class AceCard(Card):
     avaiable_objects = 4
 
-    # args and kwargs are from initialiazing class
+    # args and kwargs are used when initializing class
     def __new__(cls, *args, **kwargs):
         if not cls.avaiable_objects:
             raise ValueError("Cannot crate more objects")
@@ -956,6 +956,8 @@ class SortedSet(Set):
     def __rmul__(self, lhs):
         return self * lhs
     # __rmul__ = __mul__
+
+# prefix 'i' - inplace operators, e.g. __iadd__, +=
 
 # Set protocol:
 # Set algebra operations(rest inheritate from Set)

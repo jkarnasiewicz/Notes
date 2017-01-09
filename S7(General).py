@@ -17,6 +17,36 @@ Redis is in-memory data structure store, used as a database, cache and message b
 
 
 
+
+
+
+
+
+
+# PYTHON
+special methods - the Python interpreter is the only frequent caller of most special methods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Network
 # The layers operating below the socket() API are two different protocols(UDP and TCP)
 
@@ -466,6 +496,20 @@ class PersonDetailsForm(forms.Form):
 # Pattern – multiple form actions per view with prefix
 form = SubscribeForm(prefix="offers")
 
+
+
+
+
+# Peter Norvig Design Patterns book
+# The message from Peter Norvig’s design patterns slides is that the Command and Strategy
+# patterns — along with Template Method and Visitor — can be made simpler or even
+# 'invisible' with first class functions, at least for some applications of these patterns
+
+# Python has first-class functions and first-class types, features that Norvig claims affect
+# 10 of the 23 patterns
+
+# The authors are explicit right at the beginning of their book that
+# 'some of our patterns are supported directly by the less common object-oriented languages'
 
 
 

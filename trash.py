@@ -1,91 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# eval vs exec
-# django bulk_create
-
-# Peter Norvig Design Patterns book
-# The message from Peter Norvig’s design patterns slides is that the Command and Strategy
-# patterns — along with Template Method and Visitor — can be made simpler or even
-# “invisible” with first class functions, at least for some applications of these patterns
-
-# Python has first-class functions and first-class types, features that Norvig claims affect
-# 10 of the 23 patterns
-
-# The authors are explicit right at the beginning of their book that
-# “some of our patterns are supported directly by the less common object-oriented languages”
-
-
-
-# Scopes
-# Python does not require you to declare variables, but assumes that a variable assigned in the body of a function is local.
-# This is much better than the behavior of JavaScript, which does not require variable declarations
-# either, but if you do forget to declare that a variable is local (with var), you may clobber
-# a global variable without knowing.
-
-# iter(), next()
-# class attribute vs instnace attribute
-# __prepare__
-# __getattribute__(self, name)
-# __new__(cls, clsname, bases, clsdict)
-# memoryview
-
-
-
-# import inspect
-# inspect.getsource(object_name)
-# ? inspect.getmembers(promotions, inspect.isfunction) / (obj, filter func)
-# ? inspect.isclass
-
-# Extracting the function signature
-# from inspect import signature
-# sig = signature(f)
-# print(sig)
-
-# for name, param in sig.parameters.items():
-#     print(param.kind, ':', name, '=', param.default)
-
-
-
-# prefix 'i' - inplace, e.g. __iadd__
-
-
-# First-Class Functions
-# Functions in Python are first-class objects
-# “first-class object” as a program entity that can be:
-# • created at runtime;
-# • assigned to a variable or element in a data structure;
-# • passed as an argument to a function;
-# • returned as the result of a function.
-
-
-
-# bound vs unbound
-# Unbound (class) method objects: no self
-# Accessing a function attribute of a class by qualifying the class returns an unbound method object.
-# To call the method, you must provide an instance object explicitly as the first argument.
-# In Python 3.X, an unbound method is the same as a simple function and can be called through the class’s name;
-# in 2.X it’s a distinct type and cannot be called without providing an instance.
-
-# Bound (instance) method objects: self + function pairs
-# Accessing a function attribute of a class by qualifying an instance returns a bound method object.
-# Python automatically packages the instance with the function in the bound method object,
-# so you don’t need to pass an instance to call the method.
-
-
-
-# namedtuple
-# namedtuple can be used to build classes of objects that are just bundles of attributes with no custom methods, like a databaserecord
-# The collections.namedtuple function is a factory that produces subclasses of tuple enhanced with field names and a class name — which helps debugging
-# You can access the fields by name or position
-
-# from collections import namedtuple
-# City = namedtuple('City', 'name country population coordinates')
-# tokyo = City('Tokyo', 'JP', 36.933, (35.689722, 139.691667))
-# print(tokyo)
-
-
-
-# special methods - the Python interpreter is the only frequent caller of most special methods
 
 
 # __repr__() - The string returned by __repr__ should be unambiguous and, if possible, match the source code necessary to recreate the object being represented
@@ -1845,6 +1759,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # JavaScript The Good Parts
 # JavaScript is an important language because it is the language of the web browser. Its
 # association with the browser makes it one of the most popular programming languages in the world
@@ -1875,6 +1804,13 @@
 # This is possible because the function has access to the context in which it was created. This is called closure.
 
 # global object - window.foo
+
+# A JavaScript literal represents a value of a specific type, such as a quoted string (String),
+# floating-point number (Number), or boolean (Boolean): "this is a string", 1.45, true
+# A JavaScript primitive is an instance of a particular data type, and there are five such in
+# the language: String, Number, Boolean, null, and undefined
+
+# 'hello' === new String('hello') // false, literal(typeof => string) vs primitive(typeof => object)
 
 # undefine, NaN, null
 
@@ -2062,15 +1998,15 @@
 #     setName: function(newName) {
 #       name = newName;
 #     },
-    
+	
 #     getName: function() {
 #       return name;
 #     },
-    
+	
 #     getSex: function() {
 #       return sex;
 #     },
-    
+	
 #     setSex: function(newSex) {
 #       if(typeof newSex === "string" && (newSex.toLowerCase() === "male" || newSex.toLowerCase() === "female")) {
 #         sex = newSex;
@@ -2448,7 +2384,7 @@
 # done and value
 # function makeIterator(array){
 #     var nextIndex = 0;
-    
+	
 #     return {
 #        next: function(){
 #            return nextIndex < array.length ?
@@ -2523,3 +2459,67 @@
 # a.next().value;
 
 # Generators have a return(value) method that returns the given value and finishes the generator itself
+
+
+
+# Class
+# JavaScript classes are syntactical sugar over JavaScript's existing prototype-based inheritance.
+# The class syntax is not introducing a new object-oriented inheritance model to JavaScript.
+# JavaScript classes provide a much simpler and clearer syntax to create objects and deal with inheritance.
+
+# let log = console.log;
+
+# class Polygon {
+# 	constructor(height, width) {
+# 		this.height = height;
+# 		this.width = width;
+# 	}
+	
+# 	toString() {
+# 		return `Polygon (${this.height}x${this.width})`;
+# 	}
+#   // property
+# 	get area() {
+# 		return this.callArea();
+# 	}
+	
+# 	callArea() {
+# 		return this.height*this.width;
+# 	}
+# 	// Static methods are called without instantiating their class and are also not callable when the class is instantiated.
+# 	static diagonal(x, y) {
+# 		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+# 	}
+# }
+
+	
+# // inheritance
+# class Square extends Polygon {
+# 	toString() {
+# 		// The super keyword is used to call functions on an object's parent
+# 		log(super.toString()); // 'Polygon (7x3)'
+# 		return `Square (${this.height}x${this.width})`;
+# 	}
+# }	
+
+	
+# let p = new Polygon(185, 90);
+# log(p, p.toString());
+# log(p.area, p.callArea())
+# log(Polygon.diagonal(3, 4));
+
+
+# let s = new Square(7, 3);
+# log(s, s.toString());
+# log(s.area, s.callArea())
+# log(Square.diagonal(6, 8));
+
+
+# var li = [' cherries', ' oranges', ' apples', ' bananas'];
+# li.forEach(function(elmnt,indx,arry) {
+# 	arry[indx] = elmnt.trim();
+# });
+
+
+
+# 16
