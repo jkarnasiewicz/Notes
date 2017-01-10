@@ -1,11 +1,11 @@
 # Conditional execution, the first true value from if or elif ends the if-else block
 a = 11
 if a > 12:
-    print('a is greater than 12')
+	print('a is greater than 12')
 elif a > 10:
-    print('a is greater than 10')
+	print('a is greater than 10')
 else:
-    print('a is less or equal than 10')
+	print('a is less or equal than 10')
 
 
 
@@ -16,27 +16,27 @@ result = true_value if condition else false_value
 
 # Checking if n is prime number(Sprawdzanie czy n jest liczba pierwsza)
 def check_prime(n):
-    if n % 2 == 0:
-        return False
-    from_i = 3
-    to_i = math.sqrt(n) + 1
-    for i in range(from_i, int(to_i), 2):
-        if n % i == 0:
-            return False
-    return True
+	if n % 2 == 0:
+		return False
+	from_i = 3
+	to_i = math.sqrt(n) + 1
+	for i in range(from_i, int(to_i), 2):
+		if n % i == 0:
+			return False
+	return True
 
 
 
 # Prime Numbers(Liczby pierwsze)
 def prime_numbers(lim):
-    for i in range(2, lim+1):
-        for j in range(2, i+1):
-            if i == j:
-                yield '{} is prime number'.format(i)
-                break
-            if i % j == 0:
-                yield '{} is not prime number, {} * {}'.format(i, j, i/j)
-                break
+	for i in range(2, lim+1):
+		for j in range(2, i+1):
+			if i == j:
+				yield '{} is prime number'.format(i)
+				break
+			if i % j == 0:
+				yield '{} is not prime number, {} * {}'.format(i, j, i/j)
+				break
 
 print([i for i in prime_numbers(100) if 'is prime number' in i])
 
@@ -44,10 +44,10 @@ print([i for i in prime_numbers(100) if 'is prime number' in i])
 
 # Prime factor(Rozklad liczby na czynniki pierwsze)
 def decay(n):
-    for i in range(2, n+1):
-        while n % i == 0:
-            yield i
-            n = n/i
+	for i in range(2, n+1):
+		while n % i == 0:
+			yield i
+			n = n/i
 
 print([i for i in decay(273)])
 
@@ -55,38 +55,38 @@ print([i for i in decay(273)])
 
 # Signum function
 def sign(x):
-    return (x > 0) - (x < 0)
+	return (x > 0) - (x < 0)
 
 
 
 # Fibonacci series, the sum of two elements defines the next, return Fibonacci series up to n
 def fib2(n):
-    result = []
-    a, b = 0, 1
-    while a < n:
-        result.append(a)
-        a, b = b, a+b
-    return result
+	result = []
+	a, b = 0, 1
+	while a < n:
+		result.append(a)
+		a, b = b, a+b
+	return result
 
 print(fib2(100))
 
 
 
 def silnia(n):
-    result = 1
-    while n > 1:
-        result = result * n
-        n -= 1
-    return result
+	result = 1
+	while n > 1:
+		result = result * n
+		n -= 1
+	return result
 
 def factorial_recursion(n):
-    return n*factorial_recursion(n-1) if n > 1 else 1
+	return n*factorial_recursion(n-1) if n > 1 else 1
 
 from functools import reduce
 from operator import mul
 
 def factorial_reduce(n):
-    return reduce(mul, range(1, n+1), 1)
+	return reduce(mul, range(1, n+1), 1)
 
 print(silnia(5))
 print(factorial_recursion(6))
@@ -96,9 +96,9 @@ print(factorial_reduce(7))
 
 # Reverse function
 def reverse(iterable):
-    for i in range(len(iterable)-1):
-        iterable.insert(i, iterable.pop())
-    return iterable
+	for i in range(len(iterable)-1):
+		iterable.insert(i, iterable.pop())
+	return iterable
 
 print(reverse([0, 1, 2, 3, 4, 5]))
 
@@ -106,8 +106,8 @@ print(reverse([0, 1, 2, 3, 4, 5]))
 
 # Default Mutable Argument Values(domyslne 'modyfikowalne' argumenty)
 def f(a, L = []):
-    L.append(a)
-    return L
+	L.append(a)
+	return L
 
 print(f(1))
 print(f(2))
@@ -133,7 +133,7 @@ print(list(range(*args)))
 
 # Unpacking Dictionary
 def vol(voltage, who='you', action='vanish'):
-    print("If you put", voltage, "volts through", who+",", who, "will", action+".")
+	print("If you put", voltage, "volts through", who+",", who, "will", action+".")
 
 d = {"voltage": 4000, "action": "fly"}
 vol(**d)
@@ -141,9 +141,21 @@ vol(10)
 
 
 
+# Unpacking Tuple
+metro_areas = [
+	('Tokyo', 'JP', 36.933, (35.689722, 139.691667)), #
+	('Delhi NCR', 'IN', 21.935, (28.613889, 77.208889)),
+	('Mexico City', 'MX', 20.142, (19.433333, -99.133333)),
+]
+
+for name, cc, pop, (latitude, longitude) in metro_areas:
+	print('{:20} {}, {}'.format(name, latitude, longitude))
+
+
+
 # Keyword-only args
 def fun(*args, post, **kwargs):
-    pass
+	pass
 
 # TypeError: fun() missing 1 required keyword-only argument: 'post'
 fun(1, 2, 'st', p=33, k=44, j='o')
@@ -152,7 +164,7 @@ fun(1, 2, 'st', p=33, k=44, j='o')
 
 # Lambda Expressions
 def f(a,b,c):
-    return lambda x: a*x**2 + b*x + c
+	return lambda x: a*x**2 + b*x + c
 
 g = f(1,2,3)
 print(g(1))
@@ -185,9 +197,9 @@ print( [str(round(pi, i)) for i in range(1, 6)] )
 
 # Transpose
 matrix = [
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 10, 11, 12],
+	[1, 2, 3, 4],
+	[5, 6, 7, 8],
+	[9, 10, 11, 12],
 ]
 
 print([tuple(row[i] for row in matrix) for i in range(4)])
@@ -237,9 +249,9 @@ print(sorted(prices.items(), key=lambda x: x[1], reverse=True))                 
 d = {}
 pairs =[(x,y) for x in range(10) for y in ('a','b','c','d','e','f')]
 for key, value in pairs:
-    if key not in d:
-        d[key] = []
-    d[key].append(value)
+	if key not in d:
+		d[key] = []
+	d[key].append(value)
 
 print(d)
 
@@ -248,42 +260,42 @@ from collections import defaultdict
 d = defaultdict(list)
 
 for key, value in pairs:
-    d[key].append(value)
+	d[key].append(value)
 
 
 
 # Iterator with Yield
 def inclusive_range(*args):
-    numargs = len(args)
-    if numargs < 1:
-        raise TypeError('requires at least one argument')
-    elif numargs == 1:
-        stop = args[0]
-        start = 0
-        step = 1
-    elif numargs == 2:
-        (start, stop) = args
-        step = 1
-    elif numargs == 3:
-        (start, stop, step) = args
-    else:
-        raise TypeError('inclusive_range expected at most 3 arguments,\
-                         got {}'.format(numargs))
-    i = start
-    while i <= stop:
-        yield i
-        i += step
+	numargs = len(args)
+	if numargs < 1:
+		raise TypeError('requires at least one argument')
+	elif numargs == 1:
+		stop = args[0]
+		start = 0
+		step = 1
+	elif numargs == 2:
+		(start, stop) = args
+		step = 1
+	elif numargs == 3:
+		(start, stop, step) = args
+	else:
+		raise TypeError('inclusive_range expected at most 3 arguments,\
+						 got {}'.format(numargs))
+	i = start
+	while i <= stop:
+		yield i
+		i += step
 
 for i in inclusive_range(5, 25, 3):
-    print(i, end=' ')
+	print(i, end=' ')
 
 
 
 # Send to yield
 def reciver():
-    while True:
-        item = yield
-        print('Got: ', item)
+	while True:
+		item = yield
+		print('Got: ', item)
 
 fun = reciver()
 next(fun)
@@ -298,28 +310,28 @@ fun.close()
 
 # yield from
 def chain(x, y):
-    yield from x
-    yield from y
+	yield from x
+	yield from y
 
 a = [1, 2, 3]
 b = ['a', 'b', 'c']
 
 for item in chain(chain(a, a), chain(b, b)):
-    print(item)
+	print(item)
 
 
 
 # iter and __next__
 def take(n, seq):
-    """Returns first n values from the given sequence."""
-    seq = iter(seq)
-    result = []
-    try:
-      for i in range(n):
-          result.append(seq.__next__())
-    except StopIteration:
-        pass
-    return result
+	"""Returns first n values from the given sequence."""
+	seq = iter(seq)
+	result = []
+	try:
+	  for i in range(n):
+		  result.append(seq.__next__())
+	except StopIteration:
+		pass
+	return result
 
 print(take(7, [i for i in range(10)]))
 
@@ -334,21 +346,21 @@ print(take(7, [i for i in range(10)]))
 
 # Generator version
 def readfiles(filenames):
-    for f in filenames:
-        for line in open(f):
-            yield line
+	for f in filenames:
+		for line in open(f):
+			yield line
 
 def grep(pattern, lines):
-    return (line for line in lines if pattern in line)
+	return (line for line in lines if pattern in line)
 
 def printlines(lines):
-    for line in lines:
-        print(line)
+	for line in lines:
+		print(line)
 
 def main(pattern, filenames):
-    lines = readfiles(filenames) # => generator
-    lines = grep(pattern, lines) # => generator expresion
-    printlines(lines)
+	lines = readfiles(filenames) # => generator
+	lines = grep(pattern, lines) # => generator expresion
+	printlines(lines)
 
 main('grep', [__file__])
 
@@ -357,25 +369,45 @@ main('grep', [__file__])
 # Change a Sequence You Are Iterating Over While Inside The Loop
 words = ['cat', 'window', 'defenestrate']
 for w in words[:]:                                                              # Loop over a slice copy of the entire list
-    if len(w) > 6:
-        words.insert(0, w)
+	if len(w) > 6:
+		words.insert(0, w)
 
 print(words)
 
 
+# Bisection algorithms
+# return the index where to insert item x in list a, assuming a is sorted
+# bisect(a, x, lo=0, hi=len(a))
+import bisect
 
-# memoryview
+def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
+    i = bisect.bisect(breakpoints, score)
+    return grades[i]
+
+print([grade(score) for score in [33, 99, 77, 70, 89, 90, 100]])               # ['F', 'A', 'C', 'C', 'B', 'A', 'A']
+
+
+
+# Memoryview
 # memoryview objects allow python code to access the internal data of an object that supports the buffer protocol(bytes and bytearray) without copying
 # they can be sliced without copying the underlying data, unlike bytes/str
 import time
 for n in (100000, 200000, 300000, 400000):
-    data = b'x'*n
-    start = time.time()
-    # b = data
-    b = memoryview(data)
-    while b:
-        b = b[1:]
-    print('memoryview', n, time.time()-start)
+	data = b'x'*n
+	start = time.time()
+	# b = data
+	b = memoryview(data)
+	while b:
+		b = b[1:]
+	print('memoryview', n, time.time()-start)
+
+
+
+# the disassembler function(wywołania instrukcji)
+from dis import dis
+dis('{1}')
+# vs
+dis('set([1])')
 
 
 
@@ -388,12 +420,12 @@ print(heapq.nlargest(10,a))
 
 
 portfolio = [
-    {'name': 'IBM', 'shares': 100, 'price': 91.1},
-    {'name': 'AAPL', 'shares': 50, 'price': 543.22},
-    {'name': 'FB', 'shares': 200, 'price': 21.09},
-    {'name': 'HPQ', 'shares': 35, 'price': 31.75},
-    {'name': 'YHOO', 'shares': 45, 'price': 16.35},
-    {'name': 'ACME', 'shares': 75, 'price': 115.65}
+	{'name': 'IBM', 'shares': 100, 'price': 91.1},
+	{'name': 'AAPL', 'shares': 50, 'price': 543.22},
+	{'name': 'FB', 'shares': 200, 'price': 21.09},
+	{'name': 'HPQ', 'shares': 35, 'price': 31.75},
+	{'name': 'YHOO', 'shares': 45, 'price': 16.35},
+	{'name': 'ACME', 'shares': 75, 'price': 115.65}
 ]
 print(sorted(portfolio, key = lambda s: s['price'], reverse = False)[:3])
 print(heapq.nsmallest(3, portfolio, key=lambda s: s['price']))
@@ -408,10 +440,10 @@ li = [2, "Hello", 3.14, "..."]
 
 # with file
 with open("Example.data", mode="wb") as plik:
-    pickle.dump(li, plik)
+	pickle.dump(li, plik)
 
 with open("Example.data", mode="rb") as plik:
-    example = pickle.load(plik)
+	example = pickle.load(plik)
 
 # without file
 pickle.dumps(python_obj)
@@ -423,37 +455,37 @@ pickle.loads(pickled_obj)
 from zipfile import ZipFile
 # We Don't Need To Use myzip.close()
 with ZipFile('Zip.zip', 'w') as myzip:
-    myzip.write(r'Example.data', 'Example')
+	myzip.write(r'Example.data', 'Example')
 
 
 
 # os.walk
 import os
 for root, dirs, files in os.walk(os.path.dirname(__file__)):
-    for fname in filter(lambda fname: fname.endswith('.py'), files):
-            document = open(os.path.join(root, fname), mode='rt', encoding='utf-8')
+	for fname in filter(lambda fname: fname.endswith('.py'), files):
+			document = open(os.path.join(root, fname), mode='rt', encoding='utf-8')
 
 
 
 # tempfile, zipfile, os.walk
 def zip_file(self, sample):
-    path = ''
-    try:
-        with tempfile.SpooledTemporaryFile() as tmp:
-            with zipfile.ZipFile(tmp, 'w') as zipf:
-                for root, dirs, files in os.walk(path):
-                    for f in files:
-                        zipf.write(os.path.join(root, f),
-                                   os.path.join(sample.name, f),
-                                   zipfile.ZIP_DEFLATED)
-            tmp.seek(0)
-            response = HttpResponse(
-                tmp.read(), mimetype='application/x-zip-compressed')
-            content = 'attachment; filename={}.zip'.format(sample.name)
-            response['Content-Disposition'] = content
-            return response
-    except:
-        raise Http404()
+	path = ''
+	try:
+		with tempfile.SpooledTemporaryFile() as tmp:
+			with zipfile.ZipFile(tmp, 'w') as zipf:
+				for root, dirs, files in os.walk(path):
+					for f in files:
+						zipf.write(os.path.join(root, f),
+								   os.path.join(sample.name, f),
+								   zipfile.ZIP_DEFLATED)
+			tmp.seek(0)
+			response = HttpResponse(
+				tmp.read(), mimetype='application/x-zip-compressed')
+			content = 'attachment; filename={}.zip'.format(sample.name)
+			response['Content-Disposition'] = content
+			return response
+	except:
+		raise Http404()
 
 
 
@@ -461,11 +493,11 @@ def zip_file(self, sample):
 import tarfile, os, glob
 os.mkdir('Apps')
 for i in glob.glob('D:/Science/And Whatnot Final/*'):
-    t = tarfile.open(i)
-    try:
-        t.extractall('Apps')
-    except:
-        continue
+	t = tarfile.open(i)
+	try:
+		t.extractall('Apps')
+	except:
+		continue
 
 
 
@@ -481,8 +513,8 @@ f.close()
 
 doc = parse('rt22.xml')
 for bus in doc.findall('bus'):
-    print(bus.findtext('d'))
-    print(float(bus.findtext('lat')))
+	print(bus.findtext('d'))
+	print(float(bus.findtext('lat')))
 
 
 
@@ -491,11 +523,11 @@ fin = open('C:/Python34/Scripts/utf8.txt', 'r', encoding='utf-8')
 fout = open('C:/Python34/Scripts/utf8.html', 'w')
 outbytes = bytearray()
 for line in fin:
-    for c in line:
-        if(ord(c))>127:
-            outbytes += bytes('&#{:04d};'.format(ord(c)), encoding='utf8')
-        else:
-            outbytes.append(ord(c))
+	for c in line:
+		if(ord(c))>127:
+			outbytes += bytes('&#{:04d};'.format(ord(c)), encoding='utf8')
+		else:
+			outbytes.append(ord(c))
 outstr = str(outbytes, encoding='utf-8')
 print(outstr, file = fout)
 print(outstr)
@@ -505,12 +537,12 @@ print('Done.')
 
 # Buforowanie wartości metody
 class SomeModel(models.Model):
-    def some_expensive_function(self):
-        if not hasattr(self, "_expensive_value_cached"):
-            # jakieś bardzo skomplikowane obliczenia...
-            # ...i zapisanie wyniku w zmiennej result
-            self._expensive_value_cached = result
-        return self._expensive_value_cached
+	def some_expensive_function(self):
+		if not hasattr(self, "_expensive_value_cached"):
+			# jakieś bardzo skomplikowane obliczenia...
+			# ...i zapisanie wyniku w zmiennej result
+			self._expensive_value_cached = result
+		return self._expensive_value_cached
 
 # In templates
 # {% if object.some_expensive_function %}
@@ -532,8 +564,8 @@ db.commit()
 cursor = db.execute('select * from test order by t1')
 
 for row in cursor:
-    print(dict(row))                            # dict because of the row_factory
-    print(row['t1'], row['i1'])
+	print(dict(row))                            # dict because of the row_factory
+	print(row['t1'], row['i1'])
 
 
 
@@ -553,15 +585,15 @@ import time
 pool = futures.ThreadPoolExecutor(8)
 
 def func(x, y):
-    time.sleep(5)
-    return x + y
+	time.sleep(5)
+	return x + y
 
 def handle_result(future_obj):
-    try:
-        result = future_obj.result()
-        print('Got: ', result)
-    except Exception as e:
-        print('Failed: {} {}'.format(type(e).__name__, e))
+	try:
+		result = future_obj.result()
+		print('Got: ', result)
+	except Exception as e:
+		print('Failed: {} {}'.format(type(e).__name__, e))
 
 # sequential execution
 print(func(2, 3))
@@ -573,7 +605,7 @@ print(func(2000, 3000))
 
 # submit and add_done_callback
 for i in range(4):
-    pool.submit(func, 2*10**i, 3*10**i).add_done_callback(handle_result)
+	pool.submit(func, 2*10**i, 3*10**i).add_done_callback(handle_result)
 
 
 
@@ -581,15 +613,15 @@ for i in range(4):
 create list with futures
 to_do = []
 for i in range(4):
-    # submit schedules the callable to be executed, and returns a future representing this pending operation
-    future = pool.submit(func, 2*10**i, 3*10**i)
-    to_do.append(future)
+	# submit schedules the callable to be executed, and returns a future representing this pending operation
+	future = pool.submit(func, 2*10**i, 3*10**i)
+	to_do.append(future)
 
 result = []
 # as_completed yields futures as they are completed
 for future in futures.as_completed(to_do):
-    res = future.result()
-    result.append(res)
+	res = future.result()
+	result.append(res)
 
 print(result)
 
@@ -597,9 +629,9 @@ print(result)
 
 # map
 with futures.ThreadPoolExecutor(8) as executor:
-    # create generator
-    res = executor.map(func, [2, 20, 200, 2000], [3, 30, 300, 3000])
-    print(list(res))
+	# create generator
+	res = executor.map(func, [2, 20, 200, 2000], [3, 30, 300, 3000])
+	print(list(res))
 
 
 
@@ -626,16 +658,16 @@ logger.info('any message')
 from distutils.core import setup
 
 setup(
-    name='',
-    version='',
-    py_modules=['module_name'],
+	name='',
+	version='',
+	py_modules=['module_name'],
 
-    # metadata
-    author='',
-    author_email='',
-    description='',
-    license='',
-    keywords='',
+	# metadata
+	author='',
+	author_email='',
+	description='',
+	license='',
+	keywords='',
 )
 
 # install module
@@ -651,41 +683,41 @@ python setup.py sdist --format zip
 # raise without an argument re-raises the current exception
 # NotImplementedError, LookupError(IndexError, KeyError), NameError, ImportError, ValueError, TypeError, IOError, SyntaxError
 def readfile(filename):
-    if filename.endswith('.txt'):
-        fh = open(filename)
-        return fh.readlines()
-    else:
-        raise ValueError('Filename must end with .txt')         # More informations about error
+	if filename.endswith('.txt'):
+		fh = open(filename)
+		return fh.readlines()
+	else:
+		raise ValueError('Filename must end with .txt')         # More informations about error
 
 
 try:
-    for line in readfile('xline.doc'):
-        print(line.strip())
+	for line in readfile('xline.doc'):
+		print(line.strip())
 except IOError as e:
-    print('Could not open the file', e)
+	print('Could not open the file', e)
 except ValueError as e:
-    print('Bad filename.', e)
+	print('Bad filename.', e)
 
 
 while True:
-    try:
-        x = int(input("Please enter a number: "))
-        break
-    except ValueError:
-        print("Oops!  That was no valid number.  Try again...")
+	try:
+		x = int(input("Please enter a number: "))
+		break
+	except ValueError:
+		print("Oops!  That was no valid number.  Try again...")
 
 
 try:  
-    from lxml import etree
+	from lxml import etree
 except ImportError:
-    import xml.etree.ElementTree as etree
+	import xml.etree.ElementTree as etree
 else:
-    # The use of the else clause is better than adding additional code to the try
-    # clause because it avoids accidentally catching an exception that wasn’t raised
-    # by the code being protected by the try ... except statement.
+	# The use of the else clause is better than adding additional code to the try
+	# clause because it avoids accidentally catching an exception that wasn’t raised
+	# by the code being protected by the try ... except statement.
 finally:
-    # A finally clause is always executed before leaving the try statement,
-    # whether an exception has occurred or not.
+	# A finally clause is always executed before leaving the try statement,
+	# whether an exception has occurred or not.
 
 
 
@@ -697,18 +729,18 @@ assert isinstance(instance_of_the_class, ClassName), 'Comments'
 
 # Documentation Strings
 def square(x):
-    '''Do nothing, but document it.
-    No, really, it doesn't do anything.
+	'''Do nothing, but document it.
+	No, really, it doesn't do anything.
 
-    Args:
-        x: The number for which the square root is to be computed
+	Args:
+		x: The number for which the square root is to be computed
 
-    Returns:
-        The square root of x.
+	Returns:
+		The square root of x.
 
-    Raises:
-        ValueError: If x is negative.
-    '''
-    pass
+	Raises:
+		ValueError: If x is negative.
+	'''
+	pass
 
 print(function.__doc__)

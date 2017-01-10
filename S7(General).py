@@ -23,10 +23,41 @@ Redis is in-memory data structure store, used as a database, cache and message b
 
 
 
-# PYTHON
-special methods - the Python interpreter is the only frequent caller of most special methods
 
 
+# PYTHON/LANGUAGE
+# Special methods
+the Python interpreter is the only frequent caller of most special methods
+
+
+# Unsigned/Signed
+unsigned integers can hold a larger positive value, and no negative value
+signed integers can hold both positive and negative numbers
+
+
+# Container sequences
+list, tuple, dict, set and collections.deque can hold items of different types
+# Flat sequences
+str, bytes, bytearray, memoryview and array.array hold items of one type
+
+Container sequences hold references to the objects they contain, which may be of any
+type, while flat sequences physically store the value of each item within its own memory
+space, and not as distinct objects. Thus, flat sequences are more compact, but they are
+limited to holding primitive values like characters, bytes and numbers
+
+
+# Dictionaries
+1: Keys must be hashable objects
+	An object is hashable if all of these requirements are met:
+    1. It supports the hash() function via a __hash__() method that always returns the
+    same value over the lifetime of the object.
+    2. It supports equality via an __eq__() method.
+    3. If a == b is True then hash(a) == hash(b) must also be True.
+
+2: dicts have significant memory overhead
+3: Key search is very fast(example of trading space for time)
+4: Key ordering depends on insertion order
+5: Adding items to a dict may change the order of existing keys
 
 
 

@@ -12,15 +12,15 @@ type(object)       				# type of the object
 # 								# creating class:	C = type('C', (object,), dict(__init__=__init__, add=add))
 id(object)				 		# id of the object
 
-# Immutable basic types such as numbers, strings, bytes and tuples
+# Immutable basic types such as numbers, strings, bytes, frozensets and tuples
 
 # Mutable objects such as lists, dictionaries, sets and other types -
 # meaning you can change their content without changing their identity
 
 # Sequence (such as a string, bytes, tuple, list, or range)
-# Collection (such as a dictionary, set, frozen set or bytearray)
+# Collection (such as a dictionary, set, frozenset or bytearray)
 
-# python objects/variables - think of named references to objects rather than variables
+# python objects/variables - think of named references to objects rather than variables(label/etykieta)
 
 # shallow copy - copy only the reference to the key, value paires not the objects themselves e.g.
 # a = [[0, 1]]*4
@@ -316,6 +316,9 @@ print(s.median(a), s.mean(a), s.variance(a))
 # shifted by 1 bit gives 101 which is the decimal 5.
 11 >> 1												# 5
 
+# bitwise Exclusive Or (xor(a, b))
+a ^ b
+
 
 
 
@@ -492,7 +495,26 @@ li.sort(key=callable, reverse=True)
 
 
 
-# SETS (unordered collection of unique, immutable objects)(Zbiory)
+# ARRAY
+import array
+# return a new array whose items are restricted by typecode, and initialized from the optional initializer value,
+# which must be a list, string or iterable over elements of the appropriate type
+
+# arrays represent basic values(characters('u'), integers('l/q'), floats('f/d')) and behave very much like lists,
+# except the type of objects stored in them is constrained
+array.array(typecode, iterable)
+
+# write all items(as machine values) to the file object f
+floats.tofile(f)
+
+# read n objects from the file object f and append them to the end of the array
+floats.fromfile(f, n=10**7)
+
+
+
+
+
+# SETS (unordered collection of unique, immutable, hashable objects)(Zbiory)
 # implemented with hash tables
 # duplicates are removed, only unique items stay
 basket = set(['apple', 'orange', 'apple', 'pear', 'orange', 'banana'])			# {'orange', 'banana', 'pear', 'apple'}
@@ -531,6 +553,13 @@ a.isdisjoint(b)
 
 # If True, list have more than one diffrent object
 if(len(set(iterable)) != 1)
+
+
+
+# FROZENSET
+# frozensets are like sets except that they cannot be changed, i.e. they are immutable
+# the set type is not hashable, but frozenset is, so you can have frozenset elements inside a set
+frozenset({'a', 'b', frozenset({1, 3, 7})})
 
 
 
@@ -579,6 +608,22 @@ di.values()
 # The method fromkeys() creates a new dictionary with keys from sequence and values set to value
 dict.fromkeys(sequence, value)
 # di.fromkeys(range(10), 10) => {0: 10, 1: 10, 2: 10, 3: 10, 4: 10, 5: 10, 6: 10, 7: 10, 8: 10, 9: 10}
+
+
+
+
+
+# MAPPING PROXY TYPE
+# MappingProxyType builds a read-only mappingproxy instance from a dict
+# mappingproxy is dynamic: any change in original dictionary is reflected
+# MappingProxyType == type(type.__dict__)
+from types import MappingProxyType
+d = {1: 'A'}
+d_proxy = MappingProxyType(d)
+# changes cannot be made through d_proxy
+# d_proxy[2] = 'x'
+# only using original dictionary
+# d[2] = 'B'
 
 
 
@@ -712,6 +757,9 @@ os.path.splitext(string)
 
 # returns the final component of a pathname
 os.path.basename(path)
+
+# return tuple (head, tail) where tail is everything after the final slash
+_, filename = os.path.split('/home/luciano/.ssh/idrsa.pub')
 
 
 
@@ -878,7 +926,10 @@ json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
 
 
 # COLLECTIONS
-from collections import OrderedDict, Counter, defaultdict, deque, namedtuple
+from collections import OrderedDict, Counter, defaultdict, deque, namedtuple, UserDict, UserList, UserString
+
+# insted inherit from built-ins(C objects), use UserDict, UserList, UserString
+# because the built-in methods mostly ignore user-defined overrides
 
 # dictionary that remembers insertion order
 OrderedDict()

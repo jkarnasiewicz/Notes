@@ -217,6 +217,13 @@ class Worker(ABC):
 
 
 
+# interfaces for common python objects are avaible in collections.abc module
+from collections.abc import Container, Iterable, Set, Mapping
+# we can also use them with isinstance or issubclass
+isinstance({1, 3, 5}, Container)
+
+
+
 
 
 
@@ -282,7 +289,7 @@ Class_Name.__mro__ == Class_Name.mro()
     def __iter__(self):
         return (item for item in self._items)
 
-# or
+# or other use of iter
 # iterator = iter(callable, sentinel) - callable without arguments
 
 with open('some_file.txt', 'rt') as f:
@@ -323,6 +330,27 @@ for stamp, value in itertools.islice(zip(timstamps, sensor), 10):
     time.sleep(3)
 
 
+
+class Reverse:
+
+    def __init__(self, sequence):
+        self.sequence = sequence
+        self.index = -1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        try:
+            result = self.sequence[self.index]
+            self.index -= 1
+        except IndexError:
+            self.index = -1
+            raise StopIteration
+        return result
+
+for i in Reverse([1, 3, 5, 7]):
+    print(i)
 
 
 
@@ -819,6 +847,8 @@ while rl:
 # __str__, called by str(object) and the built-in functions format() and print()
 # to compute the 'informal' or nicely printable string representation of an object
 
+# if you only implement one of these special methods, choose __repr__
+
 # __format__, called by the format() built-in function, and the str.format() method
 class Unit:
     def __init__(self, x, y):
@@ -941,6 +971,21 @@ class SortedSet(Set):
         if not isinstance(rhs, SortedSet):
             return NotImplemented           # Not, raise NotImplementedError
         return self._items != rhs._items
+
+
+# Hashable object
+# An object is hashable if it has a hash value which never changes during its lifetime (it
+# needs a __hash__() method), and can be compared to other objects (it needs an
+# __eq__() method). Hashable objects which compare equal must have the same hash value
+
+    def __hash__(self):
+        return reduce(lambda x, y: xor(hash(x), hash(y)), self._items)
+        # tuple is immutable but not always hashable:
+        # tt = (1, 2, (30, 40))
+        # hash(tt)
+        # tl = (1, 2, [30, 40])
+        # hash(tl)                      # TypeError: unhashable type: 'list'
+
 
 # Concatenation with + operator
 
