@@ -4,6 +4,8 @@ RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update,
 
 # API - Application Programming Interface
 
+# KISS - KISS principle is an acronym for "Keep it simple, stupid"
+
 # REDIS
 Redis is in-memory data structure store, used as a database, cache and message broker
 
@@ -26,13 +28,44 @@ Redis is in-memory data structure store, used as a database, cache and message b
 
 
 # PYTHON/LANGUAGE
+# Protocols and duck typing
+In the context of Object Oriented Programming, a protocol is an informal interface,
+defined only in documentation and not in code. For example, the sequence protocol in
+python entails just the __len__ and __getitem__ methods. Any class Spam that implements
+those methods with the standard signature and semantics can be used anywhere
+a sequence is expected. Whether Spam is a subclass of this or that is irrelevant, all that
+matters is that it provides the necessary methods
+
+We say it is a sequence because it behaves like one, and that is what matters
+
+# Interface
+interface is: the subset of an object’s public methods that enable it to play a specific
+role in the system. That’s what is implied when the python documentation mentions
+'a file-like object' or 'an iterable', without specifying a class
+
+# Protocol
+protocols are interfaces, but because they are informal — defined only by documentation
+and conventions — protocols cannot be enforced like formal interfaces can. A protocol may be
+partially implemented in a particular class, and that’s OK
+
+# Duck typing
+this can be accomplished without inheritance, in the spirit of
+duck typing: you just implement the methods needed for your objects to behave as
+expected
+# or
+operating with objects regardless, of their types, as long as they implement certain protocols
+
+
+
 # Special methods
 the Python interpreter is the only frequent caller of most special methods
+
 
 
 # Unsigned/Signed
 unsigned integers can hold a larger positive value, and no negative value
 signed integers can hold both positive and negative numbers
+
 
 
 # Container sequences
@@ -44,6 +77,7 @@ Container sequences hold references to the objects they contain, which may be of
 type, while flat sequences physically store the value of each item within its own memory
 space, and not as distinct objects. Thus, flat sequences are more compact, but they are
 limited to holding primitive values like characters, bytes and numbers
+
 
 
 # Dictionaries
@@ -61,6 +95,122 @@ limited to holding primitive values like characters, bytes and numbers
 
 
 
+# Normalizing Unicode text
+from unicodedata import normalize, name
+def nfc_equal(str1, str2):
+	return normalize('NFC', str1) == normalize('NFC', str2)
+
+def fold_equal(str1, str2):
+	return (normalize('NFC', str1).casefold() == normalize('NFC', str2).casefold())
+
+# Sorting Unicode text
+Python sorts sequences of any type by comparing the items in each sequence one by
+one. For strings, this means comparing the code points. Unfortunately, this produces
+unacceptable results for anyone who uses non-ASCII characters
+
+# Sorting with the Unicode Collation Algorithm
+import pyuca
+coll = pyuca.Collator()
+fruits = ['caju', 'atemoia', 'cajá', 'açaí', 'acerola']
+sorted_fruits = sorted(fruits, key=coll.sort_key)
+
+
+
+# Identity and value
+With reference variables it makes much more sense to say that the variable is assigned to an object, and not the
+other way around. After all, the object is created before the assignment. right-hand side of an assignment happens first
+variables just hold references to object
+
+Every object has an identity, a type and a value. An object’s identity never changes once
+it has been created; you may think of it as the object’s address in memory. The 'is' operator
+compares the identity of two objects; the id() function returns an integer representing
+its identity.
+
+The == operator compares the values of objects (the data they hold), while 'is' compares
+their identities
+
+The is operator is faster than ==, because it cannot be overloaded, so Python does not
+have to find and invoke special methods to evaluate it, and computing is as simple as
+comparing two integer ids
+
+
+
+# Default values
+The problem is that each default value is evaluated
+when the function is defined — i.e. usually when the module is loaded — and the
+default values become attributes of the function object
+
+
+
+# Reference assigment, copy and deepcopy
+	a = b: Reference assignment, a and b points to the same object
+
+    a ---,
+         v
+         {1: L}
+         ^   |
+    b ---'   '----> [1,2,3]
+
+    a = b.copy(): Shallow copying, a and b will become two isolated objects, but their contents still share the same reference
+
+    a ---> {1: L}
+               |             
+               >---> [1,2,3]
+               |
+    b ---> {1: M}
+
+    a = copy.deepcopy(b): Deep copying, a and bs structure and content become completely isolated
+
+    a ---> {1: L}
+               ‘-----> [1,2,3]
+    b ---> {1: M}
+               ‘-----> [1,2,3]
+
+# Make a copy
+Unless a method is explicitly intended to mutate an object received
+as argument, you should think twice before aliasing the argument
+object by simply assigning it to an instance variable in your class. If
+in doubt, make a copy
+
+
+
+# References
+The fact that variables hold references has many practical consequences in Python programming
+1. Simple assignment does not create copies
+2. Augmented assignment with +=, *= creates new objects if the left-hand variable is
+bound to an immutable object, but may modify a mutable object in-place
+3. Assigning a new value to an existing variable does not change the object previously
+bound to it. This is called a rebinding: the variable is now bound to a different object.
+If that variable was the last reference to the previous object, that object will be
+garbage collected
+4. Function parameters are passed as aliases, which means the function may change
+any mutable object received as an argument. There is no way to prevent this, except
+making local copies or using immutable objects (eg. passing a tuple instead of a
+list)
+5. Using mutable objects as default values for function parameters is dangerous because
+if the parameters are changed in-place then the default is changed, affecting
+every future call that relies on the default
+
+
+
+# Private attribute
+if you name an instance attribute in the form __mood (two leading
+underscores and zero or at most one trailing underscore), Python stores the name in
+the instance __dict__ prefixed with a leading underscore and the class name, so in the
+Dog class, __mood becomes _Dog__mood
+
+
+
+# NotImplemented vs NotImplementedError
+Do not confuse NotImplemented with NotImplementedError. The first, NotImplemented is a special
+singleton value that an infix operator special method should return to tell the interpreter it
+cannot handle a given operand. In contrast, NotImplementedError is an exception that stub
+methods in abstract classes raise to warn that they must be overwritten by subclasses
+
+If an infix operator method raises an exception, it aborts the operator dispatch algorithm.
+In the particular case of TypeError, it is often better to catch it and return NotImplemented.
+This allows the interpreter to try calling the reversed operator method which may correctly handle
+the computation with the swapped operands, if they are of different types
 
 
 

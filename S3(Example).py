@@ -125,6 +125,14 @@ concat("earth", "mars", "venus", sep=".")
 
 
 
+# Keyword-only arguments do not need to have a default value, but they can be still mandatory
+def pow(a, *, x):
+    return print(a**x)
+
+pow(3, x=4)
+
+
+
 # Unpacking List
 args = [3, 6]
 print(list(range(*args)))

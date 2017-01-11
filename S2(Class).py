@@ -197,6 +197,35 @@ m.x
 
 
 
+# __slots__
+# special attribute (not a method) that affects the internal storage of an object, with potentially
+# huge impact on the use of memory(removing dict) but little effect on its public interface
+
+# Using a dictionary for attribute storage is very convenient, but it can mean a waste of space for objects,
+# which have only a small amount of instance variables. The space consumption can become critical when creating
+# large numbers of instances. Slots are a nice way to work around this space consumption problem.
+# Instead of having a dynamic dict that allows adding attributes to objects dynamically,
+# slots provide a static structure which prohibits additions after the creation of an instance
+class S:
+    # assign iterable of str with identifiers for the instance attributes
+    __slots__ = ('val')
+
+    def __init__(self, v):
+        self.val = v
+
+s = S(7)
+print(s.val)
+s.x = 1                         # AttributeError: 'S' object has no attribute 'x'
+
+
+
+
+
+
+
+
+
+
 # Interface
 
 # abstract classes are available via the standard abc library package
@@ -214,13 +243,6 @@ class Worker(ABC):
     @abstractmethod
     def is_busy(self):
         "tell if busy"
-
-
-
-# interfaces for common python objects are avaible in collections.abc module
-from collections.abc import Container, Iterable, Set, Mapping
-# we can also use them with isinstance or issubclass
-isinstance({1, 3, 5}, Container)
 
 
 
@@ -277,6 +299,9 @@ Class_Name.__mro__ == Class_Name.mro()
 # __iter__ and __getitem__
 # __iter__ method is called on initialization of an iterator, this should return an object that has a __next__ method
 
+# Unpacking
+# __iter__ makes a object iterable; this is what makes unpacking work, e.g, x, y = my_object
+
     def __getitem__(self, index):
         return self.sequence[index]
 
@@ -289,7 +314,7 @@ Class_Name.__mro__ == Class_Name.mro()
     def __iter__(self):
         return (item for item in self._items)
 
-# or other use of iter
+# other use of iter
 # iterator = iter(callable, sentinel) - callable without arguments
 
 with open('some_file.txt', 'rt') as f:
@@ -949,7 +974,16 @@ class SortedSet(Set):
 # Retrive elements by index and slices by slicing
 
     def __getitem__(self, index):
-        return self._items[index]
+        cls = type(self)
+        if isinstance(index, slice):
+            return cls(self._items[index])
+        elif isinstance(index, numbers.Integral):
+            return self._items[index]
+        else:
+            raise TypeError('{cls.__name__} indices must be integers'.format(cls=cls))
+
+    # def __setitem__(self, index, value):
+    # def __delitem__(self, index):
 
 # Equality and inequality protocol(default behavior is to comparing objects id's):
 # Testing using '=='

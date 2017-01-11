@@ -1,6 +1,6 @@
 # GENERAL INFORMATION
 
-dir(object)        				# every method for object or dir() for list of names defined in the current module
+dir(object)        				# methods object or dir() for list of names defined in the current module
 help(object)
 
 object.__doc__     				# docstring for a function or module object
@@ -20,7 +20,11 @@ id(object)				 		# id of the object
 # Sequence (such as a string, bytes, tuple, list, or range)
 # Collection (such as a dictionary, set, frozenset or bytearray)
 
-# python objects/variables - think of named references to objects rather than variables(label/etykieta)
+# every python object has an identity, a type and a value
+
+# python objects/variables - think of named references to objects rather than variables(variables are just aliases/labels(etykiety))
+
+# del does not delete an object, just a reference to it(name/label)
 
 # shallow copy - copy only the reference to the key, value paires not the objects themselves e.g.
 # a = [[0, 1]]*4
@@ -28,13 +32,17 @@ id(object)				 		# id of the object
 
 # Dynamic type system
 # In dynamic type system objects types are only resolved at runtime (w czasie wykonywania programu)
+# (if type-checking is performed at compile time, the language is statically typed)
 
 # Strong type system
 # In a strong type system there is no implicit type conversion
 # e.g. 'string' + 43 => TypeError
+# Java, C++ and Python are strongly typed; PHP, JavaScript and Perl are weakly typed
 
 # Functions in Python are first-class objects
 # (created at runtime, assigned to a variable or element in a data structure, passed as an argument to a function, returned as the result of a function)
+
+# Function parameters as references
 
 # Default argument expressions evaluated once, when def is executed
 # Always use immutable objects as a default argument value
@@ -132,6 +140,16 @@ eval('a*3')
 
 # execute dynamically generated Python code, always returns None
 exec('a = 7')
+
+# slice
+sequence[slice(40, None, 2)] == sequence[40::2]
+
+	# indices
+	# This method produces 'normalized' tuples of non-negative start, stop and stride integers
+	# adjusted to fit within the bounds of a sequence of the given length
+	# slice_object.indices(len) -> 						# (start, stop, stride)
+	slice(None, 10, 2).indices(5)                       # (0, 5, 2)
+	slice(-3, None, None).indices(5)                    # (2, 5, 1)
 
 
 
@@ -389,6 +407,8 @@ len('Python')
 .rstrip()
 .center(80)
 
+# We decode bytes to str to get human readable text, and we encode str to bytes for storage or transmission
+
 # Encoding to byte sequence
 # from string to byte object (python 3)
 string_object.encode(encoding='utf-8', errors='strict')
@@ -400,10 +420,16 @@ string_object.encode(encoding='iso8859_1', errors='replace')
 string_object.encode(encoding='cp437', errors='xmlcharrefreplace')
 # replace each non-decodable byte with a code point in the Unicode range from
 # U+DC00 to U+DCFF that lies in the so-called 'Low Surrogate Area' of the standard
-string_object.encode(encoding='cp437', errors='xmlcharrefreplace')
+string_object.encode(encoding='cp437', errors='surrogateescape')
 
+# Decoding to string
 # from byte to string object (python 3)
-byte_object.decode('utf-8')
+byte_object.decode(encoding='utf-8', errors='strict')
+
+# utf
+# Unicode Transformation Format(system kodowania Unicode), using from 8 to 32 bits(bitów)
+# or from 1 to 4 bytes(bajtów) to encode single character fully compatible with ASCII
+# (the byte is a unit of digital information that most commonly consists of eight bits)
 
 
 
@@ -899,6 +925,10 @@ random.sample(range(10000000), 60)
 # shuffle list x in place, and return None
 random.shuffle(items)
 
+# alternate random number generator using sources provided by the operating system
+# (such as /dev/urandom on Unix or CryptGenRandom on Windows)
+random.SystemRandom().randint(3, 7)
+
 
 
 
@@ -927,9 +957,6 @@ json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
 
 # COLLECTIONS
 from collections import OrderedDict, Counter, defaultdict, deque, namedtuple, UserDict, UserList, UserString
-
-# insted inherit from built-ins(C objects), use UserDict, UserList, UserString
-# because the built-in methods mostly ignore user-defined overrides
 
 # dictionary that remembers insertion order
 OrderedDict()
@@ -973,10 +1000,39 @@ tokyo = City('Tokyo', 'JP', 36.933, (35.689722, 139.691667))
 
 
 
+# Subclassing built-in types is tricky
+# This built-in behavior is a violation of a basic rule of object oriented programming: the
+# search for methods should always start from the class of the target instance (self), even
+# when the call happens inside a method implemented in a superclass
+
+# Instead of subclassing the built-ins, derive your classes from UserDict, UserList and UserString
+# from the collections module because the built-in methods mostly ignore user-defined overrides
+
+# class DoppelDict(collections.UserDict):				# +
+class DoppelDict(dict): 								# -
+    def __setitem__(self, key, value):
+        super().__setitem__(key, [value] * 2)
+
+dd = DoppelDict(one=1) 									# -
+print(dd)
+dd['two'] = 2 											# +
+print(dd)
+dd.update(three=3) 										# -
+print(dd)
+
+
+
+# Interfaces for common python objects are avaible in collections.abc module
+from collections.abc import Container, Iterable, Set, Mapping
+# we can also use them with isinstance or issubclass
+isinstance({1, 3, 5}, Container)
+
+
+
 
 
 # ITERTOOLS
-# imap, ireduce, ifilter, izip, xrange === map, reduce, filter, zip, range (python 3)
+# imap, ifilter, izip, xrange === map, filter, zip, range (python 3)
 from itertools import (count, cycle, repeat, chain, islice, product, permutations,
 combinations_with_replacement, combinations)
 
@@ -1045,6 +1101,7 @@ from functools import wraps, lru_cache, partial, reduce
 partial(function, *args, **kwargs)
 
 # repeatedly apply a function to the elements of a sequence, reducing them to a single value
+# for +, |, ^ the initializer should be 0, but for *, & it should be 1.
 reduce(function, iterable, initial_value)
 reduce(lambda x, y: x + y, range(10), 0)
 # or
@@ -1072,6 +1129,43 @@ sig = signature(obj)
 
 for name, param in sig.parameters.items():
 	print(param.kind, ':', name, '=', param.default)
+
+
+
+
+
+# WEAKREF
+from weakref import ref, finalize, WeakSet
+# References and weak references
+# The presence of references is what keeps an object alive in memory. When the reference
+# count of an object reaches zero, the garbage collector disposes of it
+
+# Weak references to an object do not increase its reference count. The object that is the
+# target of a reference is called the referent. Therefore, we say that a weak reference does
+# not prevent the referent from being garbage collected.
+# wref = weakref.ref(object)
+
+# ender = weakref.finalize(object, callback_function, *args, **kwargs)
+# ender.alive
+
+# class that wants to keep track of all its current instances - this can be done with weak references
+class Remember:
+	members = []
+
+	def __init__(self):
+		r = ref(self)
+		cls = type(self)
+		cls.members.append(r)
+
+	@classmethod
+	def show_alive_members(cls):
+		return [item for item in cls.members if item() is not None]
+
+r, s, t = Remember(), Remember(), Remember()
+
+print(Remember.show_alive_members())
+del r, t
+print(Remember.show_alive_members())
 
 
 

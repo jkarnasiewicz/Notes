@@ -1,285 +1,38 @@
 # -*- coding: utf-8 -*-
 
-# we decode bytes to str to get human readable text, and we encode str to bytes for storage or transmission
-
-# print('asdąś€'.encode('utf-8'))
-# print('asdąś€'.encode('utf-16'))
-# print('asdąś€'.encode('cp1252', errors='replace'))
-# print('asdąś€'.encode('latin1', errors='replace'))
-# print('asdąś€'.encode('ascii', 'surrogateescape'))
-
-# Normalizing Unicode text
-# from unicodedata import normalize, name
-# def nfc_equal(str1, str2):
-#     return normalize('NFC', str1) == normalize('NFC', str2)
-
-# def fold_equal(str1, str2):
-#     return (normalize('NFC', str1).casefold() == normalize('NFC', str2).casefold())
-
-# Sorting Unicode text
-# Python sorts sequences of any type by comparing the items in each sequence one by
-# one. For strings, this means comparing the code points. Unfortunately, this produces
-# unacceptable results for anyone who uses non-ASCII characters
-
-# Sorting with the Unicode Collation Algorithm
-# import pyuca
-# coll = pyuca.Collator()
-# fruits = ['caju', 'atemoia', 'cajá', 'açaí', 'acerola']
-# sorted_fruits = sorted(fruits, key=coll.sort_key)
-
-
-
-# keyword-only arguments do not need to have a default value, but they can be still mandatory
-# def f(a, *, b):
-#     print(a, b)
-
-# f(3, b=4)
-
-
-# identity, value and aliasing(label/etykieta)
-# The theme is the distinction between objects and their names. A name is not the object;
-# a name is a separate thing
-
-# variables are labels, not boxes
-
-# Python variables are like reference variables in Java, so it’s better to think of them as labels attached to objects
-# variables hold references to object
-
-# With reference variables it makes much more sense to say that the variable is assigned to an object, and not the
-# other way around. After all, the object is created before the assignment. right-hand side of an assignment happens first
-
-# Every object has an identity, a type and a value. An object’s identity never changes once
-# it has been created; you may think of it as the object’s address in memory. The is operator
-# compares the identity of two objects; the id() function returns an integer representing
-# its identity.
-
-# The == operator compares the values of objects (the data they hold), while is compares
-# their identities
-
-# The is operator is faster than ==, because it cannot be overloaded, so Python does not
-# have to find and invoke special methods to evaluate it, and computing is as simple as
-# comparing two integer ids
-
-# copy.copy(obj)
-# copy.deepcopy(obj)
-
-# Function parameters as references
-
-# The problem is that each default value is evaluated
-# when the function is defined — i.e. usually when the module is loaded — and the
-# default values become attributes of the function object
-
-# Unless a method is explicitly intended to mutate an object received
-# as argument, you should think twice before aliasing the argument
-# object by simply assigning it to an instance variable in your class. If
-# in doubt, make a copy
-
-# del does not delete an object, just a reference to it(name/etykiete)
-
-# The presence of references is what keeps an object alive in memory. When the reference
-# count of an object reaches zero, the garbage collector disposes of it
-
-# Weak references to an object do not increase its reference count. The object that is the
-# target of a reference is called the referent. Therefore, we say that a weak reference does
-# not prevent the referent from being garbage collected.
-# (import weakref WeakValueDictionary, WeakSet, ref)
-# wref = weakref.ref(object)
-
-# ender = weakref.finalize(object, callback_function)
-# ender.alive
-
-# class that wants to keep track of all its current instances - This can be done with weak references
-
-# Every Python object has an identity, a type and a value
-
-# The fact that variables hold references has many practical consequences in Python programming.
-# 1. Simple assignment does not create copies.
-# 2. Augmented assignment with +=, *= creates new objects if the left-hand variable is
-# bound to an immutable object, but may modify a mutable object in-place.
-# 3. Assigning a new value to an existing variable does not change the object previously
-# bound to it. This is called a rebinding: the variable is now bound to a different object.
-# If that variable was the last reference to the previous object, that object will be
-# garbage collected.
-# 4. Function parameters are passed as aliases, which means the function may change
-# any mutable object received as an argument. There is no way to prevent this, except
-# making local copies or using immutable objects (eg. passing a tuple instead of a
-# list).
-# 5. Using mutable objects as default values for function parameters is dangerous because
-# if the parameters are changed in-place then the default is changed, affecting
-# every future call that relies on the default.
-
-# duck typing
-# And this can be accomplished without inheritance, in the spirit of
-# duck typing: you just implement the methods needed for your objects to behave as
-# expected
-
-
-
-# repr() - Return a string representing the object as the developer wants to see it.
-# str() -Return a string representing the object as the user wants to see it.
-
-# __iter__ makes a object iterable; this is what makes unpacking work, e.g,
-# x, y = my_object
-
-# Private attribute
-# if you name an instance attribute in the form __mood (two leading
-# underscores and zero or at most one trailing underscore), Python stores the name in
-# the instance __dict__ prefixed with a leading underscore and the class name, so in the
-# Dog class, __mood becomes _Dog__mood
-
-# safety and not security
-
-
-# __slots__
-# special attribute (not a method) that affects the internal storage of an object, with potentially
-# huge impact on the use of memory(removing dict) but little effect on its public interface
-
-# To define __slots__ you create a class attribute with that name and assign it an iterable
-# of str with identifiers for the instance attributes
-# __slots__ = ('__x', '__y')
-
-# Protocols and duck typing
-# In the context of Object Oriented Programming, a protocol is an informal interface,
-# defined only in documentation and not in code. For example, the sequence protocol in
-# Python entails just the __len__ and __getitem__ methods. Any class Spam that implements
-# those methods with the standard signature and semantics can be used anywhere
-# a sequence is expected. Whether Spam is a subclass of this or that is irrelevant, all that
-# matters is that it provides the necessary methods.
-
-# We say it is a sequence because it behaves like one, and that is what matters
-
-# protocols are defined as the informal interfaces that make polymorphism work
-# in languages with dynamic typing like Python
-
-# interface
-# interface is: the subset of an object’s public methods
-# that enable it to play a specific role in the system. That’s what is implied when the
-# Python documentation mentions “a file-like object” or “an iterable”, without specifying
-# a class
-
-# protocol
-# Protocols are interfaces, but because they are informal — defined only by documentation
-# and conventions — protocols cannot be enforced like formal interfaces can. A protocol may be
-# partially implemented in a particular class, and that’s OK.
-
-# “duck typing”: operating with objects regardless
-# of their types, as long as they implement certain protocols.
-
-# Sequence protocol:
-# __getitem__, __len__, __contains__, __iter__??
-
-# slice
-# s[1:4:2, 7:9]       # (slice(1, 4, 2), slice(7, 9, None))
-# print([1, 3, 5, 7, 9][slice(None, None, 2)])
-
-# indices
-# S.indices(len) -> (start, stop, stride)
-# This method produces “normalized” tuples of non-negative start, stop and stride integers
-# adjusted to fit within the bounds of a sequence of the given length
-# slice(None, 10, 2).indices(5)                       # (0, 5, 2)
-# slice(-3, None, None).indices(5)                    # (2, 5, 1)
-
-# def __getitem__(self, index):
-#     cls = type(self)
-#     if isinstance(index, slice):
-#         return cls(self._components[index])
-#     elif isinstance(index, numbers.Integral):
-#         return self._components[index]
-#     else:
-#         msg = '{cls.__name__} indices must be integers'
-#         raise TypeError(msg.format(cls=cls))
-
-
 # dynamic attribute access
 # The __getattr__ method is invoked by the interpreter when attribute lookup fails. In
-# simple terms, given the expression my_obj.x, Python checks if the my_obj instance has
+# simple terms, given the expression my_obj.x, python checks if the my_obj instance has
 # an attribute named x; if not, the search goes to the class (my_obj.__class__), and then
 # up the inheritance graph2. If the x attribute is not found, then the __getattr__ method
 # defined in the class of my_obj is called with self and the name of the attribute as a string,
 # e.g. 'x'.
+class A:
+	def __init__(self):
+		self.x = 3
+		self.y = 7
 
-# def __getattr__(self, name):
-#     cls = type(self)
-#     ...
-#     raise AttributeError(msg)
+	def __getattr__(self, name):
+		if name not in self.__dict__:
+			raise AttributeError('can\'t get attribute')
+		return self.__dict__[name]
 
-# def __setattr__(self, name, value):
-#     ...
-#     raise AttributeError('readonly attribute'/"can't set attributes")
-#     super().__setattr__(name, value)
+	def __setattr__(self, name, value):
+		if name not in self.__dict__:
+			raise AttributeError('can\'t set attribute')
+		self.__dict__[name] = value
+		# super().__setattr__(name, value)
 
-
-
-# reduce
-# As examples, for +, |, ^ the initializer should be 0, but for *, & it should be 1.
-
-
-
-# KISS principle - KISS is an acronym for "Keep it simple, stupid"
-
-
-
-# random.SystemRandom()?
-
-
-# Strong versus weak typing
-# If the language rarely performs implicit conversion of types, it’s considered strongly
-# typed; if it often does it, it’s weakly typed. Java, C++ and Python are strongly typed.
-# PHP, JavaScript and Perl are weakly typed.
+	def __delattr__(self, name):
+		raise AttributeError('can\'t remove attribute')
 
 
 
-# Static versus dynamic typing
-# If type-checking is performed at compile time, the language is statically typed; it it
-# happens at run-time, it’s dynamically typed. Static typing requires type declarations
-# (some modern languages use type inference to avoid some of that). Fortran and
-# Lisp are the two oldest programming languages still alive and they use, respectively,
-# static and dynamic typing.
-
-# To summarize, Python uses dynamic and strong typing
-
-
-
-# Subclassing built-in types is tricky
-# This built-in behavior is a violation of a basic rule of object oriented programming: the
-# search for methods should always start from the class of the target instance (self), even
-# when the call happens inside a method implemented in a superclass.
-
-# from collections import OrderedDict
-# +class DoppelDict(collections.UserDict):
-# -class DoppelDict(dict):
-#     def __setitem__(self, key, value):
-#         super().__setitem__(key, [value] * 2)
-
-# dd = DoppelDict(one=1) #
-# print(dd)
-# dd['two'] = 2
-# print(dd)
-# dd.update(three=3) #
-# print(dd)
-
-# Instead of subclassing the built-ins, derive your classes
-# from UserDict, UserList and UserString from the collections
-# module, which are designed to be easily extended.
-
-
-
-# NotImplemented vs NotImplementedError
-# Do not confuse NotImplemented with NotImplementedError. The
-# first, NotImplemented is a special singleton value that an infix operator
-# special method should return to tell the interpreter it cannot
-# handle a given operand. In contrast, NotImplementedError is an
-# exception that stub methods in abstract classes raise to warn that
-# they must be overwritten by subclasses.
-
-
-
-# If an infix operator method raises an exception, it aborts the operator
-# dispatch algorithm. In the particular case of TypeError, it is often
-# better to catch it and return NotImplemented. This allows the interpreter
-# to try calling the reversed operator method which may
-# correctly handle the computation with the swapped operands, if they
-# are of different types.
+a = A()
+print(a.__dict__)
+a.x = 8
+# del a.x
+print(a.x)
 
 
 
