@@ -14,6 +14,37 @@ result = true_value if condition else false_value
 
 
 
+# Else blocks
+
+# for/else
+# the else block will run only if and when the for loop runs to completion;
+# i.e. not if the for is aborted with a break
+for item in ['orange', 'apple']:
+	if item == 'banana':
+		break
+else:
+	raise ValueError('No banana flavor found!')
+
+# while/else
+# the else block will run only if and when the while loop exits because the condition
+# became falsy; i.e. not when the while is aborted with a break
+
+# try/else
+# the else block will only run if no exception is raised in the try block. The official
+# docs also state: 'Exceptions in the else clause are not handled by the preceding
+# except clauses.'
+try:
+	dangerous_call()
+except OSError:
+	log('OSError...')
+else:
+	after_call()
+
+# In all cases, the else clause is also skipped if an exception or a return, break or con
+# tinue statement causes control to jump out of the main block of the compound statement
+
+
+
 # Checking if n is prime number(Sprawdzanie czy n jest liczba pierwsza)
 def check_prime(n):
 	if n % 2 == 0:
@@ -60,7 +91,7 @@ def sign(x):
 
 
 # Fibonacci series, the sum of two elements defines the next, return Fibonacci series up to n
-def fib2(n):
+def fib(n):
 	result = []
 	a, b = 0, 1
 	while a < n:
@@ -68,7 +99,7 @@ def fib2(n):
 		a, b = b, a+b
 	return result
 
-print(fib2(100))
+print(fib(100))
 
 
 
@@ -127,7 +158,7 @@ concat("earth", "mars", "venus", sep=".")
 
 # Keyword-only arguments do not need to have a default value, but they can be still mandatory
 def pow(a, *, x):
-    return print(a**x)
+	return print(a**x)
 
 pow(3, x=4)
 
@@ -264,38 +295,51 @@ for key, value in pairs:
 print(d)
 
 
-from collections import defaultdict
-d = defaultdict(list)
 
-for key, value in pairs:
-	d[key].append(value)
+# with (Context-Manager Protocol)
+# sys.stdout.write/redirect_stdout
+import contextlib
+@contextlib.contextmanager
+def looking_glass():
+    # __enter__
+    import sys
+    original_write = sys.stdout.write
+    def reverse_write(text):
+        original_write(text[::-1])
+    sys.stdout.write = reverse_write
+    yield 'JABBERWOCKY'
+    # __exit__
+    sys.stdout.write = original_write
+
+with looking_glass():
+    print('hello')
+
+print('hello')
 
 
 
-# Iterator with Yield
-def inclusive_range(*args):
-	numargs = len(args)
-	if numargs < 1:
-		raise TypeError('requires at least one argument')
-	elif numargs == 1:
-		stop = args[0]
-		start = 0
-		step = 1
-	elif numargs == 2:
-		(start, stop) = args
-		step = 1
-	elif numargs == 3:
-		(start, stop, step) = args
-	else:
-		raise TypeError('inclusive_range expected at most 3 arguments,\
-						 got {}'.format(numargs))
-	i = start
-	while i <= stop:
-		yield i
-		i += step
+# Generator with Yield
+def aritprog_gen(begin, step, end=None):
+	result = type(begin + step)(begin)
+	forever = end is None
+	index = 0
+	while forever or result < end:
+		yield result
+		index += 1
+		result = begin + step * index
+		# index variable because:
+		# 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 = 0.9999999999999999
+		# 0.1 + 0.1*9 = 1.0
 
-for i in inclusive_range(5, 25, 3):
-	print(i, end=' ')
+# def aritprog_gen(begin, step, end=None):
+#     first = type(begin + step)(begin)
+#     ap_gen = itertools.count(first, step)
+#     if end is not None:
+#         ap_gen = itertools.takewhile(lambda n: n < end, ap_gen)
+#     return ap_gen
+
+for i in aritprog_gen(3, 7, 100):
+	print(i)
 
 
 
@@ -389,8 +433,8 @@ print(words)
 import bisect
 
 def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
-    i = bisect.bisect(breakpoints, score)
-    return grades[i]
+	i = bisect.bisect(breakpoints, score)
+	return grades[i]
 
 print([grade(score) for score in [33, 99, 77, 70, 89, 90, 100]])               # ['F', 'A', 'C', 'C', 'B', 'A', 'A']
 

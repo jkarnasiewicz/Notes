@@ -3,8 +3,6 @@
 # Callable objects: regular functions, lambdas expressions, classes(constructor),
 # methods, instance objects with __call__
 
-# Functions can be treated like any other objects
-
 # Classes define the structure and behavior of objects
 # Instance method - functions which can be called on objects(with self argument)
 # instance.method() == Class.method(instance)
@@ -281,201 +279,6 @@ Class_Name.__bases__
 # Method Resolution Order, information about linear order of the inheritance(super())
 Class_Name.__mro__ == Class_Name.mro()
 
-
-
-
-
-
-
-
-
-
-# Iterables, Iterators and Generators
-
-# Iterables
-# ===================================
-
-# Iterable protocol
-# __iter__ and __getitem__
-# __iter__ method is called on initialization of an iterator, this should return an object that has a __next__ method
-
-# Unpacking
-# __iter__ makes a object iterable; this is what makes unpacking work, e.g, x, y = my_object
-
-    def __getitem__(self, index):
-        return self.sequence[index]
-
-# Iterables are objects over which we can iterate item by item (lists, dict, strings or files)
-# there are many functions which consume these iterables, e.g. join, list
-
-# Iterable objects can be passed to the built-in iter() function to get an iterator
-# iterator = iter(iterable)
-
-    def __iter__(self):
-        return (item for item in self._items)
-
-# other use of iter
-# iterator = iter(callable, sentinel) - callable without arguments
-
-with open('some_file.txt', 'rt') as f:
-    for line in iter(lambda: f.readline().split(), 'END'):
-    # for line in iter(f.readline, ''):
-        print(line)
-
-
-
-
-
-# Iterators
-# ===================================
-
-# Iterator protocol
-# __iter__ and __next__ with raise StopIteration()
-
-# we retrive an iterator from an iterable object using the built-in iter() function
-# iterators produce items one-by-one from the underlying iterable series each time
-# they are passed to the built-in next() function
-
-# Iterator objects can be passed to build-in next() function to fetch the next item
-# item = next(iterator)
-
-class Sensor:
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        return random.random()
-
-sensor = Sensor()
-timstamps = iter(datetime.datetime.now, None)
-
-for stamp, value in itertools.islice(zip(timstamps, sensor), 10):
-    print(stamp, value)
-    time.sleep(3)
-
-
-
-class Reverse:
-
-    def __init__(self, sequence):
-        self.sequence = sequence
-        self.index = -1
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        try:
-            result = self.sequence[self.index]
-            self.index -= 1
-        except IndexError:
-            self.index = -1
-            raise StopIteration
-        return result
-
-for i in Reverse([1, 3, 5, 7]):
-    print(i)
-
-
-
-# Generators
-# ===================================
-
-# Generators simplifies creation of iterators
-# (It is an easier way to create iterators using a keyword yield from a function)
-
-# Generators are defined by any python function witch using the 'yield' keyword at least once in it's definition
-# (produces a sequence of results instead of a single value)
-
-# All generators are iterators, when advanced with next() the generator starts or resumes
-# execution up to and including the next yield
-
-# Generators are lazily evaluated - the next value in the sequence is computed on demand
-# (can model infinite sequence - such as data streams with no definite end)
-
-# When a generator function is called, it returns a generator object without
-# even beginning execution of the function. When next method is called for the first time,
-# the function starts executing until it reaches yield statement.
-# The yielded value is returned by the next call.
-
-import random
-
-def generator():
-    while True:
-        yield random.random()
-
-gen = generator()
-print(next(gen))
-
-# Generators provide a convenient way to implement the iterator protocol,
-# if a container object’s __iter__() method is implemented as a generator,
-# it will automatically return an iterator object
-
-    def __iter__(self):
-        for i in self._items:
-            yield i
-
-# Generators comprehensions/generator expressions
-(expr(item) for item in iterable)
-
-# Stateful generators:
-#   generators resume execution
-#   can maintain state in local variables
-#   complex control flow
-#   lazy evaluation
-
-
-
-# Comparison
-# ===================================
-
-# Both iterables and generators produce an iterator
-
-# The difference between iterables and generators:
-#   once you’ve burned through a generator, you’re done, no more data: 
-
-generator = (word + '!' for word in 'baby let me iterate ya'.split())
-
-# real processing happens during iteration
-for val in generator:
-    print(val)
-
-# nothing printed, no more data, generator stream already exhausted above
-for val in generator:
-    print(val)
-
-
-# On the other hand, an iterable creates a new iterator every time it’s looped over
-# (technically, every time iterable.__iter__() is called, such as when Python hits a 'for' loop): 
-
-class BeyonceIterable(object):
-    def __iter__(self):
-        """
-        The iterable interface: return an iterator from __iter__()
- 
-        Every generator is an iterator implicitly (but not vice versa!),
-        so implementing '__iter__' as a generator is the easiest way
-        to create streamed iterables
- 
-        """
-        for word in 'baby let me iterate ya'.split():
-            yield word + '!'
-
-
-iterable = BeyonceIterable()
-
-# iterator created here
-for val in iterable:
-    print(val)
-
-# another iterator created here
-for val in iterable:
-    print(val)
-
-# So iterables are more universally useful than generators, because we can go over the sequence more than once
-# Of course, when your data stream comes from a source that cannot be readily repeated (such as hardware sensors),
-# a single pass via a generator may be your only option
 
 
 
@@ -936,6 +739,49 @@ pickle.loads(pickled_obj)
 
 
 
+# Dynamic attribute access
+# The __getattr__ method is invoked by the interpreter when attribute lookup fails. In simple terms,
+# given the expression my_obj.x, python checks if the my_obj instance has an attribute named x; if not,
+# the search goes to the class (my_obj.__class__), and then up the inheritance graph. If the x attribute
+# is not found, then the __getattr__ method defined in the class of my_obj is called with self and the
+# name of the attribute as a string, e.g. 'x'.
+class CustomDict:
+    def __init__(self):
+        # prevents infinite recursion from self.data = {'a': 3, 'b': 7}
+        self.__dict__['data'] = {'a': 3, 'b': 7}
+
+    def __getattr__(self, name):
+        try:
+            return self.data[name]
+        except KeyError:
+            raise AttributeError('can\'t get attribute')
+
+    def __setattr__(self, name, value):     
+        self.data[name] = value
+        # raise AttributeError('can\'t set attribute')
+
+    def __delattr__(self, name):
+        try:
+            del self.data[name]
+        except KeyError:
+            raise AttributeError('can\'t remove attribute')
+
+cd = CustomDict()
+cd._n = 9
+del cd.a
+print(cd.data, cd.b)
+
+
+
+# A key difference between __getattr__ and __getattribute__ is that __getattr__ is only invoked if the attribute
+# wasn't found the usual ways. It's good for implementing a fallback for missing attributes, and is probably the
+# one of two you want. __getattribute__ is invoked before looking at the actual attributes on the object, and so can
+# be tricky to implement correctly. You can end up in infinite recursions very easily
+
+
+
+
+
 # Collection Protocol
 from collections.abc import Set
 from itertools import chain
@@ -1021,22 +867,42 @@ class SortedSet(Set):
         # hash(tl)                      # TypeError: unhashable type: 'list'
 
 
+# Iterable protocol:
+
+    def __iter__(self):
+        return iter(self._items)
+
+
+# Operator overloading
+# stick to the fundamental rule of operators: always return a new object
+# in other words, do not modify self, but create and return a new instance of a suitable type
+
 # Concatenation with + operator
 
     def __add__(self, rhs):
         return SortedSet(chain(self._items, rhs._items))
+    # __radd__ = __add__
 
 # Repetition with * operator
 
     def __mul__(self, rhs):
         return self if rhs > 0 else SortedSet()
 
-    # Reversed multiplication
+# Reversed multiplication
     def __rmul__(self, lhs):
         return self * lhs
     # __rmul__ = __mul__
 
-# prefix 'i' - inplace operators, e.g. __iadd__, +=
+# KlassA * KlassB
+# KlassA.__mul__(self, rhs) => KlassB.__rmul__(self, lhs)
+
+# Arithmetic unary negation
+    def __neg__(self):
+        return SortedSet(-i for i in self._items)
+
+# prefix 'i' - inplace operators(or augmented), e.g. __iadd__, +=
+# very important: augmented assignment special methods must return self
+
 
 # Set protocol:
 # Set algebra operations(rest inheritate from Set)
@@ -1058,11 +924,6 @@ class SortedSet(Set):
 
     def difference(self, iterable):
         return self - SortedSet(iterable)
-
-# Iterable protocol:
-
-    def __iter__(self):
-        return iter(self._items)
 
 # Find index by item
 
@@ -1095,4 +956,4 @@ class SortedSet(Set):
 s = SortedSet(range(20, 30))
 r = SortedSet(range(10))
 
-print(25 in s, 7 not in r, s.count(23), s.index(29), 3*r, r + s, r.intersection(s), s^r, sep='\n')
+print(25 in s, 7 not in r, -s, s.count(23), s.index(29), 3*r, r + s, r.intersection(s), s^r, sep='\n')

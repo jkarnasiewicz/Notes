@@ -6,6 +6,29 @@ RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update,
 
 # KISS - KISS principle is an acronym for "Keep it simple, stupid"
 
+# EAFP
+Easier to ask for forgiveness than permission. This common Python coding style
+assumes the existence of valid keys or attributes and catches exceptions if the assumption
+proves false. This clean and fast style is characterized by the presence of
+many try and except statements. The technique contrasts with the LBYL style common
+to many other languages such as C
+
+# LBYL
+Look before you leap. This coding style explicitly tests for pre-conditions before
+making calls or lookups. This style contrasts with the EAFP approach and is characterized
+by the presence of many if statements. In a multi-threaded environment,
+the LBYL approach can risk introducing a race condition between 'the looking' and
+'the leaping'. For example, the code, if key in mapping: return mapping[key] can
+fail if another thread removes key from mapping after the test, but before the lookup.
+This issue can be solved with locks or by using the EAFP approach
+
+# DES - discrete event simulation
+Intuitively, turn-based games are examples of discrete event simulations: the state of the
+game only changes when a player moves, and while a player is deciding the next move,
+the simulation clock is frozen. Real time games, on the other hand, are continuous
+simulations where the simulation clock is running all the time, the state of the game is
+updated many times per second and slow players are at a real disadvantage
+
 # REDIS
 Redis is in-memory data structure store, used as a database, cache and message broker
 
@@ -62,6 +85,21 @@ the Python interpreter is the only frequent caller of most special methods
 
 
 
+# with blocks
+The with statement was designed to simplify the try/finally pattern which guarantees
+that some operation is performed after a block of code, even if the block is aborted
+because of an exception, a return or sys.exit() call. The code in the finally clause
+usually releases a critical resource or restores some previous state that was temporarily
+changed
+
+with blocks don’t define a new scope, as functions and modules do
+
+with is not just for resource management, but it’s a tool for factoring out common
+setup and tear down code, or any pair of operations that need to be done before and
+after another procedure
+
+
+
 # Unsigned/Signed
 unsigned integers can hold a larger positive value, and no negative value
 signed integers can hold both positive and negative numbers
@@ -83,10 +121,10 @@ limited to holding primitive values like characters, bytes and numbers
 # Dictionaries
 1: Keys must be hashable objects
 	An object is hashable if all of these requirements are met:
-    1. It supports the hash() function via a __hash__() method that always returns the
-    same value over the lifetime of the object.
-    2. It supports equality via an __eq__() method.
-    3. If a == b is True then hash(a) == hash(b) must also be True.
+	1. It supports the hash() function via a __hash__() method that always returns the
+	same value over the lifetime of the object.
+	2. It supports equality via an __eq__() method.
+	3. If a == b is True then hash(a) == hash(b) must also be True.
 
 2: dicts have significant memory overhead
 3: Key search is very fast(example of trading space for time)
@@ -145,26 +183,26 @@ default values become attributes of the function object
 # Reference assigment, copy and deepcopy
 	a = b: Reference assignment, a and b points to the same object
 
-    a ---,
-         v
-         {1: L}
-         ^   |
-    b ---'   '----> [1,2,3]
+	a ---,
+		 v
+		 {1: L}
+		 ^   |
+	b ---'   '----> [1,2,3]
 
-    a = b.copy(): Shallow copying, a and b will become two isolated objects, but their contents still share the same reference
+	a = b.copy(): Shallow copying, a and b will become two isolated objects, but their contents still share the same reference
 
-    a ---> {1: L}
-               |             
-               >---> [1,2,3]
-               |
-    b ---> {1: M}
+	a ---> {1: L}
+			   |             
+			   >---> [1,2,3]
+			   |
+	b ---> {1: M}
 
-    a = copy.deepcopy(b): Deep copying, a and bs structure and content become completely isolated
+	a = copy.deepcopy(b): Deep copying, a and bs structure and content become completely isolated
 
-    a ---> {1: L}
-               ‘-----> [1,2,3]
-    b ---> {1: M}
-               ‘-----> [1,2,3]
+	a ---> {1: L}
+			   ‘-----> [1,2,3]
+	b ---> {1: M}
+			   ‘-----> [1,2,3]
 
 # Make a copy
 Unless a method is explicitly intended to mutate an object received
@@ -211,6 +249,8 @@ If an infix operator method raises an exception, it aborts the operator dispatch
 In the particular case of TypeError, it is often better to catch it and return NotImplemented.
 This allows the interpreter to try calling the reversed operator method which may correctly handle
 the computation with the swapped operands, if they are of different types
+
+
 
 
 
@@ -565,8 +605,8 @@ The singleton pattern maintains the same state for all instances of a class
 # Adaptor pattern - Bridging class interfaces
 This pattern is used to adapt a given class to a new interface
 
-    def __getattr__(self, attr):
-      return getattr(self.fish, attr)
+	def __getattr__(self, attr):
+	  return getattr(self.fish, attr)
 
 # Facade pattern - Hiding system complexity for a simpler interface
 
@@ -576,9 +616,9 @@ This pattern is used to adapt a given class to a new interface
 
 # Abstract factory
 class Animal(six.with_metaclass(abc.ABCMeta, object)):
- 	""" clients only need to know this interface for animals"""
- 	@abc.abstractmethod
- 	def sound(self, ):
+	""" clients only need to know this interface for animals"""
+	@abc.abstractmethod
+	def sound(self, ):
 		pass
 
 # Registry pattern - Adding functionality from anywhere in code to class

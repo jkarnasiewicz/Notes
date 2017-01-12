@@ -498,6 +498,7 @@ li.insert(index, object)
 li.append(object)
 
 # The extend() method takes a single argument, which is always a list, and adds each of the items of that list to a list
+# += is a shortcut for the list.extend()
 li.extend(iterable)
 
 # remove the first occurrence of object
@@ -979,6 +980,10 @@ sum(counter_obj.values())
 # a new entry is created. The type of this new entry is given by the argument of defaultdict.
 defaultdict(callable)
 
+df = defaultdict(list)
+for key, value in pairs:
+	dd[key].append(value)
+
 
 
 # list-like container with fast appends and pops on either end (double-ended queue)
@@ -1023,9 +1028,9 @@ print(dd)
 
 
 # Interfaces for common python objects are avaible in collections.abc module
-from collections.abc import Container, Iterable, Set, Mapping
+from collections.abc import Container, Iterable, Iterator, Set, Mapping
 # we can also use them with isinstance or issubclass
-isinstance({1, 3, 5}, Container)
+isinstance({1, 3, 5}, (Container, Iterable))
 
 
 
@@ -1033,8 +1038,8 @@ isinstance({1, 3, 5}, Container)
 
 # ITERTOOLS
 # imap, ifilter, izip, xrange === map, filter, zip, range (python 3)
-from itertools import (count, cycle, repeat, chain, islice, product, permutations,
-combinations_with_replacement, combinations)
+from itertools import (count, cycle, repeat, chain, islice, accumulate, groupby,
+product, permutations, combinations_with_replacement, combinations)
 
 # count, infinite iterators
 count(start=0, step=1)
@@ -1058,12 +1063,26 @@ chain(*iterables)
 # islice(iterable, start, stop, step)
 islice(iterable, 0, None, 3)
 
+# make an iterator that returns accumulated results of other binary functions
+# accumulate(sample, min)
+accumulate(range(1, 11), operator.mul)
+
+# make an iterator that returns consecutive keys and groups from the iterable.
+# the key is a function computing a key value for each element
+# it generates a break or new group every time the value of the key function changes
+# (which is why it is usually necessary to have sorted the data using the same key function)
+# groupby(iterable, key=None)
+animals = ['duck', 'eagle', 'rat', 'giraffe', 'bear', 'bat', 'dolphin', 'shark', 'lion']
+for length, group in itertools.groupby(sorted(animals, key=len), len):
+    print(length, '->', list(group))
+
 
 
 # Combinatoric generators
 
 # cartesian product (ciąg, kolejność istotna)
 # product('ABCD', repeat=2) => AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD
+# product('ABC', '!@#', range(2))
 product(*iterables, repeat=1)
 
 # r-length tuples, all possible orderings, no repeated elements (ciąg, kolejność istotna)
@@ -1179,6 +1198,7 @@ re.compile(r'pattern')
 # re.compile(r'(\d{3})-(\d{3})-(\d{4})-(\d+)')
 
 # findall - return all matches of pattern
+# re.findall() is eager/re.finditer() is lazy
 re.findall(pattern, string)
 # re.findall("[a-zA-Z]+|[0-9]+", string)            # every word, and every number
 # re.findall('http[^"]*', string)                   # every string that start with http and end with "
