@@ -773,6 +773,9 @@ os.sep
 # the command was successfully, else it returns an error number
 os.system("dir")
 
+# return the number of CPUs in the system
+os.cpu_count()
+
 # returns the directory component of a pathname
 os.path.dirname(path)
 
@@ -1157,7 +1160,7 @@ for name, param in sig.parameters.items():
 from weakref import ref, finalize, WeakSet
 # References and weak references
 # The presence of references is what keeps an object alive in memory. When the reference
-# count of an object reaches zero, the garbage collector disposes of it
+# count of an object reaches zero, the garbage collector disposes the object
 
 # Weak references to an object do not increase its reference count. The object that is the
 # target of a reference is called the referent. Therefore, we say that a weak reference does

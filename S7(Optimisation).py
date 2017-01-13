@@ -386,6 +386,22 @@ jej zakończenie.
 
 
 
+# Concurrent and parallel(threads and processes)
+are effectively the same principle, both are related to tasks being executed simultaneously
+although I would say that parallel tasks should be truly multitasking, executed "at the same time"
+whereas concurrent could mean that the tasks are sharing the execution thread while still
+appearing to be executing in parallel
+
+# Asynchronous(coroutines and callbacks)
+methods arent directly related to the previous concurrent and parallel concepts, asynchrony is
+used to present the impression of concurrent or parallel tasking but effectively an asynchronous
+method call is normally used for a process that needs to do work away from the current application
+and we dont want to wait and block our application awaiting the response
+
+
+
+
+
 # Multiprocessing - przetwarzanie równoległe
 from multiprocessing import Pool - przetwarzanie szeregowe
 from multiprocessing import cpu_count
