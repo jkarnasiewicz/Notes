@@ -4,14 +4,17 @@ RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update,
 
 # API - Application Programming Interface
 
+# CDN - Content Distribution Network
+
 # KISS - KISS principle is an acronym for "Keep it simple, stupid"
 
+# FUBAR - fucked up beyond all recognition
+
 # EAFP
-Easier to ask for forgiveness than permission. This common Python coding style
-assumes the existence of valid keys or attributes and catches exceptions if the assumption
-proves false. This clean and fast style is characterized by the presence of
-many try and except statements. The technique contrasts with the LBYL style common
-to many other languages such as C
+Easier to ask for forgiveness than permission. This common Python coding style assumes the
+existence of valid keys or attributes and catches exceptions if the assumption proves false.
+This clean and fast style is characterized by the presence of many try and except statements.
+The technique contrasts with the LBYL style common to many other languages such as C
 
 # LBYL
 Look before you leap. This coding style explicitly tests for pre-conditions before
@@ -21,6 +24,10 @@ the LBYL approach can risk introducing a race condition between 'the looking' an
 'the leaping'. For example, the code, if key in mapping: return mapping[key] can
 fail if another thread removes key from mapping after the test, but before the lookup.
 This issue can be solved with locks or by using the EAFP approach
+
+# Uniform Access Principle
+(or a variation of it) is the fact that function calls and object instantiation use the
+same syntax in Python: my_obj = foo(), where foo may be a class or any other callable
 
 # DES - discrete event simulation
 Intuitively, turn-based games are examples of discrete event simulations: the state of the
@@ -602,6 +609,10 @@ The singleton pattern maintains the same state for all instances of a class
 
 # Template pattern - Refining algorithm to use case(Inheritance, overide methods)
 
+# Template Method design pattern
+A template method defines an algorithm in terms of abstract operations that subclasses
+override to provide concrete behavior
+
 # Adaptor pattern - Bridging class interfaces
 This pattern is used to adapt a given class to a new interface
 
@@ -683,7 +694,7 @@ such as JSON or XML(e.g. Django REST framework)
 # TEMPLATES
 # Pattern – template inheritance tree
 Problem: Templates have lots of repeated content in several pages.
-Solution: Use template inheritance wherever possible and include snippets elsewhere.
+Solution: Use template inheritance wherever possible and include snippets elsewhere
 
 # ADMIN
 # Don't give admin access to end users

@@ -164,6 +164,14 @@ pow(3, x=4)
 
 
 
+# Common shortcut to build an instance with attributes created from keyword arguments is
+# updating an instance __dict__ with a mapping
+class Record:
+	def __init__(self, **kwargs):
+		self.__dict__.update(kwargs)
+
+
+
 # Unpacking List
 args = [3, 6]
 print(list(range(*args)))
@@ -711,6 +719,13 @@ else:
 finally:
 	# A finally clause is always executed before leaving the try statement,
 	# whether an exception has occurred or not.
+
+
+
+# Custom exceptions are usually marker classes, with no body. A docstring
+# explaining the usage of the exception is better than a mere pass statement
+class MissingDatabaseError(RuntimeError):
+	"""Raised when a database is required but was not set."""
 
 
 

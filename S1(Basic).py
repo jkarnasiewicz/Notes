@@ -8,7 +8,7 @@ object.__name__					# name of a function or module object, or just __name__ for 
 object.__file__					# object file path, or just __file__ for current file path(absolute path)
 object.__dict__					# a dictionary or other mapping object used to store an object’s (writable) attributes
 
-type(object)       				# type of the object
+type(object)       				# type of the object, it is the same as object.__class__
 # 								# creating class:	C = type('C', (object,), dict(__init__=__init__, add=add))
 id(object)				 		# id of the object
 
@@ -100,6 +100,9 @@ global variable_name
 
 # introduce names from the enclosing namespace into the local namespace
 nonlocal variable_name
+
+# return the __dict__ of obj, vars(obj) == obj.__dict__
+vars(obj)
 
 # return True or False (callable or not)
 callable(obj)
@@ -950,10 +953,10 @@ obj = getattr(importlib.import_module('module_name'), 'object_name')
 import json
 
 # encoding basic python object to json
-json.dumps({'a': 'text', '4': 5, '7': [3, 7]}, sort_keys=True, indent=4)
+json.dumps({'a': 'text', '4': 5, '7': [3, 7]}, sort_keys=True, indent=4)			# or json.dump(obj, file_like_object)
 
 # decoding json
-json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')
+json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]')								# or json.load(file_like_object)
 
 
 

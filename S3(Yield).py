@@ -765,3 +765,5 @@ if __name__ == '__main__':
 
 # Using yield from with a future automatically takes care of waiting for it to finish, without blocking
 # the event loop — because in asyncio, yield from is used to give control back to the event loop
+
+# Delegate blocking jobs — such as saving a file — to a thread pool using the loop.run_in_executor method
