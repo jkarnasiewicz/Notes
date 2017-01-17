@@ -86,10 +86,21 @@ console.log(this.y); // undefined
 
 
 
-// List of all the methods in object
-console.log(Object.getOwnPropertyNames(obj));
+// Be careful
+// Calling function with different numbers of arguments
+// don't use ==/!=, console.log('' == '0',  0 == '', 0 == '0');
+// console.log([] == [], [] == 0, false == [], !![0], !![1], 1 == [[1]], 0 == [[0]], ['010'] - [4]);
+// '3' + [1, 4]; 				// '31,4'
+// typeof NaN === 'number'		// true
+// NaN === NaN 					// false
+// Global Variables
+// Semicolon Insertion
 
-// View list of all JavaScript variables
+
+// List of all the properties in object
+Object.getOwnPropertyNames(obj);
+
+// View list of all JavaScript properties
 for(var b in window) { 
 	if(window.hasOwnProperty(b)) console.log(b); 
 }
@@ -115,8 +126,13 @@ parseInt("11", 2);				// 3
 // function parses a string argument and returns a floating point number
 parseFloat('2.718');			// 2.718
 
+// function evaluates JavaScript code represented as a string
+eval("2 + 2");             // returns 4
+
 // method returns a string representing the object
 obj.toString()
+
+
 
 
 
@@ -276,6 +292,359 @@ finally {
 
 
 
+// NUMBERS - Js numbers are 64-bit floating numbers
+// +Infinity, -Infinity, and NaN
+// Internationalization - Intl object is the namespace for the ECMAScript Internationalization API
+
+// Math object
+Math.PI;
+Math.round(200.67);
+Math.max(a, b, c);
+Math.min(a, b, c);
+Math.random();
+Math.floor((Math.random() * 100) + 1);
+Math.pow(2, 4);
+Math.sqrt(4);
+Math.log(x);		// lnx
+Math.exp(x);    	// e**x
+
+// isNaN
+var myNumber = Number("55");
+if ( isNaN(myNumber) ) {
+	console.log("It's not a number!");
+}
+// double negative - if NOT NOT a number
+if ( !isNaN(myNumber) ) {
+	console.log("It is a number!");
+}
+
+
+
+
+
+// STRINGS
+
+// String literals
+var phrase = "Don't mix your quotes.";
+
+// String object
+var phrase = String("He said \"that's fine,\" and left. \u00A9");
+
+// Template literal
+var name = "Bob", time = "today";
+`Hello ${name}, how are you ${time}?`
+
+var a = 5, b = 10;
+`Fifteen is ${a + b} and\n not ${2 * a + b}.`
+
+// String methods
+phrase.toUpperCase();			// or toLowerCase()
+phrase.concat('?!');			// combines the text of one or more strings and returns a new string
+phrase.trim();					// returns a copy of the string with beginning and ending whitespace characters removed
+phrase.split(" ");
+phrase.indexOf("fine");			// it returns -1 if the term is not found
+phrase.slice(6, 10);			// find element with index 6, and get all characters up to index 10(last one not included)
+
+// String comparison
+var str1 = "aardvark";
+var str2 = "beluga";
+if (  str1 < str2 ) { ... } 				// true
+
+
+var str1 = "aardvark";
+var str2 = "Beluga";
+if (  str1 < str2 ) { ... } 				// false (Ascii table)
+
+
+
+
+
+// JSON
+// JSON.stringify() method converts a JavaScript value to a JSON string, optionally replacing
+// values if a replacer function is specified, or optionally including amount of spaces
+JSON.stringify([1, 'false', false], null, 4)
+
+// JSON.parse() method parses a JSON string, constructing the JavaScript value or object described
+// by the string
+JSON.parse('[1, 5, "false"]')
+
+
+
+
+
+// REGULAR EXPRESSIONS
+
+// RegExp literals
+var myRE = /d(b+)d/g;		// g - global option, i - case-insensitive search, m - multi-line search
+
+// RegExp object
+var myRE = new RegExp("d(b+)d", "g");
+var myRe = new RegExp(/Integration Time \(usec\): (\d+) \(HR2B085\)/g);
+var myString = "cdbbdbsb dbd";
+
+// regexp methods
+myRE.test(myString);					// return true or false
+
+myRE.exec(myString);					// return array with first occurence of the regexp: ['dbbd', 'bb']
+myRE.exec(myString);					// return next occurrence: ['dbd', 'b']
+
+// regexp property
+myRE.lastIndex;
+
+// string methods
+myString.match(myRE);					// returns an array of information or null on a mismatch: ["dbbd", "dbd"]
+myString.search(myRE);					// returns the index of the match, or -1 if the search fails
+myString.split(/db+d/);					// break a string into an array of substrings: ["c", "bsb ", ""]
+myString.replace(myRE, new_string);		// replaces the matched substring with a replacement substring: 'c#bsb #'
+
+// or
+var re = /(\w+)\s(\w+)/;
+var myString = "John Smith";
+myString.replace(re, "$2, $1");
+
+/^hello/								// ^ matches beginning of input, matches hello...
+/hello$/								// $ matches end of input
+/hel+o/									// + "l" must appear once or more
+/hel*o/									// * "l" must appear zero or more
+/hel?o/									// ? "l" must appear zero or one
+/hello|goodbye/							// | either/or
+/he..o/									// . any character
+/\wello/								// \w alphanumeric or _
+/\bhello/								// \b word boundary, before hello must be space or new line
+/[crnld]ope/							// [...] range of chars
+/[^crnld]ope/							// any character but those within brackets range
+/ap{2}/									// matches exactly 2 times, matches apple but not apie
+/ap{2,}/								// matches 2 or more times,  matches all p’s in apple and appple but not apie
+/ap{2,4}/								// matches at least 2, at most 4 times, matches four p’s in apppppple => "apppp"
+
+
+
+// Lookahead
+x(?=y) 	Matches 'x' only if 'x' is followed by 'y'
+For example, /Jack(?=Sprat)/ matches 'Jack' only if it is followed by 'Sprat'
+
+/Jack(?=Sprat|Frost)/ matches 'Jack' only if it is followed by 'Sprat' or 'Frost'
+However, neither 'Sprat' nor 'Frost' is part of the match results.
+
+
+// Negated lookahead
+x(?!y) Matches 'x' only if 'x' is not followed by 'y'
+For example, /\d+(?!\.)/ matches a number only if it is not followed by a decimal point
+The regular expression /\d+(?!\.)/.exec("3.141") matches '141' but not '3.141'
+
+// Capturing parentheses
+(x) Matches 'x' and remember the match
+
+// Non-capturing parentheses
+(?:x) Matches 'x' but does not remember the match
+
+
+
+// Replacing harmful signs
+var pieceOfHtml = "<p>This is a <span>paragraph</span></p>";
+pieceOfHtml = pieceOfHtml.replace(/</g,"&lt;");
+
+
+
+// Example with remembered group
+// \1 is one of the rememberd characters from [-\/\.]
+var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/;
+
+
+
+// Example with 'while'
+var searchString = "Now is the time and this is the time and that is the time";
+var pattern = /t\w*e/g;
+var matchArray;
+
+// check for pattern with regexp exec, if not null, process
+while((matchArray = pattern.exec(searchString)) != null) {
+	console.log(matchArray);
+	console.log(matchArray.index);
+	console.log(matchArray.input);
+	console.log(matchArray[0]);
+	console.log(matchArray.length);
+	console.log(Object.getOwnPropertyNames(matchArray));
+	console.dir(matchArray);
+}
+
+
+
+
+
+// ARRAYS
+// Arrays are container-like objects that can hold other values. The values inside an array are
+// called elements
+
+// Array literal
+var array = [100, "paint", [200, "brush"], false];
+array[array.length - 1] = "yellow"
+
+// Be careful, using non integer index adds property to the array, instead of an array element
+array[3.4] = 'orange';
+
+
+// array.length - last index of the array+1
+// Writing a value that is shorter than the number of stored items truncates the array, writing 0
+// empties it entirely
+array['length'] = 3
+
+let cats = [];
+cats[30] = ['Dusty'];
+cats.length;				// 31
+
+
+
+// concat method - returns a new array that combines the values of two arrays.
+var new_array = ["tortilla chips"].concat(["salsa", "queso", "guacamole"]);
+
+// joins all elements of an array into a string
+['red', 'green', 'blue'].join('-'); 									// "red-green-blue"
+
+// indexOf(searchElement, fromIndex) method returns the first index at which a given element can be found in the array, or -1 if it is not present
+[1, 3, 7, 11, 3].indexOf(3, 2);											// 4
+
+// pop method - removes the last element in the array and returns that element’s value
+["Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"].pop();
+
+// push method - adds an elements to the array and returns the array’s length
+["John", "Kate"].push('Jill', 'Ivy');
+
+// shift method removes the first element from an array and returns that element
+["1", "2", "3"].shift(); 												// 1
+
+// unshift method adds one or more elements to the front of an array and returns the new length of the array
+["1", "2", "3"].unshift("-1", "0"); 									// ["-1", "0", "1", "2", "3"]
+
+// slice method extracts a section of an array and returns a new array
+["a", "b", "c", "d", "e"].slice(1, 4);									// [ "b", "c", "d"]
+
+// splice(index, count_to_remove, addElement1, addElement2, ...)
+// removes elements from an array and (optionally) replaces them
+// it returns the items which were removed from the array
+["1", "2", "3", "4", "5"].splice(1, 3, "a", "b", "c", "d");
+
+// map method returns a new array of the return value from executing callback on every array item
+['a', 'b', 'c'].map(item => item.toUpperCase()); 						// ['A', 'B', 'C']
+
+// filter method returns a new array containing the items for which callback returned true
+['a', 10, 'b', 20, 'c', 30].filter(item => typeof item === 'number'); 	// [10, 20, 30]
+
+// reduce method applies callback(firstValue, secondValue) to reduce the list of items down to a single value
+[10, 20, 30].reduce((first, second) => first + second, 0);				// 60
+
+// sort method sorts the elements of an array
+["Wind", "Rain", "Fire"].sort();
+
+// reverse method - returns a copy of the array in opposite order
+["a", "b", "c"].reverse();
+
+
+
+// iterating over arrays
+var colors = ['red', 'green', , 'blue'];
+
+for(let i of colors) {
+	console.log(i);					// 'red', 'green', undefined, 'blue'
+}
+
+// elements of array omitted when the array is defined are not listed when iterating by forEach
+colors.forEach(function(element, index, array) {
+	console.log(element); 			// 'red', 'green', 'blue'
+	array[index] = element.toUpperCase();
+
+});
+
+
+
+// Comprehensions
+// Array comprehensions: [for (x of y) function(x)]
+var abc = [ "A", "B", "C" ];
+[for (letters of abc) letters.toLowerCase()]; 	// [ "a", "b", "c" ]
+
+// Generator comprehensions: (for (x of y) y)
+
+
+
+
+
+// SETS
+// Set objects are collections of values. You can iterate its elements in insertion order. A value
+// in a Set may only occur once; it is unique in the Set's collection
+let mySet = new Set();
+mySet.add(1);
+mySet.add("some text");
+mySet.add("foo");
+
+mySet.has(1);			// true
+mySet.delete("foo");
+mySet.size;				// 2
+
+for (let item of mySet) {
+	console.log(item);
+}
+
+
+
+
+
+// DATES
+var today = new Date();						// without 'new', get string representation of date
+var day = new Date(1906, 11, 25, 6, 30, 0); // year, month, day, hour, minute, seconds
+var Xmas95 = new Date("December 25, 1995 13:30:00");
+
+// date methods
+today.getMonth();				// returns 0-11
+today.getFullYear();			// YYYY
+today.getDate();				// 1-31 day of month
+today.getDay();					// 0-6 day of week, where 0 == sunday
+today.getHours();				// 0-23
+
+today.getTime();				// milliseconds since 1/1/1970
+
+today.setMonth(5);
+today.setFullYear(2012);
+
+day.setTime(Date.parse("Aug 9, 1995"));
+
+
+
+
+
+// TIMERS
+// setTimeout - trigger only once after 5 seconds
+setTimeout(someFunction, 5000);
+setTimeout(function(){window.location.reload()}, 1000);
+
+// setInterval - call function every 5 seconds
+setInterval(someFunction, 5000);
+
+// Stop timer/Clear Interval
+var intervalHandler = setInterval(changeImage, 3000);
+
+myImage.onclick = function() {
+	clearInterval(intervalHandler);
+}
+
+// Very simple slider
+var image = document.getElementById('img-id');
+var images = ['1.jpg', '2.png', '3.gif']
+var index = 0;
+
+function changeImage() {
+  image.setAttribute("src", images[index]);
+  index++
+  if (index == 3) {
+	index = 0;
+  }
+}
+
+setInterval(changeImage, 3000);
+
+
+
+
+
 // FUNCTIONS
 function myFunction(x, y) {
 	let myVar = x*y;
@@ -301,7 +670,6 @@ function walkTree(node) {
 }
 
 walkTree(document.body);
-
 
 
 
@@ -339,6 +707,22 @@ function myConcat(separator) {
 }
 
 myConcat(", ", "red", "orange", "blue");
+
+
+
+// Optional argument
+var myObject = {
+	value: 0,
+	increment: function (inc) {
+		this.value += typeof inc === 'number' ? inc : 1;
+	}
+};
+
+myObject.increment( );
+myObject.value 						// 1
+
+myObject.increment(2);
+myObject.value 						// 3
 
 
 
@@ -419,235 +803,7 @@ pet.getName();                  // Oliver
 
 
 
-// ARRAYS
-// Arrays are container-like objects that can hold other values. The values inside an array are
-// called elements
-
-// Array literal
-var array = [100, "paint", [200, "brush"], false];
-array[array.length - 1] = "yellow"
-
-// Be careful, using non integer index adds property to the array, instead of an array element
-array[3.4] = 'orange';
-
-
-// array.length - last index of the array+1
-// Writing a value that is shorter than the number of stored items truncates the array, writing 0
-// empties it entirely
-array['length'] = 3
-
-let cats = [];
-cats[30] = ['Dusty'];
-cats.length;				// 31
-
-
-
-// concat method - returns a new array that combines the values of two arrays.
-var new_array = ["tortilla chips"].concat(["salsa", "queso", "guacamole"]);
-
-// joins all elements of an array into a string
-['red', 'green', 'blue'].join('-'); 									// "red-green-blue"
-
-// pop method - removes the last element in the array and returns that element’s value
-["Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"].pop();
-
-// push method - adds an elements to the array and returns the array’s length
-["John", "Kate"].push('Jill', 'Ivy');
-
-// shift method removes the first element from an array and returns that element
-["1", "2", "3"].shift(); 												// 1
-
-// unshift method adds one or more elements to the front of an array and returns the new length of the array
-["1", "2", "3"].unshift("-1", "0"); 									// ["-1", "0", "1", "2", "3"]
-
-// slice method extracts a section of an array and returns a new array
-["a", "b", "c", "d", "e"].slice(1, 4);									// [ "b", "c", "d"]
-
-// splice(index, count_to_remove, addElement1, addElement2, ...)
-// removes elements from an array and (optionally) replaces them
-// it returns the items which were removed from the array
-["1", "2", "3", "4", "5"].splice(1, 3, "a", "b", "c", "d");
-
-// map method returns a new array of the return value from executing callback on every array item
-['a', 'b', 'c'].map(item => item.toUpperCase()); 						// ['A', 'B', 'C']
-
-// filter method returns a new array containing the items for which callback returned true
-['a', 10, 'b', 20, 'c', 30].filter(item => typeof item === 'number'); 	// [10, 20, 30]
-
-// reduce method applies callback(firstValue, secondValue) to reduce the list of items down to a single value
-[10, 20, 30].reduce((first, second) => first + second, 0);				// 60
-
-// sort method sorts the elements of an array
-["Wind", "Rain", "Fire"].sort();
-
-// reverse method - returns a copy of the array in opposite order
-["a", "b", "c"].reverse();
-
-
-
-// iterating over arrays
-var colors = ['red', 'green', , 'blue'];
-
-for(let i of colors) {
-	console.log(i);					// 'red', 'green', undefined, 'blue'
-}
-
-// elements of array omitted when the array is defined are not listed when iterating by forEach
-colors.forEach(function(color) {
-	console.log(color); 			// 'red', 'green', 'blue'
-});
-
-
-
-// Comprehensions
-// Array comprehensions: [for (x of y) function(x)]
-var abc = [ "A", "B", "C" ];
-[for (letters of abc) letters.toLowerCase()]; 	// [ "a", "b", "c" ]
-
-// Generator comprehensions: (for (x of y) y)
-
-
-
-
-
-// SETS
-// Set objects are collections of values. You can iterate its elements in insertion order. A value
-// in a Set may only occur once; it is unique in the Set's collection
-let mySet = new Set();
-mySet.add(1);
-mySet.add("some text");
-mySet.add("foo");
-
-mySet.has(1);			// true
-mySet.delete("foo");
-mySet.size;				// 2
-
-for (let item of mySet) {
-	console.log(item);
-}
-
-
-
-
-
-// NUMBERS - Js numbers are 64-bit floating numbers
-// +Infinity, -Infinity, and NaN
-// Internationalization - Intl object is the namespace for the ECMAScript Internationalization API
-var myNumber = Number("55");
-if ( isNaN(myNumber) ) {
-	console.log("It's not a number!");
-}
-// double negative - if NOT NOT a number
-if ( !isNaN(myNumber) ) {
-	console.log("It is a number!");
-}
-
-
-
-// Math object
-Math.PI;
-Math.round(200.67);
-Math.max(a, b, c);
-Math.min(a, b, c);
-Math.random();
-Math.floor((Math.random() * 100) + 1);
-Math.pow(2, 4);
-Math.sqrt(4);
-Math.log(x);		// lnx
-Math.exp(x);    	// e**x
-
-
-
-
-
-// STRINGS
-// String literals 				"John's \n cat"
-
-// var str = "this string \
-// is broken \
-// across multiple\
-// lines."
-
-// Template literals
-// var name = "Bob", time = "today";
-// `Hello ${name}, how are you ${time}?`
-
-
-var phrase = "Don't mix your quotes.";
-var phrase = "He said \"that's fine,\" and left. \u00A9";
-
-phrase.toUpperCase();			// toLowerCase
-phrase.concat('?!');
-phrase.trim();					// trims whitespace from the beginning and end of the string
-phrase.split(" ");
-phrase.indexOf("fine");			// it returns -1 if the term is not found
-phrase.slice(6, 5);				// find element with index 6, and get 5 characters from that element(included)
-
-var str1 = "aardvark";
-var str2 = "beluga";
-
-// template literals
-var a = 5, b = 10;
-`Fifteen is ${a + b} and\n not ${2 * a + b}.`
-
-if (  str1 < str2 ) { ... } 				// true
-
-var str1 = "aardvark";
-var str2 = "Beluga";
-
-if (  str1 < str2 ) { ... } 				// false (Ascii table)
-
-
-
-
-
-// REGULAR EXPRESSIONS
-// RegExp literals 				var re = /ab+c/;
-
-var myRE = /d(b+)d/g;					// g - global option, i - case-insensitive search, m - multi-line search
-var myRE = new RegExp("d(b+)d", "g");
-var myRe = new RegExp(/Integration Time \(usec\): (\d+) \(HR2B085\)/g);
-var myString = "cdbbdbsb dbd";
-
-// regexp methods
-myRE.test(myString);					// return true or false
-
-myRE.exec(myString);					// return array with first occurence of the regexp: ['dbbd', 'bb']
-myRE.exec(myString);					// return next occurrence: ['dbd', 'b']
-
-// regexp property
-myRE.lastIndex;
-
-// string methods
-myString.match(myRE);					// returns an array of information or null on a mismatch: ["dbbd", "dbd"]
-myString.search(myRE);					// returns the index of the match, or -1 if the search fails
-myString.split(/db+d/);					// break a string into an array of substrings: ["c", "bsb ", ""]
-myString.replace(myRE, new_string);		// replaces the matched substring with a replacement substring: 'c#bsb #'
-// or
-var re = /(\w+)\s(\w+)/;
-var myString = "John Smith";
-myString.replace(re, "$2, $1");
-
-// example
-var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/; 	// \1 is one of the rememberd characters from [-\/\.]
-
-
-/^hello/								// ^ at the start
-/hello$/								// $ at the end
-/hel+o/									// + "l" must appear once or more
-/hel*o/									// * "l" must appear zero or more
-/hel?o/									// ? "l" must appear zero or one
-/hello|goodbye/							// | either/or
-/he..o/									// . any character
-/\wello/								// \w alphanumeric or _
-/\bhello/								// \b word boundary, before hello must be space or new line
-/[crnld]ope/							// [...] range of chars
-
-
-
-
-
-// OBJECT CREATION
+// OBJECTS
 var player = new Object();
 
 // adding properties
@@ -673,91 +829,245 @@ player2.Details();
 
 
 
-// Enumerate the properties of an object
-for (let i in myCar) {
-	console.log(i);
-}
-
-// or
-Object.getOwnPropertyNames(myCar);
-
-
-
 
 
 // PROTOTYPES
-function Player(n, s, r) {
-	this.name = n;
-	this.score = s;
-	this.rank = r;
+function Person(name, sex) {
+	this.name = name;
+	this.sex = sex;
 }
 
-Player.prototype.logInfo = function() {
-	console.log("I am:", this.name);
+var rand = new Person("Rand McKinnon", "M");
+var ken = new Person("Ken Jones", "M");
+
+// Person.prototype is an object shared by all instances of Person. It forms part of a lookup
+// chain (that has a special name, "prototype chain"): any time you attempt to access a property
+// of Person that isn't set, javascript will check Person.prototype to see if that property exists
+// there instead. As a result, anything assigned to Person.prototype becomes available to all
+// instances of that constructor via the 'this' object
+
+// Adding a age property to all objects of type person
+Person.prototype.age = 20;
+
+// Adding new method to Person objects
+Person.prototype.fullName = function() {
+	return `${this.name} ${this.sex}`;
 };
 
-Player.prototype.promote = function() {
-	this.rank++;
-	console.log("My new rank is:", this.rank);
+rand.age;
+ken.fullName();
+
+// The prototype forms part of a chain. The root of that chain is Object.prototype, whose methods
+// include toString() — it is this method that is called when you try to represent an object as a
+// string. This is useful for debugging our Person objects
+
+Person.prototype.toString = function() {
+	return '<Person: ' + this.fullName() + '>';
+}
+
+ken.toString();
+
+
+
+// Adding methods to the prototype of built-in JavaScript objects
+String.prototype.reversed = function reversed() {
+	let r = "";
+	for (let i = this.length - 1; i >= 0; i--) {
+		r += this[i];
+	}
+	return r;
 };
 
-var john = new Player("John", 5000, 3);
-john.logInfo();
-john.promote();
+'Ivy'.reversed()
 
 
 
+// Call and Apply(using free function as a instance method)
+// apply() has a sister function named call, which again lets you set this but takes an expanded
+// argument list as opposed to an array
 
+// theFunction.apply(valueForThis, arrayOfArgs)
+// theFunction.call(valueForThis, arg1, arg2, ...)
 
-// DATES
-var today = new Date();						// without 'new', get string representation of date
-var day = new Date(1906, 11, 25, 6, 30, 0); // year, month, day, hour, minute, seconds
-var Xmas95 = new Date("December 25, 1995 13:30:00");
-
-// date methods
-today.getMonth();				// returns 0-11
-today.getFullYear();			// YYYY
-today.getDate();				// 1-31 day of month
-today.getDay();					// 0-6 day of week, where 0 == sunday
-today.getHours();				// 0-23
-
-today.getTime();				// milliseconds since 1/1/1970
-
-today.setMonth(5);
-today.setFullYear(2012);
-
-day.setTime(Date.parse("Aug 9, 1995"));
-
-
-
-
-
-// TIMERS
-setTimeout(someFunction, 5000);					// trigger only once
-setTimeout(function(){window.location.reload()}, 1000);
-setInterval(someFunction, 5000);				// call function every 5 second
-
-// Stop timer/Clear Interval
-var intervalHandler = setInterval(changeImage, 3000;
-
-myImage.onclick = function() {
-	clearInterval(intervalHandler);
+function lastNameCaps() {
+	return this.name.toUpperCase();
 }
 
-// Very simple slider
-var image = document.getElementById('img-id');
-var images = ['1.jpg', '2.png', '3.gif']
-var index = 0;
+var s = new Person("Lee Ji Min", "W");
+lastNameCaps.call(s);
+// Is the same as:
+s.lastNameCaps = lastNameCaps;
+s.lastNameCaps();
 
-function changeImage() {
-  image.setAttribute("src", images[index]);
-  index++
-  if (index == 3) {
-	index = 0;
-  }
+
+
+
+
+// CLASS
+// JavaScript classes are syntactical sugar over JavaScript's existing prototype-based inheritance
+// The class syntax is not introducing a new object-oriented inheritance model to JavaScript
+// JavaScript classes provide a much simpler and clearer syntax to create objects and deal with
+// inheritance
+
+class Polygon {
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+	}
+	
+	toString() {
+		return `Polygon (${this.height}x${this.width})`;
+	}
+	// property
+	get area() {
+		return this.callArea();
+	}
+	
+	callArea() {
+		return this.height*this.width;
+	}
+	// Static methods are called without instantiating their class and are also not callable when
+	// the class is instantiated
+	static diagonal(x, y) {
+		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+	}
 }
 
-setInterval(changeImage, 3000);
+	
+// Inheritance and super
+class OtherPolygon extends Polygon {
+	toString() {
+		// The super keyword is used to call functions on an object's parent
+		log('Calling super: ', super.toString()); 		// 'Polygon (7x3)'
+		return `OtherPolygon (${this.height}x${this.width})`;
+	}
+}	
+
+
+// Creating instances
+let p = new Polygon(185, 90);
+p.toString();
+p.area
+Polygon.diagonal(3, 4);
+
+
+let op = new OtherPolygon(7, 3);
+op.toString();
+op.area;
+OtherPolygon.diagonal(6, 8);
+
+
+
+
+
+// ITERATORS, GENERATORS AND ITERABLES
+// Iterators
+// In JavaScript an iterator is an object that provides a next() method which returns the next
+// item in the sequence. This method returns an object with two properties: done and value
+
+function makeIterator(array){
+	var nextIndex = 0;
+	return {
+	   next: function(){
+		   return nextIndex < array.length ?
+			   {value: array[nextIndex++], done: false} :
+			   {done: true};
+	   }
+	}
+}
+
+var it = makeIterator(['yo', 'ya']);
+it.next().value; 		// 'yo'
+it.next().value; 		// 'ya'
+it.next().done;  		// true
+
+
+
+// Generators
+// A generator is a special type of function that works as a factory for iterators. A function
+// becomes a generator if it contains one or more yield expressions and if it uses the function* syntax
+
+function* idMaker(){
+	console.log('Start');
+	var index = 0;
+	while(true)
+		yield index++;
+}
+
+var gen = idMaker();
+gen.next().value; 			// 0
+gen.next().value; 			// 1
+gen.next().value; 			// 2
+
+
+
+// Iterables
+// In order to be iterable, an object must implement the @@iterator method, meaning that the object
+// (or one of the objects up its prototype chain) must have a property with a Symbol.iterator key
+
+// built-in iterables: String, Array, TypedArray, Map, Set
+
+var myIterable = {
+	container: ['a', 'b', 'c'],
+	[Symbol.iterator]: function*() {
+		yield* this.container;				// like python yield from
+	}
+};
+
+for (let i of myIterable) {
+	i;										// a, b, c
+}
+
+// or(unpacking)
+[1, 3, 5, ...myIterable]
+
+
+
+// Send to yield
+// A value passed to next() will be treated as the result of the last yield expression that paused
+// the generator
+
+function* seq() {
+	let result = 0;
+	while(true) {
+		let current = yield result++;
+		if(current) {
+			result = current;
+		}
+	}
+}
+
+a = seq();
+a.next().value;
+a.next(10).value;
+a.next().value;
+
+// Generators have a return(value) method that returns the given value and finishes the generator itself
+
+
+
+
+
+// PROMISE
+function imgLoad(url) {
+	return new Promise(function(resolve, reject) {
+		var request = new XMLHttpRequest();
+		request.open('GET', url);
+		request.responseType = 'blob';
+		request.onload = function() {
+			if (request.status === 200) {
+				resolve(request.response);
+			}
+			else {
+				reject(Error('Image didn\'t load successfully; error code:' + request.statusText));
+			}
+		};
+		request.onerror = function() {
+			reject(Error('There was a network error.'));
+		};
+		request.send();
+	});
+}
 
 
 
@@ -766,6 +1076,7 @@ setInterval(changeImage, 3000);
 // DOM - Document Object Model
 var mainTitle = document.getElementById("mainTitle");
 var myLinks = mainTitle.getElementsByTagName("a");
+var thumbnails = document.getElementsByClassName('thumbnails');
 
 myLinks.length;
 mainTitle.innerHTML;
@@ -794,8 +1105,9 @@ document.getElementById("sidebar").appendChild(myNewElement);
 // Using this for object references
 // In general, 'this' refers to the calling object in a method
 <input type="text" name="age" size="3" onChange="validate(this, 18, 99)">
-<input type="text" name="age" size=3 onChange="document.writeln(this.value);">
-
+document.writeln(
+	`<input type="text" name="age" size=3 onkeyup="document.writeln('<br>' + this.value);">`
+);
 
 
 
@@ -911,122 +1223,10 @@ window.onload = function() {
 
 
 
-// PROMISE
-function imgLoad(url) {
-	return new Promise(function(resolve, reject) {
-		var request = new XMLHttpRequest();
-		request.open('GET', url);
-		request.responseType = 'blob';
-		request.onload = function() {
-			if (request.status === 200) {
-				resolve(request.response);
-			}
-			else {
-				reject(Error('Image didn\'t load successfully; error code:' + request.statusText));
-			}
-		};
-		request.onerror = function() {
-			reject(Error('There was a network error.'));
-		};
-		request.send();
-	});
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TO DO
-
-// "use strict";
-
-// Minification Tools: JSMin, YUI Compressor, Google Closure Compiler
-
-// Code Quality Tool: JSLint
-
-// JavaScript Libraries:
+// JavaScript Libraries
 Google Closure Library
 Mootools
 Dojo
 OpenLayer
-
-
-// ==============================================
-var searchString = "Now is the time and this is the time and that is the time";
-var pattern = /t\w*e/g;
-var matchArray;
-
-// check for pattern with regexp exec, if not null, process
-while((matchArray = pattern.exec(searchString)) != null) {
-  console.log(matchArray);
-  console.log(matchArray.index);
-  console.log(matchArray.input);
-  console.log(matchArray[0]);
-  console.log(matchArray.length);
-  console.log(Object.getOwnPropertyNames(matchArray));
-  console.dir(matchArray);
-}
-// ==============================================
-
-var pieceOfHtml = "<p>This is a <span>paragraph</span></p>";
-pieceOfHtml = pieceOfHtml.replace(/</g,"&lt;");
-
-// ==============================================
-^ Matches beginning of input /^This/ matches This is...
-$ Matches end of input /end$/ matches This is the end
-* Matches zero or more times /se*/ matches seeee as well as se
-? Matches zero or one time /ap?/ matches apple and and
-+ Matches one or more times /ap+/ matches apple but not and
-{n} Matches exactly n times /ap{2}/ matches apple but not apie
-{n,} Matches n or more times /ap{2,}/ matches all p’s in apple and appple but not apie
-{n,m} Matches at least n, at most m times /ap{2,4}/ matches four p’s in apppppple
-. Any character except newline /a.e/ matches ape and axe
-[...] Any character within brackets /a[px]e/ matches ape and axe but not ale
-[^...] Any character but those within brackets /a[^px]/ matches ale but not axe or ape
-\b Matches on word boundary /\bno/ matches the first no in nono
-\B Matches on nonword boundary /\Bno/ matches the second no in nono
-\d Digits from 0 to 9 /\d{3}/ matches '123' in 'Now in 123'
-\D Any nondigit character /\D{2,4}/ matches 'Now' in 'Now in 123';
-\w Matches word character (letters, digits, underscores) /\w/ matches j in javascript
-\W Matches any nonword character (not letters, digits, \/W/ matches % in 100%
-  or underscores)
-\n Matches a line feed
-\s A single whitespace character
-\S A single character that is not whitespace
-\t A tab
-(x) Capturing parentheses
-Remembers the matched characters
-
-
-
-
-//
-eval
-bind
-indexOf
-fadeTo
-
-
-
-
-// Metoda stringify przeprowadza konwersję obiektu JavaScript na ciąg tekstowy
-JSON.stringify(results, null, 4)
-
-// Metoda parse przetwarza ciąg tekstowy zawierający dane JSON na postać obiektu JavaScript
-JSON.parse()
-
-window.variable_name - gwarantuje pobranie obiektu globalnego
+Code Quality Tool, JSLint
+Minification Tools: JSMin, YUI Compressor, Google Closure Compiler

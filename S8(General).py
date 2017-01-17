@@ -39,7 +39,7 @@ updated many times per second and slow players are at a real disadvantage
 # REDIS
 Redis is in-memory data structure store, used as a database, cache and message broker
 
-
+# Hexadecimal numbers(0123456789abcdef)
 
 
 
