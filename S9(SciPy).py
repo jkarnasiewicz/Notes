@@ -12,6 +12,38 @@ numpy.array()
 
 
 # Matplotlib
+
+# Basic usage
+import matplotlib.pyplot as plt
+from matplotlib import style
+style.use('bmh')
+print(style.available)
+plt.plot([1, 3, 5], [11, 33, 55])                                     # line
+plt.scatter([2, 7, 14], [-11, 3, 27], s=12, color='magenta')          # dot
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ===========================
 matplotlib.rc('font', family='Helvetica')
 matplotlib.rcParams['svg.fonttype'] = 'none'
 pylab.rc('text', usetex=True)

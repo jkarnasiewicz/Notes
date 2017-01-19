@@ -99,6 +99,8 @@ console.log(this.y); // undefined
 
 // List of all the properties in object
 Object.getOwnPropertyNames(obj);
+// or
+console.dir(obj);
 
 // View list of all JavaScript properties
 for(var b in window) { 
@@ -382,14 +384,27 @@ var myRE = new RegExp("d(b+)d", "g");
 var myRe = new RegExp(/Integration Time \(usec\): (\d+) \(HR2B085\)/g);
 var myString = "cdbbdbsb dbd";
 
+// regexp property
+myRE.lastIndex;
+
 // regexp methods
 myRE.test(myString);					// return true or false
 
 myRE.exec(myString);					// return array with first occurence of the regexp: ['dbbd', 'bb']
 myRE.exec(myString);					// return next occurrence: ['dbd', 'b']
 
-// regexp property
-myRE.lastIndex;
+// check for pattern with regexp exec, if not null, process
+while((matchArray = pattern.exec(searchString)) != null) {
+	console.log(matchArray);
+	console.log(matchArray.index);								// The index of the located match
+	console.log(matchArray.input);								// The original input string
+	console.log(matchArray[0]);									// The matched value, or [1],…,[n]+ for parenthesized substring matches, if any
+	console.log(matchArray.length);
+	console.log(Object.getOwnPropertyNames(matchArray));
+	console.dir(matchArray);
+}
+
+
 
 // string methods
 myString.match(myRE);					// returns an array of information or null on a mismatch: ["dbbd", "dbd"]
@@ -400,7 +415,7 @@ myString.replace(myRE, new_string);		// replaces the matched substring with a re
 // or
 var re = /(\w+)\s(\w+)/;
 var myString = "John Smith";
-myString.replace(re, "$2, $1");
+myString.replace(re, "$2, $1");			// other patterns: $& inserts matched substring
 
 /^hello/								// ^ matches beginning of input, matches hello...
 /hello$/								// $ matches end of input
@@ -456,17 +471,6 @@ var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/;
 var searchString = "Now is the time and this is the time and that is the time";
 var pattern = /t\w*e/g;
 var matchArray;
-
-// check for pattern with regexp exec, if not null, process
-while((matchArray = pattern.exec(searchString)) != null) {
-	console.log(matchArray);
-	console.log(matchArray.index);
-	console.log(matchArray.input);
-	console.log(matchArray[0]);
-	console.log(matchArray.length);
-	console.log(Object.getOwnPropertyNames(matchArray));
-	console.dir(matchArray);
-}
 
 
 

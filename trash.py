@@ -5,4 +5,7 @@
 # 717 python jargon
 # raise from lambda !
 
-# 16
+# JS/25
+
+# Machine Learning
+# quandl/Linear Regression(Regresja liniowa)/Coefficient of determination(Współczynnik determinacji)
