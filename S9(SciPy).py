@@ -1,7 +1,13 @@
 # Numpy
+
 numpy.show_config()
 numpy.arange()
-numpy.array()
+
+import numpy as np
+# the core functionality of NumPy is the ndarray class, a multidimensional (n-dimensional) array
+x = np.array([[1, 2, 3], [4, 5, 6]])
+print("x:\n{}".format(x))
+
 
 
 
@@ -18,8 +24,29 @@ import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('bmh')
 print(style.available)
+
 plt.plot([1, 3, 5], [11, 33, 55])                                     # line
 plt.scatter([2, 7, 14], [-11, 3, 27], s=12, color='magenta')          # dot
+plt.show()
+
+
+
+# Generate a sequence of numbers from -10 to 10 with 100 steps in between
+x = np.linspace(-10, 10, 100)
+# Create a second array using sine
+y = np.sin(x)
+# The plot function makes a line chart of one array against another
+plt.plot(x, y, marker="x")
+plt.show()
+
+
+# 3D plot
+from matplotlib import pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter([1, 3, 5], [10, 20, 30], [11, 23, 35], c='magenta', marker='x')
 plt.show()
 
 
@@ -31,8 +58,18 @@ plt.show()
 
 
 
+# Pandas
 
-
+from pandas import DataFrame as df
+# create a simple dataset of people
+data = {'Name': ["John", "Anna", "Peter", "Linda"],
+        'Location' : ["New York", "Paris", "Berlin", "London"],
+        'Age' : [24, 13, 53, 33]
+}
+data_pandas = df(data)
+print(data_pandas)
+# select all rows that have an age column greater than 30
+print(data_pandas[data_pandas.Age > 30])
 
 
 
