@@ -794,6 +794,9 @@ os.path.basename(path)
 # return tuple (head, tail) where tail is everything after the final slash
 _, filename = os.path.split('/home/luciano/.ssh/idrsa.pub')
 
+# return True if path is an existing regular file
+os.path.isfile(path)
+
 
 
 

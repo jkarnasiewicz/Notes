@@ -10,6 +10,8 @@ RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update,
 
 # FUBAR - fucked up beyond all recognition
 
+# SVG - Scalable Vector Graphics
+
 # EAFP
 Easier to ask for forgiveness than permission. This common Python coding style assumes the
 existence of valid keys or attributes and catches exceptions if the assumption proves false.

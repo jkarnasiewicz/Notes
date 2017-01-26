@@ -1,7 +1,14 @@
 # Numpy
 
-numpy.show_config()
-numpy.arange()
+np.show_config()
+np.arange(3, 17, 3)
+np.average([[1, 2, 3], [4, 5, 6], [7, 8, 9]], axis=1)
+np.average([[1, 2, 3], [4, 5, 6]], weights=[1, 2, 3], axis=1)
+np.dot([1, 3], [5, 7])
+
+np.reshape([[1, 3, 5], [7, 9, 11]], [3, 2])
+np.linalg.norm([1, 1, 1])
+
 
 import numpy as np
 # the core functionality of NumPy is the ndarray class, a multidimensional (n-dimensional) array
@@ -25,8 +32,8 @@ from matplotlib import style
 style.use('bmh')
 print(style.available)
 
-plt.plot([1, 3, 5], [11, 33, 55])                                     # line
-plt.scatter([2, 7, 14], [-11, 3, 27], s=12, color='magenta')          # dot
+plt.plot([1, 3, 5], [11, 33, 55])                                                   # line
+plt.scatter([2, 7, 14], [-11, 3, 27], s=12, color='magenta', linewidths=5)          # dot
 plt.show()
 
 
@@ -70,6 +77,140 @@ data_pandas = df(data)
 print(data_pandas)
 # select all rows that have an age column greater than 30
 print(data_pandas[data_pandas.Age > 30])
+
+
+
+
+
+
+
+
+
+
+# Scikit-learn
+
+# X - features, y - labels(possible outputs called classes)
+# The individual items are called samples in machine learning, and their properties are called features
+# The shape of the data array is the number of samples multiplied by the number of features
+# dataset['data'].shape
+import numpy as np
+from sklearn.datasets import load_iris
+iris_dataset = load_iris()
+print(iris_dataset.keys(), iris_dataset['feature_names'], iris_dataset['target_names'], iris_dataset['data'].shape)
+
+
+
+# training data and test data
+# One part of the data is used to build our machine learning model, and is called the training data or training set
+# The rest of the data will be used to assess how well the model works, this is called the test data
+# We cannot use the data we used to build the model to evaluate it. This is because our model can always
+# simply remember the whole training set
+
+# train_test_split (shuffles the dataset and splits it)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(iris_dataset['data'], iris_dataset['target'], random_state=0)
+
+
+
+# k-Nearest Neighbors
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=5)
+
+# build the model using training set
+knn.fit(X_train, y_train)
+
+# making predictions
+X_new = np.array([[5, 2.9, 1, 0.2]])
+prediction = knn.predict(X_new)
+
+print("Predicted target name: {}".format(iris_dataset['target_names'][prediction]))
+
+
+
+# model evaluation(oszacowanie)/compute the test set accuracy
+# we can measure how well the model works by computing the accuracy(dokładność, trafność) on test_data(X_test)
+accuracy = knn.score(X_test, y_test)
+print("Test set score: {:.2f}".format(accuracy))
+
+
+
+
+
+
+
+
+
+
+# Mean Shift
+import numpy as np
+from sklearn.cluster import MeanShift
+from sklearn.datasets.samples_generator import make_blobs
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import style
+style.use("ggplot")
+
+centers = [[1, 1, 1], [5, 5, 5], [3, 10, 10]]
+
+X, _ = make_blobs(n_samples = 10, centers = centers, cluster_std = 1.5)
+
+ms = MeanShift()
+ms.fit(X)
+labels = ms.labels_
+cluster_centers = ms.cluster_centers_
+
+print(cluster_centers)
+n_clusters_ = len(np.unique(labels))
+print("Number of estimated clusters:", n_clusters_)
+
+colors = 10*['r','g','b','c','k','y','m']
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+for i in range(len(X)):
+    ax.scatter(X[i][0], X[i][1], c=colors[labels[i]], marker='o')
+
+ax.scatter(cluster_centers[:,0],cluster_centers[:,1],
+            marker="x",color='k', s=150, linewidths = 5, zorder=10)
+
+plt.show()
+
+
+
+
+
+
+
+
+
+
+# Machine Learning
+
+# quandl / http://archive.ics.uci.edu/ml/datasets.html
+
+# Supervised learning(we told/train machine what the classes of features are)
+# Linear Regression(Regresja liniowa)(best fitting line)/Coefficient of determination(Współczynnik determinacji)
+# Classification k-Nearest Neighbors(not scaling well)/Accuracy(dokładność/trafność)
+# Classification Support Vector Machine(SVM)/Best separated hyperplane/Convex optimization problem/Kernels/RBF(Radial basic function)
+
+# Unsupervised learning
+# Clustering K-Means (Flat)/ we want k-clusters/groups
+# Clustering Mean Shift (Hierarchical)/ machine/model try to figure the amount of clusters / radius and weighted mean
+
+# Deep learning Neural networks / TensorFlow / TFLearn(higher-level API for TensorFlow)
+'''
+input > weight > hidden layer 1 (activation function) > weight > hidden layer 2 (activation function) > weight > output layer
+
+comapre output to intended output > cost function(cross entropy)
+optimization function (optimizer) > minimize cost (AdamOptimizer.....SGD, AdaGrad)
+
+backpropagation
+
+feed forward + backpropagation = epoch/one cycle
+'''
+
+# Recurrent Neural Network(RNN) with LSTM (Long Short Term Memory) (remember or feed output recurrently in to nodes)
+# Convolutional Neural Networks / input => (Convolution => Pooling) Hidden Layer => Fully Connected => Output
 
 
 
@@ -226,7 +367,6 @@ ax.text(0.5, 0.5, 'right top',
 d = ax.legend(loc='upper left', bbox_to_anchor=(1, 1),
           ncol=1, fancybox=True, shadow=True)
 fig.savefig('test.svg', bbox_inches='tight', bbox_extra_artists=(d, a, b, c))
-print plt.style.available
 
 
 # ===========================
@@ -286,7 +426,6 @@ plt.show()
 
 # This illustrates placing images directly in the figure, with no axes
 import numpy as np
-import matplotlib
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 
