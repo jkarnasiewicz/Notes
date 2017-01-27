@@ -145,3 +145,60 @@ def solution(A, B, K):
         return B//K + edge
     else:
         return B//K - A//K + edge
+
+
+
+# Lesson 5, GenomicRangeQuery (100%)
+def solution(S, P, Q):
+    imp_factor = {'A': 1, 'C': 2, 'G': 3, 'T': 4}
+    item = {'A': 0, 'C': 0, 'G': 0, 'T': 0}
+    results = []
+    mod_S = []
+
+    for letter in S:
+        item[letter] += 1
+        mod_S.append(item.copy())
+
+    for i, j in zip(P, Q):
+        if (i == j):
+            results.append(imp_factor[S[i]])
+            continue
+
+        res = {'A': 0, 'C': 0, 'G': 0, 'T': 0}
+        for l in ['A', 'C', 'G', 'T']:
+            res[l] = mod_S[j][l] - mod_S[i-1][l] if i != 0 else mod_S[j][l]
+            if res[l] > 0:
+                results.append(imp_factor[l])
+                break
+        
+    return results
+
+# This is better, but slow
+# def solution(S, P, Q):
+#   results = []
+#   imp_factor = (('A', 1), ('C', 2), ('G', 3), ('T', 4))
+#   for i, j in zip(P, Q):
+#       unique_letters = set(S[i:j+1])
+#       for letter, factor in imp_factor:
+#           if letter in unique_letters:
+#               results.append(factor)
+#               break
+#   return results
+
+
+
+# Lesson 6, Distinct (100%)
+def solution(A):
+    return len(set(A))
+
+# def solution(A):
+#     count = 0
+#     s = set()
+#     for i in A:
+#         if i in s:
+#             continue
+#         else:
+#             s.add(i)
+#             count += 1
+
+#     return count

@@ -8,6 +8,13 @@
 
 // Scope in a programming language controls the visibility and lifetimes of variables and parameters
 
+
+// Strict mode is more restricted version of the JavaScript language
+// (typos in variable names in assignment throw an error, assignments that would normally fail quietly
+// now throw an error, attempting to delete an undeletable property fails, using nonunique property names,
+// using nonunique function parameter names)
+'use strict';
+
 // Global variables
 // Global variables are in fact properties of the global object. In web pages the global object
 // is window, so you can set and access global variables using the window.variable syntax
@@ -93,6 +100,8 @@ console.log(this.y); // undefined
 // '3' + [1, 4]; 				// '31,4'
 // typeof NaN === 'number'		// true
 // NaN === NaN 					// false
+// var t1 = new Date(), t2 = new Date(); 
+// The Date instance subtraction operator returns miliseconds, but ! sum returns concatenated string
 // Global Variables
 // Semicolon Insertion
 
@@ -297,6 +306,12 @@ finally {
 // NUMBERS - Js numbers are 64-bit floating numbers
 // +Infinity, -Infinity, and NaN
 // Internationalization - Intl object is the namespace for the ECMAScript Internationalization API
+
+// A decimal number can be converted to another radix, in a range from 2 to 36
+var decNum = 55;
+var octNum = decNum.toString(8); 	// value of 67 octal
+var hexNum = decNum.toString(16); 	// value of 37 hexadecimal
+var binNum = decNum.toString(2); 	// value of 110111 binary
 
 // Math object
 Math.PI;
@@ -1081,6 +1096,18 @@ function imgLoad(url) {
 var mainTitle = document.getElementById("mainTitle");
 var myLinks = mainTitle.getElementsByTagName("a");
 var thumbnails = document.getElementsByClassName('thumbnails');
+
+
+
+// use querySelector to find all second table cells
+var cells = document.querySelectorAll("td:nth-of-type(2)");
+// convert to numbers, and sum the numbers
+var sum = 0;
+for (var i = 0; i < cells.length; i++) {
+	sum+=parseFloat(cells[i].firstChild.data);
+}
+
+
 
 myLinks.length;
 mainTitle.innerHTML;
