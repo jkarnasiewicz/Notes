@@ -138,7 +138,7 @@ parseInt("11", 2);				// 3
 parseFloat('2.718');			// 2.718
 
 // function evaluates JavaScript code represented as a string
-eval("2 + 2");             // returns 4
+eval("2 + 2");             		// returns 4
 
 // method returns a string representing the object
 obj.toString()
@@ -313,6 +313,13 @@ var octNum = decNum.toString(8); 	// value of 67 octal
 var hexNum = decNum.toString(16); 	// value of 37 hexadecimal
 var binNum = decNum.toString(2); 	// value of 110111 binary
 
+// Convert degrees to radians
+var radians = degrees * (Math.PI / 180);
+// Length of a circular arc - multiplying the circle’s radius times the angle of the arc in radians
+var arclength = radius * radians;
+
+
+
 // Math object
 Math.PI;
 Math.round(200.67);
@@ -361,6 +368,10 @@ phrase.trim();					// returns a copy of the string with beginning and ending whi
 phrase.split(" ");
 phrase.indexOf("fine");			// it returns -1 if the term is not found
 phrase.slice(6, 10);			// find element with index 6, and get all characters up to index 10(last one not included)
+
+phrase.startsWith('Don\'t', 0); // optional integer as second parameter - where begin the search
+phrase.endsWith('quotes.');		// optional integer as second parameter - where terminate the search
+phrase.contains('mix');			// shim needed, <script type="text/javascript" src="es6-shim.js"></script>
 
 // String comparison
 var str1 = "aardvark";

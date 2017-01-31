@@ -202,3 +202,61 @@ def solution(A):
 #             count += 1
 
 #     return count
+
+
+
+# Lesson 6, MaxProductOfThree (100%)
+def solution(A):
+    A = sorted(A)
+    pos = A[-1] * A[-2] * A[-3]
+    if A[-1] <= 0 or A[0] > 0:
+        return pos
+    else:
+        neg = A[0] * A[1] * A[-1]
+        return pos if pos > neg else neg
+
+
+
+# Lesson 6, Triangle (100%)
+def solution(A):
+    A = sorted(A)
+    for index, i in enumerate(A):
+        try:
+            if i + A[index+1] > A[index+2] and i + A[index+2] > A[index+1] and A[index+1] + A[index+2] > i:
+                return 1
+        except IndexError:
+            return 0
+            
+    return 0
+
+
+
+# Lesson 6, NumberOfDiscIntersections (56%)
+def solution(A):
+    count = 0
+    sorted_list = sorted([(i-j, i+j) for i,j in enumerate(A)])
+    for index, item in enumerate(sorted_list):
+        for i in sorted_list[index+1:]:
+            if item[1] < i[0]:
+                break
+            if((item[0] <= i[0] <= item[1]) or (item[0] <= i[1] <= item[1])):
+                count += 1
+                if count > 10**7:
+                    return -1
+    return count
+
+# ?
+# def solution_u(A):
+    
+#     upper = sorted([i + val for i, val in enumerate(A)])
+#     lower = sorted([i - val for i, val in enumerate(A)])
+    
+#     counter = 0
+#     j = 0
+#     for i, uval in enumerate(upper):
+#         while j < len(upper) and uval >= lower[j]:
+#             counter += j-i
+#             j += 1
+#         if counter > 10**7: return -1
+                
+#     return counter
