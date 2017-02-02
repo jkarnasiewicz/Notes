@@ -931,6 +931,11 @@ s.lastNameCaps();
 
 
 
+// Flattening a Two-Dimensional Array
+var flat = [].concat.apply([], [1, 2, [3, 4], [5, 6], 7, 8]);
+
+
+
 
 
 // CLASS

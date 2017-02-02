@@ -221,6 +221,8 @@ fun(1, 2, 'st', p=33, k=44, j='o')
 # Lambda Expressions
 def f(a,b,c):
 	return lambda x: a*x**2 + b*x + c
+	# or with default argument
+	# return lambda x=0: a*x**2 + b*x + c
 
 g = f(1,2,3)
 print(g(1))

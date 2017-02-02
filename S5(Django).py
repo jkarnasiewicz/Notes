@@ -118,7 +118,8 @@ class Meta:
     abstract = True
     proxy = True
 
-    ordering = ['id']                                   # database(postgres) => query_set => models => ordering
+    # ordering options: field_name(ascending), -field_name(descending) or ?(random)
+    ordering = ('id')                                   # database(postgres) => query_set => models => ordering
     unique_together = (('app_label', 'model'),)         # unique_together also influence qs ordering
     db_table = 'django_content_type'
 

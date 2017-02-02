@@ -60,6 +60,23 @@ Redis is in-memory data structure store, used as a database, cache and message b
 
 
 # PYTHON/LANGUAGE
+
+# Is Python interpreted or compiled?
+In the case of CPython, the answer really is 'sort of both'. Specifically, with CPython, code
+is first compiled and then interpreted. More precisely, it is not precompiled to native machine
+code, but rather to bytecode. While machine code is certainly faster, bytecode is more portable
+and secure. The bytecode is then interpreted in the case of CPython (or both interpreted and
+compiled to optimized machine code at runtime in the case of PyPy).
+
+# Unittest
+unittest supports test automation, sharing of setup and shutdown code for tests, aggregation of
+tests into collections, and independence of the tests from the reporting framework. The unittest
+module provides classes that make it easy to support these qualities for a set of tests.
+Key elements of the unittest framework: test fixtures, test cases, test suites, test runners
+and mocks(mock allows you to replace parts of your system under test with mock objects and make
+assertions about how they are to be used. Keeping as much 'slow code' as possible out of the
+automated test runs, namely filesystem and network access
+
 # Protocols and duck typing
 In the context of Object Oriented Programming, a protocol is an informal interface,
 defined only in documentation and not in code. For example, the sequence protocol in
