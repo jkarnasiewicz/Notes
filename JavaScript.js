@@ -554,6 +554,16 @@ var new_array = ["tortilla chips"].concat(["salsa", "queso", "guacamole"]);
 // it returns the items which were removed from the array
 ["1", "2", "3", "4", "5"].splice(1, 3, "a", "b", "c", "d");
 
+var charSets = ["ab","bb","cd","ab","cc","ab","dd","ab"];
+// replace all occurrence of the element
+while (charSets.indexOf("ab") != -1) {
+	charSets.splice(charSets.indexOf("ab"), 1, "**");		// ["**", "bb", "cd", "**", "cc", "**", "dd", "**"]
+}
+// delete all new element
+while(charSets.indexOf("**") != -1) {
+	charSets.splice(charSets.indexOf("**"), 1); 			// ["bb", "cd", "cc", "dd"]
+}
+
 // map method returns a new array of the return value from executing callback on every array item
 ['a', 'b', 'c'].map(item => item.toUpperCase()); 						// ['A', 'B', 'C']
 

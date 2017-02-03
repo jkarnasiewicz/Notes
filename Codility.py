@@ -302,3 +302,68 @@ def solution(H):
 		unique_heights[h] = index
 
 	return len(H) - counter
+
+
+
+# Lesson 7, Fish (100%)
+def solution(A, B):
+	alive = []
+	for index, (a, b) in enumerate(zip(A, B)):
+		if not alive:
+			alive.append((a, b))
+			continue
+		if (alive[-1][1], b) == (1, 0):
+			if alive[-1][0] > a:
+				continue
+			alive.pop()
+			alive.append((a, b))
+			try:
+				while (alive[-2][1], alive[-1][1]) == (1, 0):
+					if alive[-2][0] > alive[-1][0]:
+						alive.pop()
+						break
+					else:
+						alive.pop(-2)
+			except IndexError:
+				pass
+		else:
+			alive.append((a, b))
+
+	return len(alive)
+
+
+
+# Lesson 7, Nesting (100%)
+def solution(S):
+	lenght = len(S)
+	if lenght == 0:
+		return 1
+	if lenght % 2 == 1:
+		return 0
+
+	brackets = []
+	for index, item in enumerate(S):
+		if not brackets:
+			brackets.append(item)
+			continue
+		if (brackets[-1], item) == ('(', ')'):
+			brackets.pop()
+		else:
+			brackets.append(item)
+
+	return 0 if brackets else 1
+
+
+
+# Lesson 8, Dominator (100%)
+def solution(A):
+	di = {}
+	center = len(A)//2
+	for index, item in enumerate(A):
+		if item in di:
+			di[item][0] += 1
+		else:
+			di[item] = [1, index]
+		if di[item][0] > center:
+			return di[item][1]
+	return -1
