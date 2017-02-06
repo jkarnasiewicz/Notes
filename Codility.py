@@ -367,3 +367,56 @@ def solution(A):
 		if di[item][0] > center:
 			return di[item][1]
 	return -1
+
+
+
+# Lesson 8, EquiLeader (55%)
+def solution(A):
+	lenght = len(A)
+	counter = 0
+	l_leader = None
+	r_leader = None
+
+	left_leader = []
+	left_counter = {}
+
+	right_leader = []
+	right_counter = {}
+
+	for i in range(lenght):
+		current_len = i + 1
+		if A[i] in left_counter:
+			left_counter[A[i]] += 1
+		else:
+			left_counter[A[i]] = 1
+		if left_counter[A[i]] >= current_len//2 + 1:
+			left_leader.append(A[i])
+			l_leader = A[i]
+		else:
+			if left_counter[l_leader] >= current_len//2 + 1:
+				left_leader.append(l_leader)
+			else:
+				left_leader.append('-')
+
+		negative_index = -current_len
+		if A[negative_index] in right_counter:
+			right_counter[A[negative_index]] += 1
+		else:
+			right_counter[A[negative_index]] = 1
+		if right_counter[A[negative_index]] >= current_len//2 + 1:
+			right_leader.insert(0, A[negative_index])
+			r_leader = A[negative_index]
+		else:
+			if right_counter[r_leader] >= current_len//2 + 1:
+				right_leader.insert(0, r_leader)
+			else:
+				right_leader.insert(0, '-')
+
+	if l_leader is None:
+		return 0
+
+	for i in range(lenght - 1):
+		if left_leader[i] == right_leader[i + 1] == l_leader:
+			counter += 1
+
+	return counter

@@ -588,7 +588,7 @@ for(let i of colors) {
 	console.log(i);					// 'red', 'green', undefined, 'blue'
 }
 
-// elements of array omitted when the array is defined are not listed when iterating by forEach
+// elements of array omitted when the array is defined are not listed when iterating by forEach(modifies an array)
 colors.forEach(function(element, index, array) {
 	console.log(element); 			// 'red', 'green', 'blue'
 	array[index] = element.toUpperCase();

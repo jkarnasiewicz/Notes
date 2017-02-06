@@ -55,3 +55,26 @@ body {
 body {
 	background: #e0ebff none repeat scroll 0 0;
 }
+
+
+
+
+
+
+
+
+
+<h3><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Jacek Karnasiewicz &#10170; &#x0D37; &#9728;</h3>
+
+
+
+
+.jumbotron {
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	text-align: center;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+	content: "/\00a0";

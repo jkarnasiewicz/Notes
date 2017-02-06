@@ -93,9 +93,9 @@ def sign(x):
 # Fibonacci series, the sum of two elements defines the next, return Fibonacci series up to n
 def fib(n):
 	a, b = 0, 1
-	while n > 1:
+	while n >= 1:
 		a, b = b, a + b
-		n = n - 1
+		n -= 1
 	return a
 
 
