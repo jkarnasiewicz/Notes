@@ -173,7 +173,7 @@ def solution(S, P, Q):
 		
 	return results
 
-# This is better, but slow
+# This is more pleasant, but slower solution
 # def solution(S, P, Q):
 #   results = []
 #   imp_factor = (('A', 1), ('C', 2), ('G', 3), ('T', 4))
@@ -420,3 +420,62 @@ def solution(A):
 			counter += 1
 
 	return counter
+
+
+
+# Lesson 9, MaxDoubleSliceSum (100%)
+def solution(A):
+	length = len(A)
+	max_ending_list_front = [0]*length
+	max_ending_front = 0
+	for index in range(1, length-1):
+		max_ending_front = max(0, A[index] + max_ending_front)
+		max_ending_list_front[index] = max_ending_front
+
+	max_ending_list_back = [0]*length
+	max_ending_back = 0
+	for index in range(length-2, 0, -1):
+		max_ending_back = max(0, A[index] + max_ending_back)
+		max_ending_list_back[index] = max_ending_back
+
+	max_slice = 0
+	for i in range(len(max_ending_list_front)-2):
+		max_slice = max(max_slice, max_ending_list_front[i] + max_ending_list_back[i+2])
+
+	return max_slice
+
+
+
+# Lesson 9, MaxProfit (100%)
+def solution(A):
+	if len(A) < 2:
+		return 0
+	max_item = 0
+	min_item = A[0]
+	best = 0
+	for i in A:
+		if i <= min_item:
+			min_item = i
+			max_item = 0
+			continue
+		if i >= max_item:
+			max_item = i
+			diff = max_item - min_item
+			best = diff if diff > best else best
+	return best
+
+
+
+# Lesson 9, MaxSliceSum (84%)
+def solution(A):
+	l = len(A)
+	if l == 0:
+		return 0
+	max_slice = A[0]
+	for i in range(l):
+		s = A[i]
+		max_slice = max(max_slice, s)
+		for j in range(i + 1, l):
+			s = s + A[j]
+			max_slice = max(max_slice, s)
+	return max_slice
