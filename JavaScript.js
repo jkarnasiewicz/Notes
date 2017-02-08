@@ -1,6 +1,7 @@
 // GENERAL
 // json - JavaScript Object Notation
 // Shift + F4 open scratchpad in firefox
+// url: about:config - firefox’s advanced settings
 
 // JavaScript is a dynamically and weak typed language
 // That means you dont have to specify the data type of a variable when you declare it, and data
@@ -57,7 +58,10 @@ console.log(this.y); // undefined
 // Another unusual thing about variables in JavaScript is that you can refer to a variable
 // declared later, without getting an exception. This concept is known as hoisting; variables
 // in JavaScript are in a sense "hoisted" or lifted to the top of the function or statement
-// However, variables that are hoisted will return a value of undefine
+// (the top of their current scope). However, variables that are hoisted will return a value
+// of undefine
+console.log(a); // undefined
+var a = 1;
 
 
 
@@ -737,6 +741,13 @@ var lyrics = ['head', ...parts, 'and', 'toes'];
 
 
 
+// Destructuring assignment(simplify array assignment)
+var stateValues = [459, 144, 96, 34, 0, 14];
+var [Arizona, Missouri, Idaho, Nebraska, Texas, Minnesota] = stateValues;
+Missouri; 						// 144
+
+
+
 // Using the arguments
 function myConcat(separator) {
 	let result = "";
@@ -1216,6 +1227,7 @@ event.stopImmediatePropagation()
 // FORMS
 document.forms.form_ID					// getting form by id=form_ID
 document.forms.form_ID.input_id			// input object within the form
+document.forms[0].elements[0];
 
 textField.value;						// value of the text field
 checkBox.checked;						// true or false

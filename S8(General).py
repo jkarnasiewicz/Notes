@@ -106,6 +106,15 @@ operating with objects regardless, of their types, as long as they implement cer
 
 
 
+# Functional programming
+is a way of abstracting out the complexity of an application, replacing complicated loops and
+conditional statements with nice, clean function calls
+
+# Imperative programing
+approach using conditionals, loops, and associated procedures
+
+
+
 # Special methods
 the Python interpreter is the only frequent caller of most special methods
 
