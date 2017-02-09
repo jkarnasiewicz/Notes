@@ -23,12 +23,18 @@ class Applications(models.Model):
 	image = models.ImageField(upload_to=upload_path)
 	url_source = models.URLField(max_length=128)
 	url_name = models.CharField(
+		# unique = True
+		blank=True,
 		max_length=128,
 		choices=avaiable_apps())
 	visible = models.BooleanField(default=True)
 
 	def get_absolute_url(self):
-		return reverse('{}'.format(self.url_name))
+		#  --
+		if self.url_name:
+			return reverse('{0}:{0}'.format(self.url_name))
+		else:
+			return reverse('search_app:search_app')
 
 	class Meta:
 		ordering = ('?',)

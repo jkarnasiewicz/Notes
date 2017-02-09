@@ -19,7 +19,7 @@
 		<link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="{% static 'css/base.css' %}" rel="stylesheet">
+		<link id="base_stylesheet" href="{% static 'css/base.css' %}" rel="stylesheet">
 
 		<script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -33,7 +33,7 @@
 			<div class="header clearfix">
 				<nav>
 					<ul class="nav nav-pills pull-right">
-						<li id="search_btn" role="presentation" class="active"><a href="#">Search App's</a></li>
+						<li id="search_btn" role="presentation" class="active"><a href="{% url 'search_app:search_app' %}">Search App's</a></li>
 						<li id="about_btn" role="presentation" ><a data-toggle="modal" data-target="#myModal" href="#">About/Contact</a></li>
 					</ul>
 				</nav>
@@ -43,7 +43,7 @@
 			</div>
 
 			<!-- Jumbotron -->
-			<div class="jumbotron" style="background: url('{% static 'images/jumbotron.png' %}')">
+			<div class="jumbotron">
 				{% block jumbotron %}
 				{% endblock %}
 			</div>
