@@ -135,6 +135,9 @@ typeof obj
 // typeof true; 		    // returns "boolean"
 // typeof null; 		    // returns "object"
 
+// instanceof - operator tests whether an object has in its prototype chain the prototype property of a constructor
+object instanceof constructor	// [1, 3, 7] instanceof Array
+
 // function parses a string argument and returns an integer of the specified radix
 parseInt("11", 2);				// 3
 
@@ -1076,6 +1079,24 @@ for (let i of myIterable) {
 
 // or(unpacking)
 [1, 3, 5, ...myIterable]
+
+// flattening a nested array
+function* rec(array) {
+	for (var i=array.length-1; i>=0; i--) {
+		if (array[i] instanceof Array) {
+			yield* rec(array[i])
+		}
+		else {
+			yield array[i];
+		}
+	}
+}
+
+for (var i of rec([1, 3, ['a', ['77', '99', '111'], 'b'], 5])) {
+	log(i);  
+}
+
+
 
 
 

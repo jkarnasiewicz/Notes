@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block jumbotron %}
+
+	<h1>{{ current_app.name }}</h1>
+	<p class="lead">{{ current_app.description }}</p>
+
+{% endblock %}
+
+{% block content %}
+	<div id="tree_form">
+		{% include 'tree_traversal/tree_form.html' %}
+	</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('[data-toggle="popover"]').popover();
+
+			var folders = $('h4.folder');
+			folders.css( 'cursor', 'pointer' );
+
+			folders.on('click', function() {
+				var _this = $(this);
+				var span = _this.children('span');
+				var ul = _this.parent('li').find('ul');
+
+				if (span.attr('class').indexOf('open') != -1) {
+					span.attr('class', 'glyphicon glyphicon-folder-close folder');
+					ul.toggle('fast');
+				}
+				else {
+					span.attr('class', 'glyphicon glyphicon-folder-open folder');
+					ul.toggle('fast');
+				}
+			});
+		})
+	</script>
+
+{% endblock %}

@@ -14,8 +14,12 @@
 				<div class="caption">
 					<h3>Purple(default)</h3>
 					<p>
-						<a role="button" class="btn btn-primary preview" data-css="/static/css/base.css" href="#">Preview</a>
-						<a role="button" class="btn btn-default" href="#">Apply</a>
+						<form method="POST" action="{{ current_app.get_absolute_url }}">
+							{% csrf_token %}
+							<input type="hidden" name="styling" value="">
+							<a role="button" class="btn btn-primary preview" data-css="/static/css/base.css" href="#">Preview</a>
+							<button class="btn btn-default" type="submit">Apply</button>
+						</form>
 					</p>
 				</div>
 			</div>
@@ -27,8 +31,12 @@
 				<div class="caption">
 					<h3>Blue</h3>
 					<p>
-						<a role="button" class="btn btn-primary preview" data-css="/static/css/base_blue.css" href="#">Preview</a>
-						<a role="button" class="btn btn-default" href="#">Apply</a>
+						<form method="POST" action="{{ current_app.get_absolute_url }}">
+							{% csrf_token %}
+							<a role="button" class="btn btn-primary preview" data-css="/static/css/base_blue.css" href="#">Preview</a>
+							<input type="hidden" name="styling" value="_blue">
+							<button class="btn btn-default" type="submit">Apply</button>
+						</form>
 					</p>
 				</div>
 			</div>
@@ -40,8 +48,29 @@
 				<div class="caption">
 					<h3>Green</h3>
 					<p>
-						<a role="button" class="btn btn-primary preview" data-css="/static/css/base_green.css" href="#">Preview</a>
-						<a role="button" class="btn btn-default" href="#">Apply</a>
+						<form method="POST" action="{{ current_app.get_absolute_url }}">
+							{% csrf_token %}
+							<a role="button" class="btn btn-primary preview" data-css="/static/css/base_green.css" href="#">Preview</a>
+							<input type="hidden" name="styling" value="_green">
+							<button type="submit" class="btn btn-default">Apply</button>
+						</form>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<img data-src="" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="{% static 'images/jumbotron_brink_pink.png' %}" data-holder-rendered="true">
+				<div class="caption">
+					<h3>Brink Pink</h3>
+					<p>
+						<form method="POST" action="{{ current_app.get_absolute_url }}">
+							{% csrf_token %}
+							<a role="button" class="btn btn-primary preview" data-css="/static/css/base_brink_pink.css" href="#">Preview</a>
+							<input type="hidden" name="styling" value="_brink_pink">
+							<button type="submit" class="btn btn-default">Apply</button>
+						</form>
 					</p>
 				</div>
 			</div>
@@ -52,6 +81,11 @@
 
 {% block javascript %}
 <script type="text/javascript">
+	$('.preview').on('click', function() {
+		$('#base_stylesheet').attr('href', $(this).attr('data-css'));
+	});
+
+	// Alternative solutions
 	// var nodes = document.querySelectorAll('.preview');
 
 	// nodes.forEach(function(element, index, array) {
@@ -65,9 +99,5 @@
 	// 		document.getElementById('base_stylesheet').href = this.attributes['data-css'].value;
 	// 	})
 	// }
-	
-	$('.preview').on('click', function() {
-		$('#base_stylesheet').attr('href', $(this).attr('data-css'));
-	});
 </script>
 {% endblock %}

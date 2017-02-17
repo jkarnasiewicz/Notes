@@ -21,6 +21,7 @@ SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'n*443r05ut%rwsa20$+mqsd650x!o7)*mmt%r(kyn+_y+!#52m'
+COOKIES_KEY = ')*mmt%r(kyn+_y+!#52m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,8 +39,11 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 
+	'mptt',
+
 	'apps.search_app',
 	'apps.change_styling',
+	'apps.tree_traversal',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +70,7 @@ TEMPLATES = [
 				'django.contrib.auth.context_processors.auth',
 				'django.contrib.messages.context_processors.messages',
 				'HomePage.context_processors.current_app',
+				'HomePage.context_processors.stylesheet_version',
 			],
 		},
 	},

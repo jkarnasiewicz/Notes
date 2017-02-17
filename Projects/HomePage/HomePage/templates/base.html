@@ -19,11 +19,10 @@
 		<link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link id="base_stylesheet" href="{% static 'css/base{% if request.COOKIES.stylesheet %}{{ request.COOKIES.stylesheet }}{% else %}{% endif %}.css' %}" rel="stylesheet">
+		<link id="base_stylesheet" href="{% static stylesheet_version %}" rel="stylesheet">
 
 		<script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
 	</head>
 
 	<body>

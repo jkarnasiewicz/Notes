@@ -25,13 +25,15 @@ $('h3');                	            // by tag
 $('[href]') 				            // by attributes
 $('[role=banner]');     	            // by attributes of the selector which have specify value
 
+$('span', $(this));                     // selecting all span elements within $(this) context
+
 $('li ul');                             // every single ul element in li tag
 $('li > ul');                           // all unordered list that are (only) children of list item
 $("#tours > .class1, .class2");
 
 $("input[name^='news']");               // find all inputs with an attribute name that starts with 'news'
 $("[id^='section'] > [id^='pre']");
-$( "input[name$='letter']" );           // finds all inputs with an attribute name that ends with 'letter'
+$("input[name$='letter']");             // finds all inputs with an attribute name that ends with 'letter'
 
 $('li:even');                           // pseudo-selectors
 $('ul:odd');

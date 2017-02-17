@@ -479,3 +479,101 @@ def solution(A):
 			s = s + A[j]
 			max_slice = max(max_slice, s)
 	return max_slice
+
+
+
+# Lesson 10, CountFactors (100%)
+def solution(N):
+	count = 0
+	i = 1
+	while i*i < N:
+		if N%i == 0:
+			count += 2
+		i += 1
+	if i*i == N:
+		count += 1
+	return count
+
+
+
+# Lesson 10, MinPerimeterRectangle (100%)
+def solution(N):
+	min_perimeter = 2*1 + 2*N
+	i = 2
+	while i*i <= N:
+		if N % i == 0 and 2*(i) + 2*(N//i) < min_perimeter:
+			min_perimeter = 2*(i) + 2*(N//i)
+		i += 1
+
+	return min_perimeter
+
+
+
+# Lesson 10, Peaks (72%)
+def solution(A):
+	length = len(A)
+	peaks = []
+	for index in range(1, length - 1):
+		if A[index-1] < A[index] > A[index+1]:
+			peaks.append(index)
+
+	if not peaks:
+		return 0
+
+	i = 1
+	factors = []
+	len_peaks = len(peaks)
+	while i*i <= length:
+		if length % i == 0:
+			if i <= len_peaks:
+				factors.append(i)
+			if length//i <= len_peaks:
+				factors.append(length//i)
+		i += 1
+
+	factors = sorted(factors, reverse=True)
+
+
+	for i in factors:
+		ranges = length//i
+		count = 0
+
+		for j in range(1, i+1):
+		 	for k in peaks:
+		 		if k < j*ranges:
+		 			count += 1
+		 			break
+
+		if i == count:
+			return i
+
+
+
+# Lesson 10, Flags (66%)
+def solution(A):
+	peaks = []
+	for i in range(1, len(A)-1):
+		if A[i-1] < A[i] > A[i+1]:
+			peaks.append(i)
+
+	flags = len(peaks)
+	
+	results = 0
+	for f in range(1, flags+1):
+		count_flags = 0
+		start = None
+		for p in peaks:
+			if not start:
+				start = p
+				count_flags += 1
+				continue
+			if count_flags == f:
+				break
+			if p-start >= f:
+				start = p
+				count_flags += 1
+			
+		if count_flags > results:
+			results = count_flags
+
+	return results

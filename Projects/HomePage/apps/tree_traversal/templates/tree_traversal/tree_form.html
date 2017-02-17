@@ -1,0 +1,42 @@
+{% load mptt_tags %}
+<div class="row">
+	<div class="col-md-6">
+		<div class="well well-lg">
+			<div>
+				<ul>
+					{% recursetree nodes %}
+						<li>
+							<h4 class="folder"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> {{ node.name }}</h4>
+
+							{% if not node.is_leaf_node %}
+								<ul class="children">
+									{{ children }}
+								</ul>
+							{% endif %}
+							<ul>
+							{% for item in node.item_set.all %}
+								<li>
+									<h4>
+										<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										<a data-trigger="hover" data-toggle="popover" title="{{ item.name }}" data-content="{{ item.description }}" data-trigger="focus" target="_blank" href="{{ item.link }}">{{ item.name }}</a>
+									</h4>
+								</li>
+							{% endfor %}
+							</ul>
+						</li>
+					{% endrecursetree %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="well well-lg">
+			<p>
+				{{ catalog_form }}
+			</p>
+			<p>
+				{{ item_form }}
+			</p>
+		</div>
+	</div>
+</div>

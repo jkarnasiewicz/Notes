@@ -22,10 +22,9 @@ from apps.search_app.views import search_app
 from apps.change_styling.views import change_styling
 
 urlpatterns = [
-	# url(r'^$', include('search_app', namespace='search_app')),
 	url(r'^', include('apps.search_app.urls', namespace='search_app', app_name='search_app')),
-    # url(r'^change_styling/$', change_styling, name='change_styling'),
     url(r'^change_styling/', include('apps.change_styling.urls', namespace='change_styling', app_name='change_styling')),
+    url(r'^tree_traversal/', include('apps.tree_traversal.urls', namespace='tree_traversal', app_name='tree_traversal')),
     url(r'^admin/', admin.site.urls),
 ]
 

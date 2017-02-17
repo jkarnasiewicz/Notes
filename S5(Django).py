@@ -782,8 +782,11 @@ request.get_full_path()                         # /app_name/...
 
 
 # Cookies
-request.COOKIES['lang']
+request.COOKIES.get('lang', '')
+request.get_signed_cookie('styling', '', salt=settings.COOKIES_KEY)
+
 response.set_cookie('lang', language)
+response.set_signed_cookie('lang', language, salt=settings.COOKIES_KEY, max_age=None, expires=None, path='/', domain=None, secure=None, httponly=True)
 
 
 
