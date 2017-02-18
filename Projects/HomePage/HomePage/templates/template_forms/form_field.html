@@ -1,0 +1,27 @@
+<!-- Text Field -->
+<div class="form-group{% if field.errors %} has-error{% endif %}"">
+
+	<label for="{{ field.auto_id }}">
+		{{ field.label }}
+		{% if field.field.required %}<span>*</span>{% endif %}
+	</label>	
+	<input
+		id="{{ field.auto_id }}"
+		class="form-control"
+		name="{{ field.html_name }}"
+		type="{{ input_type }}"
+		placeholder="{{ field.help_text }}"
+		{% if field.field.max_length %}maxlength="{{ field.field.max_length }}"{% endif %}
+		{% if field.value %}value="{{ field.value }}"{% endif %}/>
+
+	{% if field.help_text %}
+		<p class="help-block">{{ field.help_text|safe }}</p>
+	{% endif %}
+
+	{% for error in field.errors %}
+		<span id="error_{{ forloop.counter }}_{{ field.auto_id }}" class="help-block">
+			<strong>{{ error }}</strong>
+		</span>
+	{% endfor %}
+
+</div>

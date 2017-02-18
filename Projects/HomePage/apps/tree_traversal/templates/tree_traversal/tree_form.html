@@ -1,9 +1,13 @@
 {% load mptt_tags %}
+{% load utility_tags %}
 <div class="row">
 	<div class="col-md-6">
-		<div class="well well-lg">
-			<div>
-				<ul>
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Panel title</h3>
+  			</div>
+  			<div class="panel-body">
+    			<ul>
 					{% recursetree nodes %}
 						<li>
 							<h4 class="folder"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> {{ node.name }}</h4>
@@ -26,17 +30,141 @@
 						</li>
 					{% endrecursetree %}
 				</ul>
-			</div>
+  			</div>
 		</div>
 	</div>
+
 	<div class="col-md-6">
-		<div class="well well-lg">
-			<p>
-				{{ catalog_form }}
-			</p>
-			<p>
-				{{ item_form }}
-			</p>
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Add/Remove Catalogs</h3>
+  			</div>
+  			<div class="panel-body">
+    			<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<!-- Text Field -->
+								<div class="form-group{% if catalog_form.name.errors %} has-error{% endif %}"">
+
+									<label for="{{ catalog_form.name.auto_id }}">
+										{{ catalog_form.name.label }}
+										{% if catalog_form.name.field.required %}<span>*</span>{% endif %}
+									</label>	
+									<input
+										id="{{ catalog_form.name.auto_id }}"
+										class="form-control"
+										name="{{ catalog_form.name.html_name }}"
+										type="text"
+										placeholder="{{ catalog_form.name.help_text }}"
+										{% if catalog_form.name.field.max_length %}maxlength="{{ catalog_form.name.field.max_length }}"{% endif %}
+										{% if catalog_form.name.value %}value="{{ catalog_form.name.value }}"{% endif %}/>
+
+									{% if catalog_form.name.help_text %}
+										<p class="help-block">{{ catalog_form.name.help_text|safe }}</p>
+									{% endif %}
+
+									{% for error in catalog_form.name.errors %}
+										<span id="error_{{ forloop.counter }}_{{ catalog_form.name.auto_id }}" class="help-block">
+											<strong>{{ error }}</strong>
+										</span>
+									{% endfor %}
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<!-- Select Field -->
+								<div class="form-group{% if catalog_form.parent.errors %} has-error{% endif %}"">
+
+									<label for="{{ catalog_form.parent.auto_id }}">
+										{{ catalog_form.parent.label }}
+										{% if catalog_form.parent.field.required %}<span>*</span>{% endif %}
+									</label>
+
+									<select id="{{ catalog_form.parent.auto_id }}" class="form-control" name="{{ catalog_form.parent.html_name }}">
+        								{% for value, text in catalog_form.parent.field.choices %}
+            								<option value="{{ value }}" {% if value|slugify == catalog_form.parent.value %}selected="selected"{% endif %}>{{ text }}</option>
+        								{% endfor %}
+    								</select>
+
+									{% if catalog_form.parent.help_text %}
+										<p class="help-block">{{ catalog_form.parent.help_text|safe }}</p>
+									{% endif %}
+
+									{% for error in catalog_form.parent.errors %}
+										<span id="error_{{ forloop.counter }}_{{ catalog_form.parent.auto_id }}" class="help-block">
+											<strong>{{ error }}</strong>
+										</span>
+									{% endfor %}
+
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<footer>
+						<input class="btn btn-primary" type="submit" name="catalog_form" value="Add">
+						<input class="btn btn-default" type="submit" name="catalog_form_delete" value="Remove">
+					</footer>
+				</form>
+  			</div>
 		</div>
 	</div>
+
+	<div class="col-md-6">
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Add/Remove files</h3>
+  			</div>
+  			<div class="panel-body">
+    			<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field item_form.name %}
+							</div>
+							
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field item_form.link %}
+							</div>
+							
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{{ item_form.description }}	
+							</div>
+							
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{{ item_form.catalog }}	
+							</div>
+							
+						</div>
+					</fieldset>
+					<footer>
+						<input class="btn btn-primary" type="submit" name="item_form" value="submit">
+					</footer>
+				</form>
+  			</div>
+		</div>		
+	</div>
+
 </div>
+
+{% block javascript %}
+	<script>
+		$('select').select2({
+			width: '100%',
+		});
+	</script>
+{% endblock %}

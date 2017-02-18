@@ -1,6 +1,6 @@
 # GENERAL INFORMATION
 
-dir(object)        				# methods object or dir() for list of names defined in the current module
+dir(object)        				# object methods or dir() for list of names defined in the current module
 help(object)
 
 object.__doc__     				# docstring for a function or module object

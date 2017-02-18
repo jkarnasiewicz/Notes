@@ -151,9 +151,27 @@ a:focus, a:hover {
 }
 
 ul {
-    list-style: none; /* Remove list bullets */
+	list-style: none; /* Remove list bullets */
 }
 
-.well {
-    background: none;
+/*.well {
+	background: none;
+}*/
+/*.panel-primary {
+  border-color: #51469c;
 }
+.panel-primary > .panel-heading {
+	color: #fff;
+	background-color: #51469c;
+	border-color: #51469c;
+}
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
+	border-top-color: #51469c;
+}
+.panel-primary > .panel-heading .badge {
+	color: #51469c;
+	background-color: #fff;
+}
+.panel-primary > .panel-footer + .panel-collapse > .panel-body {
+	border-bottom-color: #51469c;
+}*/

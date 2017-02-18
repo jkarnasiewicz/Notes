@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
 	'mptt',
 
+	'HomePage',
 	'apps.search_app',
 	'apps.change_styling',
 	'apps.tree_traversal',
