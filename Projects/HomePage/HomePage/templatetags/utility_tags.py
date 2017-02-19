@@ -22,12 +22,25 @@ def attr_list(obj):
 @register.simple_tag
 def form_field(field, *args, **kwargs):
 	# print(field.field.__class__.__name__)
-	# print(field.field.widget, dir(field.field.widget), sep='\n')
+	# print(field.field.widget)
+	# from pprint import pprint
+	# print(field.field.widget.__class__.__name__)
+	# pprint(dir(field.field))
+	# pprint(field.field.widget.build_attrs())
 	# print(field.field.widget.input_type, dir(field.field.widget), sep='\n')
-	template = 'template_forms/form_field.html'
+
+	template = 'forms/form_field.html'
 	ctx = {
 		'field': field,
-		'input_type': field.field.widget.input_type,
 	}
+
+	field_type = field.field.widget.__class__.__name__
+	if field_type in ('TextInput', 'URLInput'):
+		ctx['input_type'] = field.field.widget.input_type
+	elif field_type in ('Textarea', ):
+		ctx['textarea'] = True
+	elif field_type in ('Select', ):
+		ctx['select'] = True
+
+	
 	return mark_safe(render_to_string(template, ctx))
-	# return ''

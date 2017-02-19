@@ -154,6 +154,14 @@ ul {
 	list-style: none; /* Remove list bullets */
 }
 
+textarea { 
+   /* will prevent resizing horizontally */
+   resize:vertical;
+}
+
+.panel-form {
+	display: none;
+}
 /*.well {
 	background: none;
 }*/

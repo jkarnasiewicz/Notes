@@ -4,7 +4,13 @@
 	<label for="{{ field.auto_id }}">
 		{{ field.label }}
 		{% if field.field.required %}<span>*</span>{% endif %}
-	</label>	
+	</label>
+
+
+
+
+
+	{% if input_type %}
 	<input
 		id="{{ field.auto_id }}"
 		class="form-control"
@@ -13,6 +19,31 @@
 		placeholder="{{ field.help_text }}"
 		{% if field.field.max_length %}maxlength="{{ field.field.max_length }}"{% endif %}
 		{% if field.value %}value="{{ field.value }}"{% endif %}/>
+
+
+	{% elif textarea %}
+	<textarea
+		id="{{ field.auto_id }}"
+		class="form-control"
+		type="text"
+		name="{{ field.html_name }}"
+		{% if field.field.max_length %}maxlength="{{ field.field.maxlength }}"{% endif %}
+		{{ attrs }}>
+		{% if field.value %}{{ field.value }}{% endif %}
+	</textarea>
+
+
+	{% elif select %}
+		<select id="{{ field.auto_id }}" class="form-control" name="{{ field.html_name }}">
+			{% for value, text in field.field.choices %}
+				<option value="{{ value }}" {% if value|slugify == field.value %}selected="selected"{% endif %}>{{ text }}</option>
+			{% endfor %}
+		</select>
+	{% endif %}
+
+
+
+
 
 	{% if field.help_text %}
 		<p class="help-block">{{ field.help_text|safe }}</p>

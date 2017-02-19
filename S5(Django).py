@@ -414,6 +414,7 @@ render_to_string(template_name, context=None, request=None, using=None)
 form = UserForm(data=request.GET/POST or None, files=request.FILES or None, instance=object_instance)
 if form.is_valid(): 
     instance = form.save(commit=False)
+    ...
     instance.save()
     messages.success(request, 'Successfully created', extra_tags='class-name-tag')
     # we can put pure html in the message, then add extra_tags='html_safe', but in templates we need to use something like this:

@@ -1,0 +1,238 @@
+{% load mptt_tags %}
+{% load utility_tags %}
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Tree</h3>
+			</div>
+			<div class="panel-body">
+				<ul>
+					{% recursetree nodes %}
+						<li>
+							<h4 class="folder"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> {{ node.name }}</h4>
+
+							{% if not node.is_leaf_node %}
+								<ul class="children">
+									{{ children }}
+								</ul>
+							{% endif %}
+							<ul>
+							{% for item in node.item_set.all %}
+								<li>
+									<h4>
+										<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+										<a data-trigger="hover" data-toggle="popover" title="{{ item.name }}" data-content="{{ item.description }}" data-trigger="focus" target="_blank" href="{{ item.link }}">{{ item.name }}</a>
+									</h4>
+								</li>
+							{% endfor %}
+							</ul>
+						</li>
+					{% endrecursetree %}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Add Catalog</h3>
+			</div>
+			<div class="panel-body panel-form" id="catalog_form_add">
+				<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field catalog_form_add.name %}
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field catalog_form_add.parent %}
+							</div>
+						</div>
+					</fieldset>
+					<footer>
+						<input class="btn btn-primary" type="submit" name="catalog_form_add" value="Add Catalog">
+					</footer>
+				</form>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Remove Catalog</h3>
+			</div>
+			<div class="panel-body panel-form" id="catalog_form_remove">
+				<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field catalog_form_remove.parent %}
+							</div>
+						</div>
+					</fieldset>
+					<footer>
+						<input class="btn btn-primary" type="submit" name="catalog_form_remove" value="Remove Catalog">
+					</footer>
+				</form>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Add Item</h3>
+			</div>
+			<div class="panel-body panel-form" id="item_form_add">
+				<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field item_form_add.name %}
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field item_form_add.link %}
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field item_form_add.description %}
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field item_form_add.catalog %}
+							</div>
+						</div>
+					</fieldset>
+					<footer>
+						<input class="btn btn-primary" type="submit" name="item_form_add" value="Add Item">
+					</footer>
+				</form>
+			</div>
+		</div>		
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Remove Item</h3>
+			</div>
+			<div class="panel-body panel-form" id="item_form_remove">
+				<form method="POST" action="">
+					{% csrf_token %}
+					<fieldset>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								{% form_field item_form_remove.item %}
+							</div>
+						</div>
+					</fieldset>
+					<footer>
+						<input class="btn btn-primary" type="submit" name="item_form_remove" value="Remove Item">
+					</footer>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{% block javascript %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('[data-toggle="popover"]').popover();
+
+		let folders = $('h4.folder');
+		folders.css( 'cursor', 'pointer' );
+
+		folders.on('click', function() {
+			let _this = $(this);
+			let span = _this.children('span');
+			let ul = _this.parent('li').find('ul');
+
+			if (span.attr('class').indexOf('open') != -1) {
+				span.attr('class', 'glyphicon glyphicon-folder-close folder');
+			}
+			else {
+				span.attr('class', 'glyphicon glyphicon-folder-open folder');
+			}
+			ul.toggle('fast');
+		});
+
+		$('.panel-heading').on('click', function() {
+			let _this = $(this).siblings('.panel-form');
+			_this.toggle('fast');
+
+		});
+
+
+		$('select').select2({
+			width: '100%',
+		});
+
+		$('form').submit(function(e) {
+			e.preventDefault();
+			console.log('SUBMIT');
+			form_data = new FormData(this);
+			let form_name = this[this.length-1].name;
+			form_data.set('form_name', form_name);
+			for (let i of this) {
+				console.log(i);
+			}
+
+			
+			$.ajax({
+				url: {% url 'tree_traversal:tree_traversal' %},
+				type: 'POST',
+				data: form_data,
+				processData: false,
+				contentType: false,
+				cache: false,
+				beforeSend: function () {
+					$("body").css("cursor", "wait");
+				},
+				// .done()
+				success: function(data) {
+					// if(data.success) {
+					//     window.location = data.redirect;
+					//     return;
+					// }
+					// if(data.form) {
+					//     $('#modal .modal-content').html(data.form);
+					//     return;
+					// }
+					// $('#modal .modal-content').html(data);
+					// $("#container").html($(json.html_data).find("#container")).hide().fadeIn(400);
+					console.log('SUCCESS');
+					$('#tree_form').html(data.template);
+					$('#' + form_name).show('fast');
+
+				},
+				// .fail()
+				error: function() {
+					console.log('ERROR');
+				},
+				// .always()
+				complete: function() {
+					$("body").css("cursor", "default");
+				}
+			});
+		});
+
+
+
+
+
+
+	})
+</script>
+{% endblock %}

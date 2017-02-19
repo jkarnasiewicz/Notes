@@ -5,7 +5,7 @@ from mptt.fields import TreeForeignKey
 
 class Catalog(MPTTModel):
 	name = models.CharField(max_length=128, unique=True)
-	parent = TreeForeignKey('self', blank=True, null=True, db_index=True)
+	parent = TreeForeignKey('self', blank=True, null=True, db_index=True, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.name
