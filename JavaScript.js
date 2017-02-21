@@ -422,6 +422,7 @@ myRE.lastIndex;
 
 // regexp methods
 myRE.test(myString);					// return true or false
+// ! but RegExp.prototype.test updates the regular expressions lastIndex property so that each test will start where the last one stopped
 
 myRE.exec(myString);					// return array with first occurence of the regexp: ['dbbd', 'bb']
 myRE.exec(myString);					// return next occurrence: ['dbd', 'b']

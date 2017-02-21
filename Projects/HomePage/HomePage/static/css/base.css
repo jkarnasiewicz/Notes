@@ -150,24 +150,37 @@ a:focus, a:hover {
 	color: #483e8a;
 }
 
+/* Remove list bullets */
 ul {
-	list-style: none; /* Remove list bullets */
+	list-style: none;
 }
 
+/* prevent resizing horizontally */
 textarea { 
-   /* will prevent resizing horizontally */
    resize:vertical;
 }
 
-.panel-form {
+/*Select2 highlighted color*/
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background-color: #51469c;
+	color: white;
+}
+
+/*.panel-form {
 	display: none;
 }
+.panel-form-active {
+	display: flex;
+}
+*/
 /*.well {
 	background: none;
 }*/
+
 /*.panel-primary {
   border-color: #51469c;
 }
+
 .panel-primary > .panel-heading {
 	color: #fff;
 	background-color: #51469c;

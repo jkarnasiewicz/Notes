@@ -15,26 +15,24 @@ def tree_traversal(request):
 		'item_form_add': ItemFormAdd(prefix='item_form_add'),
 		'item_form_remove': ItemFormRemove(prefix='item_form_remove'),
 	}
-	print(request.POST)
+
 	form_dict = {'catalog_form_add': CatalogFormAdd, 'catalog_form_remove': CatalogFormRemove, 'item_form_add': ItemFormAdd, 'item_form_remove': ItemFormRemove}
 	if request.method == 'POST' and request.is_ajax():
 		form_name = request.POST['form_name']
 		form = form_dict.get(form_name, None)
+		ctx['form_name'] = form_name
 		if form:
 			form = form(prefix=form_name, data=request.POST)
 			if form.is_valid():
-				form.save()
-				# renderujemy cala zawartosc
-				# request_context = RequestContext(request)
-				# print(request_context)
-				# template = render_to_string('tree_traversal/tree_forms.html', ctx, request_context.get('request'))
-				template = render_to_string('tree_traversal/tree_forms.html', request=request, context=ctx)
-				return JsonResponse({'template': template, 'form_name': form_name})
+				form.save()	
 			else:
 				ctx[form_name] = form
-				template = render_to_string('tree_traversal/tree_forms.html', request=request, context=ctx)
-				return JsonResponse({'template': template, 'form_name': form_name})
+			# print(dir(form))
+			# print(form.cleaned_data['parent'])
+			# print(form.cleaned_data['parent'].get_ancestors(ascending=False, include_self=False).values_list('name', flat=True))
+			# ctx['parents'] = form.cleaned_data['parent'].get_ancestors(ascending=False, include_self=True).values_list('name', flat=True)
 
+			template = render_to_string('tree_traversal/tree_forms.html', request=request, context=ctx)
+			return JsonResponse({'template': template})
 
-	
 	return render(request, 'tree_traversal/home.html', ctx)

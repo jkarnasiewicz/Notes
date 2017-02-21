@@ -38,9 +38,11 @@ $("input[name$='letter']");             // finds all inputs with an attribute na
 $('li:even');                           // pseudo-selectors
 $('ul:odd');
 $('ul:last');
+$('.panel:not(:first)');
 
 $("p:contains('packages')");            // find any paragraph that contain the word "packages"
 $('a:visible');
+$(item).is(':hidden')
 
 
 
@@ -319,6 +321,9 @@ $('#submit-button').click(function(e) {
         url: form.attr('action'),
         type: 'POST',
         data: form.serialize(),
+        beforeSend: function (request) {
+            $("body").css("cursor", "wait");
+        },
         success: function(data) {
             if(data.success) {
                 window.location = data.redirect;
@@ -329,6 +334,12 @@ $('#submit-button').click(function(e) {
                 return;
             }
             $('#modal .modal-content').html(data);
+        },
+        error: function(xhr, errmsg, err) {
+            show_error(xhr);
+        },
+        complete: function() {
+            $("body").css("cursor", "default");
         }
     });
 });
