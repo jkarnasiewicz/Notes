@@ -539,10 +539,10 @@ def solution(A):
 		count = 0
 
 		for j in range(1, i+1):
-		 	for k in peaks:
-		 		if k < j*ranges:
-		 			count += 1
-		 			break
+			for k in peaks:
+				if k < j*ranges:
+					count += 1
+					break
 
 		if i == count:
 			return i
@@ -576,4 +576,96 @@ def solution(A):
 		if count_flags > results:
 			results = count_flags
 
+	return results
+
+
+
+# Lesson 11, CountSemiprimes (66%)
+def arrayF(n):
+	F = [0] * (n + 1)
+	i = 2
+	while (i * i <= n):
+		if (F[i] == 0):
+			k = i * i
+			while (k <= n):
+				if (F[k] == 0):
+					F[k] = i;
+				k += i
+		i += 1
+	return F
+
+def solution(N, P, Q):
+	result = []
+	primes = arrayF(N)
+
+	for i in range(len(P)):
+		count = 0
+		for j in range(P[i], Q[i]+1):
+			if primes[j] != 0:
+				if primes[j//primes[j]] == 0:
+					count += 1
+		result.append(count)
+	return result
+
+
+
+# Lesson 11, CountNonDivisible (55%)
+def solution(A):
+	results = []
+	A_c = sorted(A[:])
+	length = len(A_c)
+
+	for item in A:
+		count = 0
+		index = A_c.index(item)
+		last_index = index
+		try:
+			while A_c[index] == A_c[last_index+1]:
+				last_index += 1
+		except IndexError:
+			pass
+
+		count += length - (last_index + 1)
+		while index > 0:
+			index -= 1
+			if item % A_c[index] != 0:
+				count += 1
+
+		results.append(count)
+
+	return results
+
+
+
+# Lesson 12, ChocolatesByNumbers (100%)
+def gcd(a, b):
+	if a % b == 0:
+		return b
+	return gcd(b, a % b)
+
+
+def solution(N, M):
+	greatest_common_divisor = gcd(N, M)
+	least_common_multiple = N*M/greatest_common_divisor
+	return least_common_multiple/M
+
+
+
+# Lesson 12, CommonPrimeDivisors (61%)
+def decay(n):
+	primes = []
+	for i in range(2, n+1):
+		while n % i == 0:
+			primes.append(i)
+			n = n/i
+			if n == 1:
+				break
+	return set(primes)
+
+
+def solution(A, B):
+	results = 0
+	for i in range(len(A)):
+		if decay(A[i]) == decay(B[i]):
+			results += 1
 	return results

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="row">
+	<div class="row thumbnail-flex">
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<img data-src="" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="{% static 'images/jumbotron.png' %}" data-holder-rendered="true">
@@ -17,7 +17,7 @@
 						<form method="POST" action="{{ current_app.get_absolute_url }}">
 							{% csrf_token %}
 							<input type="hidden" name="styling" value="">
-							<a role="button" class="btn btn-primary preview" data-css="/static/css/base.css" href="#">Preview</a>
+							<button type="button" class="btn btn-primary preview" data-css="/static/css/base.css">Preview</button>
 							<button class="btn btn-default" type="submit">Apply</button>
 						</form>
 					</p>
@@ -33,7 +33,7 @@
 					<p>
 						<form method="POST" action="{{ current_app.get_absolute_url }}">
 							{% csrf_token %}
-							<a role="button" class="btn btn-primary preview" data-css="/static/css/base_blue.css" href="#">Preview</a>
+							<button type="button" class="btn btn-primary preview" data-css="/static/css/base_blue.css">Preview</button>
 							<input type="hidden" name="styling" value="_blue">
 							<button class="btn btn-default" type="submit">Apply</button>
 						</form>
@@ -50,7 +50,7 @@
 					<p>
 						<form method="POST" action="{{ current_app.get_absolute_url }}">
 							{% csrf_token %}
-							<a role="button" class="btn btn-primary preview" data-css="/static/css/base_green.css" href="#">Preview</a>
+							<button type="button" class="btn btn-primary preview" data-css="/static/css/base_green.css">Preview</button>
 							<input type="hidden" name="styling" value="_green">
 							<button type="submit" class="btn btn-default">Apply</button>
 						</form>
@@ -67,7 +67,7 @@
 					<p>
 						<form method="POST" action="{{ current_app.get_absolute_url }}">
 							{% csrf_token %}
-							<a role="button" class="btn btn-primary preview" data-css="/static/css/base_brink_pink.css" href="#">Preview</a>
+							<button type="button" class="btn btn-primary preview" data-css="/static/css/base_brink_pink.css">Preview</button>
 							<input type="hidden" name="styling" value="_brink_pink">
 							<button type="submit" class="btn btn-default">Apply</button>
 						</form>
@@ -86,7 +86,7 @@
 	});
 
 	// Alternative solutions
-	// var nodes = document.querySelectorAll('.preview');
+	// let nodes = document.querySelectorAll('.preview');
 
 	// nodes.forEach(function(element, index, array) {
 	// 	element.addEventListener('click', function() {
@@ -94,7 +94,7 @@
 	// 	})
 	// })
 
-	// for (var i=0; i<nodes.length; i++) {
+	// for (let i=0; i<nodes.length; i++) {
 	// 	nodes[i].addEventListener('click', function() {
 	// 		document.getElementById('base_stylesheet').href = this.attributes['data-css'].value;
 	// 	})

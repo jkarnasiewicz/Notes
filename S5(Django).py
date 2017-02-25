@@ -53,6 +53,8 @@ django-admin.py startproject mysite
 ./manage.py test -v3 --keepdb
 # Specify custom filename pattern
 ./manage.py test --pattern="tests_*.py"
+# Runs tests in separate parallel processes(--parallel=4, or by setting the DJANGO_TEST_PROCESSES)
+./manage.py test --parallel
 # The -Wall flag tells Python to display deprecation warnings
 python -Wall manage.py test
 
@@ -119,7 +121,7 @@ class Meta:
     proxy = True
 
     # ordering options: field_name(ascending), -field_name(descending) or ?(random)
-    ordering = ('id')                                   # database(postgres) => query_set => models => ordering
+    ordering = ('id',)                                  # database(postgres) => query_set => models => ordering
     unique_together = (('app_label', 'model'),)         # unique_together also influence qs ordering
     db_table = 'django_content_type'
 

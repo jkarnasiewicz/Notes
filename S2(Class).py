@@ -553,7 +553,7 @@ def doc(func):
 	@functools.wraps(func)
 	def wrapper():
 		return func()
-	return wrap
+	return wrapper
 
 @doc
 def hello():

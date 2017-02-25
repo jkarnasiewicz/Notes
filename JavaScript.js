@@ -67,6 +67,10 @@ var a = 1;
 
 // A function always returns a value. If the return value is not specified, then undefined is returned
 
+// Callback function
+// function passed as parameter to another function, and called within that function in certain
+// circumstances and/or at the end of a process
+
 // New
 // You can use the 'new' operator to create an instance of a user-defined object type or of one of
 // the built-in object types. Use new as follows:
@@ -468,6 +472,10 @@ myString.replace(re, "$2, $1");			// other patterns: $& inserts matched substrin
 
 
 
+// Searching words with 'And' and word boundaries
+// matching whole words and not just fragments of longer words
+/^(?=.*\bword1\b)(?=.*\bword2\b)(?=.*\bword3\b).*$/m
+
 // Lookahead
 x(?=y) 	Matches 'x' only if 'x' is followed by 'y'
 For example, /Jack(?=Sprat)/ matches 'Jack' only if it is followed by 'Sprat'
@@ -803,7 +811,7 @@ var p = new Person();
 
 // Closure
 // A closure is the combination of a function and the scope object in which it was created. Closures
-// let you save state and have acces to the context in which was created
+// let you save state and have access to the context in which was created
 // Be careful - the magical this variable is very tricky in closures. They have to be used carefully,
 // as what this refers to depends completely on where the function was called, rather than where it
 // was defined.
@@ -953,6 +961,12 @@ lastNameCaps.call(s);
 // Is the same as:
 s.lastNameCaps = lastNameCaps;
 s.lastNameCaps();
+
+
+
+// Convert a NodeList into an array
+var nodeElem = document.querySelectorAll('div');
+var arrayElem = [].slice.call(nodeElem, 1);			// without first node => [nodeElem].slice(1)
 
 
 

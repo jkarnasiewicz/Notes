@@ -27,9 +27,6 @@ def tree_traversal(request):
 				form.save()	
 			else:
 				ctx[form_name] = form
-			# print(dir(form))
-			# print(form.cleaned_data['parent'])
-			# print(form.cleaned_data['parent'].get_ancestors(ascending=False, include_self=False).values_list('name', flat=True))
 			# ctx['parents'] = form.cleaned_data['parent'].get_ancestors(ascending=False, include_self=True).values_list('name', flat=True)
 
 			template = render_to_string('tree_traversal/tree_forms.html', request=request, context=ctx)
