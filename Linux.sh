@@ -147,6 +147,8 @@ pip install MySQL-python
 # virtualenv
 sudo pip install virtualenv
 virtualenv /nazwa_folderu
+# choose python version
+virtualenv -p python3 .
 source /bin/activate
 
 

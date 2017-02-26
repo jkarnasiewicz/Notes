@@ -1,3 +1,5 @@
 __pycache__/
 /Apps/
 Projects/Ve-HomePage
+Projects/HomePage/.coverage
+Projects/HomePage/htmlcov/

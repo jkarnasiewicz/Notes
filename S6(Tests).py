@@ -368,6 +368,12 @@ class FunctionalTest(StaticLiveServerTestCase):
 
 
 
+# Coverage.py
+coverage run manage.py test apps
+coverage html                           # see htmlcov/index.html
+
+
+
 # Additional informations
 
 # Here are some qualities of a good test case (which is a subjective term, of course)
@@ -414,4 +420,4 @@ https://docs.djangoproject.com/en/1.10/topics/testing/tools/
 
 
 
-# Libraries: py.test, nose, coverage.py and factory_boy(fixtures)
+# Libraries: py.test, nose and factory_boy(fixtures)
