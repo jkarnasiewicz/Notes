@@ -130,6 +130,9 @@ class Meta:
 # Create
 
 # create new instance and save it into DB
+# !!! note that full_clean() will not be called automatically when you call your model’s save()
+# or create method. You’ll need to call it manually
+# full_clean() calls: Model.clean_fields(), Model.clean(), Model.validate_unique()
 Article(title='Cheddar Talk', tagline='Thoughts on cheese.').save()
 Article.objects.create(title='Cheddar Talk', tagline='Thoughts on cheese.')
 
@@ -477,7 +480,7 @@ class MessageForm(forms.Form):
 def message_to_user(request):
     if request.method == "POST":
         form = MessageForm(request, data=request.POST)
-        if form.is_valid():                                 # calling form.full_clean() directly trigger cleaning and validation
+        if form.is_valid():                                 # == calling form.full_clean() directly trigger cleaning and validation
             # ...
             return redirect("message_to_user_done")
     else:
@@ -786,7 +789,7 @@ request.get_full_path()                         # /app_name/...
 
 # Cookies
 request.COOKIES.get('lang', '')
-request.get_signed_cookie('styling', '', salt=settings.COOKIES_KEY)
+request.get_signed_cookie('lang', '', salt=settings.COOKIES_KEY)
 
 response.set_cookie('lang', language)
 response.set_signed_cookie('lang', language, salt=settings.COOKIES_KEY, max_age=None, expires=None, path='/', domain=None, secure=None, httponly=True)

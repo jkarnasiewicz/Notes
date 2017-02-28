@@ -5,6 +5,7 @@ from django.test import TestCase
 
 from .forms import CatalogFormAdd, CatalogFormRemove, ItemFormAdd, ItemFormRemove
 from .models import Catalog, Item
+from .views import tree_traversal
 
 
 class ModelTest(TestCase):
@@ -49,8 +50,8 @@ class ModelTest(TestCase):
 
 	# test model methods
 	def test_string_representation(self):
-		self.assertEqual(str(self.catalog), 'Root')
-		self.assertEqual(str(self.item), 'Item 1')
+		self.assertEqual(str(self.catalog), self.catalog.name)
+		self.assertEqual(str(self.item), self.item.name)
 
 
 class FormTest(TestCase):
@@ -91,7 +92,7 @@ class FormTest(TestCase):
 		form = ItemFormAdd(data={'name': 'Item 2',
 								 'catalog': self.catalog.pk,
 								 'description': '...',
-								 'link': 'www.google.com'})
+								 'link': 'www.example.com'})
 		self.assertTrue(form.is_valid())
 		item_instance = form.save()
 		self.assertIn(item_instance, Item.objects.all())
@@ -141,10 +142,15 @@ class ViewTest(TestCase):
 		self.catalog = Catalog.objects.create(name='Root')
 		self.item = Item.objects.create(name='Item 1', catalog=self.catalog)
 
-	def test_tree_traversal_page_render_correct_template(self):
+	def test_tree_traversal_page_uses_correct_view(self):
 		response = self.client.get(reverse('tree_traversal:tree_traversal'))
 
 		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.resolver_match.func, tree_traversal)
+
+	def test_tree_traversal_page_render_correct_template(self):
+		response = self.client.get(reverse('tree_traversal:tree_traversal'))
+
 		self.assertTemplateUsed(response, 'tree_traversal/home.html')
 
 	def test_tree_traversal_page_uses_correct_forms(self):

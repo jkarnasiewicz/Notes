@@ -29,6 +29,11 @@ class Applications(models.Model):
 		choices=avaiable_apps())
 	visible = models.BooleanField(default=True)
 
+	class Meta:
+		ordering = ('?',)
+		verbose_name = 'Applications'
+		verbose_name_plural = 'Applications'
+
 	def get_absolute_url(self):
 		#  --
 		if self.url_name:
@@ -36,7 +41,5 @@ class Applications(models.Model):
 		else:
 			return reverse('search_app:search_app')
 
-	class Meta:
-		ordering = ('?',)
-		verbose_name = 'Applications'
-		verbose_name_plural = 'Applications'
+	def __str__(self):
+		return self.name
