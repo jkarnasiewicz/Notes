@@ -475,6 +475,7 @@ xrange() used to work before.
 6. Dictionary keys are views: dict and dict-like classes (such as QueryDict)
 will return iterators instead of lists for the keys(), items(), and values()
 method calls
+7. nonlocal doesnt exist in python 2
 
 
 

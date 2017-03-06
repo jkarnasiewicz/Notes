@@ -33,17 +33,27 @@ from django.test import TestCase, LiveServerTestCase, modify_settings, override_
 class TestSomething(unittest.TestCase):
 
     @classmethod
-    def setUpClass(cls):                                    # create test configuration for the class (it will be executed only once)
-        ...
+    def setUpTestData(cls):
+        # allows the creation of initial data at the class level, once for the whole TestCase
+        # this technique allows for faster tests as compared to using setUp()
+        # if the tests are run on a database with no transaction support, setUpTestData() will be
+        # called before each test, negating the speed benefits
+
+    @classmethod
+    def setUpClass(cls):
+        # create test configuration for the class (it will be executed only once)
+        super(TestSomething, cls).setUpClass()
 
     @classmethod
     def tearDownClass(cls):
-        ...
+        # cleaning up test configuration for the class (it will be executed only once)
 
-    def setUp(self):							            # this method will be run before each test method
-	   ...
+    def setUp(self):
+        # this method will be run before each test method
 
-    def tearDown(self):                                     # this method will be run after each test method, irrespective of whether the test passed or not
+    def tearDown(self):
+        # this method will be run after each test method, irrespective of whether the test passed or not
+
         for method, error in self._outcome.errors:
             if error:
                 ...                                         # more TDD 372
@@ -60,6 +70,9 @@ class TestSomething(unittest.TestCase):
         with self.assertRaises(ValidationError):
             item.save()
             item.full_clean()                               # metoda przeznaczona do recznego wykonania pelnej operacji sprawdzenia
+
+        with self.assertRaisesRegexp(ValidationError, 'Enter a valid URL.'):    # Error contains provided message
+            ...
 
         self.assertContains(response, 'name="text"')
         self.assertNotContains(response, 'item 3')

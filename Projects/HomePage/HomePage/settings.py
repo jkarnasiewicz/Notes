@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 	'apps.search_app',
 	'apps.change_styling',
 	'apps.tree_traversal',
+	'apps.codility',
 ]
 
 MIDDLEWARE = [

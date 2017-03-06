@@ -9,6 +9,9 @@
 
 // Scope in a programming language controls the visibility and lifetimes of variables and parameters
 
+// IIFE - Immediately-Invoked Function Expression
+
+
 
 // Strict mode is more restricted version of the JavaScript language
 // (typos in variable names in assignment throw an error, assignments that would normally fail quietly
@@ -124,6 +127,36 @@ for(var b in window) {
 	if(window.hasOwnProperty(b)) console.log(b); 
 }
 
+
+
+
+
+// PROTOTYPICAL INHERITANCE
+// What prototypical inheritance means is that reuse occurs through creating new instances
+// of existing objects, rather than instances of a class. Instead of extensibility occurring
+// through class inheritance, prototypical extensibility happens by enhancing an existing object
+// with new properties and methods
+
+// The Object.create() method introduced with ECMAScript 5 provides classical inheritance
+// in JavaScript. The first parameter is the object that serves as prototype for the
+// newly created object, and the second optional parameter is a set of properties defined
+// for the object
+
+
+
+
+
+// NAMESPACING
+// to prevent name clashes with other libraries we can use an object literal(one-off object),
+// to implement the JavaScript version of namespacing
+var jsObject = {
+	getElem : function (identifier) {
+		return document.getElementById(identifier);
+	},
+	...
+}
+
+jsObject.getElem('content');
 
 
 
@@ -730,6 +763,7 @@ walkTree(document.body);
 
 
 // Default parameters
+// To maintain the proper argument position, you can pass a value of undefined in the argument e.g. fun(169, undefined, "-")
 function mul(a, b=1) {
 	return a*b;
 }
@@ -892,6 +926,46 @@ player2.Details();
 
 
 
+// Object methods
+// prevent others from extending an object
+Object.preventExtensions(Test);
+
+// check if an object is extensible
+Object.isExtensible(obj)
+
+// freeze the object against any and all changes(with 'use strict';)
+Object.freeze(obj)
+
+// check if an object is frozen
+Object.isFrozen(obj)
+
+
+
+
+
+// DEFINE PROPERTY
+// The Object.defineProperty() supports three parameters: the object, the property, and a descriptor
+// object. The latter consists of the following options:
+// - configurable: false by default; controls whether the property descriptor can be changed
+// - enumerable: false by default; controls whether the property can be enumerated
+// - writable: false by default; controls whether the property value can be changed through assignment
+// - value: The initial value for the property
+// - get: undefined by default; property getter
+// - set: undefined by default; property setter
+
+var data = {};
+var group = 'math';
+Object.defineProperty(data, "category", {
+	get: function () { return group; },
+	set: function (value) { group = value; },
+	enumerable: true,
+	configurable: true,
+});
+
+console.log(data.category); // math
+
+
+
 
 
 // PROTOTYPES
@@ -972,6 +1046,37 @@ var arrayElem = [].slice.call(nodeElem, 1);			// without first node => [nodeElem
 
 // Flattening a Two-Dimensional Array
 var flat = [].concat.apply([], [1, 2, [3, 4], [5, 6], 7, 8]);
+
+
+
+
+
+// CREATE INSTANCE USING FUCNTION SYNTAX
+
+// Creating new objects with private data members
+// Tune, is defined using function syntax, it has two private data members(without 'this'),
+// a title and an artist, and a publicly accessible method, concatTitleArtist(with 'this')
+function Tune(title, artist) {
+	this.concatTitleArtist = function() {
+		return `${title} ${artist}`;
+	}
+}
+
+// create instance, print out values
+var happySong = new Tune("Putting on the Ritz", "Ella Fitzgerald");
+
+// extend the object
+Tune.prototype.addCategory = function(categoryName) {
+	this.category = categoryName;
+}
+
+// add category
+happySong.addCategory("Swing");
+console.log(happySong.title, happySong.concatTitleArtist(), happySong.category);
+
+// Generally, if your function must deal with private data, it should be defined within the
+// function constructor, and without using prototype. Otherwise, the data should be
+// available via this, or static and never changing once the object is created.
 
 
 

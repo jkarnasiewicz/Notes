@@ -130,7 +130,7 @@ class Meta:
 # Create
 
 # create new instance and save it into DB
-# !!! note that full_clean() will not be called automatically when you call your model’s save()
+# !!! note that full_clean() will not be called automatically when you call model’s save()
 # or create method. You’ll need to call it manually
 # full_clean() calls: Model.clean_fields(), Model.clean(), Model.validate_unique()
 Article(title='Cheddar Talk', tagline='Thoughts on cheese.').save()

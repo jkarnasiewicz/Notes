@@ -669,3 +669,88 @@ def solution(A, B):
 		if decay(A[i]) == decay(B[i]):
 			results += 1
 	return results
+
+
+
+# Lesson 13, Ladder (50%)
+import operator as op
+
+def ncr(n, r):
+    r = min(r, n-r)
+    if r == 0: return 1
+    try:
+    	numer = reduce(op.mul, xrange(n, n-r, -1))
+    	denom = reduce(op.mul, xrange(1, r+1))
+    except TypeError:
+    	return 0
+    return numer//denom
+
+def solution(A, B):
+	L = len(A)
+	result = []
+	
+	for index in xrange(L):
+		count = A[index]
+		partial_sum = 0
+		for i in xrange(L):
+			partial_sum += ncr(count, i)
+			if i > count:
+				break
+			count -= 1
+		result.append(partial_sum % 2**B[index])
+	return result
+
+
+
+# Lesson 13, FibFrog (25%)
+# I think that correctness is 100%, but the performance is terrible so i can't even pass some
+# of the correctness test - Tips and ideas for speed up much appreciate!
+
+# A = [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0] # => 1
+# A = [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0] # => 3
+# A = [] 	# => 1
+# A = [1] # => 1
+# A = [0, 0, 0] # => -1
+# A = [1, 1, 0, 0, 0] # => 2
+# A = [1, 1, 1] # => 2
+
+def fib(n):
+	result = []
+	a, b = 0, 1
+	while a <= n:
+		result.append(a)
+		a, b = b, a+b
+	return result
+
+def solution(A):
+	l = len(A)+1
+	fib_num = fib(l)
+	fib_num.remove(1)
+	A.append(1)
+	count = [[]]
+	def fun(B):
+		for i in reversed(fib_num):
+			try:
+				if B[i-1] == 1:
+					if i != 0:
+						count[-1].append((i))
+
+					if len(B) == i:
+						if sum(count[-1]) != l:
+							del count[-1]
+						count.append([])
+					if B == B[i:]:
+						del count[-1]
+						count.append([])
+						continue
+						
+					fun(B[i:])
+			except IndexError:
+				pass
+	fun(A)
+	try:
+	    result = min({len(i) for i in count if len(i) > 0})
+	except:
+	    result = -1
+
+	return result
