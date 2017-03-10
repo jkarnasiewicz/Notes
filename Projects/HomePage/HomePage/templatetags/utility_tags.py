@@ -35,12 +35,20 @@ def form_field(field, *args, **kwargs):
 	}
 
 	field_type = field.field.widget.__class__.__name__
+	print(args, kwargs, sep='\n')
 	if field_type in ('TextInput', 'URLInput'):
 		ctx['input_type'] = field.field.widget.input_type
 	elif field_type in ('Textarea', ):
 		ctx['textarea'] = True
 	elif field_type in ('Select', ):
 		ctx['select'] = True
+	elif field_type in ('CheckboxInput', ):
+		ctx['checkbox'] = True
+		ctx['checkbox_text'] = kwargs.get('checkbox_text', None)
+	elif field_type in ('RadioSelect', ):
+		ctx['radio_input'] = True
+	elif field_type in ('ClearableFileInput', ):
+		ctx['file_input'] = True
 
 	
 	return mark_safe(render_to_string(template, ctx))

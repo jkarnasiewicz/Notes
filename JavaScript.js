@@ -82,6 +82,20 @@ var a = 1;
 // If the function was invoked with the new prefix and the return value is not an object, then this
 // (the new object) is returned instead
 
+// Method chaining
+// The key to making method chaining work is to return a reference to the object at the end of the method
+this.changeAuthor = function(newAuthor) {
+	this.replaceAuthor(newAuthor);
+	return this; // necessary to enable method chaining
+};
+
+// This/That/Self
+// The nesting of the function disassociates the inner function from the surrounding object,
+// and all unscoped functions automatically become the property of the window object
+setTimeout(this.countDown.bind(this),1000); not setTimeout(this.countDown, 1000);
+// alternative to using bind()
+let self = this;
+
 
 
 // literal - notations for atomic values
@@ -1271,9 +1285,35 @@ function imgLoad(url) {
 
 
 // DOM - Document Object Model
+// NodeList is live collection(changes in DOM are immediately reflected in NodeList)
 var mainTitle = document.getElementById("mainTitle");
 var myLinks = mainTitle.getElementsByTagName("a");
 var thumbnails = document.getElementsByClassName('thumbnails');
+
+
+
+// querySelectorAll (returns all elements that match the selector criteria)
+document.querySelectorAll('li:nth-child(2n+1)');		// document.querySelectorAll('li:nth-child(odd)');
+// querySelector (only returns the first found result)
+// the collection of elements returned from querySelectorAll is not a 'live' collection
+
+// fing all img elements that are descendants of article
+document.querySelectorAll('article img');
+// find img elements that are direct children of an article element
+document.querySelectorAll("article> img");
+// find all img elements that are immediately followed by a paragraph
+document.querySelectorAll("img + p");
+// find all img element that has an empty alt attribute
+document.querySelectorAll('img[alt=""]');
+// find all img elements that don’t have an empty alt attribute
+document.querySelectorAll('img:not([alt=""])');
+
+// all elements with the class attribute
+document.querySelectorAll('*[class]');
+// all elements with a class attribute with the value that contains the substring 'red'
+document.querySelectorAll('*[class*="red"]');
+// all div elements that don’t have the 'red' class name
+document.querySelectorAll('div:not(.red)');				// ('div:not([class*="red"])');
 
 
 
@@ -1287,10 +1327,28 @@ for (var i = 0; i < cells.length; i++) {
 
 
 
+// Traversing properties
+// get a reference to the specific element
+var demodiv = document.getElementById("demodiv");
+// find its parent via the parentNode property
+var parent = demodiv.parentNode;
+// type of element, e.g. body
+var type = parent.nodeName;
+// find its children via the childNodes property
+var children = demodiv.childNodes;
+
+
+
+
 myLinks.length;
 mainTitle.innerHTML;
 mainTitle.nodeType;
 mainTitle.childNodes.length;
+
+// Accessing element attributes
+myElement.getAttribute("align");
+myElement.setAttribute("style", "background-color: red; color: white; border: 1px solid black");
+
 
 myElement.style.display = "block" or "none";	// display or hide object
 myElement.style.width = "230px";
@@ -1300,8 +1358,7 @@ myElement.style.backgroundRepeat = "repeat-x";
 
 myElement.className = "someCSSclass" or "";		// set css class to myElement
 
-myElement.getAttribute("align");
-myElement.setAttribute("align", "right");
+
 
 // Creating DOM elements
 var myNewElement = document.createElement("li");

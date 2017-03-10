@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^change_styling/', include('apps.change_styling.urls', namespace='change_styling', app_name='change_styling')),
     url(r'^tree_traversal/', include('apps.tree_traversal.urls', namespace='tree_traversal', app_name='tree_traversal')),
     url(r'^codility/', include('apps.codility.urls', namespace='codility', app_name='codility')),
+    url(r'^mpl_graph/', include('apps.mpl_graph.urls', namespace='mpl_graph', app_name='mpl_graph')),
     url(r'^admin/', admin.site.urls),
 ]
 

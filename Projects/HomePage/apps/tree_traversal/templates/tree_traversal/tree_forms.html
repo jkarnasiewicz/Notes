@@ -185,14 +185,14 @@
 				span.attr('class', 'glyphicon glyphicon-menu-down pull-right');
 			}
 
-			_this.toggle('fast');
+			_this.slideToggle('fast');
 
 			// collapse inactive panels
 			$('.panel-form').not(_this).each(function(index, item) {
 				let q_item = $(item);
 				if (q_item.is(':visible')) {
 					$('span', q_item.siblings('div.panel-heading')[0]).attr('class', 'glyphicon glyphicon-menu-down pull-right');
-					q_item.hide();
+					q_item.slideToggle('fast');
 				}
 			});
 		});

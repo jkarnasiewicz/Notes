@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load utility_tags %}
+
+{% block jumbotron %}
+	<h1>{{ current_app.name }}</h1>
+	<p class="lead">{{ current_app.description }}</p>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Plot Graph (pick one plotting option and choose the file format)</h3>
+				</div>
+				<div class="panel-body">
+					<form method="POST" action="" enctype="multipart/form-data">
+						{% csrf_token %}
+						<fieldset>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									{% form_field form.file %}
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									{% form_field form.custom_pattern %}
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									{% form_field form.random checkbox_text='Check this option for random output(different data and functions)' %}
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									{% form_field form.extension %}
+								</div>
+							</div>
+
+							<hr>
+
+						</fieldset>
+						<footer>
+							<input class="btn btn-primary" type="submit" name="file_input" value="Generate Graph/Plot">
+						</footer>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

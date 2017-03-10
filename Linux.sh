@@ -151,6 +151,9 @@ virtualenv /nazwa_folderu
 virtualenv -p python3 .
 source /bin/activate
 
+# venv
+python -m venv nazwa_folderu
+
 
 
 # connection

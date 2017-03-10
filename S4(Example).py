@@ -294,6 +294,16 @@ print(list(trues), list(positives), sep='\n')
 
 
 
+# Group by - splitting iterable by multiple delimiters
+import itertools
+def isplit(iterable, splitters):
+	return [list(g) for k, g in itertools.groupby(iterable, lambda x:x in splitters) if not k]
+
+count = [1, 2, 3, 4, 65, -100, 123, 23, -1, 234, 234, -1, 5, 8, -100, 2, 123, 12, 3]
+print(isplit(count, [-100, -1]))
+
+
+
 # Sort Dictionary By Values
 prices = {'ACME': 45.23, 'AAPL': 612.78, 'IBM': 205.55, 'HPQ': 37.20, 'FB': 10.75}
 

@@ -98,7 +98,7 @@ $("header").html('<h1>Hello!</h1>');                      // changing html conte
 // Css
 $("li").not( ":even" ).css({'background-color': 'red',
                             'border-color': '1px solid #967'});
-$('#graph').css('display', 'block') === $('#div-graph').show()      // show is prefer
+$('#graph').css('display', 'block') === $('#graph').show()      // show is prefer
 
 
 

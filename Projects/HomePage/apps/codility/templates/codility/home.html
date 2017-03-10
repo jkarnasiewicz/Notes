@@ -9,19 +9,15 @@
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
 
-			<div class="well well-lg">
-				asdasdasdas 23d23d3 ?!
-			</div>
-
 			{% for task in codility_task %}
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<a class="pull-right" href="{{ task.link }}" target="_blank">Task Description</a>
 						<h3 class="panel-title">{{ task.title }}</h3>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" hidden>
 						<p>{{ task.annotation }}</p>
-						<pre><strong>{{ task.code }}</strong></pre>
+						<pre><h4><strong>{{ task.code }}</strong></h4></pre>
 					</div>
 				</div>
 			{% endfor %}
@@ -31,4 +27,19 @@
 {% endblock %}
 
 {% block javascript %}
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('.panel-heading').css('cursor', 'pointer');
+
+		$('.panel-heading').on('click', function() {
+			let $this = $(this).siblings('.panel-body');
+			$this.slideToggle('fast');
+			$('.panel-body:visible').not($this).each(function(index, item) {
+				$(item).slideToggle('fast');
+
+			})
+		})
+	})
+</script>
 {% endblock %}

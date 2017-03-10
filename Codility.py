@@ -175,15 +175,15 @@ def solution(S, P, Q):
 
 # This is more pleasant, but slower solution
 # def solution(S, P, Q):
-#   results = []
-#   imp_factor = (('A', 1), ('C', 2), ('G', 3), ('T', 4))
-#   for i, j in zip(P, Q):
-#       unique_letters = set(S[i:j+1])
-#       for letter, factor in imp_factor:
-#           if letter in unique_letters:
-#               results.append(factor)
-#               break
-#   return results
+# 	results = []
+# 	imp_factor = (('A', 1), ('C', 2), ('G', 3), ('T', 4))
+# 	for i, j in zip(P, Q):
+# 		unique_letters = set(S[i:j+1])
+# 		for letter, factor in imp_factor:
+# 			if letter in unique_letters:
+# 				results.append(factor)
+# 				break
+# 	return results
 
 
 
@@ -676,14 +676,14 @@ def solution(A, B):
 import operator as op
 
 def ncr(n, r):
-    r = min(r, n-r)
-    if r == 0: return 1
-    try:
-    	numer = reduce(op.mul, xrange(n, n-r, -1))
-    	denom = reduce(op.mul, xrange(1, r+1))
-    except TypeError:
-    	return 0
-    return numer//denom
+	r = min(r, n-r)
+	if r == 0: return 1
+	try:
+		numer = reduce(op.mul, xrange(n, n-r, -1))
+		denom = reduce(op.mul, xrange(1, r+1))
+	except TypeError:
+		return 0
+	return numer//denom
 
 def solution(A, B):
 	L = len(A)
@@ -749,8 +749,48 @@ def solution(A):
 				pass
 	fun(A)
 	try:
-	    result = min({len(i) for i in count if len(i) > 0})
+		result = min({len(i) for i in count if len(i) > 0})
 	except:
-	    result = -1
+		result = -1
 
 	return result
+
+
+
+# Lesson 14, NailingPlanks (50%)
+def solution(A, B, C):
+	ranges = list(zip(A, B))
+	for nail, i in enumerate(C, start=1):
+		for r in ranges[:]:
+			if r[0] <= i <= r[1]:
+				ranges.remove(r)
+		if not ranges:
+			return nail
+	return -1
+
+# def binarySearch(A, x):
+# 	n = len(A)
+# 	beg = 0
+# 	end = n - 1
+# 	result = -1
+# 	while (beg <= end):
+# 		mid = (beg + end) // 2
+# 		if (A[mid] < x):
+# 			beg = mid + 1
+# 			result = mid
+# 		else:
+# 			end = mid - 1
+# 	return result
+
+# def solution(A, B, C):
+# 	ranges = list(zip(A, B))
+# 	for nail, i in enumerate(C, start=1):
+# 		for r in ranges[binarySearch(A[:], i):]:
+# 			if r[0] <= i <= r[1]:
+# 				ranges.remove(r)
+# 				A.remove(r[0])
+# 			else:
+# 				break
+# 		if not ranges:
+# 			return nail
+# 	return -1

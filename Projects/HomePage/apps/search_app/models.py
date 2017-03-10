@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 def avaiable_apps():
 	dir_names = next(os.walk(os.path.join(settings.BASE_DIR, 'apps')))[1]
-	choices = [(item, item) for item in dir_names]
+	choices = [(item, item) for item in dir_names if not item.startswith('__')]
 	return choices
 
 def upload_path(instance, filename):
