@@ -35,7 +35,7 @@ def form_field(field, *args, **kwargs):
 	}
 
 	field_type = field.field.widget.__class__.__name__
-	print(args, kwargs, sep='\n')
+	# print(args, kwargs, sep='\n')
 	if field_type in ('TextInput', 'URLInput'):
 		ctx['input_type'] = field.field.widget.input_type
 	elif field_type in ('Textarea', ):

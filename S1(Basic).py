@@ -1024,8 +1024,8 @@ tokyo = City('Tokyo', 'JP', 36.933, (35.689722, 139.691667))
 
 # class DoppelDict(collections.UserDict):				# +
 class DoppelDict(dict): 								# -
-    def __setitem__(self, key, value):
-        super().__setitem__(key, [value] * 2)
+	def __setitem__(self, key, value):
+		super().__setitem__(key, [value] * 2)
 
 dd = DoppelDict(one=1) 									# -
 print(dd)
@@ -1083,7 +1083,7 @@ accumulate(range(1, 11), operator.mul)
 # groupby(iterable, key=None)
 animals = ['duck', 'eagle', 'rat', 'giraffe', 'bear', 'bat', 'dolphin', 'shark', 'lion']
 for length, group in itertools.groupby(sorted(animals, key=len), len):
-    print(length, '->', list(group))
+	print(length, '->', list(group))
 
 
 
