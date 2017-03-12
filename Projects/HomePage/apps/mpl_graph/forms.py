@@ -7,6 +7,8 @@ class PlotForm(forms.Form):
 		max_length=256,
 		label='Plot from file',
 		help_text='Try selecting one or more files and watch the feedback')
+	# file_headers = forms.BooleanField(
+	# 	required=False)
 	custom_pattern = forms.CharField(
 		required=False,
 		max_length=256,
