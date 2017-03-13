@@ -7,13 +7,28 @@ class PlotForm(forms.Form):
 		max_length=256,
 		label='Plot from file',
 		help_text='Try selecting one or more files and watch the feedback')
-	# file_headers = forms.BooleanField(
-	# 	required=False)
 	custom_pattern = forms.CharField(
 		required=False,
-		max_length=256,
-		label='Plot from custom pattern (e.g. f(x) = x**2 - 6*x + 5, f(x, y) = x**2 + y**2)',
+		max_length=64,
+		label='Plot from custom pattern (e.g. x**2 - 6*x + 5)',
 		help_text='Have fun and good luck')
+	min_value = forms.FloatField(
+		required=False,
+		label='Min value of x',
+		widget=forms.NumberInput(attrs={'placeholder': 'Default value is -100'}),
+		min_value=-10000000,
+		max_value=10000000)
+	max_value = forms.FloatField(
+		required=False,
+		label='Max value of x',
+		widget=forms.NumberInput(attrs={'placeholder': 'Default value is 100'}),
+		min_value=-10000000,
+		max_value=10000000)
+	step = forms.FloatField(
+		required=False,
+		widget=forms.NumberInput(attrs={'placeholder': 'Default value is 0.1', 'step': 0.001}),
+		min_value=0.001,
+		max_value=10)
 	random = forms.BooleanField(
 		required=False,
 		label='Plot from random data')

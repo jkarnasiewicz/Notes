@@ -35,8 +35,12 @@ def form_field(field, *args, **kwargs):
 	}
 
 	field_type = field.field.widget.__class__.__name__
-	# print(args, kwargs, sep='\n')
-	if field_type in ('TextInput', 'URLInput'):
+	print(field.field.widget.attrs)
+	if field_type in ('TextInput', 'NumberInput', 'URLInput'):
+		# print(field.field.widget.input_type)
+		# print('=============')
+		if 'affix_addon' in kwargs:
+			ctx['affix_addon'] = kwargs.get('affix_addon', None)
 		ctx['input_type'] = field.field.widget.input_type
 	elif field_type in ('Textarea', ):
 		ctx['textarea'] = True

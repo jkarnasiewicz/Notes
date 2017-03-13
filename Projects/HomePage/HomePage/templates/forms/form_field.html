@@ -11,13 +11,20 @@
 
 
 	{% if input_type %}
+		{% if affix_addon %}
+		<div class="input-group">
+      		<div class="input-group-addon">{{ affix_addon }}</div>
+      	{% endif %}
 		<input
 			id="{{ field.auto_id }}"
 			class="form-control"
 			name="{{ field.html_name }}"
 			type="{{ input_type }}"
+			{% if field.field.widget.attrs.placeholder %}placeholder="{{field.field.widget.attrs.placeholder }}"{% endif %}
+			{% if field.field.widget.attrs.step %}step="{{field.field.widget.attrs.step }}"{% endif %}
 			{% if field.field.max_length %}maxlength="{{ field.field.max_length }}"{% endif %}
 			{% if field.value %}value="{{ field.value }}"{% endif %}>
+		{% if affix_addon %}</div>{% endif %}
 
 
 	{% elif textarea %}
