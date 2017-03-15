@@ -27,5 +27,12 @@ from pprint import pprint
 # 		f.write('{}, {}, {}, {}\n'.format(row[0], row[1], row[2], row[3]))
 
 # print(__builtins__)
-print(np.random.randint(-10, 10))
-pprint(dir(np.random))
+# print(np.random.choice((1, 3, 5)))
+# pprint(dir(np.random))
+
+# print(dir(np))
+# print(help(np.array))
+import math
+print(help(math.tanh))
+# print(np.random.randint(-100, 0))
+print(np.array(((1, 2, 3), (4, 5, 6))))
