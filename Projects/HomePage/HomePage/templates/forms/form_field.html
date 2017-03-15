@@ -13,8 +13,8 @@
 	{% if input_type %}
 		{% if affix_addon %}
 		<div class="input-group">
-      		<div class="input-group-addon">{{ affix_addon }}</div>
-      	{% endif %}
+			<div class="input-group-addon">{{ affix_addon }}</div>
+		{% endif %}
 		<input
 			id="{{ field.auto_id }}"
 			class="form-control"
@@ -49,39 +49,39 @@
 
 	{% elif checkbox %}
 		<div class="checkbox">
-    		<label>
-      			<input id="{{ field.auto_id }}" type="checkbox" name="{{ field.html_name }}" {% if field.value == True %}checked{% endif %}>
-      			{% if checkbox_text %}{{ checkbox_text }}{% endif %}
+			<label>
+				<input id="{{ field.auto_id }}" type="checkbox" name="{{ field.html_name }}" {% if field.value == True %}checked{% endif %}>
+				{% if checkbox_text %}{{ checkbox_text }}{% endif %}
 			</label>
-  		</div>
+		</div>
 
 
 	{% elif radio_input %}
 		{% for value, text in field.field.choices %}
 			<div class="radio">
-	  			<label>
-	    			<input id="{{ field.auto_id }}_{{ value }}" type="radio" name="{{ field.html_name }}" value="{{ value }}" {% if value == field.value %}checked{% endif %}>
-	    			{{ text }}
-	  			</label>
+				<label>
+					<input id="{{ field.auto_id }}_{{ value }}" type="radio" name="{{ field.html_name }}" value="{{ value }}" {% if value == field.value %}checked{% endif %}>
+					{{ text }}
+				</label>
 			</div>
 		{% endfor %}
 
 	{% elif file_input %}
-        <div class="input-group">
-            <label class="input-group-btn">
-                <span class="btn btn-primary">
-                    Browse
-                    <input
-                    	id="{{ field.auto_id }}"
-                    	type="file"
-                    	name="{{ field.html_name }}"
-                    	style="display: none;"
-                    	onchange="document.getElementById('upload-file-info').value = this.value;"
-                    	{{ attrs }}>
-                </span>
-            </label>
-            <input  id="upload-file-info" type="text" class="form-control" readonly>
-        </div>
+		<div class="input-group">
+			<label class="input-group-btn">
+				<span class="btn btn-primary">
+					Browse
+					<input
+						id="{{ field.auto_id }}"
+						type="file"
+						name="{{ field.html_name }}"
+						style="display: none;"
+						onchange="document.getElementById('upload-file-info').value = this.value;"
+						{{ attrs }}>
+				</span>
+			</label>
+			<input  id="upload-file-info" type="text" class="form-control" readonly>
+		</div>
 	{% endif %}
 
 

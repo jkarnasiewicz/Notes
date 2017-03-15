@@ -456,3 +456,21 @@ im1 = plt.figimage(Z, xo=50, yo=0, cmap=cm.jet, origin='lower')
 im2 = plt.figimage(Z, xo=100, yo=100, alpha=.8, cmap=cm.jet, origin='lower')
 
 plt.show()
+
+# ===============================
+
+# styles = ['bmh', 'classic', 'dark_background', 'fivethirtyeight', 'ggplot', 'grayscale',
+#  'seaborn-bright', 'seaborn-colorblind', 'seaborn-dark-palette', 'seaborn-dark',
+#  'seaborn-darkgrid', 'seaborn-deep', 'seaborn-muted', 'seaborn-notebook', 'seaborn-paper',
+#  'seaborn-pastel', 'seaborn-poster', 'seaborn-talk', 'seaborn-ticks', 'seaborn-white', 'seaborn-whitegrid', 'seaborn']
+
+# plt.figure(figsize=(15, 10), dpi=300)
+# plt.savefig(f, format=self.extension, facecolor=(0.95, 0.95, 0.95))
+# df = pd.DataFrame(data=np.array(list(zip(r, y)), dtype='int64'), columns=['X', 'Y'])
+
+# N = 50
+# x = np.random.rand(N)
+# y = np.random.rand(N)
+# colors = np.random.rand(N)
+# area = np.pi * (15 * np.random.rand(N))**2 # 0 to 15 point radiuses
+# plt.scatter(x, y, s=area, c=colors, alpha=0.5)

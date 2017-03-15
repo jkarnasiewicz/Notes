@@ -35,7 +35,7 @@ def form_field(field, *args, **kwargs):
 	}
 
 	field_type = field.field.widget.__class__.__name__
-	print(field.field.widget.attrs)
+	# print(field.field.widget.attrs)
 	if field_type in ('TextInput', 'NumberInput', 'URLInput'):
 		# print(field.field.widget.input_type)
 		# print('=============')

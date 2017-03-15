@@ -14,25 +14,18 @@ import numpy as np
 # import pandas
 # import os, sys
 from pprint import pprint
-# pprint(dir(os))
-# print(os.getcwd())
+import math
+
 
 # with open('data_with_headers.csv', 'wt', encoding='utf-8') as f:
-# 	x = range(-100, 101)
-# 	y = (i**3 - i**2 + 7 for i in x)
+# 	x = np.arange(-5, 5, 0.1)
+# 	y = (i**3 - i**2 - 7 for i in x)
 # 	z = (i**2 + 5*i + 6 for i in x)
-# 	t = (i**4 for i in x)
-# 	f.write('{},{}, {}, {}\n'.format('X', 'Y', 'Z', 'T'))
-# 	for row in zip(x, y, z, t):
-# 		f.write('{}, {}, {}, {}\n'.format(row[0], row[1], row[2], row[3]))
+# 	t = (10*math.sin(i) for i in x)
+# 	u = (-i - 20 for i in x)
+# 	v = (math.sqrt(abs(i)) - 20 for i in x)
+# 	f.write('{},{}, {}, {}, {}, {}\n'.format('X', 'Y', 'Z', 'T', 'U', 'V'))
+# 	for row in zip(x, y, z, t, u, v):
+# 		f.write('{}, {}, {}, {}, {}, {}\n'.format(row[0], row[1], row[2], row[3], row[4], row[5]))
 
-# print(__builtins__)
-# print(np.random.choice((1, 3, 5)))
-# pprint(dir(np.random))
-
-# print(dir(np))
-# print(help(np.array))
-import math
-print(help(math.tanh))
-# print(np.random.randint(-100, 0))
-print(np.array(((1, 2, 3), (4, 5, 6))))
+print(np.arange(1, 2, 10))
