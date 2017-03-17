@@ -91,17 +91,24 @@ class PlotForm(forms.Form):
 
 	def clean(self):
 		""" Creating pandas DataFrame from random, custom_pattern or file option """
+
 		cleaned_data = super(PlotForm, self).clean()
+		# ?! In cases when field validators detect error that clean_field is omitted
+		if self.errors:
+			return cleaned_data
 
 		random = cleaned_data.get('random')
 		custom_pattern = cleaned_data.get('custom_pattern')
 		file = cleaned_data.get('file')
-
 		min_value = cleaned_data.get('min_value')
 		max_value = cleaned_data.get('max_value')
 		step = cleaned_data.get('step')
+
 		if min_value > max_value or min_value + step > max_value:
 			raise forms.ValidationError('Please correct min, max or step value.')
+
+		if not random and not custom_pattern and not file:
+			raise forms.ValidationError('Please choose one plotting option, "file", "custom pattern" or "random" option.')
 
 		eval_globals = {"__builtins__": None}
 		eval_locals = {func: getattr(math, func) for func in dir(math) if not func.startswith('__')}
@@ -118,17 +125,14 @@ class PlotForm(forms.Form):
 					'cosh(x)',
 					'-sqrt(sqrt(fabs(x)))'))
 				y = (eval(sample_functions, eval_globals, eval_locals) for x in x_range if not eval_locals.update({'x': x}))
-				df = pd.DataFrame(data=list(zip(x_range, y)), columns=['X', sample_functions])
+				self.data_frame = pd.DataFrame(data=list(zip(x_range, y)), columns=['X', sample_functions])
 			elif custom_pattern:
 				x_range = np.arange(min_value, max_value + self.fields['step'].min_value, step)
 				y = (float(eval(custom_pattern, eval_globals, eval_locals)) for x in x_range if not eval_locals.update({'x': x}))
-				df = pd.DataFrame(data=list(zip(x_range, y)), columns=['X', custom_pattern])
+				self.data_frame = pd.DataFrame(data=list(zip(x_range, y)), columns=['X', custom_pattern])
 			elif file:
-				df = pd.read_csv(file)
-			else:
-				raise forms.ValidationError('Please choose one plotting option, "file", "custom pattern" or "random" option.')
+				self.data_frame = pd.read_csv(file)
 		except:
 			raise forms.ValidationError('Change a few things up and try submitting again.')
 
-		self.data_frame = df
 		return cleaned_data

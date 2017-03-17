@@ -64,3 +64,7 @@ class TemplatetagTest(TestCase):
 		self.assertIn('<p>is_valid</p>', render_temp)
 		self.assertIn('<p>as_table</p>', render_temp)
 		self.assertIn('<p>fake_method</p>', render_temp)
+
+
+class StaticContentTest(TestCase):
+	'TO DO'
