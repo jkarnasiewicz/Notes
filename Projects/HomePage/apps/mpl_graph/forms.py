@@ -93,7 +93,7 @@ class PlotForm(forms.Form):
 		""" Creating pandas DataFrame from random, custom_pattern or file option """
 
 		cleaned_data = super(PlotForm, self).clean()
-		# ?! In cases when field validators detect error that clean_field is omitted
+		# ?! In case when field validators detect error corresponding clean_field is omitted
 		if self.errors:
 			return cleaned_data
 
@@ -104,7 +104,7 @@ class PlotForm(forms.Form):
 		max_value = cleaned_data.get('max_value')
 		step = cleaned_data.get('step')
 
-		if min_value > max_value or min_value + step > max_value:
+		if min_value >= max_value or min_value + step > max_value:
 			raise forms.ValidationError('Please correct min, max or step value.')
 
 		if not random and not custom_pattern and not file:

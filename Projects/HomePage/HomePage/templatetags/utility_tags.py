@@ -21,24 +21,19 @@ def attr_list(obj):
 
 @register.simple_tag
 def form_field(field, *args, **kwargs):
-	# print(field.field.__class__.__name__)
-	# print(field.field.widget)
-	# from pprint import pprint
-	# print(field.field.widget.__class__.__name__)
-	# pprint(dir(field.field))
-	# pprint(field.field.widget.build_attrs())
-	# print(field.field.widget.input_type, dir(field.field.widget), sep='\n')
-
+	'''
+	In templates
+	{% load utility_tags %}
+	{% form_field form.field_name %}
+	'''
 	template = 'forms/form_field.html'
 	ctx = {
 		'field': field,
 	}
 
 	field_type = field.field.widget.__class__.__name__
-	# print(field.field.widget.attrs)
+
 	if field_type in ('TextInput', 'NumberInput', 'URLInput'):
-		# print(field.field.widget.input_type)
-		# print('=============')
 		if 'affix_addon' in kwargs:
 			ctx['affix_addon'] = kwargs.get('affix_addon', None)
 		ctx['input_type'] = field.field.widget.input_type
@@ -54,5 +49,4 @@ def form_field(field, *args, **kwargs):
 	elif field_type in ('ClearableFileInput', ):
 		ctx['file_input'] = True
 
-	
 	return mark_safe(render_to_string(template, ctx))

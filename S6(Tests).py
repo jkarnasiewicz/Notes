@@ -384,6 +384,7 @@ class FunctionalTest(StaticLiveServerTestCase):
 # Coverage.py
 coverage run manage.py test apps
 coverage html                           # see htmlcov/index.html
+coverage html --omit '*/Ve-HomePage/*'
 
 
 

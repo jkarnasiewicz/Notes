@@ -9,6 +9,8 @@
 # JS/124
 
 # ?! - annotation
+# Tests
+# try to not create database instances(no save()), try to focuse on full_clean()
 
 # import django
 import numpy as np
@@ -31,3 +33,14 @@ import math
 # 		f.write('{}, {}, {}, {}, {}, {}\n'.format(row[0], row[1], row[2], row[3], row[4], row[5]))
 
 print(np.arange(1, 2, 10))
+
+# aplikacja 'zapytania'
+
+# self.assertIn('__all__', form.errors)
+# self.assertIn('Please correct min, max or step value.', form.errors['__all__'])
+# Czy jest sens testować dosłowne wiaomości błędów?
+
+# django forms
+# ?! In cases when field validators detect error that clean_field is omitted
+# błąd(niścisłość) w dokumentacji? 
+
