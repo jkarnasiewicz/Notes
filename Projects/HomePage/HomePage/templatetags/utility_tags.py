@@ -34,6 +34,7 @@ def form_field(field, *args, **kwargs):
 	field_type = field.field.widget.__class__.__name__
 
 	if field_type in ('TextInput', 'NumberInput', 'URLInput'):
+		# Additional kwargs: 'affix_addon'
 		if 'affix_addon' in kwargs:
 			ctx['affix_addon'] = kwargs.get('affix_addon', None)
 		ctx['input_type'] = field.field.widget.input_type
@@ -42,6 +43,7 @@ def form_field(field, *args, **kwargs):
 	elif field_type in ('Select', ):
 		ctx['select'] = True
 	elif field_type in ('CheckboxInput', ):
+		# Additional kwargs: 'checkbox_text'
 		ctx['checkbox'] = True
 		ctx['checkbox_text'] = kwargs.get('checkbox_text', None)
 	elif field_type in ('RadioSelect', ):
