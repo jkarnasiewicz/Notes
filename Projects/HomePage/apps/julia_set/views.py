@@ -1,105 +1,115 @@
+from io import BytesIO
+
+from PIL import Image
+
+from django.http import HttpResponse
 from django.shortcuts import render
 
-
-# Każdy piksel jest obliczany przez zastosowanie pętli, która
-# może być wykonywana nieokreśloną liczbę razy.
-
-# Współrzędne powodujące niewiele iteracji mają ciemny kolor. Z kolei współrzędne,
-# które powodują dużą liczbę iteracji, mają biały kolor.
+from .forms import JuliaSetForm
 
 
-"""Generator zbioru Julii z rysowaniem obrazów na bazie biblioteki pillow"""
-import time
-from PIL import Image
-# obszar przestrzeni zespolonej do przeanalizowania
-x1, x2, y1, y2 = -1.8, 1.8, -1.8, 1.8
-# c_real, c_imag = -0.62772, -.42193
-# c_real, c_imag = -0.835, -0.2321			# dragon
-c_real, c_imag = 0.0523, 0.65  			# snowflake
-# c_real, c_imag = 0.285, 0.01				# snail
+class GenerateJuliaSet:
+	"""
+		Each pxel is calculated in loop, which can be run unknown amount of times
+		Każdy piksel jest obliczany przez zastosowanie pętli, która
+		może być wykonywana nieokreśloną liczbę razy
 
-def calc_pure_python(desired_width, max_iterations):
-	"""Tworzenie listy współrzędnych zespolonych (zs) i parametrów
-	zespolonych (cs), budowanie zbioru Julii i wyświetlanie danych"""
-	x_step = (float(x2 - x1) / float(desired_width))
-	y_step = (float(y1 - y2) / float(desired_width))
-	x = []
-	y = []
-	ycoord = y2
-	while ycoord > y1:
-		y.append(ycoord)
-		ycoord += y_step
-	xcoord = x1
-	while xcoord < x2:
-		x.append(xcoord)
-		xcoord += x_step
-		# Utwórz listę współrzędnych i warunek początkowy dla każdej komórki
-		# Zauważ, że warunek początkowy to stała, która z łatwością może zostać usunięta
-		# Stała służy do symulowania rzeczywistego scenariusza z kilkoma wejściami
-		# przekazanymi przykładowej funkcji
-	zs = []
-	cs = []
-	for ycoord in y:
-		for xcoord in x:
-			zs.append(complex(xcoord, ycoord))
-			cs.append(complex(c_real, c_imag))
+		Coordinates with few iterations have darker color, on the other hand coordinates
+		with many iterations have white color
+		Współrzędne powodujące niewiele iteracji mają ciemny kolor. Z kolei współrzędne,
+		które powodują dużą liczbę iteracji, mają biały kolor
+	"""
+	examples = {'fern': (-0.62772, -0.42193), 'snowflake': (0.0523, 0.65), 'snail': (0.285, 0.01), 'cracks': (0, -0.8)}
 
-	output = calculate_z_serial_purepython(max_iterations, zs, cs)
-	# Suma ta jest oczekiwana dla siatki 1000^2 z 300 iteracjami
-	# Przechwytywane są drobne błędy, które mogą się pojawić
-	# podczas przetwarzania ustalonego zbioru wejść
-	# assert sum(output) == 33219980
-	return output 
+	def __init__(self, real_part, imaginary_part, width=1000, max_iterations=255,  sample=None):
+		# obszar przestrzeni zespolonej do przeanalizowania
+		self.x1, self.x2, self.y1, self.y2 = -1.8, 1.8, -1.8, 1.8
+		self.real_part = real_part
+		self.imaginary_part = imaginary_part
+		self.width = width
+		self.max_iterations = max_iterations
+		if sample:
+			coordinates = GenerateJuliaSet.examples.get(sample, None)
+			if coordinates:
+				self.real_part, self.imaginary_part = coordinates
 
-def calculate_z_serial_purepython(maxiter, zs, cs):
-	"""Obliczanie listy output przy użyciu reguły aktualizacji zbioru Julii"""
-	output = [0] * len(zs)
-	for i in range(len(zs)):
-		n = 0
-		z = zs[i]
-		c = cs[i]
-		while abs(z) < 2 and n < maxiter:
-			z = z * z + c
-			n += 1
-		output[i] = n
-	return output
+		self.values_list = self.calculate_coordinates(width, max_iterations)
 
-def draw_image(values_list):
-	img = Image.new('RGB', (1000, 1000), 'black')
-	pixel_map = img.load()
+	def calculate_coordinates(self, width, max_iterations):
+		"""Tworzenie listy współrzędnych zespolonych (zs) i parametrów
+		zespolonych (cs), budowanie zbioru Julii i wyświetlanie danych"""
+		x_step = (float(self.x2 - self.x1) / float(width))
+		y_step = (float(self.y1 - self.y2) / float(width))
+		x = []
+		y = []
+		ycoord = self.y2
+		while ycoord > self.y1:
+			y.append(ycoord)
+			ycoord += y_step
+		xcoord = self.x1
+		while xcoord < self.x2:
+			x.append(xcoord)
+			xcoord += x_step
+			# Utwórz listę współrzędnych i warunek początkowy dla każdej komórki
+			# Zauważ, że warunek początkowy to stała, która z łatwością może zostać usunięta
+			# Stała służy do symulowania rzeczywistego scenariusza z kilkoma wejściami
+			# przekazanymi przykładowej funkcji
+		zs = []
+		cs = []
+		for ycoord in y:
+			for xcoord in x:
+				zs.append(complex(xcoord, ycoord))
+				cs.append(complex(self.real_part, self.imaginary_part))
 
-	for i in range(img.size[0]):
-		for j in range(img.size[1]):
-			value = values_list[1000*i+j]
-			color = int((255/300)*value)
-			pixel_map[i, j] = (color, color, color)
+		output = self.calculate_z_serial(max_iterations, zs, cs)
+		# Suma ta jest oczekiwana dla siatki 1000^2 z 300 iteracjami
+		# Przechwytywane są drobne błędy, które mogą się pojawić
+		# podczas przetwarzania ustalonego zbioru wejść
+		# assert sum(output) == 33219980
+		return output 
 
-	# +++
-	from io import BytesIO
-	from django.http import HttpResponse
-	f = BytesIO()
-	img.save(f, format='BMP')
+	def calculate_z_serial(self, maxiter, zs, cs):
+		"""Obliczanie listy output przy użyciu reguły aktualizacji zbioru Julii"""
+		output = [0] * len(zs)
+		for i in range(len(zs)):
+			n = 0
+			z = zs[i]
+			c = cs[i]
+			while abs(z) < 2 and n < maxiter:
+				z = z * z + c
+				n += 1
+			output[i] = n
+		return output
 
-	response = HttpResponse(f.getvalue(), content_type='image/bmp')
-	response['Content-Disposition'] = 'attachment; filename=fractal.bmp'
-	return response
+	def create_response(self):
+		img = Image.new('RGB', (self.width, self.width), 'black')
+		pixel_map = img.load()
 
-	# img.save('fractal.bmp')
-	# img.close()
+		for i in range(img.size[0]):
+			for j in range(img.size[1]):
+				value = self.values_list[self.width*i+j]
+				color = int((255/self.max_iterations)*value)
+				print(color)
+				pixel_map[i, j] = (color, color, color)
 
+		f = BytesIO()
+		img.save(f, format='BMP')
 
-# if __name__ == "__main__":
-# 	# Obliczanie zbioru Julii za pomocą czystego rozwiązania opartego na języku Python
-# 	# z wykorzystaniem wartości domyślnych rozsądnych dla laptopa
-# 	values_list = calc_pure_python(desired_width=3000, max_iterations=255) # 90
-# 	# values_list = calc_pure_python(desired_width=3000, max_iterations=50) # 40
-# 	# values_list = calc_pure_python(desired_width=1000, max_iterations=255) # 10
-# 	draw_image(values_list)
+		response = HttpResponse(f.getvalue(), content_type='image/bmp')
+		response['Content-Disposition'] = 'attachment; filename=fractal(real_{})(imag_{}).bmp'.format(self.real_part, self.imaginary_part)
+		return response
+
 
 
 
 def julia_set(request):
-	if request.method == 'POST':
-		values_list = calc_pure_python(desired_width=1000, max_iterations=300) # 90
-		return draw_image(values_list)
-	return render(request, 'julia_set/home.html')
+	form = JuliaSetForm(data=request.POST or None)
+	if request.method == 'POST' and form.is_valid():
+		response = GenerateJuliaSet(
+			real_part=form.cleaned_data['real_part'],
+			imaginary_part=form.cleaned_data['imaginary_part'],
+			width=form.cleaned_data['width'],
+			max_iterations=form.cleaned_data['max_iterations'],
+			sample=form.cleaned_data['sample']).create_response()
+		return response
+	return render(request, 'julia_set/home.html', {'form': form})

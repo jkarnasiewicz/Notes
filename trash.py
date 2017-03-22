@@ -26,6 +26,8 @@
 # ?! In cases when field validators detect error that clean_field is omitted
 # błąd(niścisłość) w dokumentacji? 
 
+# czy jest mozliwe dodać dodatkowe informacje podczas wysyłania HttpResponse z plikiem do ściągnięcia np. reset formularza?
+
 from PIL import Image, ImageChops
 
 img1 = Image.open('fractal.bmp')
