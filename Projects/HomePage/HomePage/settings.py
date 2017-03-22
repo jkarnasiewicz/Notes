@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 	'apps.tree_traversal',
 	'apps.codility',
 	'apps.mpl_graph',
+	'apps.julia_set',
 ]
 
 MIDDLEWARE = [

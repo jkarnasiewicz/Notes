@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block jumbotron %}
+	<h1>{{ current_app.name }}</h1>
+	<p class="lead">{{ current_app.description }}</p>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<form method="POST" action="">
+				{% csrf_token %}
+				<input class="btn btn-primary" type="submit" name="draw" value="Draw Fractal">
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

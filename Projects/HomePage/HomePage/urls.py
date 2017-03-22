@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^tree_traversal/', include('apps.tree_traversal.urls', namespace='tree_traversal', app_name='tree_traversal')),
     url(r'^codility/', include('apps.codility.urls', namespace='codility', app_name='codility')),
     url(r'^mpl_graph/', include('apps.mpl_graph.urls', namespace='mpl_graph', app_name='mpl_graph')),
+    url(r'^julia_set/', include('apps.julia_set.urls', namespace='julia_set', app_name='julia_set')),
     url(r'^admin/', admin.site.urls),
 ]
 

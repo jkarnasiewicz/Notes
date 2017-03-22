@@ -26,3 +26,10 @@
 # ?! In cases when field validators detect error that clean_field is omitted
 # błąd(niścisłość) w dokumentacji? 
 
+from PIL import Image, ImageChops
+
+img1 = Image.open('fractal.bmp')
+img2 = Image.open('fractal_2.bmp')
+
+img3 = ImageChops.add(img2, img1, 1, 0)
+img3.save('fractal_merge_3.bmp')
