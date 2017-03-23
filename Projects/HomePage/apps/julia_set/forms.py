@@ -22,8 +22,8 @@ class JuliaSetForm(forms.Form):
 		widget=forms.RadioSelect)
 	max_iterations = forms.IntegerField(
 		required=False,
-		widget=forms.NumberInput(attrs={'placeholder': 'Default value is 255'}),
-		label='Max interations per pixel (less iteration means that color transition will be more distinct, but less accurate)',
+		widget=forms.NumberInput(attrs={'placeholder': 'Default value is 50'}),
+		label='Maximum interations per pixel (less iteration means that color transition will be more distinct, but less accurate)',
 		min_value=25,
 		max_value=255)
 	sample = forms.ChoiceField(
@@ -33,7 +33,8 @@ class JuliaSetForm(forms.Form):
 			('cracks', 'cracks (real part is 0, imaginary is -0.8)'),
 			('fern', 'fern (real part is -0.62772, imaginary is -0.42193)'),
 			('snowflake', 'snowflake (real part is 0.0523, imaginary is 0.65)'),
-			('snail', 'snail (real part is 0.285, imaginary is  0.01)')),
+			('snail', 'snail (real part is 0.285, imaginary is  0.01)'),
+			('stars', 'stars (real part is 0.23686060081761018, imaginary is -0.6047908282494889)')),
 		widget=forms.RadioSelect)
 
 	def clean_real_part(self):
@@ -46,7 +47,7 @@ class JuliaSetForm(forms.Form):
 
 	def clean_max_iterations(self):
 		max_iterations = self.cleaned_data.get('max_iterations')
-		return max_iterations if max_iterations is not None else 255
+		return max_iterations if max_iterations is not None else 50
 
 	def clean_width(self):
 		width = self.cleaned_data.get('width')

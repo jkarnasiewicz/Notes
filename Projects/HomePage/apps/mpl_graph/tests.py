@@ -31,7 +31,7 @@ class FormTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'})
+				'submit': 'Generate Graph'})
 
 		self.assertFalse(form.is_valid())
 		self.assertFalse(hasattr(form, 'data_frame'))
@@ -56,7 +56,7 @@ class FormTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'},
+				'submit': 'Generate Graph'},
 			files={'file': f})
 
 		self.assertTrue(form.is_valid())
@@ -99,7 +99,7 @@ class FormTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'})
+				'submit': 'Generate Graph'})
 
 		self.assertFalse(form.is_valid())
 		self.assertFalse(hasattr(form, 'data_frame'))
@@ -119,7 +119,7 @@ class FormTest(TestCase):
 			'title': '',
 			'x_label': '',
 			'y_label': '',
-			'file_input': 'Generate Graph'})
+			'submit': 'Generate Graph'})
 
 		self.assertFalse(form.is_valid())
 		self.assertFalse(hasattr(form, 'data_frame'))
@@ -140,7 +140,7 @@ class FormTest(TestCase):
 				'style': 'seaborn-dark-palette',
 				'title': '',
 				'x_label': '',
-				'y_label': '',})
+				'y_label': ''})
 
 		self.assertTrue(form.is_valid())
 		self.assertTrue(hasattr(form, 'data_frame'))
@@ -185,8 +185,7 @@ class ViewTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'
-			})
+				'submit': 'Generate Graph'})
 
 		self.assertEqual(response.status_code, 200)
 		self.assertIn('image/svg+xml', response['Content-Type'])
@@ -208,7 +207,7 @@ class ViewTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'})
+				'submit': 'Generate Graph'})
 
 		self.assertEqual(response.status_code, 200)
 		self.assertIn('application/pdf', response['Content-Type'])
@@ -229,7 +228,7 @@ class ViewTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'})
+				'submit': 'Generate Graph'})
 
 		self.assertEqual(response.status_code, 200)
 		self.assertIn('image/png', response['Content-Type'])
@@ -250,8 +249,7 @@ class ViewTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'
-			})
+				'submit': 'Generate Graph'})
 
 		self.assertEqual(response.status_code, 200)
 		self.assertTrue(response.context['form'].non_field_errors())
@@ -271,8 +269,7 @@ class ViewTest(TestCase):
 				'title': '',
 				'x_label': '',
 				'y_label': '',
-				'file_input': 'Generate Graph'
-			})
+				'submit': 'Generate Graph'})
 
 		self.assertIn('style', response.context['form'].errors)
 		self.assertIn('extension', response.context['form'].errors)

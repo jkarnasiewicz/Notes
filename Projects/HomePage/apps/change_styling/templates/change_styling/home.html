@@ -3,7 +3,7 @@
 
 {% block jumbotron %}
 	<h1>{{ current_app.name }}</h1>
-	<p class="lead">{{ current_app.description }}</p>
+	<p class="lead">{{ current_app.description|safe }}</p>
 {% endblock %}
 
 {% block content %}
@@ -16,8 +16,8 @@
 					<p>
 						<form method="POST" action="{{ current_app.get_absolute_url }}">
 							{% csrf_token %}
-							<input type="hidden" name="styling" value="">
 							<button type="button" class="btn btn-primary preview" data-css="/static/css/base.css">Preview</button>
+							<input type="hidden" name="styling" value="">
 							<button class="btn btn-default" type="submit">Apply</button>
 						</form>
 					</p>

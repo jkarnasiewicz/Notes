@@ -10,7 +10,7 @@ from django.template import Template, Context
 from django.test import TestCase
 
 from .context_processors import current_app
-from .utilities import PlotGraph
+from .utilities import GenerateJuliaSet, PlotGraph
 
 from apps.search_app.models import Applications
 
@@ -171,6 +171,40 @@ class TemplatetagTest(TestCase):
 
 
 class UtilitiesTest(TestCase):
+
+	def test_GenerateJuliaSet_valid_default_data(self):
+		response = GenerateJuliaSet(0.4, -0.5).create_response()
+
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual('image/bmp', response['Content-Type'])
+		self.assertIn('attachment;', response['Content-Disposition'])
+
+	def test_GenerateJuliaSet_valid_data(self):
+		response = GenerateJuliaSet(
+			real_part=0.4,
+			imaginary_part=-0.5,
+			width=100,
+			max_iterations=25).create_response()
+
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual('image/bmp', response['Content-Type'])
+		self.assertIn('attachment;', response['Content-Disposition'])
+
+	def test_GenerateJuliaSet_valid_sample(self):
+		response = GenerateJuliaSet(
+			sample='snail').create_response()
+
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual('image/bmp', response['Content-Type'])
+		self.assertIn('attachment;', response['Content-Disposition'])
+
+	def test_GenerateJuliaSet_invalid_sample(self):
+		response = GenerateJuliaSet(
+			sample='unicorn').create_response()
+
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual('image/bmp', response['Content-Type'])
+		self.assertIn('attachment;', response['Content-Disposition'])
 
 	def test_PlotGraph_valid_default_data(self):
 		data_frame = pd.DataFrame(data=[(-1, 1), (0, 0), (1, 1)], columns=['X', 'Y'])

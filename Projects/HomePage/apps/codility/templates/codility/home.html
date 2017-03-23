@@ -2,7 +2,7 @@
 
 {% block jumbotron %}
 	<h1>{{ current_app.name }}</h1>
-	<p class="lead">{{ current_app.description }}</p>
+	<p class="lead">{{ current_app.description|safe }}</p>
 {% endblock %}
 
 {% block content %}

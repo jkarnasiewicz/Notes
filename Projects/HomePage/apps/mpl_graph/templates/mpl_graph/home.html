@@ -3,7 +3,7 @@
 
 {% block jumbotron %}
 	<h1>{{ current_app.name }}</h1>
-	<p class="lead">{{ current_app.description }}</p>
+	<p class="lead">{{ current_app.description|safe }}</p>
 {% endblock %}
 
 {% block content %}
@@ -96,7 +96,7 @@
 
 						</fieldset>
 						<footer>
-							<input class="btn btn-primary" type="submit" name="file_input" value="Generate Graph">
+							<input class="btn btn-primary" type="submit" name="submit" value="Generate Graph">
 							<a class="btn btn-default" href="">Reset Form</a>
 						</footer>
 					</form>
