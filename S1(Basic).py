@@ -402,7 +402,7 @@ len('Python')
 .islower()
 .upper()
 .swapcase()
-# find extension
+# test extension
 .lower().endswith('.mp3')
 # all chars have been stripped from begining and the end of the string
 .strip('chars')

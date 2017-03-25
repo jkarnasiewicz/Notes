@@ -2,7 +2,7 @@
 <div class="form-group{% if field.errors %} has-error{% endif %}">
 
 	<label for="{{ field.auto_id }}">
-		{{ field.label }}
+		{{ field.label|safe }}
 		{% if field.field.required %}<span>*</span>{% endif %}
 	</label>
 

@@ -32,13 +32,6 @@
 	</head>
 
 	<body>
-		<script type="text/javascript">
-			var jsonStream = new EventSource("{% url 'wallpaper:wallpaper' %}");
-			jsonStream.onmessage = function (e) {
-   				var message = JSON.parse(e.data);
-  				alert('1');
-			};
-		</script>
 
 		<div class="container">
 			<!-- Navigation -->
@@ -83,7 +76,13 @@
 										<fieldset>
 											<div class="row">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-													{% form_field form.search %}
+													{% form_field form.search_phrase %}
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+													{% form_field form.random checkbox_text='Check this option for random wallpapers - possibility of mature content!' %}
 												</div>
 											</div>
 										</fieldset>
@@ -99,4 +98,5 @@
 					</div>
 
 					<div class="row">
-						
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="row thumbnail-flex">

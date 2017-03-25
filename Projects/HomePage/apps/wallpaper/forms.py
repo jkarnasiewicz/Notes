@@ -2,7 +2,9 @@ from django import forms
 
 
 class WallpaperForm(forms.Form):
-	search = forms.CharField(
+	search_phrase = forms.CharField(
 		required=False,
-		max_length=64,
-		label='')
+		max_length=64)
+	random = forms.BooleanField(
+		required=False,
+		label='<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Random')
