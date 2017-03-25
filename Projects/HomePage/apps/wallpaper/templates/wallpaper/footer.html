@@ -1,0 +1,35 @@
+{% load static %}
+{% load utility_tags %}
+
+		</div>
+			</div>
+			<!-- Footer -->
+			<footer class="footer">
+				<p>&copy; 2017 Jacek Karnasiewicz Abstract IT</p>
+			</footer>
+
+			<!-- Modal -->
+			{% include 'about_modal.html' only %}
+
+		</div> 
+
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#myModal').on('shown.bs.modal', function () {
+					$('#search_btn, #about_btn').toggleClass('active');
+
+				})
+				$('#myModal').on('hidden.bs.modal', function () {
+						$('#search_btn, #about_btn').toggleClass('active');
+				})
+			});
+		</script>
+
+		{% block javascript %}
+		{% endblock %}
+
+	</body>
+</html>

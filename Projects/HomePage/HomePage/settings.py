@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 	'apps.codility',
 	'apps.mpl_graph',
 	'apps.julia_set',
+	'apps.wallpaper',
 ]
 
 MIDDLEWARE = [

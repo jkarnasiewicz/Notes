@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^codility/', include('apps.codility.urls', namespace='codility', app_name='codility')),
     url(r'^mpl_graph/', include('apps.mpl_graph.urls', namespace='mpl_graph', app_name='mpl_graph')),
     url(r'^julia_set/', include('apps.julia_set.urls', namespace='julia_set', app_name='julia_set')),
+    url(r'^wallpaper/', include('apps.wallpaper.urls', namespace='wallpaper', app_name='wallpaper')),
     url(r'^admin/', admin.site.urls),
 ]
 
