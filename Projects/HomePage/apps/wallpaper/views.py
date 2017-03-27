@@ -1,102 +1,67 @@
+import base64
+from concurrent import futures
+import re
+
+import requests
+
+from django.http import StreamingHttpResponse
 from django.shortcuts import render
+from django.template.loader import render_to_string
 
 from .forms import WallpaperForm
 
-from django.http import JsonResponse 
-
-from django.template.loader import render_to_string
 
 def wallpaper(request):
 	form = WallpaperForm(data=request.POST or None)
 	if request.method == 'POST' and form.is_valid():
-		return StreamingHttpResponse(img(request, form, form.cleaned_data.get('search_phrase'), form.cleaned_data.get('random')))
+		return StreamingHttpResponse(img_generator(request, form, form.cleaned_data.get('search_phrase'), form.cleaned_data.get('random')))
 	return render(request, 'wallpaper/home.html', {'form': form})
 
 
-# from concurrent.futures import ThreadPoolExecutor
-from concurrent import futures
-import os
-import time
-import base64
-
-from django.http import HttpResponse, StreamingHttpResponse
-import requests
-import re
-from random import sample
-
-def img(request, form, search_phrase, random=None):
+def img_generator(request, form, search_phrase, random=None):
 	yield render_to_string('wallpaper/head.html', request=request, context={'form': form})
 
 	if random:
-		response = requests.get('https://alpha.wallhaven.cc/random?page=2').text
+		response = requests.get('https://alpha.wallhaven.cc/random?page=1').text
 	else:
-		response = requests.get('https://alpha.wallhaven.cc/search?q={0}&purity=100&resolutions=1920x1080&sorting=relevance&order=desc&page=1'.format(search_phrase)).text
+		response = requests.get('https://alpha.wallhaven.cc/search?q={0}&purity=100&sorting=relevance&order=desc&page=1'.format(search_phrase)).text
 
 	data = re.findall('data-src="https://alpha.wallhaven.cc/wallpapers/thumb/small/th-(.+?)" src=', response)
-	# try:
-	# 	data = sample(data, 8)
-	# except ValueError:
-	# 	pass
 
+	if data:
+		yield '<div class="row thumbnail-flex">'
+		pool = futures.ThreadPoolExecutor(len(data))
 
-	# Creating 8 workers
-	pool = futures.ThreadPoolExecutor(len(data))				# ProcessPoolExecutor(os.cpu_count())
+		to_do_list = []
+		for name in data:
+			future = pool.submit(make_html, name)
+			to_do_list.append(future)
 
-	to_do_list = []
-	for index in data:
-		# submit schedules the callable to be executed, and returns a future representing this pending operation
-		future = pool.submit(make_html, index)
-		to_do_list.append(future)
-
-	# result = []
-	# as_completed yields futures as they are completed
-	for future in futures.as_completed(to_do_list):
-		yield future.result()
-		# res = future.result()
-		# result.append(res)
-
-	# for index in data:
-	# 	_, extension = index.split('.')
-	# 	response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}'.format(index)).content
-	# 	# check extension here
-	# 	data = base64.b64encode(response)
-	# 	data = data.decode('ascii')
-	# 	if 'PGh' in data:
-	# 		# broken pictures ?!
- # 			continue
-
-	# 	# yield """<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_thumbnail">
-	# 	# 	<div class="thumbnail">
-	# 	# 		<img alt="100%x200" style="height: 500px; width: 100%; display: block;" src="data:image/{0};base64,{1}" data-holder-rendered="true">
-	# 	# 	</div>
-	# 	# </div>""".format(extension, data)
-	# 	yield """<div class="col-sm-6 col-md-4 col-lg-4 app_thumbnail">
-	# 		<div class="thumbnail">
-	# 			<img data-src="" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="data:image/{0};base64,{1}" data-holder-rendered="true">
-	# 		</div>
-	# 	</div>""".format(extension, data)
-
-	# yield render_to_string('wallpaper/footer.html', request=request, context={'form': form})
+		for future in futures.as_completed(to_do_list):
+			yield future.result()
+		yield '</div>'
+	else:
+		yield '<div class="row"><div class="text-center"><h4>Sorry, no wallpapers found</h4></div></div>'
 	yield render_to_string('wallpaper/footer.html')
 
 
+def make_html(name):
+	extensions = {'png', 'jpg'}
+	index, extension = name.split('.')
+	response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}.{}'.format(index, extension))
 
-def make_html(index):
-	_, extension = index.split('.')
-	response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}'.format(index)).content
-	# check extension here
-	data = base64.b64encode(response)
+	# It's weird but sometimes thumbnails have different extensions in compare to regular picture on wallhaven portal
+	if response.status_code != 200:
+		extension = extensions.difference(set(extension)).pop()
+		response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}.{}'.format(index, extension))
+		if response.status_code != 200:
+			return ''
+
+	content = response.content
+	data = base64.b64encode(content)
 	data = data.decode('ascii')
-	# if 'PGh' in data:
-	# 	# broken pictures ?!
-	# 		continue
 
-	# yield """<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_thumbnail">
-	# 	<div class="thumbnail">
-	# 		<img alt="100%x200" style="height: 500px; width: 100%; display: block;" src="data:image/{0};base64,{1}" data-holder-rendered="true">
-	# 	</div>
-	# </div>""".format(extension, data)
-	return """<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 app_thumbnail">
+	return """<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 		<div class="thumbnail">
 			<img data-src="" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="data:image/{0};base64,{1}" data-holder-rendered="true">
 		</div>
@@ -109,9 +74,10 @@ def make_html(index):
 
 
 
-# import os
-# from concurrent import futures
 
+
+# ALTERNATIVE VERSION(JsonResponse)
+# from django.http import JsonResponse 
 
 # def wallpaper(request):
 # 	form = WallpaperForm(data=request.POST or None)
@@ -126,52 +92,87 @@ def make_html(index):
 # 		response = requests.get('https://alpha.wallhaven.cc/random?page=2').text
 # 	else:
 # 		response = requests.get('https://alpha.wallhaven.cc/search?q={0}&purity=100&resolutions=1920x1080&sorting=relevance&order=desc&page=1'.format(search_phrase)).text
-	
 
 # 	data = re.findall('data-src="https://alpha.wallhaven.cc/wallpapers/thumb/small/th-(.+?)" src=', response)
-# 	# try:
-# 	# 	data = sample(data, 9)
-# 	# except ValueError:
-# 	# 	pass
-
-# 	# Creating 8 workers
-# 	# pool = futures.ThreadPoolExecutor(8)				# ProcessPoolExecutor(os.cpu_count())
-
-# 	# to_do_list = []
-# 	# for index in data:
-# 	# 	# submit schedules the callable to be executed, and returns a future representing this pending operation
-# 	# 	future = pool.submit(make_base64_image, index)
-# 	# 	to_do_list.append(future)
-
-# 	# result = []
-# 	# # as_completed yields futures as they are completed
-# 	# for future in futures.as_completed(to_do_list):
-# 	# 	res = future.result()
-# 	# 	result.append(res)
 
 # 	with futures.ThreadPoolExecutor(len(data)) as executor:
 # 		# create generator
 # 		result = executor.map(make_base64_image, data)
-		
-
-# 	# result = []
-# 	# for index in data:
-# 	# 	_, extension = index.split('.')
-# 	# 	response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}'.format(index)).content
-# 	# 	data = base64.b64encode(response)
-# 	# 	result.append((extension, data.decode('ascii')))
 
 # 	result = filter(bool, result)
 # 	return render_to_string('wallpaper/search_results.html', context={'result': result})
 
 
-
 # def make_base64_image(index):
-# 	_, extension = index.split('.')
-# 	response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}'.format(index)).content
-# 	data = base64.b64encode(response)
+# 	extensions = {'png', 'jpg'}
+# 	index, extension = index.split('.')
+# 	response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}.{}'.format(index, extension))
+
+# 	# It's weird but sometimes thumbnails have different extensions in compare to regular picture on wallhaven portal
+# 	if response.status_code != 200:
+# 		extension = extensions.difference(set(extension)).pop()
+# 		response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-{}.{}'.format(index, extension))
+# 		if response.status_code != 200:
+# 			return None
+
+# 	content = response.content
+# 	data = base64.b64encode(content)
 # 	data = data.decode('ascii')
-# 	if 'PGh' in data:
-# 		return None
-# 	# print(extension, data[:10])
 # 	return extension, data
+
+
+# ADD TO 'home.html'
+
+# <div class="row">
+# 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+# 		<div id="search_result"></div>
+# 	</div>
+# </div>
+
+# <script type="text/javascript">
+# 	$(document).ready(function() {
+# 		// ajax
+# 		$('form').submit(function(e) {
+# 			e.preventDefault();
+
+# 			let form_data = new FormData(this);
+			
+# 			$.ajax({
+# 				url: {% url 'wallpaper:wallpaper' %},
+# 				type: 'POST',
+# 				data: form_data,
+# 				processData: false,
+# 				contentType: false,
+# 				cache: false,
+# 				beforeSend: function () {
+# 					$("body").css("cursor", "wait");
+# 				},
+# 				success: function(data) {
+# 					$('#search_result').html(data.template);
+# 				},
+# 				error: function() {
+# 					console.log('AJAX ERROR');
+# 				},
+# 				complete: function() {
+# 					$("body").css("cursor", "default");
+# 				}
+# 			});
+# 		});
+# 	})
+# </script>
+
+
+# CREATE 'search_results.html'
+# <div class="row thumbnail-flex">
+# 	{% for extension, data_img in result %}
+# 	<div class="col-sm-6 col-md-4 col-lg-4 app_thumbnail">
+# 		<div class="thumbnail">
+# 			<img data-src="" alt="100%x200" style="height: 200px; width: 100%; display: block;" src="data:image/{{ extension }};base64,{{ data_img }}" data-holder-rendered="true">
+# 		</div>
+# 	</div>
+# 	{% empty %}
+# 	<div class="text-center">
+# 		<h3>Sorry, no image available</h3>
+# 	</div>
+# 	{% endfor %}
+# </div>

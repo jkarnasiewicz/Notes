@@ -1,6 +1,5 @@
 {% load static %}
-{% load utility_tags %}
-</div>
+
 	</div>
 		</div>
 			</div>
@@ -23,14 +22,16 @@
 					$('#search_btn, #about_btn').toggleClass('active');
 
 				})
+
 				$('#myModal').on('hidden.bs.modal', function () {
 						$('#search_btn, #about_btn').toggleClass('active');
 				})
+
+				setTimeout(function(){
+					$('.alert').alert('close');
+				}, 5000);
 			});
 		</script>
-
-		{% block javascript %}
-		{% endblock %}
 
 	</body>
 </html>

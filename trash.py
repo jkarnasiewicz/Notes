@@ -41,26 +41,3 @@
 # img3.save('fractal_merge_3.bmp')
 
 # RAZORHILL MUSIC
-
-# from urllib.request import urlopen, urlretrieve
-# url = 'https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-499207.jpg'
-
-# # response = urlretrieve('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-499207.jpg')
-# response = urlopen('https://python.org')
-# print(response)
-# print(dir(response))
-
-import requests
-# response = requests.get('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-499207.jpg')
-# response = requests.get('https://alpha.wallhaven.cc/random').content
-response = requests.get('https://alpha.wallhaven.cc/random').text
-
-print(response)
-# <a class="preview" href="https://alpha.wallhaven.cc/wallpaper/176854"  target="_blank"  >
-import re
-# data = re.findall('<a class="preview" href="https://alpha.wallhaven.cc/wallpaper/(.+?)"\s{0,2}?target="_blank"', response)
-data = re.findall('data-src="https://alpha.wallhaven.cc/wallpapers/thumb/small/th-(.+?)" src=', response)
-print(data)
-
-# https://alpha.wallhaven.cc/wallpaper/183121
-# https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-183121.jpg

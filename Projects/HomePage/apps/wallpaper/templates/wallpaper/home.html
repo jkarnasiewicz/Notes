@@ -41,6 +41,7 @@
 
 						<footer>
 							<input class="btn btn-primary" type="submit" name="submit" value="Search">
+							<a class="btn btn-default" href="">Reset Form</a>
 						</footer>
 
 					</form>
@@ -49,43 +50,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div id="search_result"></div>
-		</div>
-	</div>
 {% endblock %}
 
 {% block javascript %}
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
-		// ajax
-		$('form').submit(function(e) {
-			e.preventDefault();
-
-			let form_data = new FormData(this);
-			
-			$.ajax({
-				url: {% url 'wallpaper:wallpaper' %},
-				type: 'POST',
-				data: form_data,
-				processData: false,
-				contentType: false,
-				cache: false,
-				beforeSend: function () {
-					$("body").css("cursor", "wait");
-				},
-				success: function(data) {
-					$('#search_result').html(data.template);
-				},
-				error: function() {
-					console.log('AJAX ERROR');
-				},
-				complete: function() {
-					$("body").css("cursor", "default");
-				}
-			});
-		});
+		setTimeout(function(){
+			$('.alert').alert('close');
+		}, 5000);
 	})
-</script> -->
+</script>
 {% endblock %}
