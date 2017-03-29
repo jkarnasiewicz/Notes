@@ -6,7 +6,7 @@
 # raise from lambda !
 
 # ML/25
-# JS/124
+# JS/143
 
 # End
 # unittest module

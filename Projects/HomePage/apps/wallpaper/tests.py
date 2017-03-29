@@ -70,7 +70,7 @@ class FunctionTest(TestCase):
 
 	def test_make_html_function(self):
 		with patch('requests.get') as response:
-			response.status_code.return_value = 700
+			response.status_code.return_value = 404
 			result = make_html('fake_name.png')
 
 		self.assertEqual(result, '')

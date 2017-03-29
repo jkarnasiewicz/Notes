@@ -48,8 +48,8 @@ console.log(b); 		// 2
 // At the top level of programs and functions, let, unlike var, does not create a property on
 // the global object(window):
 var x = 'global';
-let y = 'global';
-console.log(this.x); // "global"
+let y = 'local';
+console.log(this.x); // 'global'
 console.log(this.y); // undefined
 
 // Constants
@@ -141,7 +141,8 @@ for(var b in window) {
 	if(window.hasOwnProperty(b)) console.log(b); 
 }
 
-
+// Prompt
+let txt = prompt("Enter new paragraph text", "Placeholder");
 
 
 
@@ -1294,7 +1295,7 @@ var thumbnails = document.getElementsByClassName('thumbnails');
 
 // querySelectorAll (returns all elements that match the selector criteria)
 document.querySelectorAll('li:nth-child(2n+1)');		// document.querySelectorAll('li:nth-child(odd)');
-// querySelector (only returns the first found result)
+// document.querySelector (only returns the first found result)
 // the collection of elements returned from querySelectorAll is not a 'live' collection
 
 // fing all img elements that are descendants of article
@@ -1350,7 +1351,11 @@ myElement.getAttribute("align");
 myElement.setAttribute("style", "background-color: red; color: white; border: 1px solid black");
 
 
+// Removes the element completely from the page layout
 myElement.style.display = "block" or "none";	// display or hide object
+// Visibility property controls the element’s visual rendering, but its physical presence still affects other elements
+myElement.style.hidden = "visible" or "hidden";
+
 myElement.style.width = "230px";
 myElement.style.color = "#ff0000";
 myElement.style.left = "40px";
@@ -1364,8 +1369,12 @@ myElement.className = "someCSSclass" or "";		// set css class to myElement
 var myNewElement = document.createElement("li");
 var myText = document.createTextNode("New list item text");
 myNewElement.appendChild(myText);
-myNewElement.insertBefore(myNewElement, secondItem);
+myNewElement.insertBefore(insertedElement, beforeElement);
 document.getElementById("sidebar").appendChild(myNewElement);
+
+// Remove element
+document.body.removeChild(newElement);
+
 
 
 // Using this for object references
