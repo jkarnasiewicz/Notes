@@ -81,6 +81,7 @@
 
 {% block javascript %}
 <script type="text/javascript">
+	'use strict';
 	$('.preview').on('click', function() {
 		$('#base_stylesheet').attr('href', $(this).attr('data-css'));
 	});

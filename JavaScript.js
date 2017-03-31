@@ -15,7 +15,7 @@
 
 // Strict mode is more restricted version of the JavaScript language
 // (typos in variable names in assignment throw an error, assignments that would normally fail quietly
-// now throw an error, attempting to delete an undeletable property fails, using nonunique property names,
+// now throw an error: attempting to delete an undeletable property fails, using nonunique property names,
 // using nonunique function parameter names)
 'use strict';
 
@@ -129,6 +129,7 @@ let self = this;
 // The Date instance subtraction operator returns miliseconds, but ! sum returns concatenated string
 // Global Variables
 // Semicolon Insertion
+// use '=>' instead of var _this/self = this;
 
 
 // List of all the properties in object
@@ -1349,6 +1350,7 @@ mainTitle.childNodes.length;
 // Accessing element attributes
 myElement.getAttribute("align");
 myElement.setAttribute("style", "background-color: red; color: white; border: 1px solid black");
+myElement.removeAttribute("required");
 
 
 // Removes the element completely from the page layout

@@ -6,7 +6,15 @@
 # raise from lambda !
 
 # ML/25
-# JS/143
+# JS/182
+
+# Testing JavaScript:
+# jsHint
+# QUnit
+# Modernizr.load - feature detection(e.g. browser)
+# math.js/accounting.js/numbers.js - mathematics
+
+
 
 # End
 # unittest module
@@ -41,3 +49,4 @@
 # img3.save('fractal_merge_3.bmp')
 
 # RAZORHILL MUSIC
+

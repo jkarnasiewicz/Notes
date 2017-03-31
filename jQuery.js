@@ -1,5 +1,5 @@
-// Wait for the document to be fully loaded and ready before working with it
-// DOM - Document Object Model
+// Instead window.onload the jQuery library provides a page start routine that waits
+// for DOM elements to be loaded, but does not wait for images or other media to finish loading
 $(document).ready(function(){
 	// code goes here
 });
