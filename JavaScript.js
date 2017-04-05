@@ -162,9 +162,16 @@ let txt = prompt("Enter new paragraph text", "Placeholder");
 
 
 
-// NAMESPACING
+// NAMESPACING AND PACKAGING(packaging a set of functions for reuse via an object literal)
 // to prevent name clashes with other libraries we can use an object literal(one-off object),
 // to implement the JavaScript version of namespacing
+
+// rather than
+function getElem(identifier) {
+	return document.getElementById(identifier);
+}
+
+// create
 var jsObject = {
 	getElem : function (identifier) {
 		return document.getElementById(identifier);
@@ -173,6 +180,18 @@ var jsObject = {
 }
 
 jsObject.getElem('content');
+
+// or
+{
+	// only use let and const
+	let obj = {
+		'version': version,
+		...
+	}
+	// add to window
+	window.library = obj;
+}
+
 
 
 
@@ -448,12 +467,12 @@ if (  str1 < str2 ) { ... } 				// false (Ascii table)
 
 
 // JSON
-// JSON.stringify() method converts a JavaScript value to a JSON string, optionally replacing
-// values if a replacer function is specified, or optionally including amount of spaces
+// JSON.stringify(object, function(key, value){}, spaces) method converts a JavaScript value to a JSON string,
+// optionally replacing values if a replacer function is specified, or optionally including amount of spaces
 JSON.stringify([1, 'false', false], null, 4)
 
-// JSON.parse() method parses a JSON string, constructing the JavaScript value or object described
-// by the string
+// JSON.parse(string, function(key, value){}) method parses a JSON string, constructing the JavaScript value
+// or object described by the string, taking optional reviver function argument
 JSON.parse('[1, 5, "false"]')
 
 

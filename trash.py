@@ -6,13 +6,14 @@
 # raise from lambda !
 
 # ML/25
-# JS/182
+# JS/208
 
 # Testing JavaScript:
 # jsHint
 # QUnit
 # Modernizr.load - feature detection(e.g. browser)
 # math.js/accounting.js/numbers.js - mathematics
+# Minify Your Library
 
 
 
@@ -40,13 +41,10 @@
 
 # czy jest mozliwe dodać dodatkowe informacje podczas wysyłania HttpResponse z plikiem do ściągnięcia np. reset formularza?
 
-# from PIL import Image, ImageChops
+# chcialbym przyspieszyc testy, poprzez uzycie mockow, czy to ma sens w przypadku gdy testujemy zewnetrzne zrodlo?
+# Mockowe testy przejda szybko i pomyslnie lecz aplikacja bedzie chodzic blednie
 
-# img1 = Image.open('fractal.bmp')
-# img2 = Image.open('fractal_2.bmp')
 
-# img3 = ImageChops.add(img2, img1, 1, 0)
-# img3.save('fractal_merge_3.bmp')
 
 # RAZORHILL MUSIC
 

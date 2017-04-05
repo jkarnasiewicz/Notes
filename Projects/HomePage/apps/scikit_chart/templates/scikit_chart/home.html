@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load utility_tags %}
+
+{% block jumbotron %}
+	<h1>{{ current_app.name }}</h1>
+	<p class="lead">{{ current_app.description|safe }}</p>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Supervised learning - Regresion</h3>
+				</div>
+
+				<div class="panel-body">
+					<p>Creating regresion line (best fitting line) from provided points. Click the plot area to add a point. Click a point to remove it</p>
+					<div id="charts" style="height: 600px; margin: 0 auto"></div>	
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script type="text/javascript" src="{% static 'js/highcharts.js' %}"></script>
+	<!-- <script type="text/javascript" src="{% static 'js/exporting.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/offline-exporting.js' %}"></script> -->
+	<script type="text/javascript">
+		function getCookie(name) {
+			var cookieValue = null;
+			if (document.cookie && document.cookie != '') {
+				var cookies = document.cookie.split(';');
+				for (var i = 0; i < cookies.length; i++) {
+					var cookie = jQuery.trim(cookies[i]);
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) == (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+
+		var csrftoken = getCookie('csrftoken');
+
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+
+
+		function generateRegressionLine(chart){
+			// console.log(JSON.stringify(chart.series[1].yData));
+			$.ajax({
+				url: {% url 'scikit_chart:scikit_chart' %},
+				type: 'POST',
+				data: JSON.stringify({
+					'observations_x': chart.series[1].xData,
+					'observations_y': chart.series[1].yData,
+				}),
+				processData: false,
+				contentType: false,
+				cache: false,
+				beforeSend: function (xhr, settings) {
+					$("body").css("cursor", "wait");
+					if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+						xhr.setRequestHeader("X-CSRFToken", csrftoken);
+					}
+				},
+				success: function(data) {
+					let newData = data.regresion_line;
+					chart.series[0].setData(newData);
+				},
+				error: function() {
+					console.log('AJAX ERROR');
+				},
+				complete: function() {
+					$("body").css("cursor", "default");
+				}
+			});
+		}
+
+
+
+		var hchart = Highcharts.chart('charts', {
+			chart: {
+				type: 'scatter',
+				margin: [70, 50, 60, 80],
+				spacingBottom: 15,
+				spacingLeft: 10,
+				spacingRight: 10,
+				spacingTop: 10,
+				// zoomType: 'xy',
+				// panning: true,
+				// panKey: 'shift',
+				// ignoreHiddenSeries : false,
+				events: {
+					click: function (e) {
+						// find the clicked values and the series
+						var x = e.xAxis[0].value,
+							y = e.yAxis[0].value,
+							series = this.series[1];
+
+						// Add it
+						series.addPoint([x, y]);
+						generateRegressionLine(hchart);
+						// if (hchart.series[0].data.length > 5) {
+						// 	generateRegressionLine(hchart);
+						// }
+						// else {
+						// 	hchart.series[0].data.remove(true);
+						// }
+
+					}
+				}
+			},
+			title: {
+				text: 'Regression Line',
+				// text: null,
+				style: {
+					fontSize:'25px',
+				}
+			},
+			subtitle: {
+				// text: 'Click the plot area to add a point. Click a point to remove it.',
+				text: null,
+				style: {
+					fontSize:'15px',
+					verticalAlign: "bottom",
+				}
+			},
+			xAxis: {
+				title: {
+					text: null,
+				},
+				labels: {
+					style: {
+						fontSize:'25px',
+					}
+				},
+				gridLineWidth: 1,
+				minPadding: 0.4,
+				maxPadding: 0.4,
+				maxZoom: 60,
+				// offset: 100,
+				// showEmpty: true,
+				min: -100,
+				max: 100,
+			},
+			yAxis: {
+				// pointStart: -10,
+				title: {
+					text: null,
+				},
+				labels: {
+					style: {
+						fontSize:'25px',
+					}
+				},
+				minPadding: 0.4,
+				maxPadding: 0.4,
+				maxZoom: 60,
+				min: -100,
+				max: 100,
+				// softMin: -100,
+				// softmax: 50,
+			 //    softmin: -50,
+			    // startOnTick: false,
+			 //    endOnTick: false,
+			 	// showEmpty: true,
+				// plotLines: [{
+				// 	value: 0,
+				// 	width: 1,
+				// 	color: '#808080'
+				// }]
+			},
+			legend: {
+				enabled: false,
+			},
+			exporting: {
+				enabled: false,
+				scale: 1,
+				sourceHeight: 1080,
+				sourceWidth: 1920,
+			},
+			plotOptions: {
+				series: {
+					// lineWidth: 1,
+					stickyTracking: false,
+					point: {
+						events: {
+							'click': function () {
+								if (this.series.data.length > 1) {
+									this.remove();
+									generateRegressionLine(hchart);
+								}
+							}
+						}
+					}
+				}
+			},
+			series: [
+				{
+					type: 'line',
+					name: 'Regression Line',
+					data: [],
+					marker: {
+						enabled: false
+					},
+					states: {
+						hover: {
+							lineWidth: 0
+						}
+					},
+					enableMouseTracking: false
+				},
+				{
+					type: 'scatter',
+					name: 'Observations',
+					data: [[0, 0]],
+					marker: {
+						radius: 4,
+					},
+					// pointStart: -10,
+				}
+				
+			]
+		});
+
+	</script>
+{% endblock %}

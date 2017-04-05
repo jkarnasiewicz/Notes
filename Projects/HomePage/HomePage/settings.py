@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 	'apps.mpl_graph',
 	'apps.julia_set',
 	'apps.wallpaper',
+	'apps.scikit_chart',
 ]
 
 MIDDLEWARE = [

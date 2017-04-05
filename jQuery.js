@@ -10,6 +10,11 @@ jQuery(document).ready(function($){
 	// code goes here
 });
 
+// or
+var $new_sign = jQuery.noConflict();
+// and then
+$new_sign("#elem").fadeOut('slow');
+
 
 
 // Pass messages and variables into console

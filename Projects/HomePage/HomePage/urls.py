@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^mpl_graph/', include('apps.mpl_graph.urls', namespace='mpl_graph', app_name='mpl_graph')),
     url(r'^julia_set/', include('apps.julia_set.urls', namespace='julia_set', app_name='julia_set')),
     url(r'^wallpaper/', include('apps.wallpaper.urls', namespace='wallpaper', app_name='wallpaper')),
+    url(r'^scikit_chart/', include('apps.scikit_chart.urls', namespace='scikit_chart', app_name='scikit_chart')),
     url(r'^admin/', admin.site.urls),
 ]
 

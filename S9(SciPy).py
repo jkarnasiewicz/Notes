@@ -104,6 +104,24 @@ print(data_pandas[data_pandas.Age > 30])
 
 
 
+# Pillow
+# from PIL import Image, ImageChops
+
+# img1 = Image.open('fractal.bmp')
+# img2 = Image.open('fractal_2.bmp')
+
+# img3 = ImageChops.add(img2, img1, 1, 0)
+# img3.save('fractal_merge_3.bmp')
+
+
+
+
+
+
+
+
+
+
 # Scikit-learn
 
 # X - features, y - labels(possible outputs called classes)
@@ -206,7 +224,9 @@ plt.show()
 # quandl / http://archive.ics.uci.edu/ml/datasets.html
 
 # Supervised learning(we told/train machine what the classes of features are)
+# Regression (predict a continuous response)
 # Linear Regression(Regresja liniowa)(best fitting line)/Coefficient of determination(Współczynnik determinacji)
+# Classification (predict a categorical response)
 # Classification k-Nearest Neighbors(not scaling well)/Accuracy(dokładność/trafność)
 # Classification Support Vector Machine(SVM)/Best separated hyperplane/Convex optimization problem/Kernels/RBF(Radial basic function)
 
