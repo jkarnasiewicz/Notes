@@ -13,24 +13,24 @@ def scikit_chart(request):
 		data = json.loads(request.body)
 
 		reg = linear_model.LinearRegression()
-		X_train, x_test, Y_train, y_test = train_test_split(
+		x_train, x_test, y_train, y_test = train_test_split(
 			data['observations_x'],
 			data['observations_y'],
 			test_size=0.2,
 			random_state=0)
 
-		reg.fit([[i] for i in X_train], Y_train)
+		# Train model
+		reg.fit([[i] for i in x_train], y_train)
 
 		# y = ax + b
 		a = reg.coef_[0]
 		b = reg.intercept_
 
 		new_line = [[x, a*x+b] for x in [-100, 100]]
-		# new_line.sort()
-		# TO DO
-		# accurance of the regresion_line
-		# minimum points for drawing line
 
-		return JsonResponse({'regresion_line': new_line})
+		# Explained variance score: 1 is perfect prediction/Accuracy
+		accuracy = reg.score([[x] for x in x_test], y_test)
+
+		return JsonResponse({'regresion_line': new_line, 'accuracy': str(accuracy)})
 
 	return render(request, 'scikit_chart/home.html')
