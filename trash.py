@@ -41,12 +41,15 @@
 
 # czy jest mozliwe dodać dodatkowe informacje podczas wysyłania HttpResponse z plikiem do ściągnięcia np. reset formularza?
 
+# jak prawidłowo 'renderować' pliki javascript (var name = {% var %}; => but you can replace that from js)?
+
 # chcialbym przyspieszyc testy, poprzez uzycie mockow, czy to ma sens w przypadku gdy testujemy zewnetrzne zrodlo?
 # Mockowe testy przejda szybko i pomyslnie lecz aplikacja bedzie chodzic blednie
 
 
 
 # RAZORHILL MUSIC
+# Stop making scv-s from one base at 22
 
 import numpy as np
 # from sklearn.cluster import MeanShift

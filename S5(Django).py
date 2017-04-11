@@ -553,7 +553,7 @@ Template("<h1>{{ title }}</h1>").render(Context({"title": "SuperBook"}))        
 
 # static
 {% load static %}
-{% load staticfiles %}
+# {% load staticfiles %}
 <link href="{% static 'css/base.min.css' %}" rel="stylesheet">
 
 

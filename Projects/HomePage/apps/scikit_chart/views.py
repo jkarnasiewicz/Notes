@@ -37,10 +37,10 @@ def regression_line(request):
 
 		new_line = [[x, a*x+b] for x in [-100, 100]]
 
-		# Explained variance score: 1 is perfect prediction/Accuracy
+		# Prediction/accuracy (1 is perfect)
 		accuracy = reg.score([[x] for x in x_test], y_test)
 
-		return JsonResponse({'regresion_line': new_line, 'accuracy': str(accuracy)})
+		return JsonResponse({'regression_line': new_line, 'accuracy': str(accuracy)})
 	raise Http404()
 
 

@@ -49,34 +49,15 @@
 
 {% block javascript %}
 	<script type="text/javascript" src="{% static 'js/highcharts.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/HomePage/csrf_library.js' %}"></script>
 	<script type="text/javascript">
 		'use strict';
 
-		function getCookie(name) {
-			var cookieValue = null;
-			if (document.cookie && document.cookie != '') {
-				var cookies = document.cookie.split(';');
-				for (var i = 0; i < cookies.length; i++) {
-					var cookie = jQuery.trim(cookies[i]);
-					// Does this cookie string begin with the name we want?
-					if (cookie.substring(0, name.length + 1) == (name + '=')) {
-						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-						break;
-					}
-				}
-			}
-			return cookieValue;
-		}
-
-		var csrftoken = getCookie('csrftoken');
-
-		function csrfSafeMethod(method) {
-			// these HTTP methods do not require CSRF protection
-			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-		}
-
+		let csrftoken = csrfLibrary.getCookie('csrftoken');
 
 		function generateRegressionLine(chart){
+			console.log(chart.series[1].xData);
+			console.log(chart.series[1].yData);
 			$.ajax({
 				url: '{% url "scikit_chart:regression_line" %}',
 				type: 'POST',
@@ -89,12 +70,12 @@
 				cache: false,
 				beforeSend: function (xhr, settings) {
 					$("body").css("cursor", "wait");
-					if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+					if (!csrfLibrary.csrfSafeMethod(settings.type) && !this.crossDomain) {
 						xhr.setRequestHeader("X-CSRFToken", csrftoken);
 					}
 				},
 				success: function(data) {
-					let newData = data.regresion_line;
+					let newData = data.regression_line;
 					chart.series[0].setData(newData);
 					chart.setTitle({ text: `Accuracy: ${data.accuracy}`});
 				},
@@ -109,7 +90,7 @@
 
 
 
-		var regressionChart = Highcharts.chart('regression_chart', {
+		let regressionChart = Highcharts.chart('regression_chart', {
 			chart: {
 				type: 'scatter',
 				margin: [70, 50, 60, 80],
@@ -126,9 +107,9 @@
 
 						// Add it
 						series.addPoint([x, y]);
-						if (series.data.length >= 10) {
-							generateRegressionLine(regressionChart);
-						}
+						// if (series.data.length >= 10) {
+						generateRegressionLine(regressionChart);
+						// }
 					}
 				}
 			},
@@ -235,6 +216,8 @@
 
 
 		function generateKNearestNeighborns(chart, new_point){
+			console.log(chart.series[0].xData);
+			console.log(chart.series[0].yData);
 			$.ajax({
 				url: '{% url "scikit_chart:k_nearest_neighborns" %}',
 				type: 'POST',
@@ -252,7 +235,7 @@
 				cache: false,
 				beforeSend: function (xhr, settings) {
 					$("body").css("cursor", "wait");
-					if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+					if (!csrfLibrary.csrfSafeMethod(settings.type) && !this.crossDomain) {
 						xhr.setRequestHeader("X-CSRFToken", csrftoken);
 					}
 				},
@@ -271,7 +254,7 @@
 
 
 
-		var classificationChart = Highcharts.chart('classification_chart', {
+		let classificationChart = Highcharts.chart('classification_chart', {
 			chart: {
 				type: 'scatter',
 				margin: [70, 50, 60, 80],
