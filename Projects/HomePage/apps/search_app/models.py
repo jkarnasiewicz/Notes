@@ -23,8 +23,7 @@ class Applications(models.Model):
 	image = models.ImageField(upload_to=upload_path)
 	url_source = models.URLField(max_length=128)
 	url_name = models.CharField(
-		# unique = True
-		blank=True,
+		unique = True,
 		max_length=128,
 		choices=avaiable_apps())
 	visible = models.BooleanField(default=True)
@@ -35,11 +34,7 @@ class Applications(models.Model):
 		verbose_name_plural = 'Applications'
 
 	def get_absolute_url(self):
-		#  --
-		if self.url_name:
-			return reverse('{0}:{0}'.format(self.url_name))
-		else:
-			return reverse('search_app:search_app')
+		return reverse('{0}:{0}'.format(self.url_name))
 
 	def __str__(self):
 		return self.name

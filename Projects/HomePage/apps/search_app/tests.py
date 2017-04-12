@@ -52,9 +52,6 @@ class ModelTest(TestCase):
 			upload_path(app, image),
 			'images/{0}/{1}'.format(app.url_name, app.image.name))
 
-	# def test_get_absolute_url(self):
-	# 	self.assertEqual(self.app.get_absolute_url(), '/')
-
 	def test_string_representation(self):
 		self.assertEqual(str(self.app), self.app.name)
 

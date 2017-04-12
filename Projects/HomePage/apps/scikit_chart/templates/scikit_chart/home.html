@@ -56,8 +56,6 @@
 		let csrftoken = csrfLibrary.getCookie('csrftoken');
 
 		function generateRegressionLine(chart){
-			console.log(chart.series[1].xData);
-			console.log(chart.series[1].yData);
 			$.ajax({
 				url: '{% url "scikit_chart:regression_line" %}',
 				type: 'POST',
@@ -216,8 +214,6 @@
 
 
 		function generateKNearestNeighborns(chart, new_point){
-			console.log(chart.series[0].xData);
-			console.log(chart.series[0].yData);
 			$.ajax({
 				url: '{% url "scikit_chart:k_nearest_neighborns" %}',
 				type: 'POST',
