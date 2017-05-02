@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Custom user model
+# AUTH_USER_MODEL = 'accounts.User'
+# AUTHENTICATION_BACKENDS = (
+#     'accounts.authentication.PersonaAuthenticationBackend',
+# )
 
 # Application definition
 
@@ -50,6 +55,7 @@ INSTALLED_APPS = [
 	'apps.julia_set',
 	'apps.wallpaper',
 	'apps.scikit_chart',
+	'apps.auth_chat',
 ]
 
 MIDDLEWARE = [
