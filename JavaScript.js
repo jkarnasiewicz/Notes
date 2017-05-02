@@ -157,6 +157,8 @@ let txt = prompt("Enter new paragraph text", "Placeholder");
 // in JavaScript. The first parameter is the object that serves as prototype for the
 // newly created object, and the second optional parameter is a set of properties defined
 // for the object
+// Using Object.create() with null as the first parameter ensures that the object doesn’t
+// inherit the Object prototype, and the only properties are those specifically added
 
 
 
@@ -222,7 +224,10 @@ eval("2 + 2");             		// returns 4
 // method returns a string representing the object
 obj.toString()
 
-
+// function encodes a Uniform Resource Identifier(URI) component by replacing each instance of certain characters
+// by one, two, three, or four escape sequences representing the UTF-8 encoding of the character
+encodeURIComponent("https://w3schools.com/my test.asp?name=ståle&car=saab");
+// https%3A%2F%2Fw3schools.com%2Fmy%20test.asp%3Fname%3Dst%C3%A5le%26car%3Dsaab
 
 
 
@@ -450,6 +455,7 @@ phrase.slice(6, 10);			// find element with index 6, and get all characters up t
 
 phrase.startsWith('Don\'t', 0); // optional integer as second parameter - where begin the search
 phrase.endsWith('quotes.');		// optional integer as second parameter - where terminate the search
+phrase.includes('mix');
 phrase.contains('mix');			// shim needed, <script type="text/javascript" src="es6-shim.js"></script>
 
 // String comparison
@@ -468,7 +474,8 @@ if (  str1 < str2 ) { ... } 				// false (Ascii table)
 
 // JSON
 // JSON.stringify(object, function(key, value){}, spaces) method converts a JavaScript value to a JSON string,
-// optionally replacing values if a replacer function is specified, or optionally including amount of spaces
+// optionally replacing values if a replacer function is specified/or whitelist is provide (filter),
+// and optional third parameter that defines how much and what kind of whitespace is used (4, '\t')
 JSON.stringify([1, 'false', false], null, 4)
 
 // JSON.parse(string, function(key, value){}) method parses a JSON string, constructing the JavaScript value
@@ -618,6 +625,9 @@ var new_array = ["tortilla chips"].concat(["salsa", "queso", "guacamole"]);
 // indexOf(searchElement, fromIndex) method returns the first index at which a given element can be found in the array, or -1 if it is not present
 [1, 3, 7, 11, 3].indexOf(3, 2);											// 4
 
+// includes
+[1, 2, 3].includes(2);													// true
+
 // pop method - removes the last element in the array and returns that element’s value
 ["Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"].pop();
 
@@ -628,7 +638,7 @@ var new_array = ["tortilla chips"].concat(["salsa", "queso", "guacamole"]);
 ["1", "2", "3"].shift(); 												// 1
 
 // unshift method adds one or more elements to the front of an array and returns the new length of the array
-["1", "2", "3"].unshift("-1", "0"); 									// ["-1", "0", "1", "2", "3"]
+["1", "2", "3"].unshift("-1", "7"); 									// ["-1", "7", "1", "2", "3"]
 
 // slice method extracts a section of an array and returns a new array
 ["a", "b", "c", "d", "e"].slice(1, 4);									// [ "b", "c", "d"]
@@ -703,10 +713,47 @@ mySet.add("foo");
 mySet.has(1);			// true
 mySet.delete("foo");
 mySet.size;				// 2
+mySet.clear();
 
 for (let item of mySet) {
 	console.log(item);
 }
+
+
+
+
+
+// Map
+let myMap = new Map();
+myMap.set("value1", "this is value");
+myMap.set(3, "another value");
+
+myMap.get("value1"); 			// this is a value
+myMap.get(3);					// another value
+
+myMap.has(3)					// true
+myMap.delete('value1');
+myMap.size
+
+// iterating through both key an value(uses an implicit entries() method)
+for (var [key, value] of myMap) {
+	console.log(`${key} = ${value}`);
+}
+
+// iterating through keys
+for (var key of myMap.keys()) {
+	console.log(key);
+}
+
+// iterating through values
+for (var value of myMap.values()) {
+console.log(value);
+}
+
+// using forEach
+myMap.forEach(function(value) {
+	console.log(value);
+});
 
 
 
@@ -1306,6 +1353,11 @@ function imgLoad(url) {
 
 
 // DOM - Document Object Model
+
+// Visibility
+document.hidden				// true/false
+document.visibilityState	// visible, hidden, prerender, unloaded
+
 // NodeList is live collection(changes in DOM are immediately reflected in NodeList)
 var mainTitle = document.getElementById("mainTitle");
 var myLinks = mainTitle.getElementsByTagName("a");
@@ -1416,8 +1468,8 @@ document.addEventListener("click", function(){			// document.removeEventListener
 });
 
 window.onload = function() {					// Page fully loaded
-	prepareEventHandlers();
-}
+	prepareEventHandlers();						// firefox/opera after pictures/svg elements
+}												// safari/chrome before picture/svg elements
 
 function prepareEventHandlers() {
 	myNewImage.onclick = function() {			// Anonymous function
@@ -1447,6 +1499,19 @@ someField.onkeyup
 // When clicking on a button, execute the first event handler, and
 // stop the rest of the event handlers from being executed
 event.stopImmediatePropagation()
+
+
+
+
+
+// NOTIFICATIONS
+if (window.Notification) {
+	Notification.requestPermission(function() {
+		setTimeout(function() {
+			var notification = new Notification('hey wake up', {body: 'your process is done', tag: 'loader', icon: 'favicon.ico'});
+		}, 5000);
+	});
+}
 
 
 
@@ -1489,7 +1554,7 @@ if (window.XMLHttpRequest) {
 myRequest.onreadystatechange = function() {
 	console.log("We were called!");
 	console.log(myRequest.readyState);
-	if (myRequest.readyState === 4) {
+	if (myRequest.readyState === 4 && httpRequest.status === 200) {
 		var p = document.createElement("p");
 		var t = document.createTextNode(myRequest.responseText);
 		p.appendChild(t);
@@ -1497,7 +1562,7 @@ myRequest.onreadystatechange = function() {
 	}
 };
 // open and send it
-myRequest.open('GET', 'simple.txt', true);
+myRequest.open('GET', 'simple.txt'/or url, true);
 // any parameters
 myRequest.send(null);
 

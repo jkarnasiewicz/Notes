@@ -78,8 +78,9 @@ class="col-xs-3" - always this size
 
 
 <!-- Video -->
-<video autoplay loop poster="" id="vid">
-	<source src="{% static 'images/jumbotron_stars.mp4' %}" type="video/mp4">
+<video autoplay loop controls poster="" id="vid" width="480" height="270">
+	<source src="{% static 'images/jumbotron_stars.mp4' %}" type="video/mp4" />
+	<source src="{% static 'images/jumbotron_stars.webm' %}" type="video/webm" />
 </video>
 
 
@@ -99,3 +100,28 @@ class="col-xs-3" - always this size
 	<summary>Some details</summary> 
 	<p>More info about the details.</p> 
 </details>
+
+<!-- Audio -->
+<audio id="meadow" controls>
+	<source src="meadow.mp3" type="audio/mpeg3"/>
+	<source src="meadow.ogg" type="audio/ogg" />
+	<source src="meadow.wav" type="audio/wav" />
+	<!-- Fallback for browser that don't support audio -->
+	<p><a href="meadow.wav">Meadow sounds</a></p>
+</audio>
+<script type="text/javascript">
+	var meadow = document.getElementById("meadow");
+	meadow.addEventListener("ended", aboutAudio);
+</script>
+
+
+
+<!-- Async, script that will be run asynchronously as soon as it is available -->
+<script type="text/javascript" async></script>
+
+<!-- Defer, script that will not run until after the page has loaded -->
+<script type="text/javascript" defer></script>
+
+
+<!--  -->
+<a href="#object_id">Go to...</a>

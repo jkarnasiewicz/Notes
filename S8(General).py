@@ -3,6 +3,9 @@ Podejście REST sugeruje przygotowanie struktury adresu URL dopasowanej do struk
 RESTful URLs are very useful for designing CRUD interfaces(Create, Read, Update, and Delete)
 
 # API - Application Programming Interface
+An API is a defined interface that acts like a handshake between software components,
+allowing one component to access another even though the components have been
+developed separately.
 
 # CDN - Content Distribution Network
 

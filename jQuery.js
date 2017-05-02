@@ -361,10 +361,12 @@ $(function() {
         $.ajax({
             url: form.attr('action'),
             type: 'POST',
+            dataType: "json",
             data: new FormData( this ),
             processData: false,
             contentType: false,
             cache: false,                           // Prevent caching AJAX call's
+            crossDomain: true,
             beforeSend: function () {
 
             },

@@ -6,7 +6,7 @@
 # raise from lambda !
 
 # ML/25
-# JS/208
+# JS/387
 
 # Testing JavaScript:
 # jsHint
@@ -15,7 +15,17 @@
 # math.js/accounting.js/numbers.js - mathematics
 # Minify Your Library
 
+# Manage browser differences for object support:
+# Polyfill
+# Paul Miller’s ES 6 Shim
+# Google’s Traceur
 
+# Worker threads/concurrency
+# var worker = new Worker("loading.js");
+
+
+
+# AMD - Asynchronous Module Definition
 
 # End
 # unittest module
@@ -48,47 +58,53 @@
 
 
 
+# Algorytm deterministyczny – algorytm, którego działanie jest całkowicie zdeterminowane przez warunki początkowe (wejście).
+# Oznacza to, że kilkukrotne uruchomienie takiego algorytmu doprowadzi za każdym razem do takiego samego wyniku.
+# Algorytmy deterministyczne stanowią główny obszar badań informatycznych i są najczęściej stosowane, ponieważ mogą być
+# łatwo realizowane na współczesnych komputerach.
+
+
 # RAZORHILL MUSIC
 # Stop making scv-s from one base at 22
 
-import numpy as np
-# from sklearn.cluster import MeanShift
-from sklearn.datasets.samples_generator import make_blobs
-# import matplotlib.pyplot as plt
-# from mpl_toolkits.mplot3d import Axes3D
-# from matplotlib import style
-# style.use("ggplot")
+# django channels with simple customized authentication
+# SQLite
+# Kivy
 
-# centers = [[1, 1, 1], [5, 5, 5], [3, 10, 10]]
 
-X, _ = make_blobs(n_samples = 20, centers = 3, cluster_std = 1.5, n_features=2, shuffle=False, center_box=(-100, 100))
-print(X, _)
 
-# ms = MeanShift()
-# ms.fit(X)
-# labels = ms.labels_
-# cluster_centers = ms.cluster_centers_
+# Dodge Challenger and Mclaren P1 in wallpapers app
 
-# # print(cluster_centers)
-# n_clusters_ = len(np.unique(labels))
-# # print("Number of estimated clusters:", n_clusters_)
+# (.*) 	-> Greedy!
+# /[^crnld]ope/							// any character but those within brackets range
+# (?m)
+# reference substitution, r'\1 \2'
 
-# colors = 10*['r','g','b','c','k','y','m']
-# fig = plt.figure()
-# ax = fig.add_subplot(111, projection='3d')
+# (?=expression)  : Look Ahead
+# (?<=expression) : Look Behind
 
-# for i in range(len(X)):
-#     ax.scatter(X[i][0], X[i][1], c=colors[labels[i]], marker='o')
+# (?!expression)  : Negative Look Ahead
+# (?<!expression) : Negative Look Behind
 
-# ax.scatter(cluster_centers[:,0],cluster_centers[:,1],
-#             marker="x",color='k', s=150, linewidths = 5, zorder=10)
 
-# plt.show()
-# from matplotlib import cm
-# colors = cm.plasma(np.linspace(0.0, 1.0, 3))
-# print(colors)
 
-# import matplotlib
-# c = matplotlib.colors.to_rgba(colors[0], alpha=None)
-# c = [255*i for i in c]
-# print(c)
+import re
+# print(re.sub("/Filmy", "j", "/Filmyk"))
+
+# regexp = re.compile('[\w_%+.-]{1,20}@[\w.-]{2,20}\.[a-zA-Z]{2,3}')
+
+# print(re.search(regexp,'asd@wp.pl'))
+
+# rand_str = 'https://www.youtube.com http://www.google.com'
+# regex = re.compile(r'https?://([\w.]*)')
+
+# print(re.sub(regex, r'<a href="https://\1">\1</a>\n', rand_str))
+
+
+rand_str = '12345 12345-1234 1234 12346-333'
+regex = re.compile(r'(\d{5})(-\d{4})?')
+regex = re.compile(r'(\d{5}-\d{4}|\d{5}\s)')
+
+print(re.findall(regex, rand_str))
+
+r'\(?\d{3}\)?'

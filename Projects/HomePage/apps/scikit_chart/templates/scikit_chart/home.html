@@ -105,9 +105,9 @@
 
 						// Add it
 						series.addPoint([x, y]);
-						// if (series.data.length >= 10) {
-						generateRegressionLine(regressionChart);
-						// }
+						if (series.data.length >= 10) {
+							generateRegressionLine(regressionChart);
+						}
 					}
 				}
 			},
