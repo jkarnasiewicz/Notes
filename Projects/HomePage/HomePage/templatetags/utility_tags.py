@@ -33,7 +33,7 @@ def form_field(field, *args, **kwargs):
 
 	field_type = field.field.widget.__class__.__name__
 
-	if field_type in ('TextInput', 'NumberInput', 'URLInput'):
+	if field_type in ('TextInput', 'NumberInput', 'URLInput', 'PasswordInput'):
 		# Additional kwargs: 'affix_addon'
 		if 'affix_addon' in kwargs:
 			ctx['affix_addon'] = kwargs.get('affix_addon', None)

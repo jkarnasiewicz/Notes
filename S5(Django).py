@@ -655,6 +655,13 @@ Date is {% now 'd-m-Y' %}
 # request/query
 <a href="?{{ page }}={{ object.page_number }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">...</a>
 
+# user authentication
+{% if user.is_authenticated %}
+    # Do something for logged-in users.
+{% else %}
+    # Do something for anonymous users.
+{% endif %}
+
 # verbatim, stops the template engine from rendering the content of this block tag
 {% verbatim %} ... {% endverbatim %}
 
