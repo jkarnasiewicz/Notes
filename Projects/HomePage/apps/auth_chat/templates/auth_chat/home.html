@@ -17,7 +17,12 @@
 						<h3 class="panel-title">Chat informations</h3>
 					</div>
 					<div class="panel-body">
-						<p>Logged in users: {% for user in logged_in_users %} {{ user.username }} {% endfor %}</p>
+						<p>Logged in users:
+						<ul>
+						{% for user in logged_in_users %}
+						<li username="{{ user.username }}">{{ user.username }}</li>
+						{% endfor %}
+						</ul></p>
 					</div>
 				</div>
 
@@ -179,6 +184,51 @@
 {% endblock %}
 
 {% block javascript %}
+<script>
+	{% if request.user.is_authenticated %}
+		var socket = new WebSocket('ws://' + window.location.host + '/users/');
+
+		socket.onopen = function open() {
+		  console.log('WebSockets connection created.');
+		};
+
+		socket.onmessage = function message(event) {
+			let data = JSON.parse(event.data);
+			// NOTE: We escape JavaScript to prevent XSS attacks.
+			let username = encodeURI(data['username']);
+			let is_logged_in = encodeURI(data['is_logged_in']);
+			console.log('LOG', data);
+			// if (username) {
+			let li_tag = $(`li[username=${username}]`)[0];
+			// if (li_tag && is_logged_in) {
+			// 	console.log('1');
+			// 	return
+			// }
+			if (li_tag) {
+				console.log('2');
+				li_tag.remove();
+			}
+			else {
+				console.log('3');
+				$('ul').append(`<li username="${username}">${username}</li>`);
+			}
+			// }
+			// $('ul').append(`<li username="${username}">${username}</li>`);
+			// var user = $('li').filter(function () {
+			// 	return $(this).data('username') == username;
+			// });
+
+			// if (data['is_logged_in']) {
+			// 	user.html(username + ': Online');
+			// }
+			// else {
+			// 	user.html(username + ': Offline');
+			// }
+		};
+
+		if (socket.readyState == WebSocket.OPEN) {
+			socket.onopen();
+		}
+	{% endif %}
+</script>
 {% endblock %}
-
-

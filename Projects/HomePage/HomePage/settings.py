@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 
 	'mptt',
+	'channels',
 
 	'HomePage',
 	'apps.search_app',
@@ -149,3 +150,14 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
+
+# Channels
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+        'ROUTING': 'HomePage.routing.channel_routing',
+    }
+}
