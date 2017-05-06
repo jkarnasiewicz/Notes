@@ -30,7 +30,7 @@ def auth_chat(request):
 		log_in_form = AuthenticationForm(data=request.POST or None)
 		if log_in_form.is_valid():
 			auth.login(request, log_in_form.get_user())
-		return redirect('auth_chat:auth_chat')
+			return redirect('auth_chat:auth_chat')
 
 	if request.method == 'POST' and 'log_out' in request.POST:
 		auth.logout(request)
@@ -42,33 +42,3 @@ def auth_chat(request):
 		{'create_user_form': create_user_form,
 		 'log_in_form': log_in_form,
 	     'logged_in_users': logged_in_users})
-
-
-# def log_in(request):
-#     form = AuthenticationForm()
-#     if request.method == 'POST':
-#         form = AuthenticationForm(data=request.POST)
-#         if form.is_valid():
-#             login(request, form.get_user())
-#             return redirect(reverse('example:user_list'))
-#         else:
-#             print(form.errors)
-#     return render(request, 'example/log_in.html', {'form': form})
-
-
-# @login_required(login_url='/log_in/')
-# def log_out(request):
-#     logout(request)
-#     return redirect(reverse('example:log_in'))
-
-
-# def sign_up(request):
-#     form = UserCreationForm()
-#     if request.method == 'POST':
-#         form = UserCreationForm(data=request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(reverse('example:log_in'))
-#         else:
-#             print(form.errors)
-#     return render(request, 'example/sign_up.html', {'form': form})
