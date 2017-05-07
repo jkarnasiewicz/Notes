@@ -1,15 +1,12 @@
 from django import forms
 from django.contrib import auth
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 
+from .forms import CreateUser
 from .models import LoggedInUser
 
 User = auth.get_user_model()
-
-
-class CreateUser(UserCreationForm):
-	username = forms.CharField(required=True, min_length=3, max_length=15)
 
 
 def auth_chat(request):
@@ -17,6 +14,7 @@ def auth_chat(request):
 	log_in_form = AuthenticationForm()
 	logged_in_users = User.objects.filter(id__in=LoggedInUser.objects.values_list('user', flat=True))
 
+	# print(request.POST)
 	if request.method == 'POST' and 'create_user_form' in request.POST:
 		create_user_form = CreateUser(data=request.POST or None)
 		if create_user_form.is_valid():

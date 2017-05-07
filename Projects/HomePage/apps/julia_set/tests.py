@@ -122,7 +122,7 @@ class ViewTest(TestCase):
 		response = self.client.post(
 			reverse('julia_set:julia_set'),
 			data={
-				'real_part': 'asd',
+				'real_part': 'imaginary',
 				'imaginary_part': '-44',
 				'width': '-5000',
 				'max_iterations': '500',
