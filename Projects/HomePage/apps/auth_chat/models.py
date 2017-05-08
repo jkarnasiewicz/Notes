@@ -3,4 +3,7 @@ from django.db import models
 
 
 class LoggedInUser(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='logged_in_user')
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='logged_in_user')
+
+	def __str__(self):
+		return self.user.username
