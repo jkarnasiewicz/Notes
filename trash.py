@@ -27,7 +27,7 @@
 
 # AMD - Asynchronous Module Definition
 
-# End
+# At the End learn:
 # unittest module
 # regexp
 
@@ -87,9 +87,6 @@
 # Kivy
 
 
-
-# Dodge Challenger and Mclaren P1 in wallpapers app
-
 # (.*) 	-> Greedy!
 # /[^crnld]ope/							// any character but those within brackets range
 # (?m)
@@ -100,3 +97,23 @@
 
 # (?!expression)  : Negative Look Ahead
 # (?<!expression) : Negative Look Behind
+
+
+
+Jack speaking, how may I help you?
+
+‘May I ask who’s calling please?’
+‘Can I ask whom I’m speaking to please?’
+‘Where are you calling from?’
+‘Is that definitely the right name/number?’
+‘Could I speak to someone who ___?’
+‘I would like to make a reservation please’
+‘Could you put me through to extension number ___ please?’
+
+
+
+
+Search application
+Filter list of my applications, using technology or theme keywords related to specific application
+Tags describe technology  used in  or theme of the application
+Technology used/available tags
