@@ -158,6 +158,10 @@
 				socket.onmessage = function message(event) {
 					let data = JSON.parse(event.data);
 					let message = data['message'];
+					// if (reload) {
+					// 	reload page
+					// 	return
+					// }
 					if (message) {
 						$('#chat').append(message);
 						$("#chat").scrollTop($("#chat")[0].scrollHeight);

@@ -14,7 +14,6 @@ def auth_chat(request):
 	log_in_form = AuthenticationForm()
 	logged_in_users = User.objects.filter(id__in=LoggedInUser.objects.values_list('user', flat=True))
 
-	# print(request.POST)
 	if request.method == 'POST' and 'create_user_form' in request.POST:
 		create_user_form = CreateUser(data=request.POST or None)
 		if create_user_form.is_valid():
