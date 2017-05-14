@@ -1,3 +1,4 @@
+import os
 from tempfile import NamedTemporaryFile
 
 from django.core.exceptions import ValidationError
@@ -54,6 +55,36 @@ class ModelTest(TestCase):
 
 	def test_string_representation(self):
 		self.assertEqual(str(self.app), self.app.name)
+
+	# test signals
+	def test_signal_delete_old_thumbnail(self):
+		first_image = SimpleUploadedFile("first_image.png", b"", content_type="image/png")
+		second_image = SimpleUploadedFile("second_image.png", b"", content_type="image/png")
+		app = Applications.objects.create(name='App 2', description='...', image=first_image,
+			tags='python, django', url_source='http://example.com', url_name='two',
+			visible=True)
+
+		self.assertIn(first_image.name, os.listdir(os.path.dirname(app.image.path)))
+
+		app.image = second_image
+		app.save(update_fields=['image'])
+
+		self.assertNotIn(first_image.name, os.listdir(os.path.dirname(app.image.path)))
+		self.assertIn(second_image.name, os.listdir(os.path.dirname(app.image.path)))
+
+	def test_signal_delete_thumbnail_folder(self):
+		image = SimpleUploadedFile("empty_image.png", b"", content_type="image/png")
+		app = Applications.objects.create(name='App 2', description='...', image=image,
+			tags='python, django', url_source='http://example.com', url_name='two',
+			visible=True)
+
+		image_path = app.image.path
+		app_url_name = app.url_name
+		self.assertIn(app_url_name, os.listdir(os.path.dirname(os.path.dirname(image_path))))
+
+		app.delete()
+
+		self.assertNotIn(app_url_name, os.listdir(os.path.dirname(os.path.dirname(image_path))))
 
 
 class ViewTest(TestCase):

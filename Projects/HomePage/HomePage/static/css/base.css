@@ -57,10 +57,10 @@ body {
 
 
 .form-control:focus {
-  border-color: #867BF6;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px 0px rgba(0,0,0,.075), 0 0 8px 0px rgba(81,70,156,0.6);
-		  box-shadow: inset 0 1px 1px 0px rgba(0,0,0,.075), 0 0 8px 0px rgba(81,70,156,0.6);
+	border-color: #867BF6;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px 0px rgba(0,0,0,.075), 0 0 8px 0px rgba(81,70,156,0.6);
+	box-shadow: inset 0 1px 1px 0px rgba(0,0,0,.075), 0 0 8px 0px rgba(81,70,156,0.6);
 }
 
 /* main content */
@@ -110,9 +110,9 @@ body {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  color: #fff;
-  background-color: #483e8a;
-  border-color: #483e8a;
+	color: #fff;
+	background-color: #483e8a;
+	border-color: #483e8a;
 }
 .btn-primary:active:hover,
 .btn-primary.active:hover,
@@ -123,9 +123,9 @@ body {
 .btn-primary:active.focus,
 .btn-primary.active.focus,
 .open > .dropdown-toggle.btn-primary.focus {
-  color: #fff;
-  background-color: #483e8a;
-  border-color: #483e8a;
+	color: #fff;
+	background-color: #483e8a;
+	border-color: #483e8a;
 }
 
 /* nav-pills */
@@ -154,8 +154,8 @@ ul {
 }
 
 /* prevent resizing horizontally */
-textarea { 
-   resize:vertical;
+textarea {
+	resize:vertical;
 }
 
 /* select2 highlighted color */
@@ -170,50 +170,22 @@ textarea {
 	flex-wrap: wrap;
 }
 
-/*.panel-form {
-	display: none;
-}
-.panel-form-active {
-	display: flex;
-}
-*/
-/*.well {
-	background: none;
-}*/
-
-/*.panel-primary {
-	border-color: #51469c;
-}
-
-.panel-primary > .panel-heading {
-	color: #fff;
-	background-color: #51469c;
-	border-color: #51469c;
-}
-.panel-primary > .panel-heading + .panel-collapse > .panel-body {
-	border-top-color: #51469c;
-}
-.panel-primary > .panel-heading .badge {
-	color: #51469c;
-	background-color: #fff;
-}
-.panel-primary > .panel-footer + .panel-collapse > .panel-body {
-	border-bottom-color: #51469c;
-}*/
-
-/* Hide HTML5 Up and Down arrows. */
+/* hide HTML5 Up and Down arrows. */
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
- 
 input[type="number"] {
 	-moz-appearance: textfield;
 }
-
 
 /* Chat scroll */
 #chat {
 	overflow-y: scroll;
 	height: 500px;
+}
+
+/* Scroll for tree traversal application */
+#tree_contener {
+	overflow-x: scroll;
 }

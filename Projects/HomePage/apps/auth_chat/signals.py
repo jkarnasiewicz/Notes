@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import user_logged_in, user_logged_out
 from django.dispatch import receiver
+
 from .models import LoggedInUser
 
 

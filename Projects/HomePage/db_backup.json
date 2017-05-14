@@ -1,0 +1,4967 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "search_app",
+    "model": "applications"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "tree_traversal",
+    "model": "catalog"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "tree_traversal",
+    "model": "item"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "codility",
+    "model": "codilitytask"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "auth_chat",
+    "model": "loggedinuser"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4gdeh32xcfz7gwb6b47s1ufp8n1y9bat",
+  "fields": {
+    "session_data": "NWI0NTQyMGI4NDQzZWZjMzMyZmQxOGJmNzVlZGM2MmYzOTYyOTE2ODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T08:22:57.243Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6km8i0kzme59t74tf8n5hblpfhwt9jkb",
+  "fields": {
+    "session_data": "NWI0NTQyMGI4NDQzZWZjMzMyZmQxOGJmNzVlZGM2MmYzOTYyOTE2ODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T10:05:00.615Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0443d24d4367160c1b4110c30313e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:50:40.732Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn051f831fec74829e6291999f36495",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T07:57:23.082Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn05543991871c58439c2e5ac47db23",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T09:11:17.854Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0763aab0fc815a26237e4c4233f2d",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:22:16.989Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0988d2b4b3fe571400baeb86c0c30",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T10:25:43.311Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0a30e573c444af0fcad30df52a2a5",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T21:05:11.975Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0af05852ddc1d53866b7c8c082e1f",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:51:02.309Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0c82b4b43f64e956c2b30435e9dd1",
+  "fields": {
+    "session_data": "N2U0ZDcyMjRmMzA0ODkxMzk4MTNkM2U3MzFlMDJmNDAyY2JmNGRhYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2hhc2giOiJmY2RlNGY5MzBkMzgzZjEwOWYyNDAxMmJhM2ZkNTQ4M2I3OTNmYzM2In0=",
+    "expire_date": "2017-05-20T08:24:58.299Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0cb6a47899a590777978e20003b0e",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T19:25:11.679Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0d941561d67e3a17444bf3cd74372",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:12:35.107Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0ea375e90b3e8ca710c40cc3d539f",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T09:39:10.434Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn0f5d7fb1fec75385813cc214ad826",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:33:17.662Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn103cd664cd5c5b7a2a57eaf3f4ace",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:17:42.143Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn12b70790e14c0cd5f60cf6ebda0df",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T09:44:07.927Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn15a95232a5ded6c05a9fc5ec93613",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:48:18.344Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn1988a35cfb87be747cc25d2917cd3",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:38:49.364Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn1989c8bca21c3ac408374a94f5da9",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T11:23:50.036Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn19b9fd13529c1f37ad3d51d5fbdcc",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T21:20:19.870Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn19c8e075e7af6fdffa8bac38c8cdd",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T21:05:21.508Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn19ec6521ef1818b39f2313a360419",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:19:28.753Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn1d459ba09342f9e84ea74372cbd6a",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T19:23:41.588Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn1e09196268f1035d0859f61a0ee7d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:36:29.863Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn20f81c57252b08c68f78771ca6193",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T12:07:01.887Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn212f891e07e69597f0f378b6c9c14",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T21:27:23.357Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn22d6910d98207ae50a4e27fb01450",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T21:28:16.501Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn23c0d92b7b450c34d4c92092cd12a",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T09:45:37.922Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn28031c4f1828fd598bd466d58f48c",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T13:06:19.597Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn2aa4a433f1f06e27169b502212efe",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:17:15.264Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn2b02f4f444bda43907600692b9d6c",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T11:34:43.239Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn2c5d22edaa0c7f154e2e867e3b96d",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T09:44:22.112Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn2dd0ac8c17b1aae5386b9b91299da",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T20:57:04.188Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn2edb93a8e4958d9f9c2ff48a54df1",
+  "fields": {
+    "session_data": "N2U0ZDcyMjRmMzA0ODkxMzk4MTNkM2U3MzFlMDJmNDAyY2JmNGRhYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2hhc2giOiJmY2RlNGY5MzBkMzgzZjEwOWYyNDAxMmJhM2ZkNTQ4M2I3OTNmYzM2In0=",
+    "expire_date": "2017-05-20T10:25:31.981Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn2f3200bc21d0057ed235ed4e44f6f",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:56:51.624Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn2f9d9f25a65271a3cf9bb9135eed3",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T09:54:06.523Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn35cad80d47558cee1757fb6bf74f0",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T12:07:21.367Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn3610891c117c61dd5b47c2b8d99aa",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:44:45.112Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn3821ff7fc5fda60b25031224e5922",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T19:15:52.461Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn38246d249c54e6dd84a2784e9463f",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T09:56:30.891Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn3ff1292b567b55514e65579346a21",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:41:40.794Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn41b67d3063d86265ce6ac459bcf77",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:26:20.820Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn41e81ec4a04de4faf112388400877",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:16:22.521Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn42a311fb30bdc046faa2b7cec12a6",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T09:56:12.494Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn4330684081c3459796af9622b9c2e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T07:46:56.155Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn43dd74dd84f7c5246ca06af468d97",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T19:37:03.734Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn45e651867c6e4f94238b04b997aa3",
+  "fields": {
+    "session_data": "N2U0ZDcyMjRmMzA0ODkxMzk4MTNkM2U3MzFlMDJmNDAyY2JmNGRhYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2hhc2giOiJmY2RlNGY5MzBkMzgzZjEwOWYyNDAxMmJhM2ZkNTQ4M2I3OTNmYzM2In0=",
+    "expire_date": "2017-05-20T10:58:57.164Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn4668da9ff18556e98c1b58e4f428f",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T21:28:09.434Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn4726923551fc44ec5e308e9bfb89a",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T21:25:04.228Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn4df091585c7a6521ff73df678ba0e",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T07:53:45.932Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn4faf51f36e72756dfa557227ec820",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T08:22:57.820Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn550f059a971d42d85354776eaa85d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:56:00.071Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn5523929cb8db353b2190cc995f0d4",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T19:24:28.643Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn56c592b648167d25a191a27656344",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T10:05:10.921Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn580f80342b6763864cc9f9b60c967",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T21:27:26.691Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn583b355e560833d5667fde3cced1a",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:37:28.601Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn5a4698b866481694a3a12486f66c1",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:26:43.312Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn5ae38934e37f6860c792903f35b50",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T10:09:36.716Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn5bbb9cee6c23871212e57f6f26f15",
+  "fields": {
+    "session_data": "N2U0ZDcyMjRmMzA0ODkxMzk4MTNkM2U3MzFlMDJmNDAyY2JmNGRhYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2hhc2giOiJmY2RlNGY5MzBkMzgzZjEwOWYyNDAxMmJhM2ZkNTQ4M2I3OTNmYzM2In0=",
+    "expire_date": "2017-05-20T10:59:15.934Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn5e86ddfabf56db30609c3fb7bc0e4",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T13:25:03.274Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn62d7e30d802569a208641c95ae951",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:45:49.172Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn683adb65b29024f0b08e452978194",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T08:08:38.741Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn684e0d2300fa4eb75d6d017b82550",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T12:25:18.787Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn694a5b54a44a238af86db46bb1364",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:43:05.893Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn69aa9ca239d8bc115474977b53b4d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T21:24:23.195Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn6b303c5b66699ff48b912e457a75b",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T12:01:22.764Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn6de7c130d7f38cd133dff5745d1dd",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T09:51:52.611Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn6e8ea91300156a6911e901f7fc1e5",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T21:20:53.045Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn70abf7141f7c17421653e9300df73",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T19:31:40.156Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn71f0608e8e4232a9081350e16dae6",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T07:57:10.369Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn72479eedbb95e292ddef0fe44a348",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T12:25:00.567Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn728ecb0b134ebe98288e53f9b1171",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:36:11.041Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn7321ee381953f893e01b4e4a6f293",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:16:04.850Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn74f34f29e103ee44a3685f463c676",
+  "fields": {
+    "session_data": "N2U0ZDcyMjRmMzA0ODkxMzk4MTNkM2U3MzFlMDJmNDAyY2JmNGRhYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2hhc2giOiJmY2RlNGY5MzBkMzgzZjEwOWYyNDAxMmJhM2ZkNTQ4M2I3OTNmYzM2In0=",
+    "expire_date": "2017-05-20T10:39:05.998Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn77f34401db74bbf8c91f36d68bfb4",
+  "fields": {
+    "session_data": "N2U0ZDcyMjRmMzA0ODkxMzk4MTNkM2U3MzFlMDJmNDAyY2JmNGRhYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2hhc2giOiJmY2RlNGY5MzBkMzgzZjEwOWYyNDAxMmJhM2ZkNTQ4M2I3OTNmYzM2In0=",
+    "expire_date": "2017-05-20T09:12:50.342Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn782ea4371d2996ee2d88e08644cc9",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:58:32.981Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn79308ae6ac2090622efaa2144201b",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:37:16.007Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn79dde4f751abff54550a17667c1a9",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T07:44:52.471Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn7a463836c130085e621248c95ac9d",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:35:09.013Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn7add3e6bc1ad24196e30283b7043e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:58:14.424Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn7b7390d62ade790cb4c221e1da96c",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:57:06.555Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn7bcac2eadde7fcdbcad55262eb951",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T12:22:47.516Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn7bfa059e781dcb86882ff5c691e7a",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T20:48:04.952Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn7e73a91b80931935063c08495ecf2",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T20:45:18.923Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn807051e5e90fb25aada37984eac81",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T09:02:04.326Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn80975a3afbcd0510115d13eee3326",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T08:20:09.402Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn81a5f4abde4bdfbe4c2d35bdec226",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:22:05.357Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn828eaa73f667c158c20cae5369f8d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:33:11.614Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn840da0eea8ec7ee4766c9e709444d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:18:40.971Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn8816df79fc4768c67cd33d387d8c6",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:44:09.846Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn882a91de36f31437f2a1ca18cff48",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T12:41:35.696Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn8840356e9d3b9f272803a68c57768",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:12:46.966Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn884f03ca3b5f9cfe230fb093a867a",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T09:54:03.531Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn888aa35aabaa2fbb55b4017f4ee4f",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:44:03.865Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn88b81ff54664ecab13e09eba2b0ab",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T13:30:57.494Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn88be77d5510aa7da77accb4e14960",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:14:58.286Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn8b2cde47e1fae1ccbd73c9d2f0027",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T19:25:50.996Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn8df0a9654fe836fa2bac80295fda7",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:38:11.635Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn92a4a1ec061272504aaafbad02a9b",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:05:11.694Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn93ca7927ec0db924db59b3cc0ec07",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T19:31:56.866Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn944f9be207845912e20a4e0a32d14",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T11:20:15.747Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn94c710146be440bcd96a9a3d134f4",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:37:33.081Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn94f6b3901903d7857bde0119f774c",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T21:09:33.445Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn96b794859ba8784806e4a316fd79d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T09:06:24.581Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn97c701d9129e180d6cab06b04a1b4",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:33:54.254Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn9986122f0599f24d2bd8d4955de0e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T11:10:56.305Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn9a71123209380dcfd15f7521d3f01",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:47:49.487Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn9b3e9b715a251ace8ef209a247d88",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T10:05:01.189Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn9d2b94547b92b2c7f9b1e325101dd",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:45:08.785Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn9dc1c4e0fbd4c495d7bc9886ab70d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T07:53:01.410Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn9dfa0de91852a462a836d38a80820",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:32:00.758Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chn9ef9a33034fa73f3d9c09b2cf6dae",
+  "fields": {
+    "session_data": "MmExOWQyYzg3MjkzZTliZWQwNTA5NGMwN2I5NzkzODc4ZmM2M2YwOTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjUiLCJfYXV0aF91c2VyX2hhc2giOiI3MWNiMGU5MDZiMWIyY2RkNTBhZjhkOGU1NzUyZTVlN2EwMGEyZGUyIn0=",
+    "expire_date": "2017-05-20T10:45:24.979Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chna131e280482b30d32116e39078652",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:22:53.830Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chna2268e26b3e3ce81d17ad68764643",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:34:45.644Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chna420b318f39e262c4352ef8dab2e9",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:22:59.457Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chna5988f94b00177cbcc265228dda4b",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T12:41:19.650Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chna85ca16c18faf64f10bbf4def8e50",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:45:30.687Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chna96555eaef4406d382f43812e614e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T21:34:39.035Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chna9c2156a5f2587c52f52856259024",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T12:23:31.557Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnadad04bb07729c8439f5a7218ef23",
+  "fields": {
+    "session_data": "N2U0ZDcyMjRmMzA0ODkxMzk4MTNkM2U3MzFlMDJmNDAyY2JmNGRhYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjMiLCJfYXV0aF91c2VyX2hhc2giOiJmY2RlNGY5MzBkMzgzZjEwOWYyNDAxMmJhM2ZkNTQ4M2I3OTNmYzM2In0=",
+    "expire_date": "2017-05-20T10:08:53.601Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnae26b5d391bc749e149344936af8c",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:12:09.770Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnaf77aee7a6d6a58eb169a8d846170",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T11:21:10.956Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnb0c865ff49524c666e3fde6161607",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T19:32:16.897Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnb1751289aa334143dc4b5c9fc4034",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T07:36:57.718Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnb5530639c60ed93d9bcfd1b8a4f1b",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T12:01:06.694Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnb603ebb59a138eb2aa688f93468a2",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:56:36.359Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnb7c7d23338f9addc38ee0e5f43395",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T09:51:30.445Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnb993bf840cb73e3f39c047ad0847e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T21:14:04.015Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnba8018cfa027b4b378c37bedbd54e",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T19:31:37.246Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnbaf29e10db03ed1fbf32084f66c64",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T11:11:19.075Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnbbfe33b88cf14ba4eca0fc7a67b3f",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T21:21:25.936Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnbc388592a3d8ed7a5734da3a7cc0e",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T07:38:57.058Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnbc8dc72c8b900d5b70c86ad528e9e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:02:07.282Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnbde9c08068973e8085103ea6aa461",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T10:27:33.344Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnbe42e5601a15ccd95116c038b7bd7",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:16:31.054Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnbffa46db76117875b358aa9bf7a9a",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T11:24:29.686Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnc078ec28d7996358c0546b2cae87d",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T20:47:44.685Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnc0da10069450635fd65dc4c941570",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T09:54:10.608Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnc1aafdda568eb06ef08dd58b863bb",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T20:35:26.575Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnc473aac736e69e7d28fa1848eda61",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:21:57.742Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnc51d9d47cadfeb22cad34ab13cd1e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:19:25.901Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnc6871cd74a60e45ac7381abb98291",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T19:32:20.292Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnc8d27b20c9ead97b8cf5e58d51fbc",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:37:41.803Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnca7baa4d5b1164db014a594fe2a13",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T21:12:30.472Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chncde2d40119dd12e104d992a0b7f23",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T09:50:26.870Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnce7721ec95dd5a38ce3b542554148",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T20:58:23.188Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chncf9569005066aa22e772877e256e8",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T09:09:02.521Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd006e84b8fd30a20035ad820b5580",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T10:38:03.898Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd41b519539bdd2c5f7c0cfbacda7c",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T08:09:21.641Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd57640963fb02aff55e18b98e8642",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:18:18.897Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd5ae8284fe8b552f44cf7b2ce6034",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:47:59.716Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd5e2e5e8261315606b2a24433e8dd",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T12:05:14.243Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd6aae0be0b1006e756a535b00332f",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T19:32:22.863Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd85ebc326e0c88b0249d1279b4dfb",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T07:44:41.325Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd871609e48c18a1eaa7b9d28e279a",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T09:02:33.737Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnd95671304e2e1788a06e7e1ed661c",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:43:49.300Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnda37c0ca3e7f27ce187862c11d107",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T13:04:19.665Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chndb00ce5cad890a8fe18d2df340b4f",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T09:00:57.836Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chndb196981828cfa4d9f8f5f8ba2e9f",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T20:37:53.170Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chndb8b106ea370876dbf8c6e47b421c",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:06:27.578Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chndc5b9bdf9b00f8e2c7ba7286f511f",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:21:54.632Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chndc7d40c6b8e2b5fb8b3b7abc3428f",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T11:32:23.759Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chndcd2230463033ae1a61add2b41206",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-19T20:43:19.511Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chne0800c4e4f88ae59b8423f8adc822",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-21T09:53:34.165Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chne4c10011ad3effb36a3d26c15db0d",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-21T10:09:40.476Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chne80f3d6dd80126328c5220a510efa",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T12:05:27.290Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chne83de8f3b5dd17991e015290d5878",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:07:30.201Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chne84449683b8141e120b42b6c43243",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T19:36:37.802Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chne8fc5f875f8e0b2098ceb9f4eba7e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T16:59:09.578Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnebbb318b8a9cd1f9803fdd0d5f24d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T16:59:14.627Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnebbfbf678e0ea66e5e4e40f17a0a5",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T21:09:37.981Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnef13c9db3bbe0d9aa26f41e5d4023",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T13:04:02.852Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnef2d48753148aef194c950b521964",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-25T09:49:08.616Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf07800a8cc007f638558ed217b88e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:06:31.745Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf0c0f3c9c1f68e5c0b551235f3c75",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:15:11.644Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf0fd2fc88d1fe2c54e4bdbbf59515",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:05:27.593Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf211297d5f512b66b9d29852e29b7",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:12:33.634Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf21af8d40834108deda02ed292652",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:21:56.502Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf23f7da83ca54c890ceccc52f03cb",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:14:07.796Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf3f801643a5ffb718597d62fdab55",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T17:07:28.408Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf4001319471685fdee6c27ad2a850",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:37:34.544Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf4a3270e3e8aa1d0ae333774f82b5",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T17:05:08.991Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf4cc7a8133c932c43ec28ca0f10e8",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T10:08:57.461Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf513890020196650ff36099a37b94",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T13:04:35.096Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf74275fa06c8e8e79bdc21188a8bd",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T13:25:34.336Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnf8499f6b1d11a8158221e5a9ca01d",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:47:37.974Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnfb87cd31661b3cce46e99bc33188e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-20T08:25:33.274Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnfb9b8cea34df8b2b89cd81efbd561",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-19T19:32:08.518Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnfbbd42c176f4cada687c9542f9c3e",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:44:58.379Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnfbdfb81a5bdf8b19fc493c6b02a2e",
+  "fields": {
+    "session_data": "MmFjNjI5OTM4NTg5N2Y1MDcwMzRhMTA4N2ZhNDI2NzFmMTVlNzFkNzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjIiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T13:16:42.046Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "chnff8fdd736382309013114d87f9811",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-19T20:06:30.885Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "eak2bbsyaenh019brxrb34a5wk8vrpwk",
+  "fields": {
+    "session_data": "MDhmMDEwMGQ3ZDRiMTczZWNkZGY3ZTdmNjA3MWNlNDg0MjliYTJlYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-04-08T21:27:53.358Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lhbw6bjerht23n5iwfcdcekgr01wauan",
+  "fields": {
+    "session_data": "ZTVjNjNiN2U3N2I3ODIzMzZmZTVjMWMxZDE1MjU3ZGMxNDhiYzhiZjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjEiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-03-02T11:47:52.845Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lnrj3odzkf4n1wlfvasyia087cqx51a9",
+  "fields": {
+    "session_data": "ZTQ3MTc4Y2U4ZmJiNzMxZGM0ZmZjZmRkZTIxY2M2ZWRkMWJlYTYwYTp7fQ==",
+    "expire_date": "2017-05-17T16:38:51.964Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "njbn5keco1pl35dku1biqewyuxvlgl7b",
+  "fields": {
+    "session_data": "MDhmMDEwMGQ3ZDRiMTczZWNkZGY3ZTdmNjA3MWNlNDg0MjliYTJlYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-04-04T13:16:46.037Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "obtbgsdbcukcq08qir5cpoaowtjwsitn",
+  "fields": {
+    "session_data": "MDhmMDEwMGQ3ZDRiMTczZWNkZGY3ZTdmNjA3MWNlNDg0MjliYTJlYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-05-23T20:51:32.013Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pw9zr0egp78cgu6ya6x2u79ywfaitdhq",
+  "fields": {
+    "session_data": "MDA1YTY1NTk2YzU1YzNjZWE2NTVlYjM0OTE4MzJlMjg5Yjc4NGM5NDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiNWU2YTExNWMyMmVkMmZiYzI0MWZiNGEzZTllZDM1OWVmYWYzMDlmNyIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=",
+    "expire_date": "2017-02-16T14:06:01.115Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "umn1qp1rernu9lsvxhbczokut9i1ack1",
+  "fields": {
+    "session_data": "NWI0NTQyMGI4NDQzZWZjMzMyZmQxOGJmNzVlZGM2MmYzOTYyOTE2ODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-18T12:38:45.780Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vrkfnlzg6yv0t9rzvxmgjcofv8vzggvq",
+  "fields": {
+    "session_data": "OGUxNTgwYmQ3ZGE5YzlmMzc2NzMxMzMyYTRhZDliOTMzZDlhMTNlNTp7Il9hdXRoX3VzZXJfaWQiOiI0IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIyNzA5NjEyMWZlMmE4Mjg1ZWI3YWEyZjdmZmJmNTA3NWFlOGQ4YjM0In0=",
+    "expire_date": "2017-05-17T16:43:52.162Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "w4ycxx7exj357b848pzr01gql5jl4k7u",
+  "fields": {
+    "session_data": "MzdkYTE4NTIxNzdkODRmZTYyM2U1MDExYzJhMGM1ZWIzMjRiN2RlZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjVlNmExMTVjMjJlZDJmYmMyNDFmYjRhM2U5ZWQzNTllZmFmMzA5ZjciLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
+    "expire_date": "2017-03-20T20:13:29.280Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xgkpyanluezycdc3u7abgxr8md5j7cla",
+  "fields": {
+    "session_data": "MDhmMDEwMGQ3ZDRiMTczZWNkZGY3ZTdmNjA3MWNlNDg0MjliYTJlYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ZTZhMTE1YzIyZWQyZmJjMjQxZmI0YTNlOWVkMzU5ZWZhZjMwOWY3In0=",
+    "expire_date": "2017-04-26T11:26:24.292Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xj5sbqugr67wzbfctz90zmm6s87tb6vh",
+  "fields": {
+    "session_data": "NWI0NTQyMGI4NDQzZWZjMzMyZmQxOGJmNzVlZGM2MmYzOTYyOTE2ODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3Nzg3NWQ5M2UzYWMzNDRlZDdhZjA0NWFlZjdjODY4NGRkMWNkMDI0In0=",
+    "expire_date": "2017-05-20T21:21:25.174Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yj03584nvpr34jxe6n2jimevt5y62s4q",
+  "fields": {
+    "session_data": "YmM4Yzg3MGQwYjJjMWIyMjQ5YWEwZGFjZjZiMzdkYTYwZjNiNjQzYzp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3MWNiMGU5MDZiMWIyY2RkNTBhZjhkOGU1NzUyZTVlN2EwMGEyZGUyIn0=",
+    "expire_date": "2017-05-20T10:45:24.579Z"
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 1,
+  "fields": {
+    "name": "Change Styling",
+    "description": "Alternative color styles for the page. Necessary information are stored in cookies.",
+    "tags": "python, django, css, context processors, cookies",
+    "image": "images/first/Women_73.jpg",
+    "url_source": "https://www.diki.pl/",
+    "url_name": "change_styling",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 2,
+  "fields": {
+    "name": "Search Applications",
+    "description": "Available filter tags:\r\n<br>\r\npython, django, django channels, javascript, css, matplotlib, numpy, pandas, scikit-learn, highcharts, pillow, mptt, template tags, ajax, yield, thread, streaminghttpresponse, context processors, cookies, signals, authentication, regex, tabindex, chat, codility, julia set, fractals, wallpaper",
+    "tags": "python, django, regex, tabindex, javascript",
+    "image": "images/second/Lee_Ji_Min_8.jpg",
+    "url_source": "http://nba.com",
+    "url_name": "search_app",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 3,
+  "fields": {
+    "name": "Modified Preorder Tree Traversal",
+    "description": "Using django-mptt for storing hierarchical data in efficient way. Feel free to add, remove catalogs or items.",
+    "tags": "python, django, mptt, template tags, ajax, javascript",
+    "image": "images/django/Women_127.jpg",
+    "url_source": "https://django.com",
+    "url_name": "tree_traversal",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 4,
+  "fields": {
+    "name": "Julia Set - Fractals Generator",
+    "description": "<p>Beautiful examples of of 'chaotic' behavior of Julia set.</p>\r\n\r\n<p>Time necessary to generate fractal picture depend heavily on processor speed on server, max iteration and also on width of the picture, thus 1000-width picture with max iteration equal to 50 takes up to 20 seconds, but picture with 3000-width and 255 iterations takes up to couple of minutes - so be patience :).</p>\r\n\r\n<p>Real and Imaginary part is from complex number of c from f(z) = z**2 + c (complex quadratic polynomial)</p>",
+    "tags": "python, django, julia set, fractals, pillow",
+    "image": "images/google/Asian_15.jpg",
+    "url_source": "https://en.wikipedia.org/wiki/Julia_set",
+    "url_name": "julia_set",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 5,
+  "fields": {
+    "name": "Streaming Wallpapers",
+    "description": "<p>Fun with Yielding, Threading and StreamingHttpResponse ... to get really nice wallpapers from my favorite page with wallpapers - https://alpha.wallhaven.cc/.</p>\r\n<p>Note: In compare to regular HttpResponse or JsonResponse(you can find this approach in my code), a StreamingHttpResponse it's much faster, but it's a little bit clunky e.g. I needed to cut my original base.html in 3 parts, and I couldn't use template inheritance. Any tips or suggestion to make it better will be welcome.\r\n... p.s. socket usage is a technology for different app :)</p>",
+    "tags": "python, django, yield, thread, streaminghttpresponse, wallpaper",
+    "image": "images/dj10/Asian_9.jpg",
+    "url_source": "https://docs.djangoproject.com/en/1.10/",
+    "url_name": "wallpaper",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 6,
+  "fields": {
+    "name": "Matplotlib Graphs",
+    "description": "Generating custom function graphs in pdf, svg, or png format using numpy, matplotlib and pandas",
+    "tags": "python, django, matplotlib, numpy, pandas",
+    "image": "images/pg13/Asian_72.jpg",
+    "url_source": "http://matplotlib.org/users/screenshots.html",
+    "url_name": "mpl_graph",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 7,
+  "fields": {
+    "name": "Codility",
+    "description": "My solutions for codility challenges, much appreciation for any help, tips or new ideas that improve my code and help achieve 100% correctness and performance in every task!\r\nIn most cases the correctness is 100%, but performance sometime is really lagging.\r\nGradually I will add next solutions or improve older ones.",
+    "tags": "python, django, codility, javascript",
+    "image": "images/As1/Women_104.jpg",
+    "url_source": "https://www.diki.pl/",
+    "url_name": "codility",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 8,
+  "fields": {
+    "name": "SciKit-Learn with Highcharts",
+    "description": "Using SciKit-Learn to create two interactive models for supervised learning. One with linear regression with accuracy, and one with k-nearest neighbors classification with confidence. Dynamic graphs utilize highcharts library.",
+    "tags": "python, django, scikit-learn, highcharts, javascript",
+    "image": "images/scikit_chart/Women_207.jpg",
+    "url_source": "http://www.highcharts.com/demo",
+    "url_name": "scikit_chart",
+    "visible": true
+  }
+},
+{
+  "model": "search_app.applications",
+  "pk": 9,
+  "fields": {
+    "name": "Django Channels with Authetication",
+    "description": "Simple general chat that utilize django channels and reddis backend. To use it just create an account (or two) and open two different window browsers.\r\nBy design I don't store any conversation or any information that are put into chat.\r\nSo have fun and be polite :)",
+    "tags": "python, django, javascript, signals, django channels, authentication, chat",
+    "image": "images/auth_chat/Women_161.jpg",
+    "url_source": "https://realpython.com/blog/python/getting-started-with-django-channels/",
+    "url_name": "auth_chat",
+    "visible": true
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 8,
+  "fields": {
+    "name": "Food",
+    "parent": null,
+    "lft": 1,
+    "rght": 4,
+    "tree_id": 2,
+    "level": 0
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 41,
+  "fields": {
+    "name": "Root",
+    "parent": null,
+    "lft": 1,
+    "rght": 6,
+    "tree_id": 7,
+    "level": 0
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 42,
+  "fields": {
+    "name": "And What Not",
+    "parent": null,
+    "lft": 1,
+    "rght": 2,
+    "tree_id": 8,
+    "level": 0
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 49,
+  "fields": {
+    "name": "And",
+    "parent": 41,
+    "lft": 2,
+    "rght": 5,
+    "tree_id": 7,
+    "level": 1
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 52,
+  "fields": {
+    "name": "qqqq",
+    "parent": 8,
+    "lft": 2,
+    "rght": 3,
+    "tree_id": 2,
+    "level": 1
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 60,
+  "fields": {
+    "name": "What",
+    "parent": 49,
+    "lft": 3,
+    "rght": 4,
+    "tree_id": 7,
+    "level": 2
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 67,
+  "fields": {
+    "name": "Xibit",
+    "parent": null,
+    "lft": 1,
+    "rght": 6,
+    "tree_id": 9,
+    "level": 0
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 68,
+  "fields": {
+    "name": "Today",
+    "parent": 67,
+    "lft": 2,
+    "rght": 3,
+    "tree_id": 9,
+    "level": 1
+  }
+},
+{
+  "model": "tree_traversal.catalog",
+  "pk": 69,
+  "fields": {
+    "name": "Tomorrow",
+    "parent": 67,
+    "lft": 4,
+    "rght": 5,
+    "tree_id": 9,
+    "level": 1
+  }
+},
+{
+  "model": "tree_traversal.item",
+  "pk": 7,
+  "fields": {
+    "name": "Vegetables",
+    "link": "",
+    "description": "_this.parent('li').find('ul')\r\n_this.parent('li').find('ul')",
+    "catalog": 8
+  }
+},
+{
+  "model": "tree_traversal.item",
+  "pk": 8,
+  "fields": {
+    "name": "Fruits",
+    "link": "",
+    "description": "_this.parent('li').find('ul')\r\n_this.parent('li').find('ul')",
+    "catalog": 8
+  }
+},
+{
+  "model": "tree_traversal.item",
+  "pk": 15,
+  "fields": {
+    "name": "R1",
+    "link": "",
+    "description": "d2d 23d 2m32332d3 13 d23d",
+    "catalog": 41
+  }
+},
+{
+  "model": "tree_traversal.item",
+  "pk": 16,
+  "fields": {
+    "name": "A1",
+    "link": "",
+    "description": "A 3fd32 d3223 d32d",
+    "catalog": 42
+  }
+},
+{
+  "model": "tree_traversal.item",
+  "pk": 21,
+  "fields": {
+    "name": "N1",
+    "link": "",
+    "description": "lkanfd aspdj qwi23 2l23d",
+    "catalog": 49
+  }
+},
+{
+  "model": "tree_traversal.item",
+  "pk": 25,
+  "fields": {
+    "name": "new item",
+    "link": "",
+    "description": "3d2d23",
+    "catalog": 52
+  }
+},
+{
+  "model": "tree_traversal.item",
+  "pk": 28,
+  "fields": {
+    "name": "new item 2",
+    "link": "",
+    "description": "asdas222 2",
+    "catalog": 52
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 1,
+  "fields": {
+    "title": "Lesson 1, BinaryGap (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(N):\r\n\tbin_value = bin(N).split('1')[1:-1]\r\n\tlength_value = [len(i) for i in bin_value]\r\n\treturn max(length_value) if length_value else 0",
+    "link": "https://codility.com/programmers/lessons/1-iterations/binary_gap/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 2,
+  "fields": {
+    "title": "Lesson 2, OddOccurrencesInArray (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tdi = dict()\r\n\tfor i in A:\r\n\t\tif i in di:\r\n\t\t\tdel di[i]\r\n\t\telse:\r\n\t\t\tdi[i] = 0\r\n\treturn di.popitem()[0]",
+    "link": "https://codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 3,
+  "fields": {
+    "title": "Lesson 2, CyclicRotation (100%)",
+    "annotation": "No annotations",
+    "code": "def lsolution(A, K):\r\n\tif A:\r\n\t\tfor i in range(K):\r\n\t\t\tA.insert(0, (A.pop()))\r\n\treturn A",
+    "link": "https://codility.com/programmers/lessons/2-arrays/cyclic_rotation/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 4,
+  "fields": {
+    "title": "Lesson 3, FrogJmp (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(X, Y, D):\r\n\tfloor_div, remainder = divmod(Y - X, D)\r\n\treturn floor_div if remainder == 0 else floor_div + 1",
+    "link": "https://codility.com/programmers/lessons/3-time_complexity/frog_jmp/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 5,
+  "fields": {
+    "title": "Lesson 3, PermMissingElem (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tlen_A = len(A) + 2\r\n\tset_A = set(A)\r\n\tset_B = set(range(1, len_A))\r\n\treturn (set_B - set_A).pop()",
+    "link": "https://codility.com/programmers/lessons/3-time_complexity/perm_missing_elem/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 6,
+  "fields": {
+    "title": "Lesson 3, TapeEquilibrium (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tsum_A, sum_B = sum(A[:1]), sum(A[1:])\r\n\tresult = abs(sum_A - sum_B)\r\n\tfor i in range(1, len(A)-1):\r\n\t\tsum_A = sum_A + A[i]\r\n\t\tsum_B = sum_B - A[i]\r\n\t\tdiff = abs(sum_A - sum_B)\r\n\t\tresult = diff if diff < result else result\r\n\treturn result",
+    "link": "https://codility.com/programmers/lessons/3-time_complexity/tape_equilibrium/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 7,
+  "fields": {
+    "title": "Lesson 4, PermCheck (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tl = len(A)\r\n\ttable = [0]*l\r\n\tfor i in A:\r\n\t\ttry:\r\n\t\t\ttable[i-1] += 1\r\n\t\texcept IndexError:\r\n\t\t\treturn 0\r\n\treturn 0 if 0 in table else 1",
+    "link": "https://codility.com/programmers/lessons/4-counting_elements/perm_check/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 8,
+  "fields": {
+    "title": "Lesson 4, FrogRiverOne (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(X, A):\r\n\tfinal_set = set()\r\n\tfor index, i in enumerate(A):\r\n\t\tif i <= X:\r\n\t\t\tfinal_set.add(i)\r\n\t\t\tif len(final_set) == X:\r\n\t\t\t\treturn index\r\n\treturn -1",
+    "link": "https://codility.com/programmers/lessons/4-counting_elements/frog_river_one/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 9,
+  "fields": {
+    "title": "Lesson 4, MissingInteger (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tori_set = {i for i in A if i > 0}\r\n\tif not ori_set:\r\n\t\treturn 1\r\n\tif len(ori_set) == 1:\r\n\t\tnumber = ori_set.pop()\r\n\t\treturn  1 if number != 1 else 2\r\n\tmax_set = max(ori_set)\r\n\tfor i in xrange(1, max_set + 2):\r\n\t\tif i not in ori_set:\r\n\t\t\treturn i",
+    "link": "https://codility.com/programmers/lessons/4-counting_elements/missing_integer/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 10,
+  "fields": {
+    "title": "Lesson 4, MaxCounters (88%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(N, A):\r\n\tresult = [0]*N\r\n\thighest_value = 0\r\n\tlast_operation = 'max_counter'\r\n\tfor i in A:\r\n\t\tif i == N+1:\r\n\t\t\tif last_operation == 'increase':\r\n\t\t\t\tresult = [highest_value]*N\r\n\t\t\t\tlast_operation = 'max_counter'\r\n\t\t\tcontinue\r\n\t\tresult[i-1] += 1\r\n\t\tif result[i-1] > highest_value:\r\n\t\t\thighest_value = result[i-1]\r\n\t\t\tlast_operation = 'increase'\r\n\treturn result",
+    "link": "https://codility.com/programmers/lessons/4-counting_elements/max_counters/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 11,
+  "fields": {
+    "title": "Lesson 5, PassingCars (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tresults = [0, 0]\r\n\tfor i in A:\r\n\t\tif i == 0:\r\n\t\t\tresults[0] += 1\r\n\t\telse:\r\n\t\t\tresults[1] += results[0]\r\n\t\tif results[1] > 1000000000:\r\n\t\t\treturn -1\r\n\treturn results[1]",
+    "link": "https://codility.com/programmers/lessons/5-prefix_sums/passing_cars/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 12,
+  "fields": {
+    "title": "Lesson 5, CountDiv (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A, B, K):\r\n\tedge = 0\r\n\tif A == 0 and B == 0:\r\n\t\treturn 1\r\n\tif A == B:\r\n\t\tif A%K == 0:\r\n\t\t\treturn 1\r\n\t\treturn 0\r\n\tif K == 1:\r\n\t\treturn B - A + 1\r\n\tif A%K == 0:\r\n\t\tedge += 1\r\n\tif K >= A:\r\n\t\treturn B//K + edge\r\n\telse:\r\n\t\treturn B//K - A//K + edge",
+    "link": "https://codility.com/programmers/lessons/5-prefix_sums/count_div/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 13,
+  "fields": {
+    "title": "Lesson 5, GenomicRangeQuery (100%)",
+    "annotation": "Two solutions(ugly and fast, and nicer and slower)",
+    "code": "def solution(S, P, Q):\r\n\timp_factor = {'A': 1, 'C': 2, 'G': 3, 'T': 4}\r\n\titem = {'A': 0, 'C': 0, 'G': 0, 'T': 0}\r\n\tresults = []\r\n\tmod_S = []\r\n\r\n\tfor letter in S:\r\n\t\titem[letter] += 1\r\n\t\tmod_S.append(item.copy())\r\n\r\n\tfor i, j in zip(P, Q):\r\n\t\tif (i == j):\r\n\t\t\tresults.append(imp_factor[S[i]])\r\n\t\t\tcontinue\r\n\r\n\t\tres = {'A': 0, 'C': 0, 'G': 0, 'T': 0}\r\n\t\tfor l in ['A', 'C', 'G', 'T']:\r\n\t\t\tres[l] = mod_S[j][l] - mod_S[i-1][l] if i != 0 else mod_S[j][l]\r\n\t\t\tif res[l] > 0:\r\n\t\t\t\tresults.append(imp_factor[l])\r\n\t\t\t\tbreak\r\n\t\t\r\n\treturn results\r\n\r\n\r\n\r\nThis is more pleasant, but slower solution\r\n\r\ndef solution(S, P, Q):\r\n\tresults = []\r\n\timp_factor = (('A', 1), ('C', 2), ('G', 3), ('T', 4))\r\n\tfor i, j in zip(P, Q):\r\n\t\tunique_letters = set(S[i:j+1])\r\n\t\tfor letter, factor in imp_factor:\r\n\t\t\tif letter in unique_letters:\r\n\t\t\t\tresults.append(factor)\r\n\t\t\t\tbreak\r\n\treturn results",
+    "link": "https://codility.com/programmers/lessons/5-prefix_sums/genomic_range_query/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 14,
+  "fields": {
+    "title": "Lesson 6, Distinct (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\treturn len(set(A))",
+    "link": "https://codility.com/programmers/lessons/6-sorting/distinct/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 15,
+  "fields": {
+    "title": "Lesson 6, MaxProductOfThree (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tA = sorted(A)\r\n\tpos = A[-1] * A[-2] * A[-3]\r\n\tif A[-1] <= 0 or A[0] > 0:\r\n\t\treturn pos\r\n\telse:\r\n\t\tneg = A[0] * A[1] * A[-1]\r\n\t\treturn pos if pos > neg else neg",
+    "link": "https://codility.com/programmers/lessons/6-sorting/max_product_of_three/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 16,
+  "fields": {
+    "title": "Lesson 6, Triangle (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tA = sorted(A)\r\n\tfor index, i in enumerate(A):\r\n\t\ttry:\r\n\t\t\tif i + A[index+1] > A[index+2] and i + A[index+2] > A[index+1] and A[index+1] + A[index+2] > i:\r\n\t\t\t\treturn 1\r\n\t\texcept IndexError:\r\n\t\t\treturn 0\r\n\t\t\t\r\n\treturn 0",
+    "link": "https://codility.com/programmers/lessons/6-sorting/triangle/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 17,
+  "fields": {
+    "title": "Lesson 6, NumberOfDiscIntersections (56%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(A):\r\n\tcount = 0\r\n\tsorted_list = sorted([(i-j, i+j) for i,j in enumerate(A)])\r\n\tfor index, item in enumerate(sorted_list):\r\n\t\tfor i in sorted_list[index+1:]:\r\n\t\t\tif item[1] < i[0]:\r\n\t\t\t\tbreak\r\n\t\t\tif((item[0] <= i[0] <= item[1]) or (item[0] <= i[1] <= item[1])):\r\n\t\t\t\tcount += 1\r\n\t\t\t\tif count > 10**7:\r\n\t\t\t\t\treturn -1\r\n\treturn count",
+    "link": "https://codility.com/programmers/lessons/6-sorting/number_of_disc_intersections/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 18,
+  "fields": {
+    "title": "Lesson 7, Brackets (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(S):\r\n\tlenght = len(S)\r\n\top = ['(', '[', '{']\r\n\ten = [')', ']', '}'] \r\n\tif lenght == 0:\r\n\t\treturn 1\r\n\tif lenght % 2 == 1:\r\n\t\treturn 0\r\n\tresults = []\r\n\tfor i in S:\r\n\t\tif i in op:\r\n\t\t\tresults.append(i)\r\n\t\telse:\r\n\t\t\ttry:\r\n\t\t\t\tif en.index(i) == op.index(results[-1]):\r\n\t\t\t\t\tdel results[-1]\r\n\t\t\t\telse:\r\n\t\t\t\t\treturn 0\r\n\t\t\texcept IndexError:\r\n\t\t\t\treturn 0\r\n\t\r\n\treturn 1 if len(results) == 0 else 0",
+    "link": "https://codility.com/programmers/lessons/7-stacks_and_queues/brackets/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 19,
+  "fields": {
+    "title": "Lesson 7, StoneWall (92%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(H):\r\n\tcounter = 0\r\n\tunique_heights = {}\r\n\tlast_height = None\r\n\tfor index, h in enumerate(H):\r\n\t\tif h in unique_heights:\r\n\t\t\tif min(H[unique_heights[h]:index]) >= h:\r\n\t\t\t\tcounter += 1\r\n\r\n\t\tunique_heights[h] = index\r\n\r\n\treturn len(H) - counter",
+    "link": "https://codility.com/programmers/lessons/7-stacks_and_queues/stone_wall/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 20,
+  "fields": {
+    "title": "Lesson 7, Fish (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A, B):\r\n\talive = []\r\n\tfor index, (a, b) in enumerate(zip(A, B)):\r\n\t\tif not alive:\r\n\t\t\talive.append((a, b))\r\n\t\t\tcontinue\r\n\t\tif (alive[-1][1], b) == (1, 0):\r\n\t\t\tif alive[-1][0] > a:\r\n\t\t\t\tcontinue\r\n\t\t\talive.pop()\r\n\t\t\talive.append((a, b))\r\n\t\t\ttry:\r\n\t\t\t\twhile (alive[-2][1], alive[-1][1]) == (1, 0):\r\n\t\t\t\t\tif alive[-2][0] > alive[-1][0]:\r\n\t\t\t\t\t\talive.pop()\r\n\t\t\t\t\t\tbreak\r\n\t\t\t\t\telse:\r\n\t\t\t\t\t\talive.pop(-2)\r\n\t\t\texcept IndexError:\r\n\t\t\t\tpass\r\n\t\telse:\r\n\t\t\talive.append((a, b))\r\n\r\n\treturn len(alive)",
+    "link": "https://codility.com/programmers/lessons/7-stacks_and_queues/fish/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 21,
+  "fields": {
+    "title": "Lesson 7, Nesting (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(S):\r\n\tlenght = len(S)\r\n\tif lenght == 0:\r\n\t\treturn 1\r\n\tif lenght % 2 == 1:\r\n\t\treturn 0\r\n\r\n\tbrackets = []\r\n\tfor index, item in enumerate(S):\r\n\t\tif not brackets:\r\n\t\t\tbrackets.append(item)\r\n\t\t\tcontinue\r\n\t\tif (brackets[-1], item) == ('(', ')'):\r\n\t\t\tbrackets.pop()\r\n\t\telse:\r\n\t\t\tbrackets.append(item)\r\n\r\n\treturn 0 if brackets else 1",
+    "link": "https://codility.com/programmers/lessons/7-stacks_and_queues/nesting/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 22,
+  "fields": {
+    "title": "Lesson 8, Dominator (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tdi = {}\r\n\tcenter = len(A)//2\r\n\tfor index, item in enumerate(A):\r\n\t\tif item in di:\r\n\t\t\tdi[item][0] += 1\r\n\t\telse:\r\n\t\t\tdi[item] = [1, index]\r\n\t\tif di[item][0] > center:\r\n\t\t\treturn di[item][1]\r\n\treturn -1",
+    "link": "https://codility.com/programmers/lessons/8-leader/dominator/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 23,
+  "fields": {
+    "title": "Lesson 8, EquiLeader (55%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(A):\r\n\tlenght = len(A)\r\n\tcounter = 0\r\n\tl_leader = None\r\n\tr_leader = None\r\n\r\n\tleft_leader = []\r\n\tleft_counter = {}\r\n\r\n\tright_leader = []\r\n\tright_counter = {}\r\n\r\n\tfor i in range(lenght):\r\n\t\tcurrent_len = i + 1\r\n\t\tif A[i] in left_counter:\r\n\t\t\tleft_counter[A[i]] += 1\r\n\t\telse:\r\n\t\t\tleft_counter[A[i]] = 1\r\n\t\tif left_counter[A[i]] >= current_len//2 + 1:\r\n\t\t\tleft_leader.append(A[i])\r\n\t\t\tl_leader = A[i]\r\n\t\telse:\r\n\t\t\tif left_counter[l_leader] >= current_len//2 + 1:\r\n\t\t\t\tleft_leader.append(l_leader)\r\n\t\t\telse:\r\n\t\t\t\tleft_leader.append('-')\r\n\r\n\t\tnegative_index = -current_len\r\n\t\tif A[negative_index] in right_counter:\r\n\t\t\tright_counter[A[negative_index]] += 1\r\n\t\telse:\r\n\t\t\tright_counter[A[negative_index]] = 1\r\n\t\tif right_counter[A[negative_index]] >= current_len//2 + 1:\r\n\t\t\tright_leader.insert(0, A[negative_index])\r\n\t\t\tr_leader = A[negative_index]\r\n\t\telse:\r\n\t\t\tif right_counter[r_leader] >= current_len//2 + 1:\r\n\t\t\t\tright_leader.insert(0, r_leader)\r\n\t\t\telse:\r\n\t\t\t\tright_leader.insert(0, '-')\r\n\r\n\tif l_leader is None:\r\n\t\treturn 0\r\n\r\n\tfor i in range(lenght - 1):\r\n\t\tif left_leader[i] == right_leader[i + 1] == l_leader:\r\n\t\t\tcounter += 1\r\n\r\n\treturn counter",
+    "link": "https://codility.com/programmers/lessons/8-leader/equi_leader/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 24,
+  "fields": {
+    "title": "Lesson 9, MaxDoubleSliceSum (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tlength = len(A)\r\n\tmax_ending_list_front = [0]*length\r\n\tmax_ending_front = 0\r\n\tfor index in range(1, length-1):\r\n\t\tmax_ending_front = max(0, A[index] + max_ending_front)\r\n\t\tmax_ending_list_front[index] = max_ending_front\r\n\r\n\tmax_ending_list_back = [0]*length\r\n\tmax_ending_back = 0\r\n\tfor index in range(length-2, 0, -1):\r\n\t\tmax_ending_back = max(0, A[index] + max_ending_back)\r\n\t\tmax_ending_list_back[index] = max_ending_back\r\n\r\n\tmax_slice = 0\r\n\tfor i in range(len(max_ending_list_front)-2):\r\n\t\tmax_slice = max(max_slice, max_ending_list_front[i] + max_ending_list_back[i+2])\r\n\r\n\treturn max_slice",
+    "link": "https://codility.com/programmers/lessons/9-maximum_slice_problem/max_double_slice_sum/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 25,
+  "fields": {
+    "title": "Lesson 9, MaxProfit (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(A):\r\n\tif len(A) < 2:\r\n\t\treturn 0\r\n\tmax_item = 0\r\n\tmin_item = A[0]\r\n\tbest = 0\r\n\tfor i in A:\r\n\t\tif i <= min_item:\r\n\t\t\tmin_item = i\r\n\t\t\tmax_item = 0\r\n\t\t\tcontinue\r\n\t\tif i >= max_item:\r\n\t\t\tmax_item = i\r\n\t\t\tdiff = max_item - min_item\r\n\t\t\tbest = diff if diff > best else best\r\n\treturn best",
+    "link": "https://codility.com/programmers/lessons/9-maximum_slice_problem/max_profit/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 26,
+  "fields": {
+    "title": "Lesson 9, MaxSliceSum (84%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(A):\r\n\tl = len(A)\r\n\tif l == 0:\r\n\t\treturn 0\r\n\tmax_slice = A[0]\r\n\tfor i in range(l):\r\n\t\ts = A[i]\r\n\t\tmax_slice = max(max_slice, s)\r\n\t\tfor j in range(i + 1, l):\r\n\t\t\ts = s + A[j]\r\n\t\t\tmax_slice = max(max_slice, s)\r\n\treturn max_slice",
+    "link": "https://codility.com/programmers/lessons/9-maximum_slice_problem/max_slice_sum/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 27,
+  "fields": {
+    "title": "Lesson 10, CountFactors (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(N):\r\n\tcount = 0\r\n\ti = 1\r\n\twhile i*i < N:\r\n\t\tif N%i == 0:\r\n\t\t\tcount += 2\r\n\t\ti += 1\r\n\tif i*i == N:\r\n\t\tcount += 1\r\n\treturn count",
+    "link": "https://codility.com/programmers/lessons/10-prime_and_composite_numbers/count_factors/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 28,
+  "fields": {
+    "title": "Lesson 10, MinPerimeterRectangle (100%)",
+    "annotation": "No annotations",
+    "code": "def solution(N):\r\n\tmin_perimeter = 2*1 + 2*N\r\n\ti = 2\r\n\twhile i*i <= N:\r\n\t\tif N % i == 0 and 2*(i) + 2*(N//i) < min_perimeter:\r\n\t\t\tmin_perimeter = 2*(i) + 2*(N//i)\r\n\t\ti += 1\r\n\r\n\treturn min_perimeter",
+    "link": "https://codility.com/programmers/lessons/10-prime_and_composite_numbers/min_perimeter_rectangle/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 29,
+  "fields": {
+    "title": "Lesson 10, Peaks (72%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(A):\r\n\tlength = len(A)\r\n\tpeaks = []\r\n\tfor index in range(1, length - 1):\r\n\t\tif A[index-1] < A[index] > A[index+1]:\r\n\t\t\tpeaks.append(index)\r\n\r\n\tif not peaks:\r\n\t\treturn 0\r\n\r\n\ti = 1\r\n\tfactors = []\r\n\tlen_peaks = len(peaks)\r\n\twhile i*i <= length:\r\n\t\tif length % i == 0:\r\n\t\t\tif i <= len_peaks:\r\n\t\t\t\tfactors.append(i)\r\n\t\t\tif length//i <= len_peaks:\r\n\t\t\t\tfactors.append(length//i)\r\n\t\ti += 1\r\n\r\n\tfactors = sorted(factors, reverse=True)\r\n\r\n\r\n\tfor i in factors:\r\n\t\tranges = length//i\r\n\t\tcount = 0\r\n\r\n\t\tfor j in range(1, i+1):\r\n\t\t\tfor k in peaks:\r\n\t\t\t\tif k < j*ranges:\r\n\t\t\t\t\tcount += 1\r\n\t\t\t\t\tbreak\r\n\r\n\t\tif i == count:\r\n\t\t\treturn i",
+    "link": "https://codility.com/programmers/lessons/10-prime_and_composite_numbers/peaks/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 30,
+  "fields": {
+    "title": "Lesson 10, Flags (66%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(A):\r\n\tpeaks = []\r\n\tfor i in range(1, len(A)-1):\r\n\t\tif A[i-1] < A[i] > A[i+1]:\r\n\t\t\tpeaks.append(i)\r\n\r\n\tflags = len(peaks)\r\n\t\r\n\tresults = 0\r\n\tfor f in range(1, flags+1):\r\n\t\tcount_flags = 0\r\n\t\tstart = None\r\n\t\tfor p in peaks:\r\n\t\t\tif not start:\r\n\t\t\t\tstart = p\r\n\t\t\t\tcount_flags += 1\r\n\t\t\t\tcontinue\r\n\t\t\tif count_flags == f:\r\n\t\t\t\tbreak\r\n\t\t\tif p-start >= f:\r\n\t\t\t\tstart = p\r\n\t\t\t\tcount_flags += 1\r\n\t\t\t\r\n\t\tif count_flags > results:\r\n\t\t\tresults = count_flags\r\n\r\n\treturn results",
+    "link": "https://codility.com/programmers/lessons/10-prime_and_composite_numbers/flags/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 31,
+  "fields": {
+    "title": "Lesson 11, CountSemiprimes (66%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def arrayF(n):\r\n\tF = [0] * (n + 1)\r\n\ti = 2\r\n\twhile (i * i <= n):\r\n\t\tif (F[i] == 0):\r\n\t\t\tk = i * i\r\n\t\t\twhile (k <= n):\r\n\t\t\t\tif (F[k] == 0):\r\n\t\t\t\t\tF[k] = i;\r\n\t\t\t\tk += i\r\n\t\ti += 1\r\n\treturn F\r\n\r\ndef solution(N, P, Q):\r\n\tresult = []\r\n\tprimes = arrayF(N)\r\n\r\n\tfor i in range(len(P)):\r\n\t\tcount = 0\r\n\t\tfor j in range(P[i], Q[i]+1):\r\n\t\t\tif primes[j] != 0:\r\n\t\t\t\tif primes[j//primes[j]] == 0:\r\n\t\t\t\t\tcount += 1\r\n\t\tresult.append(count)\r\n\treturn result",
+    "link": "https://codility.com/programmers/lessons/11-sieve_of_eratosthenes/count_semiprimes/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 32,
+  "fields": {
+    "title": "Lesson 11, CountNonDivisible (55%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def solution(A):\r\n\tresults = []\r\n\tA_c = sorted(A[:])\r\n\tlength = len(A_c)\r\n\r\n\tfor item in A:\r\n\t\tcount = 0\r\n\t\tindex = A_c.index(item)\r\n\t\tlast_index = index\r\n\t\ttry:\r\n\t\t\twhile A_c[index] == A_c[last_index+1]:\r\n\t\t\t\tlast_index += 1\r\n\t\texcept IndexError:\r\n\t\t\tpass\r\n\r\n\t\tcount += length - (last_index + 1)\r\n\t\twhile index > 0:\r\n\t\t\tindex -= 1\r\n\t\t\tif item % A_c[index] != 0:\r\n\t\t\t\tcount += 1\r\n\r\n\t\tresults.append(count)\r\n\r\n\treturn results",
+    "link": "https://codility.com/programmers/lessons/11-sieve_of_eratosthenes/count_non_divisible/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 33,
+  "fields": {
+    "title": "Lesson 12, ChocolatesByNumbers (100%)",
+    "annotation": "No annotations",
+    "code": "def gcd(a, b):\r\n\tif a % b == 0:\r\n\t\treturn b\r\n\treturn gcd(b, a % b)\r\n\r\n\r\ndef solution(N, M):\r\n\tgreatest_common_divisor = gcd(N, M)\r\n\tleast_common_multiple = N*M/greatest_common_divisor\r\n\treturn least_common_multiple/M",
+    "link": "https://codility.com/programmers/lessons/12-euclidean_algorithm/chocolates_by_numbers/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 34,
+  "fields": {
+    "title": "Lesson 12, CommonPrimeDivisors (61%)",
+    "annotation": "Help needed in speed performance",
+    "code": "def decay(n):\r\n\tprimes = []\r\n\tfor i in range(2, n+1):\r\n\t\twhile n % i == 0:\r\n\t\t\tprimes.append(i)\r\n\t\t\tn = n/i\r\n\t\t\tif n == 1:\r\n\t\t\t\tbreak\r\n\treturn set(primes)\r\n\r\n\r\ndef solution(A, B):\r\n\tresults = 0\r\n\tfor i in range(len(A)):\r\n\t\tif decay(A[i]) == decay(B[i]):\r\n\t\t\tresults += 1\r\n\treturn results",
+    "link": "https://codility.com/programmers/lessons/12-euclidean_algorithm/common_prime_divisors/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 35,
+  "fields": {
+    "title": "Lesson 13, Ladder (50%)",
+    "annotation": "Help needed in speed performance",
+    "code": "import operator as op\r\n\r\ndef ncr(n, r):\r\n\tr = min(r, n-r)\r\n\tif r == 0: return 1\r\n\ttry:\r\n\t\tnumer = reduce(op.mul, xrange(n, n-r, -1))\r\n\t\tdenom = reduce(op.mul, xrange(1, r+1))\r\n\texcept TypeError:\r\n\t\treturn 0\r\n\treturn numer//denom\r\n\r\ndef solution(A, B):\r\n\tL = len(A)\r\n\tresult = []\r\n\t\r\n\tfor index in xrange(L):\r\n\t\tcount = A[index]\r\n\t\tpartial_sum = 0\r\n\t\tfor i in xrange(L):\r\n\t\t\tpartial_sum += ncr(count, i)\r\n\t\t\tif i > count:\r\n\t\t\t\tbreak\r\n\t\t\tcount -= 1\r\n\t\tresult.append(partial_sum % 2**B[index])\r\n\treturn result",
+    "link": "https://codility.com/programmers/lessons/13-fibonacci_numbers/ladder/"
+  }
+},
+{
+  "model": "codility.codilitytask",
+  "pk": 36,
+  "fields": {
+    "title": "Lesson 13, FibFrog (25%)",
+    "annotation": "I think that correctness is 100%, but the performance is so terrible that i can't even pass some of the correctness test - Tips and ideas for speed up much appreciate!",
+    "code": "def fib(n):\r\n\tresult = []\r\n\ta, b = 0, 1\r\n\twhile a <= n:\r\n\t\tresult.append(a)\r\n\t\ta, b = b, a+b\r\n\treturn result\r\n\r\ndef solution(A):\r\n\tl = len(A)+1\r\n\tfib_num = fib(l)\r\n\tfib_num.remove(1)\r\n\tA.append(1)\r\n\tcount = [[]]\r\n\tdef fun(B):\r\n\t\tfor i in reversed(fib_num):\r\n\t\t\ttry:\r\n\t\t\t\tif B[i-1] == 1:\r\n\t\t\t\t\tif i != 0:\r\n\t\t\t\t\t\tcount[-1].append((i))\r\n\r\n\t\t\t\t\tif len(B) == i:\r\n\t\t\t\t\t\tif sum(count[-1]) != l:\r\n\t\t\t\t\t\t\tdel count[-1]\r\n\t\t\t\t\t\tcount.append([])\r\n\t\t\t\t\tif B == B[i:]:\r\n\t\t\t\t\t\tdel count[-1]\r\n\t\t\t\t\t\tcount.append([])\r\n\t\t\t\t\t\tcontinue\r\n\t\t\t\t\t\t\r\n\t\t\t\t\tfun(B[i:])\r\n\t\t\texcept IndexError:\r\n\t\t\t\tpass\r\n\tfun(A)\r\n\ttry:\r\n\t\tresult = min({len(i) for i in count if len(i) > 0})\r\n\texcept:\r\n\t\tresult = -1\r\n\r\n\treturn result",
+    "link": "https://codility.com/programmers/lessons/13-fibonacci_numbers/fib_frog/"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 2,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 2,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 2,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 3,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 3,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 3,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 4,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 4,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 4,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can add applications",
+    "content_type": 7,
+    "codename": "add_applications"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can change applications",
+    "content_type": 7,
+    "codename": "change_applications"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can delete applications",
+    "content_type": 7,
+    "codename": "delete_applications"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can add catalog",
+    "content_type": 8,
+    "codename": "add_catalog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can change catalog",
+    "content_type": 8,
+    "codename": "change_catalog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can delete catalog",
+    "content_type": 8,
+    "codename": "delete_catalog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add item",
+    "content_type": 9,
+    "codename": "add_item"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change item",
+    "content_type": 9,
+    "codename": "change_item"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete item",
+    "content_type": 9,
+    "codename": "delete_item"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can add codility task",
+    "content_type": 10,
+    "codename": "add_codilitytask"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can change codility task",
+    "content_type": 10,
+    "codename": "change_codilitytask"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can delete codility task",
+    "content_type": 10,
+    "codename": "delete_codilitytask"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can add logged in user",
+    "content_type": 11,
+    "codename": "add_loggedinuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can change logged in user",
+    "content_type": 11,
+    "codename": "change_loggedinuser"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can delete logged in user",
+    "content_type": 11,
+    "codename": "delete_loggedinuser"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$QIAk7zSanxrY$104ltxXabwAlUloUUYF5hGAMoyL9W7bsRqOJdD5t7ws=",
+    "last_login": "2017-05-11T12:48:01.552Z",
+    "is_superuser": true,
+    "username": "shades",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2017-02-02T14:05:35.547Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$V26gttH68Uaw$aT2nWPFzP59tqf2sMHZE9pM3vRNcBR0+PKab7RpGxvw=",
+    "last_login": "2017-05-07T10:05:00.334Z",
+    "is_superuser": false,
+    "username": "john",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-05-03T16:32:19.193Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$sRI6XTH5R5xC$80PecNdlzkyv6MUxVK4nuDvWLXDn78jqaHnXkEbL3xA=",
+    "last_login": "2017-05-06T09:12:49.622Z",
+    "is_superuser": false,
+    "username": "qwer",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-05-03T16:38:51.763Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$YzlwI7vAx2xa$iE1GtHmjE7pGzTv6KWm4cDICabeZBE5+g4e41QxwO3M=",
+    "last_login": "2017-05-03T16:43:52.061Z",
+    "is_superuser": false,
+    "username": "1234",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-05-03T16:43:51.742Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$8ozwtIZbhzkK$6+TLXwZIu2HIbKZChF0SVAD7r7ncPDXpNY8DA2S97fU=",
+    "last_login": "2017-05-06T10:45:24.329Z",
+    "is_superuser": false,
+    "username": "asdf",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2017-05-06T10:45:23.939Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth_chat.loggedinuser",
+  "pk": 22,
+  "fields": {
+    "user": 5
+  }
+},
+{
+  "model": "auth_chat.loggedinuser",
+  "pk": 46,
+  "fields": {
+    "user": 2
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2017-02-02T15:15:23.705Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2017-02-02T15:29:12.010Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2017-02-02T15:44:03.642Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Applications object",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2017-02-02T15:52:51.345Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2017-02-02T15:54:06.861Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2017-02-02T15:57:57.934Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2017-02-02T16:00:04.295Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Applications object",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2017-02-02T16:06:34.808Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2017-02-02T16:17:49.843Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Applications object",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2017-02-02T16:19:40.758Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Applications object",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2017-02-02T16:22:38.821Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Applications object",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2017-02-02T17:25:21.479Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2017-02-02T17:25:29.605Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2017-02-02T17:37:45.404Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2017-02-02T17:37:57.081Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2017-02-02T18:27:40.297Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2017-02-02T18:34:06.071Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2017-02-02T18:34:11.909Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2017-02-02T18:35:13.024Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2017-02-02T18:35:13.223Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2017-02-02T18:35:13.456Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2017-02-02T18:35:13.689Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2017-02-02T19:37:34.508Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2017-02-06T18:03:00.933Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2017-02-09T13:07:09.118Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2017-02-09T13:11:32.884Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2017-02-09T13:21:00.954Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2017-02-09T15:05:45.331Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\", \"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2017-02-09T15:45:25.414Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2017-02-09T15:45:25.613Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2017-02-09T15:45:25.813Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2017-02-09T15:45:26.002Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2017-02-09T15:45:26.194Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2017-02-09T16:08:07.666Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2017-02-12T12:39:06.537Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2017-02-12T16:49:28.329Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2017-02-16T11:49:15.372Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\", \"tags\", \"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2017-02-16T11:55:28.114Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2017-02-16T11:56:52.284Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2017-02-16T13:31:59.219Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Root",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2017-02-16T13:33:02.477Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "First",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2017-02-16T13:33:11.872Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Second",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2017-02-16T13:33:26.466Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "F2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2017-02-16T13:33:47.530Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "F3",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2017-02-16T13:42:25.057Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "S1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2017-02-16T13:42:32.286Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "S2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2017-02-16T13:42:38.330Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "8",
+    "object_repr": "S3",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2017-02-16T14:21:36.059Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Root",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2017-02-16T14:21:53.360Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "2",
+    "object_repr": "First",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2017-02-16T14:22:01.075Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "3",
+    "object_repr": "Second",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2017-02-16T14:22:08.042Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "4",
+    "object_repr": "F1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2017-02-16T14:22:15.674Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "F2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2017-02-16T14:22:19.757Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "S1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2017-02-16T14:22:25.175Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "S2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2017-02-16T14:23:32.872Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "S1_item",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2017-02-16T14:23:42.860Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "S2_item",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2017-02-16T14:23:58.722Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "S1_item_next",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2017-02-16T14:24:11.348Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "4",
+    "object_repr": "F2_item",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2017-02-16T15:00:01.208Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "S1_item",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"link\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2017-02-16T15:00:05.063Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "4",
+    "object_repr": "F2_item",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"link\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2017-02-16T15:38:24.828Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "5",
+    "object_repr": "F1_s",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2017-02-17T10:58:44.790Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "R1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2017-02-17T10:59:02.440Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "8",
+    "object_repr": "Food",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2017-02-17T20:29:22.258Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "7",
+    "object_repr": "Vegetables",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2017-02-17T20:29:32.480Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "8",
+    "object_repr": "Fruits",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 66,
+  "fields": {
+    "action_time": "2017-02-18T19:37:25.319Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 67,
+  "fields": {
+    "action_time": "2017-02-21T12:29:50.562Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Applications object",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 68,
+  "fields": {
+    "action_time": "2017-03-06T20:24:29.361Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\", \"tags\", \"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 69,
+  "fields": {
+    "action_time": "2017-03-06T20:25:11.552Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 70,
+  "fields": {
+    "action_time": "2017-03-06T20:46:02.908Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 71,
+  "fields": {
+    "action_time": "2017-03-06T21:16:29.587Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Lesson 1, BinaryGap (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 72,
+  "fields": {
+    "action_time": "2017-03-06T21:19:21.534Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Lesson 2, OddOccurrencesInArray (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 73,
+  "fields": {
+    "action_time": "2017-03-06T21:20:31.524Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Lesson 1, BinaryGap (100%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 74,
+  "fields": {
+    "action_time": "2017-03-06T21:21:33.748Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Lesson 1, BinaryGap (100%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"code\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 75,
+  "fields": {
+    "action_time": "2017-03-06T21:43:49.884Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "3",
+    "object_repr": "Lesson 2, CyclicRotation (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 76,
+  "fields": {
+    "action_time": "2017-03-06T21:51:50.993Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 77,
+  "fields": {
+    "action_time": "2017-03-07T11:38:23.454Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "Lesson 3, FrogJmp (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 78,
+  "fields": {
+    "action_time": "2017-03-07T11:39:05.635Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Lesson 3, PermMissingElem (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 79,
+  "fields": {
+    "action_time": "2017-03-07T11:39:40.364Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Lesson 3, TapeEquilibrium (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 80,
+  "fields": {
+    "action_time": "2017-03-07T11:41:12.875Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Lesson 4, PermCheck (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 81,
+  "fields": {
+    "action_time": "2017-03-07T11:41:42.972Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Lesson 4, FrogRiverOne (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 82,
+  "fields": {
+    "action_time": "2017-03-07T11:42:23.464Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "Lesson 4, MissingInteger (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 83,
+  "fields": {
+    "action_time": "2017-03-07T11:43:14.346Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Lesson 4, MaxCounters (88%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 84,
+  "fields": {
+    "action_time": "2017-03-07T11:44:14.992Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 85,
+  "fields": {
+    "action_time": "2017-03-07T11:48:38.764Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "11",
+    "object_repr": "Lesson 5, PassingCars (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 86,
+  "fields": {
+    "action_time": "2017-03-07T11:49:11.924Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "12",
+    "object_repr": "Lesson 5, CountDiv (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 87,
+  "fields": {
+    "action_time": "2017-03-07T11:53:36.429Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Lesson 5, GenomicRangeQuery (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 88,
+  "fields": {
+    "action_time": "2017-03-07T11:55:24.389Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Lesson 5, GenomicRangeQuery (100%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"annotation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 89,
+  "fields": {
+    "action_time": "2017-03-07T11:56:27.794Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "Lesson 6, Distinct (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 90,
+  "fields": {
+    "action_time": "2017-03-07T11:56:58.145Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Lesson 6, MaxProductOfThree (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 91,
+  "fields": {
+    "action_time": "2017-03-07T11:57:29.484Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "Lesson 6, Triangle (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 92,
+  "fields": {
+    "action_time": "2017-03-07T11:58:54.519Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "Lesson 6, NumberOfDiscIntersections (56%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 93,
+  "fields": {
+    "action_time": "2017-03-07T11:59:26.260Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Lesson 7, Brackets (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 94,
+  "fields": {
+    "action_time": "2017-03-07T11:59:57.776Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "Lesson 7, StoneWall (92%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 95,
+  "fields": {
+    "action_time": "2017-03-07T12:02:28.981Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "20",
+    "object_repr": "Lesson 7, Fish (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 96,
+  "fields": {
+    "action_time": "2017-03-07T12:03:03.708Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "21",
+    "object_repr": "Lesson 7, Nesting (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 97,
+  "fields": {
+    "action_time": "2017-03-07T12:03:33.368Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "22",
+    "object_repr": "Lesson 8, Dominator (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 98,
+  "fields": {
+    "action_time": "2017-03-07T12:04:10.996Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "Lesson 8, EquiLeader (55%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 99,
+  "fields": {
+    "action_time": "2017-03-07T12:07:08.854Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "24",
+    "object_repr": "Lesson 9, MaxDoubleSliceSum (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 100,
+  "fields": {
+    "action_time": "2017-03-07T12:09:25.902Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "25",
+    "object_repr": "Lesson 9, MaxProfit (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 101,
+  "fields": {
+    "action_time": "2017-03-07T12:11:05.324Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "26",
+    "object_repr": "Lesson 9, MaxSliceSum (84%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 102,
+  "fields": {
+    "action_time": "2017-03-07T12:12:26.671Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "27",
+    "object_repr": "Lesson 10, CountFactors (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 103,
+  "fields": {
+    "action_time": "2017-03-07T12:12:58.315Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "28",
+    "object_repr": "Lesson 10, MinPerimeterRectangle (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 104,
+  "fields": {
+    "action_time": "2017-03-07T12:22:02.174Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "29",
+    "object_repr": "Lesson 10, Peaks (72%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 105,
+  "fields": {
+    "action_time": "2017-03-07T12:22:32.949Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "30",
+    "object_repr": "Lesson 10, Flags (66%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 106,
+  "fields": {
+    "action_time": "2017-03-07T12:23:21.037Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "31",
+    "object_repr": "Lesson 11, CountSemiprimes (66%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 107,
+  "fields": {
+    "action_time": "2017-03-07T12:23:55.946Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "32",
+    "object_repr": "Lesson 11, CountNonDivisible (55%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 108,
+  "fields": {
+    "action_time": "2017-03-07T12:24:34.729Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "33",
+    "object_repr": "Lesson 12, ChocolatesByNumbers (100%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 109,
+  "fields": {
+    "action_time": "2017-03-07T12:25:11.905Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "34",
+    "object_repr": "Lesson 12, CommonPrimeDivisors (61%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 110,
+  "fields": {
+    "action_time": "2017-03-07T12:25:54.628Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "34",
+    "object_repr": "Lesson 12, CommonPrimeDivisors (61%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"annotation\", \"code\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 111,
+  "fields": {
+    "action_time": "2017-03-07T12:28:48.586Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "35",
+    "object_repr": "Lesson 13, Ladder (50%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 112,
+  "fields": {
+    "action_time": "2017-03-07T12:30:39.879Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "36",
+    "object_repr": "Lesson 13, FibFrog (25%)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 113,
+  "fields": {
+    "action_time": "2017-03-07T12:36:54.150Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 114,
+  "fields": {
+    "action_time": "2017-03-07T13:00:17.082Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "23",
+    "object_repr": "Lesson 8, EquiLeader (55%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"annotation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 115,
+  "fields": {
+    "action_time": "2017-03-07T13:00:32.169Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "Lesson 7, StoneWall (92%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"annotation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 116,
+  "fields": {
+    "action_time": "2017-03-07T13:00:48.406Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "Lesson 6, NumberOfDiscIntersections (56%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"annotation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 117,
+  "fields": {
+    "action_time": "2017-03-07T13:01:28.340Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Lesson 4, MaxCounters (88%)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"annotation\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 118,
+  "fields": {
+    "action_time": "2017-03-07T15:14:15.140Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 119,
+  "fields": {
+    "action_time": "2017-03-09T18:52:27.986Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Matplotlib Graphs",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\", \"tags\", \"url_source\", \"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 120,
+  "fields": {
+    "action_time": "2017-03-14T18:34:50.765Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Matplotlib Graphs",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 121,
+  "fields": {
+    "action_time": "2017-03-16T10:44:52.399Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "6",
+    "object_repr": "Matplotlib Graphs",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 122,
+  "fields": {
+    "action_time": "2017-03-21T13:25:43.845Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Julia Set - Fractals Generator",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\", \"tags\", \"url_source\", \"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 123,
+  "fields": {
+    "action_time": "2017-03-22T14:50:27.675Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Julia Set - Fractals Generator",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 124,
+  "fields": {
+    "action_time": "2017-03-22T21:46:13.447Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Julia Set - Fractals Generator",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 125,
+  "fields": {
+    "action_time": "2017-03-23T11:34:31.534Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Julia Set - Fractals Generator",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 126,
+  "fields": {
+    "action_time": "2017-03-23T11:35:46.158Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Julia Set - Fractals Generator",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 127,
+  "fields": {
+    "action_time": "2017-03-23T11:38:14.253Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Julia Set - Fractals Generator",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 128,
+  "fields": {
+    "action_time": "2017-03-23T12:31:46.283Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Julia Set - Fractals Generator",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 129,
+  "fields": {
+    "action_time": "2017-03-24T10:42:14.364Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Yield :)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\", \"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 130,
+  "fields": {
+    "action_time": "2017-03-24T11:34:43.580Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Yield :)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"url_name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 131,
+  "fields": {
+    "action_time": "2017-03-24T11:36:33.943Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Yield :)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 132,
+  "fields": {
+    "action_time": "2017-03-24T11:37:15.947Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Yield :)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 133,
+  "fields": {
+    "action_time": "2017-03-25T21:45:20.661Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Streaming Wallpapers",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\", \"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 134,
+  "fields": {
+    "action_time": "2017-03-25T22:15:20.413Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Streaming Wallpapers",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 135,
+  "fields": {
+    "action_time": "2017-03-25T22:16:22.996Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Streaming Wallpapers",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 136,
+  "fields": {
+    "action_time": "2017-03-27T10:06:34.008Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Streaming Wallpapers",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 137,
+  "fields": {
+    "action_time": "2017-03-27T13:04:13.605Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Modified Preorder Tree Traversal",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 138,
+  "fields": {
+    "action_time": "2017-04-03T14:28:46.372Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "SciKit-Learn with Highcharts",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 139,
+  "fields": {
+    "action_time": "2017-04-03T19:58:30.923Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 140,
+  "fields": {
+    "action_time": "2017-04-03T19:59:08.477Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 141,
+  "fields": {
+    "action_time": "2017-04-03T21:05:16.130Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "SciKit-Learn with Highcharts",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 142,
+  "fields": {
+    "action_time": "2017-05-02T22:20:43.735Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django channels and custom authetication",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 143,
+  "fields": {
+    "action_time": "2017-05-02T22:21:21.272Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels and Custom Authetication",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 144,
+  "fields": {
+    "action_time": "2017-05-02T22:29:31.677Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels and Custom Authetication",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 145,
+  "fields": {
+    "action_time": "2017-05-04T12:18:46.217Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels and Custom Authetication",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 146,
+  "fields": {
+    "action_time": "2017-05-09T20:38:15.485Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 147,
+  "fields": {
+    "action_time": "2017-05-09T21:05:34.611Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\", \"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 148,
+  "fields": {
+    "action_time": "2017-05-09T21:12:32.155Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels and Custom Authetication",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 149,
+  "fields": {
+    "action_time": "2017-05-09T21:13:38.959Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 150,
+  "fields": {
+    "action_time": "2017-05-09T21:17:53.809Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 151,
+  "fields": {
+    "action_time": "2017-05-09T21:20:36.615Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 152,
+  "fields": {
+    "action_time": "2017-05-09T21:23:31.002Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels and Custom Authetication",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 153,
+  "fields": {
+    "action_time": "2017-05-09T21:25:27.862Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 154,
+  "fields": {
+    "action_time": "2017-05-09T21:26:23.736Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "SciKit-Learn with Highcharts",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 155,
+  "fields": {
+    "action_time": "2017-05-09T21:26:46.733Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Search Applications",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 156,
+  "fields": {
+    "action_time": "2017-05-09T21:27:13.943Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Modified Preorder Tree Traversal",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"tags\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 157,
+  "fields": {
+    "action_time": "2017-05-11T09:22:28.685Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Change Styling",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 158,
+  "fields": {
+    "action_time": "2017-05-11T09:28:18.650Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Change Styling",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 159,
+  "fields": {
+    "action_time": "2017-05-11T09:29:02.818Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Change Styling",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 160,
+  "fields": {
+    "action_time": "2017-05-11T09:33:05.000Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 161,
+  "fields": {
+    "action_time": "2017-05-11T09:37:16.097Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "7",
+    "object_repr": "Codility",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 162,
+  "fields": {
+    "action_time": "2017-05-11T09:48:57.927Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels with Authetication",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"name\", \"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 163,
+  "fields": {
+    "action_time": "2017-05-11T09:50:23.456Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels with Authetication",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 164,
+  "fields": {
+    "action_time": "2017-05-11T12:50:37.639Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "9",
+    "object_repr": "Django Channels with Authetication",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 165,
+  "fields": {
+    "action_time": "2017-05-11T15:37:42.303Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "SciKit-Learn with Highcharts",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 166,
+  "fields": {
+    "action_time": "2017-05-11T15:44:42.629Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "SciKit-Learn with Highcharts",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 167,
+  "fields": {
+    "action_time": "2017-05-11T15:45:07.537Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "8",
+    "object_repr": "SciKit-Learn with Highcharts",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 168,
+  "fields": {
+    "action_time": "2017-05-11T16:15:54.773Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Modified Preorder Tree Traversal",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 169,
+  "fields": {
+    "action_time": "2017-05-11T16:33:58.283Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Modified Preorder Tree Traversal",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"description\"]}}]"
+  }
+}
+]
