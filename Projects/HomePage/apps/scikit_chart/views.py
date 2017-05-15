@@ -19,7 +19,7 @@ def scikit_chart(request):
 
 def regression_line(request):
 	if request.method == 'POST' and request.is_ajax():
-		data = json.loads(request.body)
+		data = json.loads(request.body.decode('utf-8'))
 
 		reg = linear_model.LinearRegression()
 		x_train, x_test, y_train, y_test = train_test_split(
@@ -46,7 +46,7 @@ def regression_line(request):
 
 def k_nearest_neighborns(request):
 	if request.method == 'POST' and request.is_ajax():
-		data = json.loads(request.body)
+		data = json.loads(request.body.decode('utf-8'))
 
 		knn = KNeighborsClassifier(n_neighbors=13)
 
