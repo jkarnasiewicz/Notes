@@ -162,3 +162,106 @@ sudo apt-get update
 sudo apt-get install elasticsearch
 sudo update-rc.d elasticsearch defaults 95 10
 sudo /etc/init.d/elasticsearch start
+
+
+
+=========================
+
+HEROKU
+
+
+
+# Deploy new app
+git init/git clone
+heroku create app_name
+git push heroku master
+heroku ps:scale web=1
+heroku open
+
+
+
+# View logs
+heroku logs --tail
+
+
+
+# Define a Procfile
+# a text file in the root directory of your application,
+# to explicitly declare what command should be executed to start your app
+web: gunicorn gettingstarted.wsgi --log-file -
+
+
+
+# Scale the app
+heroku ps   # info
+heroku ps:scale web=1
+
+
+
+# Declare app dependencies
+requirements.txt
+
+
+
+# Run app locally
+python manage.py collectstatic
+
+heroku local web -f Procfile.windows
+# or
+heroku local web
+
+
+
+# Push local changes
+git add .
+git commit -m "Demo"
+git push heroku master
+heroku open
+
+
+
+# Add-ons (third-party cloud services)
+heroku addons:create addon_name
+
+# documentation
+heroku addons:docs addon_name
+
+# list add-ons
+heroku addons
+
+
+
+# One-off dynos
+# Heroku allows you to run commands in a one-off dyno by using the
+heroku run command. Use this for scripts and applications that only
+need to be executed when needed, such as maintenance tasks, loading
+fixtures into a database, or database migrations during application updates
+
+# Start a console
+heroku run python manage.py shell
+
+# Open a shell
+heroku run bash
+
+
+
+# Define config vars (.env)
+# heroku local will automatically set up the environment based
+# on the contents of the .env file in your local directory
+
+# To set the config var on Heroku, execute the following:
+heroku config:set TIMES=2
+
+# View the config vars that are set using heroku config
+heroku config
+# More informations
+heroku pg
+
+
+
+# Database
+heroku run python manage.py migrate
+
+# Connect to the remote database and see all the rows
+heroku pg:psql
+select * from hello_greeting; 

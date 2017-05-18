@@ -15,6 +15,8 @@ developed separately.
 
 # SVG - Scalable Vector Graphics
 
+# PID - Process IDentifier
+
 # EAFP
 Easier to ask for forgiveness than permission. This common Python coding style assumes the
 existence of valid keys or attributes and catches exceptions if the assumption proves false.

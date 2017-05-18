@@ -168,8 +168,8 @@ nmap -p 22 eridani.wcss.pl         					# sprawdzenie nmap-em portu 22 nmap na e
 nmap -T4 156.17.181.95 -PN               			# searching ports(info about all ports). T4 - spowolnienie odpytywan(zbyt duzo zapytan na sekunde z tego samego miejsca)
 nmap -T4 -p 1433 156.17.181.95 -PN               	# info about port 1433
 
-tsql -H 156.17.181.95 -p 1433 -U 'SpinLab' -P 'gApTv#91$D' -D 'MaGDA' # -h host -p port -U user -P password
-tsql -S sqlserver -U 'SpinLab' -P 'gApTv#91$D' -D 'MaGDA'
+tsql -H 156.17.181.95 -p 1433 -U 'User' -P 'password' -D 'server' # -h host -p port -U user -P password
+tsql -S sqlserver -U 'User' -P 'password' -D 'server'
 
 
 
