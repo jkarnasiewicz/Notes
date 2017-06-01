@@ -1585,6 +1585,35 @@ window.onload = function() {
 
 
 
+// FILE READER
+var inputElement = document.getElementById("file");
+inputElement.addEventListener("change", handleFiles, false);
+
+function handleFiles() {
+	var fileList = this.files;
+	var reader = new FileReader();
+	reader.onload = loadFile;
+	reader.readAsText(fileList[0]);
+}
+
+function loadFile() {
+	// look for the body section of the document
+	var parser = new DOMParser();
+	var html = parser.parseFromString(this.result, "text/html");
+	var content = html.getElementsByTagName("body");
+	// if found, extract the body element's innerHTML
+	if (content.length > 0) {
+		var ct = content[0].innerHTML;
+		var title = document.getElementById("bookTitle").value;
+		title = "<h2>" + title + "</title>";
+		document.getElementById("result").innerHTML = title + ct;
+	}
+}
+
+
+
+
+
 // JavaScript Libraries
 Google Closure Library
 Mootools

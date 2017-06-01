@@ -6,7 +6,7 @@
 # raise from lambda !
 
 # ML/25
-# JS/387
+# JS/517
 
 # Testing JavaScript:
 # jsHint
@@ -30,6 +30,11 @@
 # At the End learn:
 # unittest module
 # regexp
+# hash tables
+# https vs http/wss vs ws
+# mptt conception
+# monte-carlo info
+# make-files
 
 
 
@@ -78,13 +83,16 @@
 # on in this tutorial, we send WebSockets messages using the ws:// prefix, as opposed to http://.
 
 
+python manage.py loaddata search_app.json codility.json tree_traversal.json
+python manage.py collectstatic
 
-# RAZORHILL MUSIC
-# Stop making scv-s from one base at 22
+daphne HomePage.asgi:channel_layer --port 8000 --bind 0.0.0.0 -v2
+python manage.py runworker -v2
+python manage.py runworker -v2 --settings=HomePage.local_settings
 
-# django channels with simple customized authentication
-# SQLite
-# Kivy
+heroku addons:create heroku-redis
+
+
 
 
 # (.*) 	-> Greedy!
@@ -97,6 +105,10 @@
 
 # (?!expression)  : Negative Look Ahead
 # (?<!expression) : Negative Look Behind
+
+
+# add to S1
+# times = int(os.environ.get('TIMES',3))
 
 
 
@@ -112,8 +124,55 @@ Jack speaking, how may I help you?
 
 
 
+# scikit-learn
+scikit-learn, machine Learning in Python and javascript highcharts
+Supervised learning(we told/train machine what the classes of features are)
+Regression (predict a continuous response)
+Linear Regression(Regresja liniowa)(best fitting line)/Coefficient of determination(Współczynnik determinacji)
+Classification (predict a categorical response)
+Classification k-Nearest Neighbors(not scaling well)/Accuracy(dokładność/trafność)
+Classification Support Vector Machine(SVM)/Best separated hyperplane/Convex optimization problem/Kernels/RBF(Radial basic function)
 
-Search application
-Filter list of my applications, using technology or theme keywords related to specific application
-Tags describe technology  used in  or theme of the application
-Technology used/available tags
+
+
+
+PageSpeed Insights
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
+# back button
+There is a better way—a much better way: using HTML5’s history.pushState and
+history.replaceState methods to persist a state object, and the window.onpope
+vent to restore the page state:
+
+window.history.pushState({ page : page}, "Page " + page, "?page=" + page);
+
+window.onpopstate = function(event) {
+	check for event.state, if found, reload state
+	if (!event.state) return;
+	var page = event.state.page;
+}
+
+
+
+# session storage (DOM Storage techniques)
+sessionStorage.setItem(key, value);
+sessionStorage.getItem(key)
+sessionStorage.removeItem(key);
+
+# vs cookies(persistent through tab windows)
+document.cookie;
+
+# local storage
+localStorage.setItem("key","value");
+localStorage.key = value;
+
+localStorage.clear();
+
+# The sessionStorage object only stores data for the session, but the localStorage object stores data on the client forever, or until specifically removed.
+
+# indexedDB
+
+
+# github account
+# https://www.linkedin.com account

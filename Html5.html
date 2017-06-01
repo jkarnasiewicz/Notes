@@ -79,8 +79,8 @@ class="col-xs-3" - always this size
 
 <!-- Video -->
 <video autoplay loop controls poster="" id="vid" width="480" height="270">
-	<source src="{% static 'images/jumbotron_stars.mp4' %}" type="video/mp4" />
-	<source src="{% static 'images/jumbotron_stars.webm' %}" type="video/webm" />
+	<source src="{% static 'media/stars.mp4' %}" type="video/mp4" />
+	<source src="{% static 'media/stars.webm' %}" type="video/webm" />
 </video>
 
 
@@ -128,3 +128,12 @@ class="col-xs-3" - always this size
 
 <!-- Preformatted text -->
 <pre>Cras mattis</pre>
+
+
+<!-- Importing Custom Elements -->
+<link rel="import" href="src/new2.html">
+<!-- Template -->
+<template></template>
+
+<!-- Using Custom Elements -->
+<hello-world who="Shelley"></hello-world>

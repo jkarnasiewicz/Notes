@@ -1,4 +1,4 @@
-print("Executing __main__.py")
+print("Executing", __file__)
 import glob
 import pprint
 a = glob.glob("*")

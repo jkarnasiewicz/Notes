@@ -13,9 +13,19 @@ developed separately.
 
 # FUBAR - fucked up beyond all recognition
 
+# XML - Extensible Markup Language
+
 # SVG - Scalable Vector Graphics
 
+# Blob - Binary Large Object
+
 # PID - Process IDentifier
+
+# NPM - Node Package Manager
+
+# SSL - Secure Socket Layer
+
+# CORS - Cross-Origin Resource Sharing
 
 # EAFP
 Easier to ask for forgiveness than permission. This common Python coding style assumes the
@@ -381,6 +391,7 @@ python -m http.server 9000
 
 # 5XX Server Error
 500 Internal Server Error
+503 Service Unavailable
 
 
 

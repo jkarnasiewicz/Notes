@@ -23,25 +23,32 @@ position: fixed;
 }
 
 
-/*Breaking long strings*/
+
+/* Breaking long strings */
 style="word-break: break-all;"
 
-/*Scroll*/
+
+
+/* Scroll */
 overflow: auto or scroll
 
-/*Measurement*/
+
+
+/* Measurement */
 min-width:100px
 
-/*Cursor*/
+
+
+/* Cursor */
 style="cursor: pointer;"
 
 body {
 	min-height: 1000px;
 }
 
-/*Bootstrap*/
 
-/*Center*/
+
+/* Center */
 .center-block {
    margin-left:auto;
    margin-right:auto;
@@ -56,28 +63,6 @@ body {
 	background: #e0ebff none repeat scroll 0 0;
 }
 
-
-
-
-
-
-
-
-
-<h3><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Jacek Karnasiewicz &#10170; &#x0D37; &#9728;</h3>
-
-
-
-
-.jumbotron {
-	background-size: cover;
-	background-position: center center;
-	background-attachment: fixed;
-	text-align: center;
-	border-bottom: 1px solid #e5e5e5;
-}
-
-	content: "/\00a0";
 
 
 /* Create overlay */
@@ -103,3 +88,16 @@ function restore() {
 	document.body.removeChild(document.getElementById("overlay"));
 }
 */
+
+
+
+/*  */
+.jumbotron {
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	text-align: center;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+	content: "/\00a0";

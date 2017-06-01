@@ -243,6 +243,9 @@ heroku run python manage.py shell
 # Open a shell
 heroku run bash
 
+# Restar app
+heroku restart
+
 
 
 # Define config vars (.env)

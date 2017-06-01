@@ -66,8 +66,8 @@ DELETE FROM table_name;                                    # delete all rows in 
 
 # SELECT TOP/LIMIT
 SELECT TOP number|percent column_name FROM table_name;     # SQL Server / MS Access Syntax
-SELECT column_name FROM table_name LIMIT number;           # MySQL
-
+SELECT column_name FROM table_name LIMIT number;           # MySQL, PostgreSQL
+SELECT * FROM COMPANY LIMIT 3 OFFSET 2;					   # with offset - select id 3, 4, 5	
 
 # Aliases/ AS
 SELECT column_name AS alias_name FROM table_name;    # SQL aliases are used to temporarily rename a table or a column heading.
