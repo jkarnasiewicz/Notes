@@ -56,6 +56,12 @@ updated many times per second and slow players are at a real disadvantage
 # REDIS
 Redis is in-memory data structure store, used as a database, cache and message broker
 
+# Algorytm deterministyczny
+Algorytm, którego działanie jest całkowicie zdeterminowane przez warunki początkowe (wejście).
+Oznacza to, że kilkukrotne uruchomienie takiego algorytmu doprowadzi za każdym razem do
+takiego samego wyniku. Algorytmy deterministyczne stanowią główny obszar badań informatycznych
+i są najczęściej stosowane, ponieważ mogą być łatwo realizowane na współczesnych komputerach
+
 # Hexadecimal numbers(0123456789abcdef)
 
 
@@ -319,6 +325,21 @@ the computation with the swapped operands, if they are of different types
 
 
 # Network
+
+# WebSockets 101 and HTTP
+# Normally, Django uses HTTP to communicate between the client and server:
+# The client sends an HTTP request to the server.
+# Django parses the request, extracts a URL, and then matches it to a view.
+# The view processes the request and returns an HTTP response to the client.
+
+# Unlike HTTP, the WebSockets protocol allows bi-directional communication,
+# meaning that the server can push data to the client without being prompted by the user.
+# With HTTP, only the client that made a request receives a response. With WebSockets,
+# the server can communicate with multiple clients simultaneously.
+# We send WebSockets messages using the ws:// prefix, as opposed to http://.
+
+
+
 # The layers operating below the socket() API are two different protocols(UDP and TCP)
 
 # TCP

@@ -797,6 +797,9 @@ _, filename = os.path.split('/home/luciano/.ssh/idrsa.pub')
 # return True if path is an existing regular file
 os.path.isfile(path)
 
+# mapping object representing the string environmen
+os.environ.get('TIMES', 3)
+
 
 
 

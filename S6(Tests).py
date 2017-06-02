@@ -402,6 +402,7 @@ before a test is run
 4. Small: Test cases must be as short as possible for speed and ease of
 understanding
 5. Transparent: Avoid tricky implementations or ambiguous test cases
+6. Try to not create database instances(no save()), try to focuse on full_clean()
 
 
 

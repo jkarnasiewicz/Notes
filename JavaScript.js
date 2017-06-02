@@ -528,6 +528,7 @@ myString.replace(myRE, new_string);		// replaces the matched substring with a re
 // or
 var re = /(\w+)\s(\w+)/;
 var myString = "John Smith";
+// reference substitution, r'\1 \2'
 myString.replace(re, "$2, $1");			// other patterns: $& inserts matched substring
 
 /^hello/								// ^ matches beginning of input, matches hello...
@@ -552,6 +553,8 @@ myString.replace(re, "$2, $1");			// other patterns: $& inserts matched substrin
 /^(?=.*\bword1\b)(?=.*\bword2\b)(?=.*\bword3\b).*$/m
 
 // Lookahead
+// (?=expression)  : Look Ahead
+// (?<=expression) : Look Behind
 x(?=y) 	Matches 'x' only if 'x' is followed by 'y'
 For example, /Jack(?=Sprat)/ matches 'Jack' only if it is followed by 'Sprat'
 
@@ -560,6 +563,8 @@ However, neither 'Sprat' nor 'Frost' is part of the match results.
 
 
 // Negated lookahead
+// (?!expression)  : Negative Look Ahead
+// (?<!expression) : Negative Look Behind
 x(?!y) Matches 'x' only if 'x' is not followed by 'y'
 For example, /\d+(?!\.)/ matches a number only if it is not followed by a decimal point
 The regular expression /\d+(?!\.)/.exec("3.141") matches '141' but not '3.141'
@@ -1347,6 +1352,40 @@ function imgLoad(url) {
 		request.send();
 	});
 }
+
+
+
+
+
+// STORAGE(sessionStorage, localStorage, cookie, indexedDB)
+The sessionStorage object only stores data for the session, but the localStorage object
+stores data on the client forever, or until specifically removed.
+
+// session storage (DOM Storage techniques)
+sessionStorage.setItem(key, value);
+sessionStorage.getItem(key);
+sessionStorage.removeItem(key);
+
+
+
+// local storage
+localStorage.setItem("key","value");
+localStorage.getItem(key);
+localStorage.key = value;
+
+localStorage.clear();
+
+
+
+// cookie storage(persistent through tab windows)
+document.cookie;
+
+// create a cookie with JavaScrip
+document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/"; 
+
+// delete a cookie with JavaScript
+// just set the expires parameter to a passed date
+document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
 
 

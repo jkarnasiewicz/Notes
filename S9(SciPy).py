@@ -494,3 +494,15 @@ plt.show()
 # colors = np.random.rand(N)
 # area = np.pi * (15 * np.random.rand(N))**2 # 0 to 15 point radiuses
 # plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+
+
+
+
+# scikit-learn
+scikit-learn, machine Learning in Python and javascript highcharts
+Supervised learning(we told/train machine what the classes of features are)
+Regression (predict a continuous response)
+Linear Regression(Regresja liniowa)(best fitting line)/Coefficient of determination(Współczynnik determinacji)
+Classification (predict a categorical response)
+Classification k-Nearest Neighbors(not scaling well)/Accuracy(dokładność/trafność)
+Classification Support Vector Machine(SVM)/Best separated hyperplane/Convex optimization problem/Kernels/RBF(Radial basic function)
