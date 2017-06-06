@@ -51,7 +51,10 @@ func_c(7)
 
 # cProfile (time per function)
 import cProfile
-cProfile.run('fun(100)')
+int_list = [random.random() for i in range(100000)]
+cProfile.run('fun(int_list)')
+cProfile.run('fun([1, 2, 3])')
+
 
 python -m cProfile -s cumulative trash.py
 python -m cProfile -s cumulative -o profile.stats trash.py 				# create file profile.stats

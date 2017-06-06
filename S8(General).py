@@ -326,17 +326,23 @@ the computation with the swapped operands, if they are of different types
 
 # Network
 
-# WebSockets 101 and HTTP
-# Normally, Django uses HTTP to communicate between the client and server:
-# The client sends an HTTP request to the server.
-# Django parses the request, extracts a URL, and then matches it to a view.
-# The view processes the request and returns an HTTP response to the client.
+# WebSockets
+WebSockets is an advanced technology that makes it possible to open an interactive
+communication session between the users browser and a server. With this API, you can
+send messages to a server and receive event-driven responses without having to poll
+the server for a reply
 
-# Unlike HTTP, the WebSockets protocol allows bi-directional communication,
-# meaning that the server can push data to the client without being prompted by the user.
-# With HTTP, only the client that made a request receives a response. With WebSockets,
-# the server can communicate with multiple clients simultaneously.
-# We send WebSockets messages using the ws:// prefix, as opposed to http://.
+# WebSockets 101 and HTTP
+Normally, Django uses HTTP to communicate between the client and server:
+The client sends an HTTP request to the server.
+Django parses the request, extracts a URL, and then matches it to a view.
+The view processes the request and returns an HTTP response to the client.
+
+Unlike HTTP, the WebSockets protocol allows bi-directional communication,
+meaning that the server can push data to the client without being prompted by the user.
+With HTTP, only the client that made a request receives a response. With WebSockets,
+the server can communicate with multiple clients simultaneously.
+We send WebSockets messages using the ws:// prefix, as opposed to http://.
 
 
 
@@ -512,7 +518,10 @@ xrange() used to work before.
 6. Dictionary keys are views: dict and dict-like classes (such as QueryDict)
 will return iterators instead of lists for the keys(), items(), and values()
 method calls
-7. nonlocal doesnt exist in python 2
+7. The ordering comparison operators (<, <=, >=, >) now raise a TypeError
+exception when the operands don’t have a meaningful natural ordering
+e.g. None < None now raises a TypeError
+8. nonlocal doesnt exist in python 2
 
 
 

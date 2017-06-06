@@ -14,6 +14,8 @@
 # class Base(metaclasses=mytype):
 #     pass
 
+# undecorated methods get the current instance (self) as the first argument
+
 # @staticmethod - without 'self' in method args. Code organization(like free function)
 # @classmethod - first arg 'cls'. Refere to class object within the method class, e.g. class attribute
 import random
@@ -1040,7 +1042,7 @@ class SortedSet(Set):
 
 
 # Sequence protocol:
-# Retrive elements by index and slices by slicing
+# Retrive elements by index and slices by slicing, and also makes unpacking work
 
 	def __getitem__(self, index):
 		cls = type(self)

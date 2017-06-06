@@ -1659,4 +1659,15 @@ Mootools
 Dojo
 OpenLayer
 Code Quality Tool, JSLint
+math.js/accounting.js/numbers.js - mathematics
 Minification Tools: JSMin, YUI Compressor, Google Closure Compiler
+
+// Testing JavaScript
+jsHint
+QUnit
+Modernizr.load - feature detection(e.g. browser)
+
+// Manage browser differences for object support
+Polyfill
+Paul Miller’s ES 6 Shim
+Google’s Traceur
