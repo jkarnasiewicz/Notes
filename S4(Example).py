@@ -309,7 +309,7 @@ prices = {'ACME': 45.23, 'AAPL': 612.78, 'IBM': 205.55, 'HPQ': 37.20, 'FB': 10.7
 
 print(sorted(prices.values()))                                                  # Only Values
 print(sorted(prices, key = prices.get))                                         # Only Keys
-print(sorted(prices.items(), key=lambda x: x[1], reverse=True))                 # Tuples(Key,Value)
+print(sorted(prices.items(), key = lambda x: x[1], reverse=True))               # Tuples(Key,Value)
 
 
 

@@ -31,6 +31,12 @@ new Vue({
 		visibility: 'all'
 	},
 
+	// 
+	// created: function () {
+	// 	window.addEventListener('keyup', this.myMethod())
+	// },
+	<input type="text" v-model="emailAddress" v-on:keyup.enter="onEnterClick" v-on:keyup.atsign="onAtSignClick" />
+
 	// watch todos change for localStorage persistence
 	watch: {
 		todos: {

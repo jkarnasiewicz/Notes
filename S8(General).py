@@ -7,6 +7,8 @@ An API is a defined interface that acts like a handshake between software compon
 allowing one component to access another even though the components have been
 developed separately.
 
+# ORM - Object-Relational Mapping
+
 # CDN - Content Distribution Network
 
 # KISS - KISS principle is an acronym for "Keep it simple, stupid"
@@ -26,6 +28,8 @@ developed separately.
 # SSL - Secure Socket Layer
 
 # CORS - Cross-Origin Resource Sharing
+
+# BIT - Binary Digit(0 or 1)
 
 # EAFP
 Easier to ask for forgiveness than permission. This common Python coding style assumes the
@@ -88,6 +92,13 @@ is first compiled and then interpreted. More precisely, it is not precompiled to
 code, but rather to bytecode. While machine code is certainly faster, bytecode is more portable
 and secure. The bytecode is then interpreted in the case of CPython (or both interpreted and
 compiled to optimized machine code at runtime in the case of PyPy).
+
+# How does Python handle the memory management?
+Python uses private heaps to maintain its memory. So the heap holds all the Python objects and
+the data structures. This area is only accessible to the Python interpreter, programmers can’t
+use it. And it’s the Python memory manager that handles the Private heap. It does the required
+allocation of the heap for Python objects. Python employs a built-in garbage collector, which
+salvages all the unused memory and offloads it to the heap space.
 
 # Unittest
 unittest supports test automation, sharing of setup and shutdown code for tests, aggregation of

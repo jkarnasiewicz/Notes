@@ -197,7 +197,7 @@ next, step, print(variable_name), where
 
 
 
-# run on module
+# run on module/debug a python program
 python -m pdb file_name.py
 
 

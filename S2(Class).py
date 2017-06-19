@@ -723,7 +723,7 @@ Class_Name.__mro__ == Class_Name.mro()
 
 class S:
 	# assign iterable of str with identifiers for the instance attributes
-	__slots__ = ('val')
+	__slots__ = ('val',)
 
 	def __init__(self, v):
 		self.val = v

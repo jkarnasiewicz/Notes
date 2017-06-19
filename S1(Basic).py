@@ -402,6 +402,8 @@ len('Python')
 .islower()
 .upper()
 .swapcase()
+# test begining of the string
+.startswith(("http://", "https://"))
 # test extension
 .lower().endswith('.mp3')
 # all chars have been stripped from begining and the end of the string
@@ -680,7 +682,7 @@ with open("Example.txt", encoding="utf-8") as f:
 
 # writelines
 f = open('Example.txt', mode='at', encoding='utf-8')
-f.writelines( ['example text, \n', you cannot say, or guess, 'where the sun beats\n'] )
+f.writelines( ['example text, \n', 'you cannot say, or guess', 'where the sun beats\n'] )
 f.close()
 
 # readline and readlines
@@ -773,7 +775,7 @@ os.stat(path)
 os.sep
 
 # os.system function which runs the command as if it was run from the system, in the shell - it returns 0 if
-# the command was successfully, else it returns an error number
+# the command was successfull, else it returns an error number
 os.system("dir")
 
 # return the number of CPUs in the system
@@ -795,7 +797,7 @@ os.path.basename(path)
 _, filename = os.path.split('/home/luciano/.ssh/idrsa.pub')
 
 # return True if path is an existing regular file
-os.path.isfile(path)
+os.path.isfile(path)									# os.path.isdir(path)
 
 # mapping object representing the string environmen
 os.environ.get('TIMES', 3)
@@ -992,7 +994,7 @@ sum(counter_obj.values())
 # a new entry is created. The type of this new entry is given by the argument of defaultdict.
 defaultdict(callable)
 
-df = defaultdict(list)
+dd = defaultdict(list)
 for key, value in pairs:
 	dd[key].append(value)
 
@@ -1209,7 +1211,7 @@ import re
 re.compile(r'pattern')
 # re.compile(r'(\d{3})-(\d{3})-(\d{4})-(\d+)')
 
-# findall - return all matches of pattern
+# findall - return list of strings of all matches of pattern
 # re.findall() is eager/re.finditer() is lazy
 re.findall(pattern, string)
 # re.findall("[a-zA-Z]+|[0-9]+", string)            # every word, and every number
@@ -1220,6 +1222,9 @@ re.findall(pattern, string)
 #                                                   # series of any character(.*?),
 #                                                   # then a space, then another s
 
+# finditer - return an iterator yielding match objects
+re.finditer(pattern, string)						# match object methods: span, start, end, re, string
+
 # sub - replace occurances of pattern
 re.sub(pattern, replacement, string, count=0, flags=0)
 # re.sub("D:[^\ ]Filmy[^\ ]", "", string)                  # D:\Filmy\ => ""
@@ -1228,7 +1233,7 @@ re.sub(pattern, replacement, string, count=0, flags=0)
 re.split(pattern, string)
 # re.split(r'[;,\s]+', 'asdf fjdk; afed, fjek,asdf, foo')
 
-# search - search for pattern in string
+# search - search for pattern in string(only matches the first occurrence within the string and return the match object)
 re.search(pattern, string, flags=0)
 # re.search(pattern, string, re.VERBOSE)  # verbose regular expressions
 
@@ -1238,7 +1243,7 @@ re.match(pattern, string)
 # re.search("c", "abcdef")                			# match
 
 # group - returns one or more subgroups of the match
-search_object.group()								# group(1)/groups()
+match_object.group()								# group(1)/groups()
 
 
 
@@ -1255,8 +1260,8 @@ search_object.group()								# group(1)/groups()
 
 
 
-# ^					matches the start of a string
-# $					matches the end of the string or just before the newline at the end of the string
+# ^					matches the beginning of a line
+# $					matches the end of the line or just before the newline at the end of the string
 
 # {m}				specifies that exactly m copies of the previous RE should be matched
 # {m, n}			(greedy)causes the resulting RE to match from m to n repetitions of the preceding RE, attempting to match as many repetitions as possible
@@ -1267,7 +1272,7 @@ search_object.group()								# group(1)/groups()
 
 # (...)             matches whatever regular expression is inside the parentheses, and indicates the start and end of a group
 # (A|B|C)           match exactly one of A, B, or C
-# (?P<name>...)     similar to regular parentheses, but the substring matched by the group is accessible via the symbolic group name name
+# (?P<name>...)     similar to regular parentheses, but the substring matched by the group is accessible via the symbolic group name 'name'
 
 # \d                digit (0–9)
 # \D                non digits
@@ -1281,5 +1286,5 @@ search_object.group()								# group(1)/groups()
 # \s 				whitespace
 # \S 				non whitespace
 
-# \A 				start of the string
-# \Z 				end of the string
+# \A 				matches the beginning of the string
+# \Z 				matches the end of the string

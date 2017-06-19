@@ -69,6 +69,7 @@ class Sensor:
 		return random.random()
 
 sensor = Sensor()
+# timstamps = iter(lambda: datetime.datetime.now, None)
 timstamps = iter(datetime.datetime.now, None)
 
 for stamp, value in itertools.islice(zip(timstamps, sensor), 10):
@@ -257,7 +258,7 @@ class SentenceIterator:
 	def __iter__(self):
 		return self
 
-s = Sentence('2323d 23f23fd 23d23d')
+s = Sentence("At Wit's End")
 # print([i for i in s])
 it = iter(s)
 # print([i for i in s])
