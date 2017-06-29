@@ -127,7 +127,7 @@ print(next(g))
 
 # A generator doesn’t 'return' values in the usual way: the return statement in the body
 # of a generator function causes StopIteration to be raised by the generator object
-
+ 
 # When a generator function is called, it returns a generator object without
 # even beginning execution of the function. When next method is called for the first time,
 # the function starts executing until it reaches yield statement

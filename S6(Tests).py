@@ -23,6 +23,149 @@ refaktoryzacja - próba ulepszenia kodu bez wprowadzania zmian w jego funkcjonal
 
 
 
+# python -m unittest file_name.py -v
+import sys
+from random import shuffle
+import unittest
+
+
+# To handle especially expensive setup operations for all of the tests within
+# a module use the module-level functions setUpModule() and tearDownModule()
+def setUpModule():
+    print('In setUpModule()')
+
+def tearDownModule():
+    print('In tearDownModule()')
+
+
+class SimpleTest(unittest.TestCase):
+
+    # Fixtures for all instances of a test class
+    @classmethod
+    def setUpClass(cls):
+        print('In setUpClass()')
+        # cls.good_range = range(1, 10)
+
+    @classmethod
+    def tearDownClass(cls):
+        print('In tearDownClass()')
+        # del cls.good_range
+
+    # Fixtures for each individual test case
+    def setUp(self):
+        super().setUp()
+        print('\nIn setUp()')
+        # tearDown methods may not all be invoked if there are errors in the
+        # process of cleaning up fixtures. To ensure that a fixture is always
+        # released correctly, use addCleanup()
+        # self.addCleanup(remove_tmpdir, self.tmpdir)
+
+    def tearDown(self):
+        super().tearDown()
+        print('In tearDown()')
+
+
+    # Assertions
+    def test_fail(self):
+        "self.fail('AssertionError')"
+
+    def test_true(self):
+        self.assertTrue(True)
+
+    def test_false(self):
+        self.assertFalse(False)
+
+    def test_equal(self):
+        self.assertEqual(2, 2, msg='failure message')
+
+    def test_not_equal(self):
+        self.assertNotEqual(3, 7, msg='failure message')
+
+    def test_almost_equal(self):
+        # self.assertEqual(1.1, 3.3 - 2.2)
+        self.assertAlmostEqual(1.1, 3.3 - 2.2, places=1)            # number of decimal places to use for the test
+
+    def test_almost_not_equal(self):
+        self.assertNotAlmostEqual(1.1, 3.3 - 2.0, places=1)
+
+
+    # Containers
+    def test_in(self):
+        self.assertIn(3, {1: '1', 3: '3'})
+
+    def test_not_in(self):
+        self.assertNotIn(4, set([1, 2, 3]))
+
+    def test_dict(self):
+        # assertListEqual, assertSetEqual, assertTupleEqual, assertSequenceEqual
+        # self.assertDictEqual({'a': 1, 'b': 2}, {'a': 1, 'b': 3})
+        self.assertDictEqual(
+            {'a': 1, 'b': 2},
+            {'a': 1, 'b': 2},
+        )
+
+    def test_count(self):
+        # self.assertCountEqual([1, 2, 3, 2], [1, 3, 2, 3])
+        self.assertCountEqual(
+            [1, 2, 3, 2],
+            [1, 2, 3, 2],
+        )
+
+
+    # Exceptions
+    def test_exception(self):
+        # self.assertRaises(TypeError, shuffle, (1, 2, 3))
+        with self.assertRaises(TypeError, msg='failure message'):
+            shuffle((1, 2, 3))
+
+
+    # SubTest - Repeating Tests with Different Inputs
+    def test_with_subtest(self):
+        for pat in ['a', 'B', 'c', 'd']:
+            with self.subTest(pattern=pat):
+                self.assertRegex('abc', pat)
+
+
+    # Skipping Tests
+    @unittest.skip('always skipped')
+    def test_skip(self):
+        self.assertTrue(False)
+
+    @unittest.skipIf(sys.version_info[0] > 2, 'only runs on python 2')
+    def test_python2_only(self):
+        self.assertTrue(False)
+
+    @unittest.skipUnless(sys.platform == 'Darwin', 'only runs on macOS')
+    def test_macos_only(self):
+        self.assertTrue(True)
+
+    def test_raise_skiptest(self):
+        raise unittest.SkipTest('skipping via exception')
+
+
+    # Ignoring Failing Tests
+    @unittest.expectedFailure
+    def test_never_passes(self):
+        self.assertTrue(False)
+
+    # If a test that is expected to fail does in fact pass, that condition is
+    # treated as a special sort of failure and reported as an “unexpected success”
+    @unittest.expectedFailure
+    def test_always_passes(self):
+        self.assertTrue(True)
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
+
+
+
+
+
+
+
+
+
 
 # TestCase - before running each test, django resets the database to its initial state
 # The individual tests are performed to the first error (poszczególne testy wykonują sie do pierwszego błedu)

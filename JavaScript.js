@@ -1462,6 +1462,9 @@ myElement.getAttribute("align");
 myElement.setAttribute("style", "background-color: red; color: white; border: 1px solid black");
 myElement.removeAttribute("required");
 
+// Accessing data elements attributes
+
+
 
 // Removes the element completely from the page layout
 myElement.style.display = "block" or "none";	// display or hide object
