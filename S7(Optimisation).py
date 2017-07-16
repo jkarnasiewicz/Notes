@@ -19,29 +19,29 @@ from functools import wraps
 import time
 
 def clock(func):
-    @wraps(func)
-    def wrap(*args, **kwargs):
-        t0 = time.perf_counter()
-        result = func(*args)
-        elapsed = time.perf_counter() - t0
-        name = func.__name__
-        arg_lst = []
-        if args:
-            arg_lst.append(', '.join(repr(arg) for arg in args))
-        if kwargs:
-            pairs = ['%s=%r' % (k, w) for k, w in sorted(kwargs.items())]
-            arg_lst.append(', '.join(pairs))
-        arg_str = ', '.join(arg_lst)
-        print('[{:.8f}] {}({}) -> {}'.format(elapsed, name, arg_str, result))
-        return result
-    return wrap
+	@wraps(func)
+	def wrap(*args, **kwargs):
+		t0 = time.perf_counter()
+		result = func(*args)
+		elapsed = time.perf_counter() - t0
+		name = func.__name__
+		arg_lst = []
+		if args:
+			arg_lst.append(', '.join(repr(arg) for arg in args))
+		if kwargs:
+			pairs = ['%s=%r' % (k, w) for k, w in sorted(kwargs.items())]
+			arg_lst.append(', '.join(pairs))
+		arg_str = ', '.join(arg_lst)
+		print('[{:.8f}] {}({}) -> {}'.format(elapsed, name, arg_str, result))
+		return result
+	return wrap
 
 @clock
 def func_c(x):
-    for i in range(100*x):
-        for j in range(10*x):
-            for k in range(x):
-                pass
+	for i in range(100*x):
+		for j in range(10*x):
+			for k in range(x):
+				pass
 
 func_c(7)
 
@@ -286,7 +286,7 @@ print(context["item"])
 9. Dislocating repeated code outside the fast loops
 10. Vectorization (wektoryzacja), SIMD Single Instruction, Multiple Data
 11. Ogólna zasada jest taka, że jeśli zadania cechują się zmiennym czasem
-    działania, należy tworzyć wiele małych zadań w celu efektywnego wykorzystania zasobów.
+	działania, należy tworzyć wiele małych zadań w celu efektywnego wykorzystania zasobów.
 12. Dziel, mnóż, dodawaj, odejmuj zamiast używać pętl lub inkrementacji(podstawowe działania są najszybsze)
 
 

@@ -559,6 +559,29 @@ e.g. None < None now raises a TypeError
 
 
 # SECURITY
+
+# Hashing(MD5, SHA-0, SHA-1 and SHA-2)
+A hash is a string or number generated from a string of text. The resulting string or
+number is a fixed length, and will vary widely with small variations in input. The best
+hashing algorithms are designed so that its impossible to turn a hash back into its
+original string.
+Hashing is great for usage in any instance where you want to compare a value with a
+stored value, but cant store its plain representation for security reasons
+
+# Encrypting(AES, PGP)
+Encryption turns data into a series of unreadable characters, that arent of a fixed
+length. The key difference between encryption and hashing is that encrypted strings
+can be reversed back into their original decrypted form if you have the right key
+
+There are two primary types of encryption, symmetric key encryption and public key
+encryption. In symmetric key encryption, the key to both encrypt and decrypt is exactly
+the same. Public key encryption by comparison has two different keys, one used to encrypt
+the string (the public key) and one used to decrypt it (the private key). The public key
+is is made available for anyone to use to encrypt messages, however only the intended
+recipient has access to the private key, and therefore the ability to decrypt messages
+
+
+ 
 # Cross-site scripting (XSS)
 considered the most prevalent web application security flaw today,
 enables an attacker to execute his malicious scripts (usually JavaScript)

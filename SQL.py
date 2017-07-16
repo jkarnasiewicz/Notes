@@ -2,9 +2,16 @@ SQL stands for Structured Query Language
 
 
 # SELECT
+# display a string "This is SQL Exercise, Practice and Solution"
+SELECT "This is SQL Exercise, Practice and Solution";
+# display three numbers in three columns
+SELECT 5, 10, 15;
+# display sum of two numbers
+SELECT 5 + 15;
+
 SELECT column_name, column_name FROM table_name;
 SELECT * FROM table_name;                                  # Selects all the columns from the table_name
-SELECT DISTINCT column_name FROM table_name;              # The DISTINCT statement is used to return only distinct (different) values
+SELECT DISTINCT column_name FROM table_name;               # The DISTINCT statement is used to return only distinct (different) values
 SELECT COUNT(DISTINCT column_name) FROM table_name;
 
 

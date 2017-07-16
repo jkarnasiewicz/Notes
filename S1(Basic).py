@@ -372,6 +372,10 @@ len('Python')
 # splitlines()
 'st\nri\nng'.splitlines()							# ['st', 'ri', 'ng']
 
+# count()
+# return the number of non-overlapping occurrences of substring sub in the range
+'this is string'.count('i')							# 3
+
 # join()
 # always prefer 'join' over regular concatenation, strings are immutable,
 # so the += operator re-binds the reference to a new object(adding memory usage)
