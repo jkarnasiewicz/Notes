@@ -133,7 +133,7 @@ filter(function, sequence)
 zip(sequence, sequence, sequence)
 
 # sorts any iterable series and returns a list, 'key' specifies a function of one argument
-sorted(iterable, key=None, reverse=False) 
+sorted(iterable, key=None, reverse=False)
 
 # reverses any iterable series, returns a reverse iterator
 reversed(sequence)
@@ -183,10 +183,10 @@ repr(x)
 ascii()
 
 # return the string representing a character whose Unicode codepoint is the integer
-chr(97)												# returns the string 'a'     
+chr(97)												# returns the string 'a'
 
 # return an integer representing the Unicode code point of that character
-ord('a')											# returns the integer 97     
+ord('a')											# returns the integer 97
 
 
 
@@ -197,7 +197,7 @@ ord('a')											# returns the integer 97
 2 ** 4 == pow(2,4)									# 16
 
 # classic division returns a float(divide)
-17 / 3        										# 5.666666666666667 	
+17 / 3        										# 5.666666666666667
 
 # floor division discards the fractional part
 17 // 3       										# 5
@@ -337,6 +337,12 @@ print(s.median(a), s.mean(a), s.variance(a))
 # shifted by 1 bit gives 101 which is the decimal 5.
 11 >> 1												# 5
 
+# bitwise And (Each bit of the output is 1 if the corresponding bit of x AND of y is 1, otherwise its 0)
+x & y
+
+# bitwise Or(Each bit of the output is 0 if the corresponding bit of x AND of y is 0, otherwise its 1)
+x | y
+
 # bitwise Exclusive Or (xor(a, b))
 a ^ b
 
@@ -374,7 +380,8 @@ len('Python')
 
 # count()
 # return the number of non-overlapping occurrences of substring sub in the range
-'this is string'.count('i')							# 3
+'this is string'.count('is')						# 2
+
 
 # join()
 # always prefer 'join' over regular concatenation, strings are immutable,
@@ -600,7 +607,7 @@ frozenset({'a', 'b', frozenset({1, 3, 7})})
 
 
 
- 
+
 # DICTIONARIES (unordered mapping from unique, immutable keys to mutable values -> Key: Value)
 # implemented with hash tables
 di = {'sape': 4139, 'ivy': 4127, 'jack': 4098}

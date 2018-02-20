@@ -113,6 +113,7 @@ dpkg -c .deb_package 					# list files provided (or owned) by the package i.e. L
 sudo apt-get install python-pip
 sudo easy_install pip
 
+pip show pip 								# pip informations
 pip install pip --upgrade
 pip install Distribute --upgrade
 pip install numpy
@@ -145,7 +146,7 @@ pip install MySQL-python
 
 
 # virtualenv
-sudo pip install virtualenv
+sudo pip install virtualenv 				# system-wide (for all users)
 virtualenv /nazwa_folderu
 # choose python version
 virtualenv -p python3 .

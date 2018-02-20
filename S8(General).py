@@ -259,7 +259,7 @@ default values become attributes of the function object
 	a = b.copy(): Shallow copying, a and b will become two isolated objects, but their contents still share the same reference
 
 	a ---> {1: L}
-			   |             
+			   |
 			   >---> [1,2,3]
 			   |
 	b ---> {1: M}
@@ -581,7 +581,7 @@ is is made available for anyone to use to encrypt messages, however only the int
 recipient has access to the private key, and therefore the ability to decrypt messages
 
 
- 
+
 # Cross-site scripting (XSS)
 considered the most prevalent web application security flaw today,
 enables an attacker to execute his malicious scripts (usually JavaScript)
