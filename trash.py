@@ -39,3 +39,18 @@
 
 # 	def bar(self):
 # 		raise NotImplemented
+
+
+
+# Every app is different and has a unique balance of I/O, CPU, and memory use.
+
+# Bufor – obszar pamięci służący do tymczasowego przechowywania danych przesyłanych między dwoma systemami
+# TLS Handshake
+
+# DB Queries
+# EXPLAIN
+
+# partial indexes
+CREATE INDEX products_published ON product_product (id) WHERE published = true;
+
+Use TCP health checks instead of HTTP, to call WSGI without entering the request queue
