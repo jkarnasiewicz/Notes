@@ -160,7 +160,7 @@ def save(commit=True, author=None, *args, **kwargs):
 
 
 # bulk_create inserts the provided list of objects into the database in an efficient manner(generally only 1 query)
-# the model’s save() method will not be called, and the pre_save and post_save signals will not be sent
+# the model’s custom save() method will not be called, and the pre_save and post_save signals will not be sent
 bulk_create(objs, batch_size=None)
 
 Item.objects.bulk_create([
@@ -183,8 +183,16 @@ object.save(using='legacy_users')
 
 
 
-# Filter
-# queryset(lazy objects) - keep QuerySets unevaluated as long as possible
+# QuerySet
+# queryset(lazy objects - they are only evaluated (database hits) when strictly necessary) - keep QuerySets unevaluated as long as possible
+
+# count/len
+# Using the .count() is faster since it uses the COUNT() function at a database level. The len() method forces the queryset to be evaluated
+# and retrieve results that you we will not use if all we want to do is count how many objects are there.
+Article.objects.count()
+
+# use a combination of .filter() and .exists() to test existence and membership
+Article.objects.filter(title__icontains=search_text).exists()
 
 # empty queryset
 Article.objects.none()
@@ -194,7 +202,7 @@ Article.objects.filter(headline__search="+Django -jazz Python")
 Article.objects.get(title__iregex=r'^(an?|the) +')                          # Case-insensitive regular expression match (nieistotna wielkosci liter)
 Article.objects.get(title__regex=r'^(An?|The) +')                           # Case-sensitive regular expression match (istotna wielkośc znaków)
 
-Article.objects.filter(author__book__title__icontains='element') 
+Article.objects.filter(author__book__title__icontains='element')
 Article.objects.filter(author__book__title__contains='element')
 
 Entry.objects.filter(headline__iendswith='will')
@@ -210,7 +218,29 @@ qs1.exclude(pk__in=qs2)
 
 
 
-# Select related (ForeignKey or OneToOneField)
+# queryset caching mechanisms
+entries = Entry.objects.all()
+# typical case of fetching all data from database into memory
+for entry in entries:
+    ...
+
+# avoid caching mechanisms for one time operations
+# The .iterator() method bypasses the internal caching mechanisms and might be useful if we know we are not going to use these objects
+# anymore. Also, this largely reduces the memory footprint, which can be useful if we are loading millions of rows from the database.
+for entry in entries.iterator():
+    ...
+
+# page results
+# Pagination avoids loading all the objects into memory. This will drastically reduce the memory usage since it fetches slices
+# of our dataset, one chunk of rows at a time, from the database.
+Paginator(entries, per_page=2000)
+
+
+# Fetch related objects in a single batch
+# These methods retrieve additional objects, to avoid fetching them later.
+# This also caches all the results into memory, which may or not be desirable
+
+# Select related (fetches foreign key relations and one-to-one objects)
 # Returns a QuerySet that will “follow” foreign-key relationships,
 # selecting additional related-object data when it executes its query.
 # This is a performance booster which results in a single more complex query
@@ -221,7 +251,7 @@ Book.objects.select_related('author__hometown').get(id=4)
 
 
 
-# Prefetch related (ManyToMany and ManyToOne)
+# Prefetch related (fetches related many-to-many and many-to-one objects)
 # Returns a QuerySet that will automatically retrieve, in a single batch,
 # related objects for each of the specified lookups
 Pizza.objects.all().prefetch_related('toppings')
@@ -238,6 +268,9 @@ Entry.objects.values('slug').annotate(Count('id')).order_by().filter(id__count__
 
 
 
+# Fetch only the required columns
+# values() and values_lsit() methods avoid creating full model instances and retrieve only the desired field values,
+# avoiding the extra work of fetching the extra columns
 # values => list of dictionaries
 Entry.objects.values('name', 'entry__headline')
 # [{'name': 'My blog', 'entry__headline': 'An entry'}, {'name': 'My blog', 'entry__headline': 'Another entry'}, ...]
@@ -417,7 +450,7 @@ render_to_string(template_name, context=None, request=None, using=None)
 
 
 form = UserForm(data=request.GET/POST or None, files=request.FILES or None, instance=object_instance)
-if form.is_valid(): 
+if form.is_valid():
     instance = form.save(commit=False)
     ...
     instance.save()
@@ -933,7 +966,7 @@ mark_safe('string')
 from django.contrib import admin
 from .models import Post
 # default admin.site.register(Post)
- 
+
 class PostModelAdmin(admin.ModelAdmin):
     date_hierarchy = 'updated'
     list_display = ['title', 'updated', 'timestamp']
@@ -1009,6 +1042,30 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn')     # Static
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+
+
+
+
+
+
+# apps.py
+This file is created to help the user include any application configuration for the app.
+Using this, you can configure some of the attributes of the application.
+Application configuration objects store metadata for an application.
+Some attributes can be configured in AppConfig subclasses. Others are set by Django and read-only.
+
+Previously, there was no specific place for initializing the signal code. Typically, they
+were imported or implemented in models.py (which was unreliable)
+
+
+# use distributed and asynchronous processing
+External concurrency libraries such as Tornado, Twisted or Asyncio provide non-blocking behavior and asynchronous I/O,
+great for performing I/O bound tasks such as reading and writing to disk/network. Celery is also great to perform
+distributed and CPU bound background tasks.
 
 
 
@@ -1123,32 +1180,6 @@ from django.conf import settings
 from cms.models import Page
 # moduły bieżącej aplikacji
 import app_settings
-
-
-
-
-
-
-
-
-
-
-# apps.py
-
-This file is created to help the user include any application configuration for the app.
-Using this, you can configure some of the attributes of the application.
-Application configuration objects store metadata for an application.
-Some attributes can be configured in AppConfig subclasses. Others are set by Django and read-only.
-
-Previously, there was no specific place for initializing the signal code. Typically, they
-were imported or implemented in models.py (which was unreliable)
-
-
-
-
-
-
-
 
 
 
