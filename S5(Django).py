@@ -18,6 +18,10 @@ django-admin.py startproject mysite
 
 # shell, pip install ipython (improve shell), help('django.forms'), help(ModelForm)
 ./manage.py shell
+# shell plus (pip install django-extensions)
+./manage.py shell_plus --print-sql          # see the ORM queries
+
+
 
 # run the command-line client for the database engine specified in your ENGINE setting
 ./manage.py dbshell < ~/db_backups/db.sql
@@ -186,6 +190,12 @@ object.save(using='legacy_users')
 # QuerySet
 # queryset(lazy objects - they are only evaluated (database hits) when strictly necessary) - keep QuerySets unevaluated as long as possible
 
+# record the queries made with current connection
+from django.db import connection
+connection.queries
+Entry.objects.all()
+connection.queries
+
 # count/len
 # Using the .count() is faster since it uses the COUNT() function at a database level. The len() method forces the queryset to be evaluated
 # and retrieve results that you we will not use if all we want to do is count how many objects are there.
@@ -193,6 +203,21 @@ Article.objects.count()
 
 # use a combination of .filter() and .exists() to test existence and membership
 Article.objects.filter(title__icontains=search_text).exists()
+
+
+
+# unexpected queries when checking existence of a foreign key or when you grab it id
+if article.author:
+    ...
+# or
+do_something_with_author_id(article.author.id)
+# but if the author object isn't needed, we can avoid extra qurey and always use the column name attribute
+if article.author_id:
+    ...
+# or
+do_something_with_author_id(article.author_id)
+
+
 
 # empty queryset
 Article.objects.none()
