@@ -118,6 +118,14 @@ operation = [
 # Creating a proxy for the original model. You can create, delete and update instances of the proxy model
 # and all the data will be saved as if you were using the original (non-proxied) model
 
+# Optymization techniques
+# 1) indexes
+# 2) appropriate use of field types
+# 3) in eneral, callable attributes cause DB lookups every time (entry.authors.all())
+# 4) retrieve individual objects using a unique, indexed column
+# 5) don’t order results if you don’t care
+
+
 class Meta:
     verbose_name = _(u"Pomysł")
     verbose_name_plural = _(u"Pomysły")
@@ -171,18 +179,18 @@ Item.objects.bulk_create([
     Item(headline='This is a test'),
     Item(headline='This is only a test')])
 
+# this also applies to ManyToManyFields
+author.book.add(first_book, second_book, ...)
 
 
-# This will run on the 'default' database
+
+# this will run on the 'default' database
 Author.objects.all()
-
-# So will this
+# so will this
 Author.objects.using('default').all()
-
-# This will run on the 'other' database.
+# this will run on the 'other' database.
 Author.objects.using('other').all()
-
-# To save an object to the legacy_users database
+# to save an object to the legacy_users database
 object.save(using='legacy_users')
 
 
@@ -197,7 +205,7 @@ Entry.objects.all()
 connection.queries
 
 # count/len
-# Using the .count() is faster since it uses the COUNT() function at a database level. The len() method forces the queryset to be evaluated
+# using the .count() is faster since it uses the COUNT() function at a database level. The len() method forces the queryset to be evaluated
 # and retrieve results that you we will not use if all we want to do is count how many objects are there.
 Article.objects.count()
 
@@ -206,6 +214,7 @@ Article.objects.filter(title__icontains=search_text).exists()
 
 
 
+# use foreign key values directly
 # unexpected queries when checking existence of a foreign key or when you grab it id
 if article.author:
     ...
