@@ -54,3 +54,14 @@
 CREATE INDEX products_published ON product_product (id) WHERE published = true;
 
 Use TCP health checks instead of HTTP, to call WSGI without entering the request queue
+
+'Cache invalidation' is a process in a computer system whereby entries in a cache are replaced or removed.
+
+
+# Object-oriented programming (OOP)
+# core oop objects --> classes, objectes, inheritance and polymorphism
+
+# Polymorphism
+1. relies on inheritance
+2. allows child classes to be instantiated and treated as the same type as its parent
+3. enables a parent class to be manifested into any of its child classes

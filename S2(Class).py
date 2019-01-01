@@ -680,6 +680,7 @@ with urlopen(url) as remote, open(file_name, 'wb') as local:
 
 # inheritance(dziedziczenie)
 # tool for code reused, share implementation, one class use code from another class
+# establishes a relationship between two classes as parent and child
 
 # super() mean => NEXT IN LINE, not call your parents
 # children before parents, parents stay in order - remember the line order - help(obj)
@@ -931,7 +932,7 @@ class CustomAccess:
 		except KeyError:
 			raise AttributeError("attribute doesn't exist")
 
-	def __setattr__(self, name, value):     
+	def __setattr__(self, name, value):
 		self.data[name] = value
 		# raise AttributeError("can't set attribute")
 
@@ -1131,7 +1132,7 @@ class SortedSet(Set):
 
 # Set protocol:
 # Set algebra operations(rest inheritate from Set)
-	
+
 	def issubset(self, iterable):
 		return self <= SortedSet(iterable)
 
