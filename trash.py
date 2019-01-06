@@ -65,3 +65,26 @@ Use TCP health checks instead of HTTP, to call WSGI without entering the request
 1. relies on inheritance
 2. allows child classes to be instantiated and treated as the same type as its parent
 3. enables a parent class to be manifested into any of its child classes
+
+
+# Make class attributes global
+class Borg:
+	_shared_state = {}
+
+	def __inti__(self):
+		self.__dict__ = self._shared_state
+
+
+class Singleton(Borg):
+
+	def __init__(self, **kwargs):
+		print(kwargs, type(kwargs))
+		Borg.__init__(self)
+		self._shared_state.update(kwargs)
+
+	def __str__(self):
+		return str(self._shared_state)
+
+
+print(Singleton(name='bzzz'))
+print(Singleton(second='uff'))

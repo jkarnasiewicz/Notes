@@ -1,19 +1,72 @@
 # Design Patterns
-
 Well-known solutions to recurring problems - widely accepted solutions by the software
 development community
+
 # Why use design patterns?
 Systematic reuse of design ideas or best practices yields lower cost and higher quality
+
 # Important characteristics
-Incomplite by design to promote customization
-Design patterns may cause more problems instead of solving problems when they are misused
+1. Incomplite by design to promote customization
+
+2. Knowing when to use a design pattern and when not to use it, is crucial, especially
+because the design patterns can cause more problems instead of solving problems when
+they are misused (e.g. side effects, such as worse performance when you're trying to
+use one of the design patterns to accomplish better security)
+
 
 # Design patterns types
 1. creational, used to create objects in a systematic way, e.g. polymorphism, interfaces
    --> flexibility
+    a) factory (uncertainties in types of objects)
+    b) abstract factory (useful when a client expects to receive a family of related objects
+       at a given time, but dont have to know which family it is until run time)
+    c) singleton (global variable in an object-oriented way => only one instance needed)
+    d) builder (try to solve problems with excessive number of constructors)
+    e) prototype (cloning as good alternative for creating many identical objects individually)
 2. structural, establishes useful relationships between software components in certain
    settings or configurations, e.g. inheritance, interfaces
    --> different goals yield different structures
+    a) decorator (add new features to an existing object, apply dynamic changes)
+    b) proxy (middleman, postpone object creation unless absolutely necessary,
+       clients interacting with a proxy)
+    c) adapter (converts the interface of a class into another one a client is expecting
+       using uniform interface)
+    d) composite (recursive tree data structure(composite/child, catalog/file objects))
+    e) bridge (untangle an unnecessary complicated class hierarchy, especially when
+       implementation specific classes are mixed together with implementation-independent
+       classes)
+
+    class DrawingAPIOne(object):
+        "Implementaion-specific abstraction: concrete class one"
+        def draw_circle(self, radious):
+            pass
+
+    class DrawingAPITwo(object):
+        "Implementaion-specific abstraction: concrete class two"
+        def draw_circle(self, radious):
+            pass
+
+    class Circle(object):
+        "Implementation-independent abstraction"
+        def __init__(self, radius, drawing_api):
+            self._radius = radius
+            self._drawning_api = drawing_api
+
+        def draw(self):
+            "Implermentaion-specific abstraction taken care of by another class: DrawingAPI"
+            self._drawning_api.draw_circle(self._radius)
+
+        def scale(self, percent):
+            "Implementation-independent"
+            self._radius *= percent
+
+    circle1 = Circle(3, DrawingAPIOne())
+    circle1.draw()
+    circle2 = Circle(7, DrawingAPITwo())
+    circle2.draw()
+
+
+
 3. behavioral, best pratices of objects interaction(how objects interact with each other),
    e.g. methods and their signatures, interfaces
    --> define the protocols in between this objects, when they trying to work together to
@@ -49,8 +102,8 @@ override to provide concrete behavior
 # Adaptor pattern - Bridging class interfaces
 This pattern is used to adapt a given class to a new interface
 
-	def __getattr__(self, attr):
-	  return getattr(self.fish, attr)
+    def __getattr__(self, attr):
+      return getattr(self.fish, attr)
 
 # Facade pattern - Hiding system complexity for a simpler interface
 
@@ -60,10 +113,10 @@ This pattern is used to adapt a given class to a new interface
 
 # Abstract factory
 class Animal(six.with_metaclass(abc.ABCMeta, object)):
-	""" clients only need to know this interface for animals"""
-	@abc.abstractmethod
-	def sound(self, ):
-		pass
+    """ clients only need to know this interface for animals"""
+    @abc.abstractmethod
+    def sound(self, ):
+        pass
 
 # Registry pattern - Adding functionality from anywhere in code to class
 
@@ -145,16 +198,16 @@ has been declared.
 Solution: Add or change fields during initialization of the form.
 
 class PersonDetailsForm(forms.Form):
-	name = forms.CharField(max_length=100)
-	age = forms.IntegerField()
+    name = forms.CharField(max_length=100)
+    age = forms.IntegerField()
 
-	def __init__(self, *args, **kwargs):
-		upgrade = kwargs.pop("upgrade", False)
-		super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        upgrade = kwargs.pop("upgrade", False)
+        super().__init__(*args, **kwargs)
 
-		if upgrade:
-			self.fields["first_class"] = forms.BooleanField(
-				label="Fly First Class?")
+        if upgrade:
+            self.fields["first_class"] = forms.BooleanField(
+                label="Fly First Class?")
 
 # PersonDetailsForm(upgrade=True)
 
@@ -175,3 +228,7 @@ form = SubscribeForm(prefix="offers")
 
 # The authors are explicit right at the beginning of their book that
 # 'some of our patterns are supported directly by the less common object-oriented languages'
+
+
+# Url
+https://www.linkedin.com/learning/python-design-patterns/welcome?autoplay=true&trk=course_tocItem&upsellOrderOrigin=trk_default_learning
