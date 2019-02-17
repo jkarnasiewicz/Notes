@@ -13,6 +13,16 @@ because the design patterns can cause more problems instead of solving problems 
 they are misused (e.g. side effects, such as worse performance when you're trying to
 use one of the design patterns to accomplish better security)
 
+3. Consistency, one of the reasons why we recommend the use of Design Patterns is to
+promote the consistency of the code. If the same solution is used over and over again
+to solve the same problem, users need to modify only one piece of code when there is
+a need for changing the code
+
+4. more Cohesion(the degree of independence of software elements) and
+less Coupling(the degree to which your software elements are connected)
+
+5. Simplicity(learning curve, practitioners) >
+Generality Trade-Offs/Wider Adoption(more functionality, too complex)
 
 # Design patterns types
 1. creational, used to create objects in a systematic way, e.g. polymorphism, interfaces
@@ -71,8 +81,45 @@ use one of the design patterns to accomplish better security)
    e.g. methods and their signatures, interfaces
    --> define the protocols in between this objects, when they trying to work together to
    accomplish common goal
+    a) observer (establishes a one-to-many relationship between a subject and multiple observers)
+       subject class: Attach, Detach and Notify all registered observers
+    b) visitor (adding new features to an existing class hierarchy without changing it)
+       visitors can also provide operations on a composite object, visitor can hold reference to
+       visiting object and call its methods
+    c) iterator (allows a client to have sequential access to the elements of an aggregate object
+       without exposing its underlying structure,
+       iterator isolates access and traversal features from an aggregate object,
+       iterator provides an interface for accessing the elements of an aggregate object)
+    d) strategy (pattern offers a family of interchangeable algorithms to a client,
+       when there is a need, we provide another variation of the Strategy class by dynamically
+       replacing its default method with a new one)
 
+    from types import MethodType
+    class Strategy:
+        "The Strategy Pattern class"
+        def __init__(self, function):
+            self.name = 'default strategy'
+            if function:
+                self.execute = MethodType(function, self)
 
+        def execute(self):
+            "the default method"
+
+    e) Chain of Responsibility (pattern decouples the request and its processing,
+       many different types of processing needs to be done depending on what the request is)
+
+    class Client:
+        def __init__(self):
+            # Create handlers and use it in a sequence we want
+            # Default handler has no successor
+            self.handler = ConcreteHandler(DefaultHandler(None))
+
+        def delegate(self, request):
+            # Send your requests one at a time for handlers to handle
+            for request in requests:
+                # every request is handled in different method if necessary
+                # first in ConcreteHandler and the if necessary in DefaultHandler
+                self.handler.handle(request)
 
 
 In the world of software, the term design pattern refers to a general repeatable
@@ -232,3 +279,4 @@ form = SubscribeForm(prefix="offers")
 
 # Url
 https://www.linkedin.com/learning/python-design-patterns/welcome?autoplay=true&trk=course_tocItem&upsellOrderOrigin=trk_default_learning
+https://www.linkedin.com/learning/python-advanced-design-patterns

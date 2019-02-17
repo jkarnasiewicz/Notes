@@ -88,3 +88,10 @@ class Singleton(Borg):
 
 print(Singleton(name='bzzz'))
 print(Singleton(second='uff'))
+
+
+
+# print vs stdout
+for i in range(1500):
+    sys.stdout.write(f'{i}/1500\r')
+    sys.stdout.flush()
