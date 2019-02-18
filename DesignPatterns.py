@@ -280,3 +280,4 @@ form = SubscribeForm(prefix="offers")
 # Url
 https://www.linkedin.com/learning/python-design-patterns/welcome?autoplay=true&trk=course_tocItem&upsellOrderOrigin=trk_default_learning
 https://www.linkedin.com/learning/python-advanced-design-patterns
+

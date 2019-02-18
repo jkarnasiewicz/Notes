@@ -650,7 +650,7 @@ for row in cursor:
 
 
 
-# Host and IP 
+# Host and IP
 import socket
 myname = socket.getfqdn(socket.gethostname( ))
 myaddr = socket.gethostbyname(myname)
@@ -729,7 +729,7 @@ while True:
 		print("Oops!  That was no valid number.  Try again...")
 
 
-try:  
+try:
 	from lxml import etree
 except ImportError:
 	import xml.etree.ElementTree as etree
@@ -753,23 +753,3 @@ class MissingDatabaseError(RuntimeError):
 # Assert
 assert False, 'This should never happen'
 assert isinstance(instance_of_the_class, ClassName), 'Comments'
-
-
-
-# Documentation Strings
-def square(x):
-	'''Do nothing, but document it.
-	No, really, it doesn't do anything.
-
-	Args:
-		x: The number for which the square root is to be computed
-
-	Returns:
-		The square root of x.
-
-	Raises:
-		ValueError: If x is negative.
-	'''
-	pass
-
-print(function.__doc__)
