@@ -14,8 +14,6 @@
 	wdorzenie kodu odbywa sie za pomoca systemu ciaglej intregracji - zachodzi automatycznie i bezwarunkowo za kazdym razem gdy nowe zmiany
 	pojawia sie na galezi glownej kodu
 
-# Regresja
-blad ktory byl wczesniej rozwiazany, lub taki ktory dotyczy funkcjonalnosci dzialajacych dotychczas bezproblemowo
 
 # Master and Slave
 Master - server sterowniczy, Slave - serwer wykonawczy

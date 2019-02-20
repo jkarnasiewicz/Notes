@@ -10,15 +10,30 @@ Testy Odizolowane (Isolated tests) stosujące imitacje (mock)                   
 
 
 # Proces TDD:
-test funkcjonalny
-testy zintegrowane/odizolowane (konfiguracja, sprawdzenie, asercja)
-cykl test zintegrowany/odizolowany i tworzenie kodu
-refaktoryzacja - próba ulepszenia kodu bez wprowadzania zmian w jego funkcjonalności
+1. test funkcjonalny
+2. testy zintegrowane/odizolowane (konfiguracja, sprawdzenie, asercja)
+3. cykl test zintegrowany/odizolowany i tworzenie kodu
+4. refaktoryzacja - próba ulepszenia kodu bez wprowadzania zmian w jego funkcjonalności
 
+# Za kazdym razem gdy pojawi sie nowe wymaganie, w pierwszej kolejnosci powinny byc zmodyfikowane testy.
+# Uruchomienie testów bedzie testem, ktory potwierdzi(bądź nie) potrzebe wprowadzenia kolejnych zmian w implementacji
+# testowanej funkcji
+1. Napisanie automatycznych testów(funkcjonalnych/zintegrowanych/odizolowanych) dla nowej funkcjonalności lub usparwnienia,
+   ktore jeszcze nie są zaimplementowane
+2. Dostarczanie minimalnej implementacji spełniającej wymagania wyrażone testami
+3. Refaktoryzacja kodu w celu osiągnięcia  pożądanego poziomu jakości
 
-
-
-
+# Zalety TDD
+1. Pozwala ograniczyć zjawisko regresji w kodzie
+# regresja - blad ktory byl wczesniej rozwiazany, lub taki ktory dotyczy funkcjonalnosci dzialajacych dotychczas bezproblemowo
+2. Podnosi jakość kodu
+# pisanie testów, które w większości przypadków są przykładami użycia dla kodu, pozwala utrzymywać punkt widzenia uzytkownika
+# tworzonych interfejsów programistycznych (weryfikacja zasadności doboru nazw, argumentów czy struktur interfejsów)
+3. Umozliwia tworzenie bardziej niezawodnego oprogramowania w krótszych cyklach
+# pisanie kodu bez testów wydłuża proces wyszukiwania i naprawiania błędów
+4. Testy pełnią dodatkową funkcję niskopoziomowej dokumentacji przypadków użycia kodu
+# testy sa najlepszym miejscem, gdzie programista moze sie dowiedziec, jak dziala dane oprogramowanie
+# czasami taki przykład wart jest więcej niż tysiąc słów
 
 
 
@@ -233,7 +248,7 @@ class TestSomething(unittest.TestCase):
         response = self.client.post('/home_page/', data={'item_text': 'A new list item'})
         response = self.client.get(reverse('home_page'), {'district': 'EU'}, follow=True)
 
-        # request = HttpRequest() 
+        # request = HttpRequest()
         # response = home_page(request)
         # expected_html = render_to_string('home.html', {'form': ItemForm()})
         # self.assertEqual(response.content.decode(), expected_html)
@@ -248,7 +263,7 @@ class TestSomething(unittest.TestCase):
         self.assertRedirects(response, '/lists/{}/'.format(item.id))
         self.assertRedirects(response, '/admin/coupons/coupontemplate/', status_code=302, target_status_code=200)
         self.assertRedirects(response, reverse('item_detail', kwargs={'item': item.pk}))
-        
+
         self.client.login(username='john', password='blowfish')
         self.client.force_login(self.super_user)
         self.client.logout()
