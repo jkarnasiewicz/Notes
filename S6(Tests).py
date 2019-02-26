@@ -593,4 +593,79 @@ https://docs.djangoproject.com/en/1.10/topics/testing/tools/
 
 
 
-# Libraries: py.test, nose and factory_boy(fixtures)
+# Libraries:
+1. py.test (wydajność, elastyczny i wyjątkowo łatwy sposób zarządzania kontekstem wykonania testów,
+    możliwosć rozproszenia testów na wiele komputerów)
+2. nose
+3. factory_boy(fixtures)
+
+
+
+
+
+# PyTest
+
+# implementacja kontekstu dla testów
+
+import pytest
+
+@pytest.fixture()
+def prime_numbers():
+    """Dostarcza kontekst zawierający liczby pierwsze"""
+    return [3, 5, 7]
+
+@pytest.fixture()
+def non_prime_numbers():
+    """Dostarcza kontekst zawierający liczby złożone"""
+    return [8, 0, 1]
+
+@pytest.fixture()
+def negative_numbers():
+    """Dostarcza kontekst zawierający liczby ujemne"""
+    return [-1, -3, -6]
+
+
+def test_is_prime_true(prime_numbers):
+    """Sprawdż, czy funkcja is_prime() zwraca wartość
+    True dla liczb pierwszych"""
+    for number in prime_numbers:
+        assert is_prime(number)
+
+def test_is_prime_false(non_prime_numbers, negative_numbers):
+    ...
+
+
+
+# deazaktywacja wybranych testów i klas testowych
+
+@pytest.mark.skipif(
+    sys.platform == 'win32',
+    reason='Niewspierane środowisko Windows'
+)
+class TestPosixCalls:
+    def test_function(self):
+        """Ten test nie powinien być uruchomiony w środowisku Windows"""
+
+
+# wcześniejsza definicja warunków pomijania testów, łatwe współdzielenie między testami
+skip_windows = pytest.mark.skipif(
+    sys.platform == 'win32',
+    reason='Niewspierane środowisko Windows'
+)
+
+@skip_windows
+class TestPosixCalls:
+    def test_function(self):
+        """Ten test nie powinien być uruchomiony w środowisku Windows"""
+
+
+
+# testy które w konkretnych warunkach powinny zakończyć się niepowodzeniem
+# test zawsze bedzie wykonany, jednakże w określonych warunkach oczekiwana będzie porażka, a nie sukces
+@pytest.mark.xfail(
+    sys.platform == 'win32',
+    reason='Niewspierane środowisko Windows'
+)
+class TestPosixCalls:
+    def test_function(self):
+        """Ten test musi zakończyć się niepowodzeniem w środowisku Windows"""
