@@ -35,6 +35,9 @@ Testy Odizolowane (Isolated tests) stosujące imitacje (mock)                   
 # testy sa najlepszym miejscem, gdzie programista moze sie dowiedziec, jak dziala dane oprogramowanie
 # czasami taki przykład wart jest więcej niż tysiąc słów
 
+# Izolacja ma zapewnić
+1. testy odnosza się do atomowych części aplikacji, czyli funkcji, metod, klas lub interfejsów
+2. cały proces jest deterministyczny i powtarzalny
 
 
 
@@ -336,7 +339,7 @@ class TestOne(unittest.TestCase):
 
 
 
-# Mocks (Imitacja) - tworzenie fikcyjnej implementacji API
+# Mocks (Imitacje, atrapy, fałszywe obiekty) - tworzenie fikcyjnej implementacji API
 
 # Mock are objects that can test the behavior, and stubs are
 # simply placeholder implementations
@@ -593,11 +596,12 @@ https://docs.djangoproject.com/en/1.10/topics/testing/tools/
 
 
 
-# Libraries:
+# Other Libraries:
 1. py.test (wydajność, elastyczny i wyjątkowo łatwy sposób zarządzania kontekstem wykonania testów,
     możliwosć rozproszenia testów na wiele komputerów)
 2. nose
-3. factory_boy(fixtures)
+3. doctest (pewne testy dokumentacyjne są bardzo nieczytelne)
+4. factory_boy(fixtures)
 
 
 
@@ -636,6 +640,8 @@ def test_is_prime_false(non_prime_numbers, negative_numbers):
 
 
 
+
+
 # deazaktywacja wybranych testów i klas testowych
 
 @pytest.mark.skipif(
@@ -669,3 +675,83 @@ class TestPosixCalls:
 class TestPosixCalls:
     def test_function(self):
         """Ten test musi zakończyć się niepowodzeniem w środowisku Windows"""
+
+
+
+
+
+# fałszywe obiekty zastępcze i atrapy
+# monkey-patching - dynamicznie zmodyfikować oprogramowanie w czasie uruchomienia, bez modyfikacji kodu źródłowego
+
+# Fakes (fałszywe obiekty)
+import smtplib
+import pytest
+from mailer import send
+
+class FakeSMTP(object):
+    def __init__(self, *args, **kwargs):
+        pass
+    def quit(self):
+        pass
+    def sendmail(self, *args, **kwargs):
+        return {}
+
+@pytest.yield_fixture()
+# dekorator pozwalający na zarządzanie kontekstem wykonania testu za pomocą składni generatorów
+def patch_smtplib():
+    old_smtp = smtplib.SMTP
+    smtplib.SMTP = FakeSMTP
+
+    yield
+    # zakopńczenie kontekstu: przywróć zawartość modułu do poprzedniego stanu
+    smtplib.SMTP = old_smtp
+
+def test_send(patch_smtplib):
+    # function send uses 'server = smtplib.SMTP(server)'
+    res = send(...)
+    assert res == {}
+
+
+
+# używając wbudowanego zarządcę kontekstu narzędzia py.test, monkeypatch
+class FakeSMTP(object):
+    def __init__(self, *args, **kwargs):
+        pass
+    def quit(self):
+        pass
+    def sendmail(self, *args, **kwargs):
+        return {}
+
+def test_send(monkeypatch):
+    monkeypatch.setattr(smtplib, 'SMTP', FakeSMTP)
+
+    res = send(...)
+    assert res = {}
+
+
+
+# Mocks (atrapy)
+import smtplib
+from unittest.mock import MagicMock
+from mailer import send
+
+def test_send(monkeypatch):
+    smpt_mock = MagicMock()
+    smpt_mock.sendmail.return_value = {}
+
+    monkeypatch.setattr(smtplib, 'SMTP', MagicMock(return_value=smpt_mock))
+
+    res = send(...)
+    assert res == {}
+
+# or
+from unittest.mock import patch
+from mailer import send
+
+def test_send(monkeypatch):
+    with patch('smtp.SMTP') as mock:
+        instance = mock.return_value
+        instance.sendmail.return_value = {}
+
+        res = send(...)
+        assert res == {}
