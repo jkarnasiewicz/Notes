@@ -1,5 +1,122 @@
 # Profilng, Debuging and Optimisation
 
+# Ogólne zasady:
+1. przed wszystkim spraw, aby kod dzialal poprawnie
+	'Spraw, by program po prostu działał, potem spraw, by był napisany dobrze, a dopiero na samym koniec spraw, by był szybki'
+2. pracuj z perespektywy uzutkownika
+	'Dokonuj optymalizacji tylko wtedy, kiedy to konieczne'
+	'Które czesci programu tak naprawde musza dzialać szybko'
+3. utrzymuj kod czytelnym
+	'Szukaj dobrego kompromisu pomiędzy czytelnościa a szybkoscia'
+4. optymalizacja jest procesem przyrostowym i nie kazda jej iteracja moze przynosic pozadane skutki
+5. zawsze poiniennes sie skupic na optymalizacji waskich gardel wydajności
+
+# Profilowanie czasu użycia procesora
+1. profile/cProfile
+
+python3 -m cProfile myapp.py
+# lub
+import cProfile
+from myapp import main
+profiler = cProfile.Profile()
+profiler.runcall(main)
+profiler.print_stats()
+
+2. timeit
+python3 -m timeit -s 'a = map(str, range(1000))' '"".join(a)'
+python3 -m timeit -s 'a = map(str, rnage(1000)); s=""' 'for i in a: s += i'
+
+3. mierzenie liczby operacji testem Pystone
+from test import pystone
+benchtime, pystones = pystone.pystone()				# (czas potrzebny do wykonania testów, liczba operacji Pystone na sekunde)
+# wynik ten moze byc z powodzeniem uzyty do normalizacji pomiarow podczas profilowania kodu
+def seconds_to_kpstones(seconds):
+	return (pystones*seconds) / 1000
+
+
+
+# Profilowanie zużycia pamięci
+Najczęstrzymi pożeraczami pamięci są:
+1. bufory i pamięci podręczne, które puchną w niekontrolowany sposób
+2. fabryki globalnych obiektów, które nie śledzą wykorzystania rejestrowanych instancji
+   (np. brak prawidlowego zamkniecia połączenia do abzy danych)
+3. wątki, które nie są poprawnie zakończone
+4. obiekty z zaimplementowanymi metodami __del__() znajdujące się w cyklach referencji
+
+# objgraph
+objgrpah.show_most_common_types()
+objgrpah.count('list')
+objgrpah.typestats(objgrpah.get_leaking_objects())
+# with graphviz
+objgrpah.show_refs(reference_to_object)
+objgrpah.show_backrefs(reference_to_object)
+
+
+
+# Problemy sieciowe
+1. podsłuchac ruch sieciowy (ntop, wireshark)
+2. wyszukać wadliwe i źle skofigurowane narzędzia sieciowe za pomocą net-snmp
+3. określić faktyczą przepustowość łącza pomiędzy dwoma komputerami za pomocą statystycznego narzędzia Pathrate
+
+
+
+# Wybrane techniki optymalizacji
+1. redukcja złożoności
+	- złozoność cyklomatyczna - ograniczanie niezaleznych liniowych ściezek prowadzących przez kod aplikacji
+	- notacja Landaua (notacja duzego O) - zmniejszenie złożoności obliczeniowej lub dobranie bardziej odpowiednich algorytmów
+	- odpowiedni dobór struktur danych (np. korzystanie ze zbiorów w miejsce list, wstępne sortowanie -> przeszukiwanie list, bisect, moduł collections)
+	- zmniejszenie ilości wywołań funkcji/klas - np. wyciąganie jak najwiekszej części kodu poza ciało pętli
+2. stosowanie kompromisów architektonicznych
+	- zastąpienie dokładnych algorytmów heurystykami (rozwiązują wybrane problemy, poświęcając optymalność, kompletność, dokładność lub precyzję swoich
+		rozwiązań w zamian za szybkość) i algorytmami aproksymacyjnymi (w założeniach identyczne z heurystykami, ale można matematycznie dowieść, ze
+		jakosc dostarczanych przez nie wymagan zawiera sie w scisle okreslonych granicach)
+		np. problem komiwojażera (Traveling Salesman Problem - TSP), problem marszrutyzacj (Vehicle Routing Problem)
+		# Metaheurystyki
+		symulowane wyżarzenie
+		algorytmy genetyczne
+		przeszukiwanie tabu
+		algorytm mrówkowy
+		programowanie ewolucyjne
+	- odroczenie części pracy do kolejek zadań pracujących z opóźnieniem (RabbitMQ, Celery, RedisQueue)
+		+ procesy i serwery obsługujące żądania HTTP będą zwolnione od dodatkowej pracy i bedą mogło przetwarzać je szybciej
+		+ większa odpornośc na awarie zewnetrznych usług
+		+ łatwiej rozproszyć pracę na wiele maszyn (zwiększenie skalowalności)
+		- zwiększona złożonośc systemu, więcej usług do utrzymywania i monitorowania, trudniejsze logowanie
+		- wielokrotne dostarczanie tej samej wiadomości
+		- zwiększenie opóźnienia w przetwarzaniu danyc
+	- stosowanie probabilistycznych struktur danych (dopowiedź na pytania jest poprawna jedynie z pewnym prawdopodobieństwem, jednak zakres
+		dokładności jest z góry dobrze znany)
+		np. HyperLogLog, filtr Blooma
+3. buforowanie (caching), przechowywanie zwracanych wartości do kolejnego uzycia w przyszłości, buforowanie ma sens dopóki zachowanie funckji jest
+	deterministyczne i zwraca ona zawsze ten sam niezmienny rezultat, jesli jej parametry wywołania pozostają niezmienne
+	np. rezultaty funkcji: odpytujących bazy danych, renderujących statyczne wartości(np. pliki), deterministycznych wykonujących skomplikaowane
+	obliczenia, wykorzystywane i pobierane wyjątkowo często
+
+	- buforowanie deterministyczne, np.przechowywanie rezultatów bezposrednio w pamięci procesu, ponieważ dostęp do niej będzie z reguły najszybszy (memoizacja)
+	np. optymalizacja wywołań funkcji rekurencyjnych
+	# wbudowana funkcja memoizacji: from functools import lru_cache
+	def memoize(function):
+		call_cache = {}
+		def memoized(argument):
+			try:
+				return call_cache[argument]
+			except KeyError:
+				return call_cache.setdefault(argument, function(argument))
+
+		return memoized
+
+	# @memoize
+	# def function_name(arg):
+	#     ...
+
+	- buforowanie niedeterministyczne,
+
+
+
+
+
+
+
 # Profiling to find bottlenecks
 
 # timeit (overall time)
