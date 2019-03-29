@@ -89,7 +89,7 @@ objgrpah.show_backrefs(reference_to_object)
 		np. HyperLogLog, filtr Blooma
 3. buforowanie (caching), przechowywanie zwracanych wartości do kolejnego uzycia w przyszłości, buforowanie ma sens dopóki zachowanie funckji jest
 	deterministyczne i zwraca ona zawsze ten sam niezmienny rezultat, jesli jej parametry wywołania pozostają niezmienne
-	np. rezultaty funkcji: odpytujących bazy danych, renderujących statyczne wartości(np. pliki), deterministycznych wykonujących skomplikaowane
+	np. rezultaty funkcji: odpytujących bazy danych, renderujących statyczne wartości(np. pliki), deterministycznych wykonujących skomplikowane
 	obliczenia, wykorzystywane i pobierane wyjątkowo często
 
 	- buforowanie deterministyczne, np.przechowywanie rezultatów bezposrednio w pamięci procesu, ponieważ dostęp do niej będzie z reguły najszybszy (memoizacja)
@@ -109,7 +109,11 @@ objgrpah.show_backrefs(reference_to_object)
 	# def function_name(arg):
 	#     ...
 
-	- buforowanie niedeterministyczne,
+	- buforowanie niedeterministyczne (kompromis architektoniczny),
+	poświęcanie poprawności i/lub zupełności danych w zamian za szybkość i wydajność (użycie danych nieaktualnych/niespójnych)
+	niedeterministyczne funckje podlegające buforowaniu zwykle zależą od pewnego zewnętrznego stanu, który jest niezwykle trudny do śledzenia
+	wewnątrz aplikacji, np. dowolny typ ustrukturyzowanych systemów przechowywania danych(relacyjne bazy danych), usługi osób trzecich udostępnione
+	za pośrednictwem połączeń sieciowych(sieciowe API), systemy plików
 
 
 

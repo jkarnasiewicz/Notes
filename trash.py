@@ -95,3 +95,6 @@ print(Singleton(second='uff'))
 for i in range(1500):
     sys.stdout.write(f'{i}/1500\r')
     sys.stdout.flush()
+
+# TO DO
+1. Knowledge of SQL and familiarity with advanced database concepts (replication, sharding)

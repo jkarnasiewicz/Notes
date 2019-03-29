@@ -88,6 +88,10 @@ git remote add remote_alias url
 # create a new remote called origin that points to remote server at url
 git remote add origin https://...
 
+# update
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git 			# SSH remote URLs
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git 		# HTTPS remote URLs
+
 # remove remote
 git remote rm <alias>
 
