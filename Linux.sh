@@ -174,8 +174,9 @@ tsql -S sqlserver -U 'User' -P 'password' -D 'server'
 
 
 
-# format device
+# disk space/format device
 df
+df -h --all
 sudo umount /dev/sdb1
 sudo mkfs.vfat -n 'name' -I /dev/sdb1
 sudo apt-get install gparted

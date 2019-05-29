@@ -16,29 +16,29 @@
 # checking if dervied class has needed method at import module time
 # class BaseMeta(type):
 
-# 	def __new__(cls, name, bases, body):
-# 		if not 'bar' in body:
-# 			raise TypeError('Bad user class')
-# 		return super().__new__(cls, name, bases, body)
+#      def __new__(cls, name, bases, body):
+#              if not 'bar' in body:
+#                      raise TypeError('Bad user class')
+#              return super().__new__(cls, name, bases, body)
 
 
 # class Base(metaclass=BaseMeta):
 
-# 	def foo(self):
-# 		return self.bar()
+#      def foo(self):
+#              return self.bar()
 
-# 	def __init_subclass__(self, *args, **kwargs):
-# 		print(args, kwargs)
+#      def __init_subclass__(self, *args, **kwargs):
+#              print(args, kwargs)
 
-# 	def bar(self):
-# 		raise NotImplemented
+#      def bar(self):
+#              raise NotImplemented
 
 
 # class Derrived(Base):
-# 	'user class'
+#      'user class'
 
-# 	def bar(self):
-# 		raise NotImplemented
+#      def bar(self):
+#              raise NotImplemented
 
 
 
@@ -69,21 +69,21 @@ Use TCP health checks instead of HTTP, to call WSGI without entering the request
 
 # Make class attributes global
 class Borg:
-	_shared_state = {}
+       _shared_state = {}
 
-	def __inti__(self):
-		self.__dict__ = self._shared_state
+       def __inti__(self):
+               self.__dict__ = self._shared_state
 
 
 class Singleton(Borg):
 
-	def __init__(self, **kwargs):
-		print(kwargs, type(kwargs))
-		Borg.__init__(self)
-		self._shared_state.update(kwargs)
+       def __init__(self, **kwargs):
+               print(kwargs, type(kwargs))
+               Borg.__init__(self)
+               self._shared_state.update(kwargs)
 
-	def __str__(self):
-		return str(self._shared_state)
+       def __str__(self):
+               return str(self._shared_state)
 
 
 print(Singleton(name='bzzz'))
